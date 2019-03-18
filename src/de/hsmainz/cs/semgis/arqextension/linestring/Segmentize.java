@@ -13,6 +13,8 @@
 package de.hsmainz.cs.semgis.arqextension.linestring;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.SRSInfo;
+import io.github.galbiston.geosparql_jena.implementation.great_circle.GreatCircleDistance;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -21,13 +23,11 @@ import org.apache.jena.datatypes.DatatypeFormatException;
 import org.apache.jena.sparql.expr.ExprEvalException;
 import org.apache.jena.sparql.expr.NodeValue;
 import org.apache.jena.sparql.function.FunctionBase2;
-import org.geotools.referencing.GeodeticCalculator;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.PrecisionModel;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
-import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.util.FactoryException;
 
 public class Segmentize extends FunctionBase2 {
@@ -37,11 +37,9 @@ public class Segmentize extends FunctionBase2 {
 
         try {
             GeometryWrapper geometry = GeometryWrapper.extract(arg0);
-            Geometry track = geometry.getXYGeometry();
             double segmentLength = arg1.getDouble();
-            CoordinateReferenceSystem crs = geometry.getCRS();
 
-            List<Geometry> geometries = createSegments(track, segmentLength, crs);
+            List<Geometry> geometries = createSegments(geometry, segmentLength);
             List<String> results = new ArrayList<>(geometries.size());
             for (Geometry geom : geometries) {
                 GeometryWrapper geomWrapper = GeometryWrapper.createGeometry(geom, geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
@@ -57,10 +55,12 @@ public class Segmentize extends FunctionBase2 {
         }
     }
 
-    public List<Geometry> createSegments(Geometry track, double segmentLength, CoordinateReferenceSystem crs) throws NoSuchAuthorityCodeException, FactoryException {
+    public List<Geometry> createSegments(GeometryWrapper geometry, double segmentLength) throws NoSuchAuthorityCodeException, FactoryException {
 
-        GeodeticCalculator calculator = new GeodeticCalculator(crs); //TODO shouldn't this check whether the SRS/CRS is Geographic? Can be found in GeometryWrapper.getSRSInfo().
         GeometryFactory geometryFactory = new GeometryFactory(new PrecisionModel(PrecisionModel.FLOATING));
+
+        Geometry track = geometry.getXYGeometry();
+        SRSInfo srsInfo = geometry.getSrsInfo();
 
         List<Coordinate> coordinates = new ArrayList<>(track.getCoordinates().length);
         Collections.addAll(coordinates, track.getCoordinates());
@@ -76,10 +76,14 @@ public class Segmentize extends FunctionBase2 {
 
             lastSegment.add(c1);
 
-            calculator.setStartingGeographicPoint(c1.x, c1.y);
-            calculator.setDestinationGeographicPoint(c2.x, c2.y);
-
-            double length = calculator.getOrthodromicDistance();
+            double length;
+            //Check for geographic or planar distance.
+            //Does the rest of the calculation take into consideration geographic is non-linear in X/Y relationship?
+            if (srsInfo.isGeographic()) {
+                length = GreatCircleDistance.haversineFormula(c1, c2);
+            } else {
+                length = c1.distance(c2);
+            }
 
             if (length + accumulatedLength >= segmentLength) {
                 double offsetLength = segmentLength - accumulatedLength;
@@ -87,8 +91,7 @@ public class Segmentize extends FunctionBase2 {
                 double dx = c2.x - c1.x;
                 double dy = c2.y - c1.y;
 
-                Coordinate segmentationPoint = new Coordinate(c1.x + (dx * ratio),
-                        c1.y + (dy * ratio));
+                Coordinate segmentationPoint = new Coordinate(c1.x + (dx * ratio), c1.y + (dy * ratio));
 
                 lastSegment.add(segmentationPoint); // Last point of the segment is the segmentation point
                 segments.add(geometryFactory.createLineString(lastSegment.toArray(new Coordinate[lastSegment.size()])));
