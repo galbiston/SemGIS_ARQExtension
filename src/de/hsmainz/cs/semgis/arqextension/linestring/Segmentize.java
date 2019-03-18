@@ -53,7 +53,7 @@ public class Segmentize extends FunctionBase2 {
             //Returning the list of space delimited literals. This is the same as GROUP_CONCAT.
             //Correct splitting of results for use in query would need a Property Function.
             return NodeValue.makeNodeString(String.join(" ", results));
-        } catch (DatatypeFormatException | FactoryException | NoSuchAuthorityCodeException ex) {
+        } catch (DatatypeFormatException | FactoryException ex) {
             throw new ExprEvalException(ex.getMessage(), ex);
         }
     }
