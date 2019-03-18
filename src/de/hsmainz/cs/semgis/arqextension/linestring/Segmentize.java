@@ -16,7 +16,6 @@ import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 import org.apache.jena.datatypes.DatatypeFormatException;
 import org.apache.jena.sparql.expr.ExprEvalException;
@@ -63,7 +62,7 @@ public class Segmentize extends FunctionBase2 {
         GeodeticCalculator calculator = new GeodeticCalculator(crs); //TODO shouldn't this check whether the SRS/CRS is Geographic? Can be found in GeometryWrapper.getSRSInfo().
         GeometryFactory geometryFactory = new GeometryFactory(new PrecisionModel(PrecisionModel.FLOATING));
 
-        LinkedList<Coordinate> coordinates = new LinkedList<>();
+        List<Coordinate> coordinates = new ArrayList<>(track.getCoordinates().length);
         Collections.addAll(coordinates, track.getCoordinates());
 
         double accumulatedLength = 0;
@@ -102,7 +101,7 @@ public class Segmentize extends FunctionBase2 {
             }
         }
 
-        lastSegment.add(coordinates.getLast()); // Because the last one is never added in the loop above
+        lastSegment.add(coordinates.get(coordinates.size() - 1)); // Because the last one is never added in the loop above
         segments.add(geometryFactory.createLineString(lastSegment.toArray(new Coordinate[lastSegment.size()])));
 
         return segments;
