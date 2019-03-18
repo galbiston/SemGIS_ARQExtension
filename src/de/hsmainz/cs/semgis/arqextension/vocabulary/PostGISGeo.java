@@ -145,20 +145,6 @@ public class PostGISGeo {
    public static final Property st_zMin = property("ST_ZMin");
    public static final Property st_zMax = property("ST_ZMax");
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
    public static class Nodes {
       public static final Node SpatialObject = PostGISGeo.SpatialObject.asNode();
       public static final Node Feature = PostGISGeo.Feature.asNode();
