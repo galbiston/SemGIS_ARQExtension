@@ -43,9 +43,9 @@
         </plugins>
     </build>
     <properties>
-    		  <geotk.version>5.0-SNAPSHOT</geotk.version>
-		  <sis.version>0.8-jdk7-M1</sis.version>
-		  <geoapi.version>4.0-M05</geoapi.version>
+        <geotk.version>5.0-SNAPSHOT</geotk.version>
+        <sis.version>0.8-jdk7-M1</sis.version>
+        <geoapi.version>4.0-M05</geoapi.version>
         <geotools.version>21.0</geotools.version>
         <!--<sis.version>1.0-SNAPSHOT</sis.version>-->
         <jena.version>3.10.0</jena.version>
@@ -71,119 +71,117 @@
             <version>1.4</version>
         </dependency>
         <dependency>
-    <groupId>com.github.davidmoten</groupId>
-    <artifactId>geo</artifactId>
-    <version>0.7.1</version>
-</dependency>
- 							<dependency>
-		<groupId>org.geotoolkit</groupId>
-		<artifactId>geotk-client-wcs</artifactId>
-		<version>${geotk.version}</version>
-		</dependency>
-						<dependency>
-		<groupId>org.geotoolkit</groupId>
-		<artifactId>geotk-client-csw</artifactId>
-		<version>${geotk.version}</version>
-		</dependency>
-								<dependency>
-		<groupId>org.geotoolkit</groupId>
-		<artifactId>geotk-feature-csv</artifactId>
-		<version>${geotk.version}</version>
-		</dependency>
-										<dependency>
-		<groupId>org.geotoolkit</groupId>
-		<artifactId>geotk-xml-citygml</artifactId>
-		<version>${geotk.version}</version>
-		</dependency>
+            <groupId>com.github.davidmoten</groupId>
+            <artifactId>geo</artifactId>
+            <version>0.7.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotoolkit</groupId>
+            <artifactId>geotk-client-wcs</artifactId>
+            <version>${geotk.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotoolkit</groupId>
+            <artifactId>geotk-client-csw</artifactId>
+            <version>${geotk.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotoolkit</groupId>
+            <artifactId>geotk-feature-csv</artifactId>
+            <version>${geotk.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotoolkit</groupId>
+            <artifactId>geotk-xml-citygml</artifactId>
+            <version>${geotk.version}</version>
+        </dependency>
 
-						<dependency>
-		<groupId>org.geotoolkit</groupId>
-		<artifactId>geotk-client-wms</artifactId>
-		<version>${geotk.version}</version>
-		</dependency>
-								<dependency>
-		<groupId>org.geotoolkit</groupId>
-		<artifactId>geotk-client-osm</artifactId>
-		<version>${geotk.version}</version>
-		</dependency>
-										<dependency>
-		<groupId>org.geotoolkit</groupId>
-		<artifactId>geotk-coverage-geotiff</artifactId>
-		<version>${geotk.version}</version>
-		</dependency>
-						<dependency>
-		<groupId>org.geotoolkit</groupId>
-		<artifactId>geotk-client-wfs</artifactId>
-		<version>${geotk.version}</version>
-		</dependency>
-						<dependency>
-		<groupId>org.geotoolkit</groupId>
-		<artifactId>geotk-feature-shapefile</artifactId>
-		<version>${geotk.version}</version>
-		</dependency>
-
-  		 <dependency>
-    <groupId>org.geotoolkit</groupId>
-    <artifactId>geotk-feature</artifactId>
-    <version>${geotk.version}</version>
-  </dependency>
-    		 <dependency>
-    <groupId>org.geotoolkit</groupId>
-    <artifactId>geotk-utility</artifactId>
-    <version>${geotk.version}</version>
-  </dependency>
-    <dependency>
-    <groupId>org.geotoolkit</groupId>
-    <artifactId>geotk-feature-geojson</artifactId>
-    <version>${geotk.version}</version>
-  </dependency>
-      <dependency>
-    <groupId>org.geotoolkit</groupId>
-    <artifactId>geotk-feature-kml</artifactId>
-    <version>${geotk.version}</version>
-  </dependency>
-      <dependency>
-    <groupId>org.geotoolkit</groupId>
-    <artifactId>geotk-feature-osm</artifactId>
-    <version>${geotk.version}</version>
-  </dependency>
-      <dependency>
-    <groupId>org.geotoolkit</groupId>
-    <artifactId>geotk-logging-commons</artifactId>
-    <version>${geotk.version}</version>
-  </dependency>
-	<dependency>
-		<groupId>org.opengis</groupId>
-		<artifactId>geoapi</artifactId>
-		<version>${geoapi.version}</version>
-		</dependency>
- <dependency>
-    <groupId>org.apache.sis.core</groupId>
-    <artifactId>sis-feature</artifactId>
-    <version>${sis.version}</version>
-</dependency>
-<dependency>
-    <groupId>org.apache.sis.core</groupId>
-    <artifactId>sis-metadata</artifactId>
-    <version>${sis.version}</version>
-</dependency>
-
-<dependency>
-    <groupId>org.apache.sis.core</groupId>
-    <artifactId>sis-utility</artifactId>
-    <version>${sis.version}</version>
-</dependency>
-<dependency>
-    <groupId>org.apache.sis.core</groupId>
-    <artifactId>sis-referencing</artifactId>
-    <version>${sis.version}</version>
-</dependency>
-<dependency>
-    <groupId>org.apache.sis.non-free</groupId>
-    <artifactId>sis-epsg</artifactId>
-    <version>0.7</version>
-    <scope>runtime</scope>
-  </dependency>
+        <dependency>
+            <groupId>org.geotoolkit</groupId>
+            <artifactId>geotk-client-wms</artifactId>
+            <version>${geotk.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotoolkit</groupId>
+            <artifactId>geotk-client-osm</artifactId>
+            <version>${geotk.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotoolkit</groupId>
+            <artifactId>geotk-coverage-geotiff</artifactId>
+            <version>${geotk.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotoolkit</groupId>
+            <artifactId>geotk-client-wfs</artifactId>
+            <version>${geotk.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotoolkit</groupId>
+            <artifactId>geotk-feature-shapefile</artifactId>
+            <version>${geotk.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotoolkit</groupId>
+            <artifactId>geotk-feature</artifactId>
+            <version>${geotk.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotoolkit</groupId>
+            <artifactId>geotk-utility</artifactId>
+            <version>${geotk.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotoolkit</groupId>
+            <artifactId>geotk-feature-geojson</artifactId>
+            <version>${geotk.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotoolkit</groupId>
+            <artifactId>geotk-feature-kml</artifactId>
+            <version>${geotk.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotoolkit</groupId>
+            <artifactId>geotk-feature-osm</artifactId>
+            <version>${geotk.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotoolkit</groupId>
+            <artifactId>geotk-logging-commons</artifactId>
+            <version>${geotk.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.opengis</groupId>
+            <artifactId>geoapi</artifactId>
+            <version>${geoapi.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.sis.core</groupId>
+            <artifactId>sis-feature</artifactId>
+            <version>${sis.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.sis.core</groupId>
+            <artifactId>sis-metadata</artifactId>
+            <version>${sis.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.sis.core</groupId>
+            <artifactId>sis-utility</artifactId>
+            <version>${sis.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.sis.core</groupId>
+            <artifactId>sis-referencing</artifactId>
+            <version>${sis.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.sis.non-free</groupId>
+            <artifactId>sis-epsg</artifactId>
+            <version>0.7</version>
+            <scope>runtime</scope>
+        </dependency>
         <!--
         <dependency>
             <groupId>org.apache.sis.core</groupId>
@@ -194,7 +192,7 @@
         <dependency>
             <groupId>io.github.galbiston</groupId>
             <artifactId>geosparql-jena</artifactId>
-            <version>1.0.6</version>
+            <version>1.0.7</version>
         </dependency>
     </dependencies>
 
@@ -209,10 +207,10 @@
             <name>Geosolutions</name>
             <url>http://maven.geo-solutions.it/</url>
         </repository>
-          <repository>
-     <id>geotoolkit</id>
-     <name>Geotk repository</name>
-     <url>http://maven.geotoolkit.org</url>
-  </repository>
+        <repository>
+            <id>geotoolkit</id>
+            <name>Geotk repository</name>
+            <url>http://maven.geotoolkit.org</url>
+        </repository>
     </repositories>
 </project>
