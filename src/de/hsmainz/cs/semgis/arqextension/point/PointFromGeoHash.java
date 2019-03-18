@@ -18,7 +18,7 @@ public class PointFromGeoHash extends FunctionBase1 {
         try {
             String geohash = arg0.getString();
             LatLong latlng = com.github.davidmoten.geo.GeoHash.decodeHash(geohash);
-            Coordinate coord = new Coordinate(latlng.getLon(), latlng.getLat()); //Lon is X, Lat is Y.
+            Coordinate coord = new Coordinate(latlng.getLon(), latlng.getLat()); //Lon is X, Lat is Y in CRS84.
             GeometryWrapper pointWrapper = GeometryWrapper.createPoint(coord, SRS_URI.DEFAULT_WKT_CRS84, WKTDatatype.URI);
             return pointWrapper.asNodeValue();
         } catch (DatatypeFormatException ex) {
