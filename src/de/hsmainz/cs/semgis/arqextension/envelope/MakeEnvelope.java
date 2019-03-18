@@ -1,9 +1,9 @@
 package de.hsmainz.cs.semgis.arqextension.envelope;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.SRSInfo;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
 import io.github.galbiston.geosparql_jena.spatial.filter_functions.FunctionBase5;
-import java.math.BigInteger;
 import org.apache.jena.datatypes.DatatypeFormatException;
 import org.apache.jena.sparql.expr.ExprEvalException;
 import org.apache.jena.sparql.expr.NodeValue;
@@ -17,8 +17,8 @@ public class MakeEnvelope extends FunctionBase5 {
 
             Envelope env = new Envelope();
             env.init(arg0.getDouble(), arg2.getDouble(), arg1.getDouble(), arg3.getDouble());
-            BigInteger srid = arg4.getInteger();
-            GeometryWrapper geometryWrapper = GeometryWrapper.createPolygon(env, "<http://www.opengis.net/def/crs/EPSG/0/" + srid + ">", WKTDatatype.URI);
+            String srsURI = SRSInfo.convertSRID(arg4.getInteger());
+            GeometryWrapper geometryWrapper = GeometryWrapper.createPolygon(env, srsURI, WKTDatatype.URI);
 
             return geometryWrapper.asNodeValue();
         } catch (DatatypeFormatException ex) {
