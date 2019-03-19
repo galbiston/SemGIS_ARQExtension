@@ -36,6 +36,9 @@ public class PostGISGeo {
    public static final Property st_addpoint = property("ST_AddPoint");
    public static final Property st_area = property("ST_Area");
    public static final Property st_asbinary = property("ST_AsBinary");
+   public static final Property st_askml = property("ST_AsKML");
+   public static final Property st_asgml = property("ST_AsGML");
+   public static final Property st_asgeojson = property("ST_AsGeoJSON");
    public static final Property st_astext = property("ST_AsText");
    public static final Property st_azimuth = property("ST_Azimuth");
    public static final Property st_band = property("ST_Band");
@@ -49,6 +52,7 @@ public class PostGISGeo {
    public static final Property st_concaveHull = property("ST_ConcaveHull");
    public static final Property st_delaunayTriangles = property("ST_DelaunayTriangles");
    public static final Property st_dimension = property("ST_Dimension");
+   public static final Property st_distance3d = property("ST_3DDistance");
    public static final Property st_endPoint = property("ST_endPoint");
    public static final Property st_envelope = property("ST_Envelope");
    public static final Property st_flipCoordinates = property("ST_FlipCoordinates");
@@ -144,6 +148,7 @@ public class PostGISGeo {
    public static final Property st_z = property("ST_Z");
    public static final Property st_zMin = property("ST_ZMin");
    public static final Property st_zMax = property("ST_ZMax");
+
 
    public static class Nodes {
       public static final Node SpatialObject = PostGISGeo.SpatialObject.asNode();

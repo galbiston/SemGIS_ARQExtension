@@ -7,6 +7,9 @@ import de.hsmainz.cs.semgis.arqextension.envelope.YMax;
 import de.hsmainz.cs.semgis.arqextension.envelope.YMin;
 import de.hsmainz.cs.semgis.arqextension.geometry.Area;
 import de.hsmainz.cs.semgis.arqextension.geometry.AsBinary;
+import de.hsmainz.cs.semgis.arqextension.geometry.AsGML;
+import de.hsmainz.cs.semgis.arqextension.geometry.AsGeoJSON;
+import de.hsmainz.cs.semgis.arqextension.geometry.AsKML;
 import de.hsmainz.cs.semgis.arqextension.geometry.AsText;
 import de.hsmainz.cs.semgis.arqextension.geometry.BoundingDiagonal;
 import de.hsmainz.cs.semgis.arqextension.geometry.Centroid;
@@ -14,6 +17,7 @@ import de.hsmainz.cs.semgis.arqextension.geometry.ClosestPoint;
 import de.hsmainz.cs.semgis.arqextension.geometry.ConcaveHull;
 import de.hsmainz.cs.semgis.arqextension.geometry.DelaunayTriangles;
 import de.hsmainz.cs.semgis.arqextension.geometry.Dimension;
+import de.hsmainz.cs.semgis.arqextension.geometry.Distance3D;
 import de.hsmainz.cs.semgis.arqextension.geometry.FlipCoordinates;
 import de.hsmainz.cs.semgis.arqextension.geometry.GeomFromWKB;
 import de.hsmainz.cs.semgis.arqextension.geometry.GeometryN;
@@ -104,6 +108,9 @@ public class PostGISConfig {
             //POSTGIS functionRegistry
             functionRegistry.put(PostGISGeo.st_addpoint.getURI(), AddPoint.class);
             functionRegistry.put(PostGISGeo.st_asbinary.getURI(), AsBinary.class);
+            functionRegistry.put(PostGISGeo.st_askml.getURI(), AsKML.class);
+            functionRegistry.put(PostGISGeo.st_asgml.getURI(), AsGML.class);
+            functionRegistry.put(PostGISGeo.st_asgeojson.getURI(), AsGeoJSON.class);
             functionRegistry.put(PostGISGeo.st_astext.getURI(), AsText.class);
             functionRegistry.put(PostGISGeo.st_area.getURI(), Area.class);
             functionRegistry.put(PostGISGeo.st_azimuth.getURI(), Azimuth.class);
@@ -118,6 +125,7 @@ public class PostGISConfig {
             functionRegistry.put(PostGISGeo.st_concaveHull.getURI(), ConcaveHull.class);
             functionRegistry.put(PostGISGeo.st_delaunayTriangles.getURI(), DelaunayTriangles.class);
             functionRegistry.put(PostGISGeo.st_dimension.getURI(), Dimension.class);
+            functionRegistry.put(PostGISGeo.st_distance3d.getURI(), Distance3D.class);
             functionRegistry.put(PostGISGeo.st_endPoint.getURI(), EndPoint.class);
             functionRegistry.put(PostGISGeo.st_flipCoordinates.getURI(), FlipCoordinates.class);
             functionRegistry.put(PostGISGeo.st_geomFromWKB.getURI(), GeomFromWKB.class);

@@ -24,7 +24,10 @@ import org.apache.jena.sparql.engine.binding.Binding;
 import org.apache.jena.sparql.expr.NodeValue;
 import org.apache.jena.sparql.function.FunctionEnv;
 import org.apache.jena.vocabulary.XSD;
+import org.apache.sis.geometry.Envelope2D;
 import org.geotoolkit.coverage.grid.GridCoverage2D;
+import org.geotoolkit.geometry.jts.JTS;
+import org.geotoolkit.referencing.CRS;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.GeometryCollection;
 import org.locationtech.jts.geom.GeometryFactory;
@@ -50,8 +53,8 @@ public class Clip extends Raster2DGeometrySpatialFunction {
         return makeNodeValueRaster(coverage, geometryWrapper.getGeometryDatatypeURI());
     }
 
-    private Coverage clipImageToFeatureSource(GridCoverage gridcoverage,
-            ReferencedEnvelope bounds,
+    private Coverage clipImageToFeatureSource(GridCoverage2D gridcoverage,
+            Envelope2D bounds,
             Geometry geometry) {
         RenderedImage image = gridcoverage.getRenderedImage();
         CoordinateReferenceSystem crsFeatures;
