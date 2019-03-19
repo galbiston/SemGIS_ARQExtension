@@ -76,6 +76,11 @@
             <version>0.7.1</version>
         </dependency>
         <dependency>
+    <groupId>org.wololo</groupId>
+    <artifactId>jts2geojson</artifactId>
+    <version>0.12.0</version>
+</dependency>
+        <dependency>
             <groupId>org.geotoolkit</groupId>
             <artifactId>geotk-client-wcs</artifactId>
             <version>${geotk.version}</version>
@@ -192,7 +197,7 @@
         <dependency>
             <groupId>io.github.galbiston</groupId>
             <artifactId>geosparql-jena</artifactId>
-            <version>1.0.7</version>
+            <version>1.0.6</version>
         </dependency>
     </dependencies>
 
