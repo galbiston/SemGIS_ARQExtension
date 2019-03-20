@@ -56,7 +56,9 @@ public class PostGISGeo {
    public static final Property st_endPoint = property("ST_endPoint");
    public static final Property st_envelope = property("ST_Envelope");
    public static final Property st_flipCoordinates = property("ST_FlipCoordinates");
+   public static final Property st_geomFromGeoJSON = property("ST_GeomFromGeoJSON");
    public static final Property st_geomFromWKB = property("ST_GeomFromWKB");
+   public static final Property st_geomFromText = property("ST_GeomFromText");
    public static final Property st_geometryN = property("ST_GeometryN");
    public static final Property st_geometryType = property("ST_GeometryType");
    public static final Property st_hasNoBand = property("ST_HasNoBand");
@@ -74,6 +76,7 @@ public class PostGISGeo {
    public static final Property st_Length = property("ST_Length");
    public static final Property st_Length2D = property("ST_Length2D");
    public static final Property st_lineFromWKB = property("ST_LineFromWKB");
+   public static final Property st_lineFromText = property("ST_LineFromText");
    public static final Property st_m = property("ST_M");
    public static final Property st_makeEnvelope = property("ST_MakeEnvelope");
    public static final Property st_makeLine = property("ST_MakeLine");
@@ -85,8 +88,11 @@ public class PostGISGeo {
    public static final Property st_minimumClearance = property("ST_MinimumClearance");
    public static final Property st_minimumClearanceLine = property("ST_MinimumClearanceLine");
    public static final Property st_nearestValue = property("ST_NearestValue");
+   public static final Property st_normalize = property("ST_Normalize");
+   public static final Property st_nRings = property("ST_NRings");
    public static final Property st_numBands = property("ST_NumBands");
    public static final Property st_numGeometries = property("ST_NumGeometries");
+   public static final Property st_numInteriorRings = property("ST_NumInteriorRings");
    public static final Property st_numPoints = property("ST_NumPoints");
    public static final Property st_nPoints = property("ST_NPoints");
    public static final Property st_offsetCurve = property("ST_OffsetCurve");
@@ -99,6 +105,7 @@ public class PostGISGeo {
    public static final Property st_pointN = property("ST_PointN");
    public static final Property st_points = property("ST_Points");
    public static final Property st_pointFromGeoHash = property("ST_PointFromGeoHash");
+   public static final Property st_pointFromText = property("ST_PointFromText");
    public static final Property st_rast_isEmpty = property("ST_rast_isEmpty");
    public static final Property st_rast_Contains = property("ST_rast_Contains");
    public static final Property st_rast_Covers = property("ST_rast_Covers");
@@ -148,6 +155,10 @@ public class PostGISGeo {
    public static final Property st_z = property("ST_Z");
    public static final Property st_zMin = property("ST_ZMin");
    public static final Property st_zMax = property("ST_ZMax");
+
+
+
+
 
 
    public static class Nodes {
