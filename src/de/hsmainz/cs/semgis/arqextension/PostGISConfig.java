@@ -1,5 +1,6 @@
 package de.hsmainz.cs.semgis.arqextension;
 
+import de.hsmainz.cs.semgis.arqextension.envelope.BBOXIntersect;
 import de.hsmainz.cs.semgis.arqextension.envelope.MakeEnvelope;
 import de.hsmainz.cs.semgis.arqextension.envelope.XMax;
 import de.hsmainz.cs.semgis.arqextension.envelope.XMin;
@@ -65,6 +66,7 @@ import de.hsmainz.cs.semgis.arqextension.point.MakePointM;
 import de.hsmainz.cs.semgis.arqextension.point.PointFromGeoHash;
 import de.hsmainz.cs.semgis.arqextension.point.PointFromText;
 import de.hsmainz.cs.semgis.arqextension.point.PointFromWKB;
+import de.hsmainz.cs.semgis.arqextension.point.PointInsideCircle;
 import de.hsmainz.cs.semgis.arqextension.point.X;
 import de.hsmainz.cs.semgis.arqextension.point.Y;
 import de.hsmainz.cs.semgis.arqextension.point.Z;
@@ -125,6 +127,7 @@ public class PostGISConfig {
             functionRegistry.put(PostGISGeo.st_bandmetadata.getURI(), BandMetaData.class);
             functionRegistry.put(PostGISGeo.st_bandnodatavalue.getURI(), BandNoDataValue.class);
             functionRegistry.put(PostGISGeo.st_bandpixeltype.getURI(), BandPixelType.class);
+            functionRegistry.put(PostGISGeo.st_bboxintersect.getURI(), BBOXIntersect.class);
             functionRegistry.put(PostGISGeo.st_boundingdiagonal.getURI(), BoundingDiagonal.class);
             functionRegistry.put(PostGISGeo.st_centroid.getURI(), Centroid.class);
             functionRegistry.put(PostGISGeo.st_clip.getURI(), Clip.class);
@@ -183,6 +186,7 @@ public class PostGISConfig {
             functionRegistry.put(PostGISGeo.st_pointFromGeoHash.getURI(), PointFromGeoHash.class);
             functionRegistry.put(PostGISGeo.st_pointFromWKB.getURI(), PointFromWKB.class);
             functionRegistry.put(PostGISGeo.st_pointFromText.getURI(), PointFromText.class);
+            functionRegistry.put(PostGISGeo.st_pointInsideCircle.getURI(), PointInsideCircle.class);
             functionRegistry.put(PostGISGeo.st_rast_isEmpty.getURI(), de.hsmainz.cs.semgis.arqextension.raster.IsEmpty.class);
             functionRegistry.put(PostGISGeo.st_rast_Contains.getURI(), de.hsmainz.cs.semgis.arqextension.raster.Contains.class);
             functionRegistry.put(PostGISGeo.st_rast_Covers.getURI(), de.hsmainz.cs.semgis.arqextension.raster.Covers.class);

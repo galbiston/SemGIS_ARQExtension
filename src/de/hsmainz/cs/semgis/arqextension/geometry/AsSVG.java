@@ -15,26 +15,7 @@ public class AsSVG extends FunctionBase1 {
 
 	@Override
 	public NodeValue exec(NodeValue arg0) {
-        try {
-            GeometryWrapper geometry = GeometryWrapper.extract(arg0);
-            SVGWriter writer=new SVGWriter();
-            String endianness = arg1.getString();
-            WKBWriter writer=new WKBWriter();
-            
-            byte[] result=writer.write(geometry.getParsingGeometry());
-            if(arg1!=null) {
-                ByteBuffer bb = ByteBuffer.wrap(result);
-            	if("XDR".equals(endianness)) {
-                    bb.order( ByteOrder.BIG_ENDIAN);
-            	}else if("NDR".equals(endianness)) {
-            		bb.order( ByteOrder.LITTLE_ENDIAN);
-            	}
-                return NodeValue.makeString(bb.toString());
-            }
-            return NodeValue.makeString(result.toString());
-        } catch (DatatypeFormatException ex) {
-            throw new ExprEvalException(ex.getMessage(), ex);
-        }
+        return null;
 	}
 
 }

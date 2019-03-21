@@ -17,12 +17,12 @@ import java.util.List;
 import org.apache.jena.sparql.engine.binding.Binding;
 import org.apache.jena.sparql.expr.NodeValue;
 import org.apache.jena.sparql.function.FunctionEnv;
-import org.opengis.coverage.grid.GridCoverage;
+import org.geotoolkit.coverage.grid.GridCoverage2D;
 
 public class SRID extends RasterSpatialFunction {
 
     @Override
-    protected NodeValue exec(GridCoverage raster, GeometryWrapper geometryWrapper, Binding binding, List<NodeValue> evalArgs, String uri, FunctionEnv env) {
+    protected NodeValue exec(GridCoverage2D raster, GeometryWrapper geometryWrapper, Binding binding, List<NodeValue> evalArgs, String uri, FunctionEnv env) {
         return NodeValue.makeString(raster.getCoordinateReferenceSystem().getCoordinateSystem().getName().toString());
     }
 

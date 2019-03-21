@@ -45,6 +45,7 @@ public class PostGISGeo {
    public static final Property st_bandmetadata = property("ST_BandMetaData");
    public static final Property st_bandnodatavalue = property("ST_BandNoDataValue");
    public static final Property st_bandpixeltype = property("ST_BandPixelType");
+   public static final Property st_bboxintersect = property("ST_BBOXIntersect");
    public static final Property st_boundingdiagonal = property("ST_BoundingDiagonal");
    public static final Property st_centroid = property("ST_Centroid");
    public static final Property st_clip = property("ST_Clip");
@@ -83,6 +84,7 @@ public class PostGISGeo {
    public static final Property st_makePoint = property("ST_MakePoint");
    public static final Property st_makePointM = property("ST_MakePointM");
    public static final Property st_makePolygon = property("ST_MakePolygon");
+   public static final Property st_memsize = property("ST_MemSize");
    public static final Property st_minimumBoundingCircle = property("ST_MinimumBoundingCircle");
    public static final Property st_minimumBoundingRadius = property("ST_MinimumBoundingRadius");
    public static final Property st_minimumClearance = property("ST_MinimumClearance");
@@ -102,10 +104,13 @@ public class PostGISGeo {
    public static final Property st_perimeter = property("ST_Perimeter");
    public static final Property st_perimeter2D = property("ST_Perimeter2D");
    public static final Property st_pointFromWKB = property("ST_PointFromWKB");
+   public static final Property st_pointInsideCircle = property("ST_PointInsideCircle");
    public static final Property st_pointN = property("ST_PointN");
    public static final Property st_points = property("ST_Points");
    public static final Property st_pointFromGeoHash = property("ST_PointFromGeoHash");
    public static final Property st_pointFromText = property("ST_PointFromText");
+   public static final Property st_polygonFromText = property("ST_PolygonFromText");
+   public static final Property st_polygonFromWKB = property("ST_PolygonFromWKB");
    public static final Property st_rast_isEmpty = property("ST_rast_isEmpty");
    public static final Property st_rast_Contains = property("ST_rast_Contains");
    public static final Property st_rast_Covers = property("ST_rast_Covers");
@@ -155,6 +160,9 @@ public class PostGISGeo {
    public static final Property st_z = property("ST_Z");
    public static final Property st_zMin = property("ST_ZMin");
    public static final Property st_zMax = property("ST_ZMax");
+
+
+
 
 
 

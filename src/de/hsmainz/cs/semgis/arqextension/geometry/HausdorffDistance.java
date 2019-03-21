@@ -31,7 +31,7 @@ public class HausdorffDistance extends FunctionBase2 {
             GeometryWrapper geom2 = GeometryWrapper.extract(arg1);
             GeometryWrapper transGeom2 = geom2.transform(geom1.getSRID());
 
-            DiscreteHausdorffDistance distance = new DiscreteHausdorffDistance(geom1.getXYGeometry(), geom2.getXYGeometry());
+            DiscreteHausdorffDistance distance = new DiscreteHausdorffDistance(geom1.getXYGeometry(), transGeom2.getXYGeometry());
             return NodeValue.makeDouble(distance.distance());
         } catch (DatatypeFormatException | FactoryException | TransformException ex) {
             throw new ExprEvalException(ex.getMessage(), ex);
