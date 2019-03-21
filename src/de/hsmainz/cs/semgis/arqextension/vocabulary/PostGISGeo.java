@@ -39,6 +39,7 @@ public class PostGISGeo {
    public static final Property st_askml = property("ST_AsKML");
    public static final Property st_asgml = property("ST_AsGML");
    public static final Property st_asgeojson = property("ST_AsGeoJSON");
+   public static final Property st_assvg = property("ST_AsSVG");
    public static final Property st_astext = property("ST_AsText");
    public static final Property st_azimuth = property("ST_Azimuth");
    public static final Property st_band = property("ST_Band");
@@ -160,6 +161,7 @@ public class PostGISGeo {
    public static final Property st_z = property("ST_Z");
    public static final Property st_zMin = property("ST_ZMin");
    public static final Property st_zMax = property("ST_ZMax");
+
 
 
 

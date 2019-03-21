@@ -1,6 +1,5 @@
 package de.hsmainz.cs.semgis.arqextension;
 
-import de.hsmainz.cs.semgis.arqextension.envelope.BBOXIntersect;
 import de.hsmainz.cs.semgis.arqextension.envelope.MakeEnvelope;
 import de.hsmainz.cs.semgis.arqextension.envelope.XMax;
 import de.hsmainz.cs.semgis.arqextension.envelope.XMin;
@@ -11,6 +10,7 @@ import de.hsmainz.cs.semgis.arqextension.geometry.AsBinary;
 import de.hsmainz.cs.semgis.arqextension.geometry.AsGML;
 import de.hsmainz.cs.semgis.arqextension.geometry.AsGeoJSON;
 import de.hsmainz.cs.semgis.arqextension.geometry.AsKML;
+import de.hsmainz.cs.semgis.arqextension.geometry.AsSVG;
 import de.hsmainz.cs.semgis.arqextension.geometry.AsText;
 import de.hsmainz.cs.semgis.arqextension.geometry.BoundingDiagonal;
 import de.hsmainz.cs.semgis.arqextension.geometry.Centroid;
@@ -82,6 +82,7 @@ import de.hsmainz.cs.semgis.arqextension.raster.BandPixelType;
 import de.hsmainz.cs.semgis.arqextension.raster.Clip;
 import de.hsmainz.cs.semgis.arqextension.raster.HasNoBand;
 import de.hsmainz.cs.semgis.arqextension.raster.Height;
+import de.hsmainz.cs.semgis.arqextension.raster.MemSize;
 import de.hsmainz.cs.semgis.arqextension.raster.NearestValue;
 import de.hsmainz.cs.semgis.arqextension.raster.NumBands;
 import de.hsmainz.cs.semgis.arqextension.raster.PixelAsPoint;
@@ -120,6 +121,7 @@ public class PostGISConfig {
             functionRegistry.put(PostGISGeo.st_askml.getURI(), AsKML.class);
             functionRegistry.put(PostGISGeo.st_asgml.getURI(), AsGML.class);
             functionRegistry.put(PostGISGeo.st_asgeojson.getURI(), AsGeoJSON.class);
+            functionRegistry.put(PostGISGeo.st_assvg.getURI(), AsSVG.class);
             functionRegistry.put(PostGISGeo.st_astext.getURI(), AsText.class);
             functionRegistry.put(PostGISGeo.st_area.getURI(), Area.class);
             functionRegistry.put(PostGISGeo.st_azimuth.getURI(), Azimuth.class);
@@ -127,7 +129,6 @@ public class PostGISConfig {
             functionRegistry.put(PostGISGeo.st_bandmetadata.getURI(), BandMetaData.class);
             functionRegistry.put(PostGISGeo.st_bandnodatavalue.getURI(), BandNoDataValue.class);
             functionRegistry.put(PostGISGeo.st_bandpixeltype.getURI(), BandPixelType.class);
-            functionRegistry.put(PostGISGeo.st_bboxintersect.getURI(), BBOXIntersect.class);
             functionRegistry.put(PostGISGeo.st_boundingdiagonal.getURI(), BoundingDiagonal.class);
             functionRegistry.put(PostGISGeo.st_centroid.getURI(), Centroid.class);
             functionRegistry.put(PostGISGeo.st_clip.getURI(), Clip.class);
@@ -168,6 +169,7 @@ public class PostGISConfig {
             functionRegistry.put(PostGISGeo.st_minimumBoundingRadius.getURI(), MinimumBoundingRadius.class);
             functionRegistry.put(PostGISGeo.st_minimumClearance.getURI(), MinimumClearance.class);
             functionRegistry.put(PostGISGeo.st_minimumClearanceLine.getURI(), MinimumClearanceLine.class);
+            functionRegistry.put(PostGISGeo.st_memsize.getURI(), MemSize.class);
             functionRegistry.put(PostGISGeo.st_nearestValue.getURI(), NearestValue.class);
             functionRegistry.put(PostGISGeo.st_numBands.getURI(), NumBands.class);
             functionRegistry.put(PostGISGeo.st_numGeometries.getURI(), NumGeometries.class);
