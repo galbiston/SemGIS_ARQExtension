@@ -161,6 +161,7 @@ public class PostGISGeo {
    public static final Property st_z = property("ST_Z");
    public static final Property st_zMin = property("ST_ZMin");
    public static final Property st_zMax = property("ST_ZMax");
+public static final String WKB = "WKB";
 
 
 

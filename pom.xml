@@ -197,7 +197,12 @@
         <dependency>
             <groupId>io.github.galbiston</groupId>
             <artifactId>geosparql-jena</artifactId>
-            <version>1.0.7</version>
+            <version>1.0.6</version>
+        </dependency>
+        <dependency>
+        <groupId>com.conveyal</groupId>
+    <artifactId>geobuf-java</artifactId>
+    <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
@@ -211,6 +216,11 @@
             <id>geosolutions</id>
             <name>Geosolutions</name>
             <url>http://maven.geo-solutions.it/</url>
+        </repository>
+        <repository>
+            <id>conveyal</id>
+            <name>Conveyal</name>
+            <url>http://maven.conveyal.com</url>
         </repository>
         <repository>
             <id>geotoolkit</id>
