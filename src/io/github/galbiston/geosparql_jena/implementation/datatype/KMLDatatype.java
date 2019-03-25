@@ -38,9 +38,9 @@ import org.slf4j.LoggerFactory;
  *
  *
  */
-public class GMLDatatype extends GeometryDatatype {
+public class KMLDatatype extends GeometryDatatype {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(GMLDatatype.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(KMLDatatype.class);
 
     /**
      * The default GML type URI.
@@ -50,17 +50,17 @@ public class GMLDatatype extends GeometryDatatype {
     /**
      * A static instance of GMLDatatype.
      */
-    public static final GMLDatatype INSTANCE = new GMLDatatype();
+    public static final KMLDatatype INSTANCE = new KMLDatatype();
 
     /**
      * XML element tag "gml" is defined for the convenience of GML generation.
      */
-    public static final String GML_PREFIX = "gml";
+    public static final String KML_PREFIX = "kml";
 
     /**
      * private constructor - single global instance.
      */
-    public GMLDatatype() {
+    public KMLDatatype() {
         super(URI);
     }
 
@@ -86,7 +86,9 @@ public class GMLDatatype extends GeometryDatatype {
     @Override
     public GeometryWrapper read(String geometryLiteral) {
         try {
-            KmlReader kmlReader = KmlReader.extract(geometryLiteral);
+            KmlReader kmlReader = KmlReader(geometryLiteral);
+            kmlReader.
+            kmlReader.rea.extract(geometryLiteral);
             Geometry geometry = kmlReader.getGeometry();
             DimensionInfo dimensionInfo = kmlReader.getDimensionInfo();
 

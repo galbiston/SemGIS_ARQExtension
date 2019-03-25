@@ -162,6 +162,9 @@ public class PostGISGeo {
    public static final Property st_zMin = property("ST_ZMin");
    public static final Property st_zMax = property("ST_ZMax");
 public static final String WKB = "WKB";
+public static final String GeoJSON = "GeoJSON";
+public static final String GeoBuf = "GeoBuf";
+public static final String KML = "KML";
 
 
 

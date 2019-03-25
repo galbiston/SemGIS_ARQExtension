@@ -29,6 +29,7 @@ public class Covers extends DoubleRaster2DSpatialFunction {
             List<NodeValue> evalArgs, String uri, FunctionEnv env) {
         Rectangle2D bbox1 = raster.getEnvelope2D().getBounds2D();
         Rectangle2D bbox2 = raster2.getEnvelope2D().getBounds2D();
+        raster.getRenderedImage().getColorModel().
         return NodeValue.makeBoolean(JTS.toGeometry(bbox1.getBounds()).covers(JTS.toGeometry(bbox2.getBounds())));
 
     }

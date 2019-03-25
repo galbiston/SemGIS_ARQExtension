@@ -1,31 +1,29 @@
 package io.github.galbiston.geosparql_jena.implementation.datatype;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
 import org.locationtech.jts.geom.Geometry;
-import org.locationtech.jts.io.ParseException;
-import org.locationtech.jts.io.WKBReader;
-import org.locationtech.jts.io.WKBWriter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.conveyal.data.geobuf.GeobufDecoder;
+import com.conveyal.data.geobuf.GeobufEncoder;
 
 import de.hsmainz.cs.semgis.arqextension.vocabulary.PostGISGeo;
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
-import io.github.galbiston.geosparql_jena.implementation.vocabulary.SRS_URI;
 
 public class GeobufDatatype extends GeometryDatatype  {
 
-	    private static final Logger LOGGER = LoggerFactory.getLogger(WKTDatatype.class);
+	    private static final Logger LOGGER = LoggerFactory.getLogger(GeobufDatatype.class);
 
 	    /**
 	     * The default WKT type URI.
 	     */
-	    public static final String URI = PostGISGeo.WKB;
+	    public static final String URI = PostGISGeo.GeoBuf;
 
 	    /**
 	     * A static instance of WKTDatatype.
@@ -50,11 +48,11 @@ public class GeobufDatatype extends GeometryDatatype  {
 	     */
 	    @Override
 	    public String unparse(Object geometry) {
-
 	        if (geometry instanceof GeometryWrapper) {
 	            GeometryWrapper geometryWrapper = (GeometryWrapper) geometry;
-	            WKBWriter writer=new WKBWriter();
-	            return writer.write(geometryWrapper.getXYGeometry()).toString();
+	            ByteArrayOutputStream output=new ByteArrayOutputStream();
+	            GeobufEncoder enc=new GeobufEncoder(output,geometryWrapper.getXYGeometry().getPrecisionModel().getMaximumSignificantDigits());
+	            return enc.geomToGeobuf(geometryWrapper.getXYGeometry()).toString();
 	        } else {
 	            throw new AssertionError("Object passed to WKBDatatype is not a GeometryWrapper: " + geometry);
 	        }
@@ -67,7 +65,7 @@ public class GeobufDatatype extends GeometryDatatype  {
 			try {
 				decoder = new GeobufDecoder(stream);
 		    	Geometry geom=decoder.next().geometry;
-			    GeometryWrapper wrapper = GeometryWrapper.createGeometry(geom, "<http://www.opengis.net/def/crs/EPSG/0/"+geom.getSRID()+">", WKTDatatype.URI);	
+			    GeometryWrapper wrapper = GeometryWrapper.createGeometry(geom, "<http://www.opengis.net/def/crs/EPSG/0/"+geom.getSRID()+">", GeobufDatatype.URI);	
 			    return wrapper;
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

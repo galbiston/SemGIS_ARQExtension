@@ -31,6 +31,8 @@ import org.wololo.geojson.GeoJSON;
 import org.wololo.jts2geojson.GeoJSONReader;
 import org.wololo.jts2geojson.GeoJSONWriter;
 
+import de.hsmainz.cs.semgis.arqextension.vocabulary.PostGISGeo;
+
 /**
  * WKTDatatype class allows the URI "geo:wktLiteral" to be used as a datatype
  * and it will parse that datatype to a JTS Geometry.
@@ -53,7 +55,7 @@ public class GeoJSONDatatype extends GeometryDatatype {
     /**
      * The default WKT type URI.
      */
-    public static final String URI = Geo.WKT;
+    public static final String URI = PostGISGeo.GeoJSON;
 
     /**
      * A static instance of WKTDatatype.

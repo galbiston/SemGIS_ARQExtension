@@ -23,6 +23,7 @@ public class SkewX extends Raster2DGeometrySpatialFunction {
 
     @Override
     protected NodeValue exec(GridCoverage2D raster, GeometryWrapper geometryWrapper, Binding binding, List<NodeValue> evalArgs, String uri, FunctionEnv env) {
+    	raster.getRenderedImage().getColorModel().getColorSpace().get
         return null;
     }
 
