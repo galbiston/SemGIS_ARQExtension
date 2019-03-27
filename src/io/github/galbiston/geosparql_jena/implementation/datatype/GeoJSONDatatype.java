@@ -97,7 +97,7 @@ public class GeoJSONDatatype extends GeometryDatatype {
     public GeometryWrapper read(String geometryLiteral) {
 		GeoJSONReader reader = new GeoJSONReader();
 		Geometry geom = reader.read(geometryLiteral);
-        GeometryWrapper wrapper = GeometryWrapper.createGeometry(geom, "<http://www.opengis.net/def/crs/EPSG/0/"+geom.getSRID()+">", WKTDatatype.URI);	
+        GeometryWrapper wrapper = GeometryWrapper.createGeometry(geom, "<http://www.opengis.net/def/crs/EPSG/0/"+geom.getSRID()+">", GeoJSONDatatype.URI);	
         return wrapper;
     }
 

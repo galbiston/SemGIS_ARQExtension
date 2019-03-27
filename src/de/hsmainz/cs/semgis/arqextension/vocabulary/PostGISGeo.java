@@ -165,6 +165,8 @@ public static final String WKB = "WKB";
 public static final String GeoJSON = "GeoJSON";
 public static final String GeoBuf = "GeoBuf";
 public static final String KML = "KML";
+public static final String WKBRaster = "WKBRaster";
+public static final String GEOTIFF = "GeoTIFF";
 
 
 
