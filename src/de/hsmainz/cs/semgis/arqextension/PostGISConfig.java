@@ -54,9 +54,12 @@ import de.hsmainz.cs.semgis.arqextension.geometry.Transform;
 import de.hsmainz.cs.semgis.arqextension.geometry.Translate;
 import de.hsmainz.cs.semgis.arqextension.geometry.UnaryUnion;
 import de.hsmainz.cs.semgis.arqextension.linestring.AddPoint;
+import de.hsmainz.cs.semgis.arqextension.linestring.AsEncodedPolyline;
 import de.hsmainz.cs.semgis.arqextension.linestring.EndPoint;
 import de.hsmainz.cs.semgis.arqextension.linestring.IsClosed;
 import de.hsmainz.cs.semgis.arqextension.linestring.IsRing;
+import de.hsmainz.cs.semgis.arqextension.linestring.LineFromEncodedPolyline;
+import de.hsmainz.cs.semgis.arqextension.linestring.LineFromMultiPoint;
 import de.hsmainz.cs.semgis.arqextension.linestring.LineFromText;
 import de.hsmainz.cs.semgis.arqextension.linestring.LineFromWKB;
 import de.hsmainz.cs.semgis.arqextension.linestring.MakeLine;
@@ -122,6 +125,7 @@ public class PostGISConfig {
             //POSTGIS functionRegistry
             functionRegistry.put(PostGISGeo.st_addpoint.getURI(), AddPoint.class);
             functionRegistry.put(PostGISGeo.st_asbinary.getURI(), AsBinary.class);
+            functionRegistry.put(PostGISGeo.st_asencodedpolyline.getURI(), AsEncodedPolyline.class);
             functionRegistry.put(PostGISGeo.st_ashexewkb.getURI(), AsHEXEWKB.class);
             functionRegistry.put(PostGISGeo.st_askml.getURI(), AsKML.class);
             functionRegistry.put(PostGISGeo.st_asgml.getURI(), AsGML.class);
@@ -163,6 +167,8 @@ public class PostGISConfig {
             functionRegistry.put(PostGISGeo.st_isValidReason.getURI(), IsValidReason.class);
             functionRegistry.put(PostGISGeo.st_Length.getURI(), Length.class);
             functionRegistry.put(PostGISGeo.st_Length2D.getURI(), Length.class);
+            functionRegistry.put(PostGISGeo.st_lineFromEncodedPolyline.getURI(), LineFromEncodedPolyline.class);
+            functionRegistry.put(PostGISGeo.st_lineFromMultiPoint.getURI(), LineFromMultiPoint.class);
             functionRegistry.put(PostGISGeo.st_lineFromWKB.getURI(), LineFromWKB.class);
             functionRegistry.put(PostGISGeo.st_lineFromText.getURI(), LineFromText.class);
             functionRegistry.put(PostGISGeo.st_m.getURI(), M.class);

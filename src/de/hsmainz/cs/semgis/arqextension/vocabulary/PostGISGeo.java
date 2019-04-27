@@ -22,6 +22,7 @@ public class PostGISGeo {
 
 
 
+
    protected static final Resource resource(String local) {
       return ResourceFactory.createResource(uri + local);
    }
@@ -37,6 +38,7 @@ public class PostGISGeo {
    public static final Property st_addpoint = property("ST_AddPoint");
    public static final Property st_area = property("ST_Area");
    public static final Property st_asbinary = property("ST_AsBinary");
+   public static final Property st_asencodedpolyline = property("ST_AsEncodedPolyline");
    public static final Property st_askml = property("ST_AsKML");
    public static final Property st_asgml = property("ST_AsGML");
    public static final Property st_asgeojson = property("ST_AsGeoJSON");
@@ -79,6 +81,8 @@ public class PostGISGeo {
    public static final Property st_isValidReason = property("ST_IsValidReason");
    public static final Property st_Length = property("ST_Length");
    public static final Property st_Length2D = property("ST_Length2D");
+   public static final Property st_lineFromEncodedPolyline=property("ST_LineFromEncodedPolyline");
+   public static final Property st_lineFromMultiPoint=property("ST_LineFromMultiPoint");
    public static final Property st_lineFromWKB = property("ST_LineFromWKB");
    public static final Property st_lineFromText = property("ST_LineFromText");
    public static final Property st_m = property("ST_M");
