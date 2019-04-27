@@ -21,6 +21,7 @@ public class PostGISGeo {
    public static final String uri = "http://www.opengis.net/ont/geosparql#";
 
 
+
    protected static final Resource resource(String local) {
       return ResourceFactory.createResource(uri + local);
    }
@@ -39,6 +40,7 @@ public class PostGISGeo {
    public static final Property st_askml = property("ST_AsKML");
    public static final Property st_asgml = property("ST_AsGML");
    public static final Property st_asgeojson = property("ST_AsGeoJSON");
+   public static final Property st_ashexewkb = property("ST_AsHexEWKB");
    public static final Property st_assvg = property("ST_AsSVG");
    public static final Property st_astext = property("ST_AsText");
    public static final Property st_azimuth = property("ST_Azimuth");
