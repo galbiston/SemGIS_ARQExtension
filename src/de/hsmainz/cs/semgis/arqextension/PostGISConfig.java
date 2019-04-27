@@ -9,6 +9,7 @@ import de.hsmainz.cs.semgis.arqextension.geometry.Area;
 import de.hsmainz.cs.semgis.arqextension.geometry.AsBinary;
 import de.hsmainz.cs.semgis.arqextension.geometry.AsGML;
 import de.hsmainz.cs.semgis.arqextension.geometry.AsGeoJSON;
+import de.hsmainz.cs.semgis.arqextension.geometry.AsHEXEWKB;
 import de.hsmainz.cs.semgis.arqextension.geometry.AsKML;
 import de.hsmainz.cs.semgis.arqextension.geometry.AsSVG;
 import de.hsmainz.cs.semgis.arqextension.geometry.AsText;
@@ -121,6 +122,7 @@ public class PostGISConfig {
             //POSTGIS functionRegistry
             functionRegistry.put(PostGISGeo.st_addpoint.getURI(), AddPoint.class);
             functionRegistry.put(PostGISGeo.st_asbinary.getURI(), AsBinary.class);
+            functionRegistry.put(PostGISGeo.st_ashexewkb.getURI(), AsHEXEWKB.class);
             functionRegistry.put(PostGISGeo.st_askml.getURI(), AsKML.class);
             functionRegistry.put(PostGISGeo.st_asgml.getURI(), AsGML.class);
             functionRegistry.put(PostGISGeo.st_asgeojson.getURI(), AsGeoJSON.class);

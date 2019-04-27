@@ -3,13 +3,10 @@ package de.hsmainz.cs.semgis.arqextension.raster;
 import java.io.IOException;
 import java.util.List;
 
-import javax.imageio.ImageWriteParam;
-
 import org.apache.jena.sparql.engine.binding.Binding;
 import org.apache.jena.sparql.expr.NodeValue;
 import org.apache.jena.sparql.function.FunctionEnv;
 import org.geotoolkit.coverage.grid.GridCoverage2D;
-import org.geotoolkit.coverage.wkb.WKBRasterWriter;
 import org.geotoolkit.image.io.SpatialImageWriteParam;
 import org.geotoolkit.image.io.plugin.TiffImageWriter;
 
