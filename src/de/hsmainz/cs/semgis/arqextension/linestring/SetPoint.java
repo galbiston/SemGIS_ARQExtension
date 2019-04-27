@@ -1,8 +1,6 @@
 package de.hsmainz.cs.semgis.arqextension.linestring;
 
 import java.math.BigInteger;
-import java.util.Arrays;
-import java.util.List;
 
 import org.apache.jena.datatypes.DatatypeFormatException;
 import org.apache.jena.sparql.expr.ExprEvalException;

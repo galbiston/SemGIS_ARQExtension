@@ -10,23 +10,21 @@
  *
  *
  ****************************************************************************** */
-package de.hsmainz.cs.semgis.arqextension;
+package de.hsmainz.cs.semgis.arqextension.linestring;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 import org.apache.jena.datatypes.DatatypeFormatException;
 import org.apache.jena.sparql.expr.ExprEvalException;
 import org.apache.jena.sparql.expr.NodeValue;
-import org.apache.jena.sparql.function.FunctionBase2;
+import org.apache.jena.sparql.function.FunctionBase3;
 
-public class SwapOrdinates extends FunctionBase2 {
+public class OffsetCurve extends FunctionBase3 {
 
     @Override
-    public NodeValue exec(NodeValue arg0, NodeValue arg1) {
+    public NodeValue exec(NodeValue arg0, NodeValue arg1, NodeValue arg2) {
 
         try {
-            GeometryWrapper geom = GeometryWrapper.extract(arg0);
-            String ords = arg1.getString();
-
+            GeometryWrapper geometry = GeometryWrapper.extract(arg0);
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         } catch (DatatypeFormatException ex) {
             throw new ExprEvalException(ex.getMessage(), ex);

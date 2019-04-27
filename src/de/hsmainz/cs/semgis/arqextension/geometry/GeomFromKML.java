@@ -18,7 +18,7 @@ public class GeomFromKML  extends FunctionBase1{
         try {
             String wktstring=arg0.getString();
             KmlReader kmlreader=new KmlReader();
-            kmlreader.
+            kmlreader.read
             kmlreader.read();
             WKTReader reader=new WKTReader();
             WKTReader wktreader=WKTReader.extract(wktstring);

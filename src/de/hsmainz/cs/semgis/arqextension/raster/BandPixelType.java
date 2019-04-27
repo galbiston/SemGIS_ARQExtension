@@ -30,7 +30,7 @@ public class BandPixelType extends RasterSpatialFunction {
             bandNum = 1;
         }
         bandNum = evalArgs.get(0).getInteger().intValue();
-        return NodeValue.makeString(raster.getSampleDimension(bandNum).getColorModel().getTransferType() + "");
+        return NodeValue.makeString(raster.getSampleDimension(bandNum).getSampleDimensionType() + "");
     }
 
     @Override

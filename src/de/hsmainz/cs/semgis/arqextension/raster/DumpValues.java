@@ -24,7 +24,7 @@ public class DumpValues extends Raster2DGeometrySpatialFunction {
     @Override
     protected NodeValue exec(GridCoverage2D raster, GeometryWrapper geometryWrapper, Binding binding,
             List<NodeValue> evalArgs, String uri, FunctionEnv env) {
-        return null;
+    	throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override

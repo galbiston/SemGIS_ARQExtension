@@ -10,23 +10,28 @@
  *
  *
  ****************************************************************************** */
-package de.hsmainz.cs.semgis.arqextension;
+package de.hsmainz.cs.semgis.arqextension.geometry;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 import org.apache.jena.datatypes.DatatypeFormatException;
 import org.apache.jena.sparql.expr.ExprEvalException;
 import org.apache.jena.sparql.expr.NodeValue;
-import org.apache.jena.sparql.function.FunctionBase3;
+import org.apache.jena.sparql.function.FunctionBase2;
+import org.opengis.referencing.operation.TransformException;
+import org.opengis.util.FactoryException;
 
-public class OffsetCurve extends FunctionBase3 {
+public class Split extends FunctionBase2 {
 
     @Override
-    public NodeValue exec(NodeValue arg0, NodeValue arg1, NodeValue arg2) {
+    public NodeValue exec(NodeValue arg0, NodeValue arg1) {
 
         try {
-            GeometryWrapper geometry = GeometryWrapper.extract(arg0);
+            GeometryWrapper input = GeometryWrapper.extract(arg0);
+            GeometryWrapper blade = GeometryWrapper.extract(arg1);
+            GeometryWrapper transBlade = blade.transform(input.getSrsInfo());
+
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        } catch (DatatypeFormatException ex) {
+        } catch (DatatypeFormatException | FactoryException | TransformException ex) {
             throw new ExprEvalException(ex.getMessage(), ex);
         }
     }

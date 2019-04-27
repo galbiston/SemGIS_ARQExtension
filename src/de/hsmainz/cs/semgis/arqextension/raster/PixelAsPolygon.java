@@ -27,7 +27,7 @@ public class PixelAsPolygon extends RasterSpatialFunction {
             List<NodeValue> evalArgs, String uri, FunctionEnv env) {
         Integer column = evalArgs.get(0).getInteger().intValue();
         Integer row = evalArgs.get(1).getInteger().intValue();
-        return null;
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override

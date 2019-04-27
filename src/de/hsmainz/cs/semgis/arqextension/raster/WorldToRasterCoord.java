@@ -33,7 +33,7 @@ public class WorldToRasterCoord extends Raster2DGeometrySpatialFunction {
         Integer latitude = evalArgs.get(1).getInteger().intValue();
 
         try {
-            GridCoordinates position = raster.getGridGeometry().worldToGrid(new org.apache.sis.geometry.DirectPosition2D(longitude, latitude));
+            GridCoordinates position = raster.getGridGeometry().getworldToGrid(new org.apache.sis.geometry.DirectPosition2D(longitude, latitude));
             CoordinateXY coord = new CoordinateXY(position.getX(), position.getY());
             GeometryWrapper pointWrapper = GeometryWrapper.createPoint(coord, geometryWrapper.getSrsURI(), geometryWrapper.getGeometryDatatypeURI());
             return pointWrapper.asNodeValue();

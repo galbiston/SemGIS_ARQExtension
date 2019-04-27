@@ -25,9 +25,7 @@ public class SameAlignment extends DoubleRaster2DSpatialFunction {
     protected NodeValue exec(GridCoverage2D raster, GridCoverage2D raster2, GeometryWrapper geometryWrapper, Binding binding, List<NodeValue> evalArgs, String uri, FunctionEnv env) {
         Integer raster1_offset = raster.getRenderedImage().getData().getDataBuffer().getOffset();
         Integer raster2_offset = raster.getRenderedImage().getData().getDataBuffer().getOffset();
-        //if()
-        // TODO Auto-generated method stub
-        return null;
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
