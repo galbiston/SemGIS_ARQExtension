@@ -20,6 +20,7 @@ import org.apache.jena.sparql.function.FunctionEnv;
 import org.apache.jena.vocabulary.XSD;
 import org.geotoolkit.coverage.grid.GridCoverage;
 import org.geotoolkit.coverage.grid.GridCoverage2D;
+import org.geotoolkit.coverage.grid.GridCoverageBuilder;
 
 public class MakeEmptyRaster extends RasterSpatialFunction {
 
@@ -30,7 +31,7 @@ public class MakeEmptyRaster extends RasterSpatialFunction {
         Integer height;
         Double upperleftx;
         Double upperlefty;
-        GridCoverageFactory factory = new GridCoverageFactory();
+        GridCoverageBuilder factory = new GridCoverageBuilder();
         if (raster != null) {
             //factory.
         } else {

@@ -13,13 +13,14 @@
 package de.hsmainz.cs.semgis.arqextension.raster;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+
+import java.awt.geom.Point2D;
 import java.util.List;
 import org.apache.jena.sparql.engine.binding.Binding;
 import org.apache.jena.sparql.expr.NodeValue;
 import org.apache.jena.sparql.function.FunctionEnv;
 import org.geotoolkit.coverage.grid.GridCoordinates2D;
 import org.geotoolkit.coverage.grid.GridCoverage2D;
-import org.opengis.geometry.DirectPosition;
 import org.opengis.referencing.operation.TransformException;
 
 public class RasterToWorldCoordY extends RasterSpatialFunction {
@@ -30,8 +31,9 @@ public class RasterToWorldCoordY extends RasterSpatialFunction {
         Integer column = evalArgs.get(0).getInteger().intValue();
         Integer row = evalArgs.get(1).getInteger().intValue();
         try {
-            DirectPosition position = raster.getGridGeometry().gridToWorld(new GridCoordinates2D(column, row));
-            return NodeValue.makeDouble(position.getCoordinate()[1]);
+        	
+            Point2D position = raster.getGridGeometry().getGridToCRS2D().transform(new GridCoordinates2D(column, row),null);
+            return NodeValue.makeDouble(position.getY());
         } catch (TransformException e) {
             return NodeValue.nvNothing;
         }

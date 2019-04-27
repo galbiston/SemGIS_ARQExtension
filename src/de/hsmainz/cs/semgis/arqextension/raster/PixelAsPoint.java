@@ -37,7 +37,7 @@ public class PixelAsPoint extends RasterSpatialFunction {
 
         Envelope2D pixelEnvelop;
         try {
-            pixelEnvelop = raster.getGridGeometry().gridToWorld(new GridEnvelope2D(x, y, 1, 1));
+            pixelEnvelop = raster.getGridGeometry().getGridToCRS2D().transform(new GridEnvelope2D(x, y, 1, 1),null);
 
             CoordinateXY coord = new CoordinateXY(pixelEnvelop.getCenterX(), pixelEnvelop.getCenterY());
             GeometryWrapper pointWrapper = GeometryWrapper.createPoint(coord, geometryWrapper.getSrsURI(), geometryWrapper.getGeometryDatatypeURI());

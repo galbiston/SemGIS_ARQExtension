@@ -26,6 +26,7 @@ import org.apache.jena.sparql.function.FunctionEnv;
 import org.apache.jena.vocabulary.XSD;
 import org.apache.sis.geometry.Envelope2D;
 import org.geotoolkit.coverage.grid.GridCoverage2D;
+import org.geotoolkit.coverage.grid.GridCoverageBuilder;
 import org.geotoolkit.geometry.jts.JTS;
 import org.geotoolkit.referencing.CRS;
 import org.locationtech.jts.geom.Geometry;
@@ -96,7 +97,7 @@ public class Clip extends Raster2DGeometrySpatialFunction {
             } else if (intersection instanceof org.locationtech.jts.geom.Polygon) {
                 all.add(intersection);
             }
-            GridCoverageFactory gridCoverageFactory = new GridCoverageFactory();
+            GridCoverageBuilder gridCoverageFactory = new GridCoverageBuilder();
             Coverage coverage = gridCoverageFactory.create("Raster", image, bounds);
             Coverage clippedCoverage = null;
             if (all.size() > 0) {
