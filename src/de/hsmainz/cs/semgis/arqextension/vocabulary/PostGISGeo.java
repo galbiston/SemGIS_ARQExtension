@@ -35,6 +35,9 @@ public class PostGISGeo {
    public static final Resource Feature = resource("Feature");
 
    // simple features topological relations
+   public static final Property st_3ddwithin = property("ST_3DDWithin");
+   public static final Property st_3dclosestpoint = property("ST_3DClosestPoint");
+   public static final Property st_3dshortestline = property("ST_3DShortestLine");
    public static final Property st_addpoint = property("ST_AddPoint");
    public static final Property st_area = property("ST_Area");
    public static final Property st_asbinary = property("ST_AsBinary");
@@ -59,6 +62,7 @@ public class PostGISGeo {
    public static final Property st_delaunayTriangles = property("ST_DelaunayTriangles");
    public static final Property st_dimension = property("ST_Dimension");
    public static final Property st_distance3d = property("ST_3DDistance");
+   public static final Property st_distancesphere = property("ST_DistanceSphere");
    public static final Property st_endPoint = property("ST_endPoint");
    public static final Property st_envelope = property("ST_Envelope");
    public static final Property st_flipCoordinates = property("ST_FlipCoordinates");
@@ -193,6 +197,7 @@ public static final String HEXWKB = "HEXWKB";
 public static final String MVT = "MVT";
 public static final String X3D = "X3D";
 public static final String OSM= "OSM";
+
 
 
 

@@ -16,10 +16,13 @@ import de.hsmainz.cs.semgis.arqextension.geometry.AsText;
 import de.hsmainz.cs.semgis.arqextension.geometry.BoundingDiagonal;
 import de.hsmainz.cs.semgis.arqextension.geometry.Centroid;
 import de.hsmainz.cs.semgis.arqextension.geometry.ClosestPoint;
+import de.hsmainz.cs.semgis.arqextension.geometry.ClosestPoint3D;
 import de.hsmainz.cs.semgis.arqextension.geometry.ConcaveHull;
+import de.hsmainz.cs.semgis.arqextension.geometry.DWithin3D;
 import de.hsmainz.cs.semgis.arqextension.geometry.DelaunayTriangles;
 import de.hsmainz.cs.semgis.arqextension.geometry.Dimension;
 import de.hsmainz.cs.semgis.arqextension.geometry.Distance3D;
+import de.hsmainz.cs.semgis.arqextension.geometry.DistanceSphere;
 import de.hsmainz.cs.semgis.arqextension.geometry.FlipCoordinates;
 import de.hsmainz.cs.semgis.arqextension.geometry.Force2D;
 import de.hsmainz.cs.semgis.arqextension.geometry.Force3D;
@@ -30,6 +33,7 @@ import de.hsmainz.cs.semgis.arqextension.geometry.GeomFromText;
 import de.hsmainz.cs.semgis.arqextension.geometry.GeomFromWKB;
 import de.hsmainz.cs.semgis.arqextension.geometry.GeometryN;
 import de.hsmainz.cs.semgis.arqextension.geometry.GeometryType;
+import de.hsmainz.cs.semgis.arqextension.geometry.HasRepeatedPoints;
 import de.hsmainz.cs.semgis.arqextension.geometry.HausdorffDistance;
 import de.hsmainz.cs.semgis.arqextension.geometry.IsCollection;
 import de.hsmainz.cs.semgis.arqextension.geometry.IsValidReason;
@@ -50,6 +54,7 @@ import de.hsmainz.cs.semgis.arqextension.geometry.RemoveRepeatedPoints;
 import de.hsmainz.cs.semgis.arqextension.geometry.Reverse;
 import de.hsmainz.cs.semgis.arqextension.geometry.Rotate;
 import de.hsmainz.cs.semgis.arqextension.geometry.Scale;
+import de.hsmainz.cs.semgis.arqextension.geometry.ShortestLine3D;
 import de.hsmainz.cs.semgis.arqextension.geometry.Simplify;
 import de.hsmainz.cs.semgis.arqextension.geometry.SimplifyPreserveTopology;
 import de.hsmainz.cs.semgis.arqextension.geometry.SimplifyVW;
@@ -135,6 +140,9 @@ public class PostGISConfig {
             FunctionRegistry functionRegistry = FunctionRegistry.get();
 
             //POSTGIS functionRegistry
+            functionRegistry.put(PostGISGeo.st_3ddwithin.getURI(), DWithin3D.class);
+            functionRegistry.put(PostGISGeo.st_3dclosestpoint.getURI(), ClosestPoint3D.class);
+            functionRegistry.put(PostGISGeo.st_3dshortestline.getURI(), ShortestLine3D.class);
             functionRegistry.put(PostGISGeo.st_addpoint.getURI(), AddPoint.class);
             functionRegistry.put(PostGISGeo.st_asbinary.getURI(), AsBinary.class);
             functionRegistry.put(PostGISGeo.st_asencodedpolyline.getURI(), AsEncodedPolyline.class);
@@ -158,6 +166,7 @@ public class PostGISConfig {
             functionRegistry.put(PostGISGeo.st_delaunayTriangles.getURI(), DelaunayTriangles.class);
             functionRegistry.put(PostGISGeo.st_dimension.getURI(), Dimension.class);
             functionRegistry.put(PostGISGeo.st_distance3d.getURI(), Distance3D.class);
+            functionRegistry.put(PostGISGeo.st_distancesphere.getURI(), DistanceSphere.class);
             functionRegistry.put(PostGISGeo.st_endPoint.getURI(), EndPoint.class);
             functionRegistry.put(PostGISGeo.st_flipCoordinates.getURI(), FlipCoordinates.class);
             functionRegistry.put(PostGISGeo.st_force2d.getURI(), Force2D.class);
@@ -171,6 +180,7 @@ public class PostGISConfig {
             functionRegistry.put(PostGISGeo.st_geometryN.getURI(), GeometryN.class);
             functionRegistry.put(PostGISGeo.st_geometryType.getURI(), GeometryType.class);
             functionRegistry.put(PostGISGeo.st_hasNoBand.getURI(), HasNoBand.class);
+            functionRegistry.put(PostGISGeo.st_hasRepeatedPoints.getURI(), HasRepeatedPoints.class);
             functionRegistry.put(PostGISGeo.st_height.getURI(), Height.class);
             functionRegistry.put(PostGISGeo.st_hausdorffDistance.getURI(), HausdorffDistance.class);
             functionRegistry.put(PostGISGeo.st_interiorRingN.getURI(), InteriorRingN.class);
