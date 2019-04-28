@@ -9,6 +9,7 @@ import org.apache.jena.sparql.function.FunctionBase2;
 import org.locationtech.jts.geom.Coordinate;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.datatype.EncodedPolylineDatatype;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
 
 public class LineFromEncodedPolyline extends FunctionBase2 {
@@ -17,49 +18,9 @@ public class LineFromEncodedPolyline extends FunctionBase2 {
 	public NodeValue exec(NodeValue v,NodeValue v2) {
 		 String polyline=v.asString();
 		 BigInteger precision=v2.getInteger();
-    	GeometryWrapper pointWrapper = GeometryWrapper.createLineString(decodePolyline(polyline, precision.intValue()), "<http://www.opengis.net/def/crs/EPSG/0/4326>", WKTDatatype.URI);	
+    	GeometryWrapper pointWrapper = GeometryWrapper.createLineString(EncodedPolylineDatatype.decodePolyline(polyline, precision.intValue()), "<http://www.opengis.net/def/crs/EPSG/0/4326>", WKTDatatype.URI);	
         return pointWrapper.asNodeValue();
 	}
-	
-	public static List<Coordinate> decodePolyline(String polyline, int precision)
-    {
-        List<Coordinate> coordinates = new ArrayList<Coordinate>();
-        int index = 0, shift, result;
-        int byte_;
-        int lat = 0, lng = 0, latitude_change, longitude_change,
-            factor = (int) Math.pow(10, precision);
-
-        while (index < polyline.length()) {
-            byte_ = 0;
-            shift = 0;
-            result = 0;
-
-            do {
-                byte_ = polyline.charAt(index++) - 63;
-                result |= (byte_ & 0x1f) << shift;
-                shift += 5;
-            } while (byte_ >= 0x20);
-
-            latitude_change = ((result % 2 == 1) ? ~(result >> 1) : (result >> 1));
-
-            shift = result = 0;
-
-            do {
-                byte_ = polyline.charAt(index++) - 63;
-                result |= (byte_ & 0x1f) << shift;
-                shift += 5;
-            } while (byte_ >= 0x20);
-
-            longitude_change = ((result % 2 == 1) ? ~(result >> 1) : (result >> 1));
-
-            lat += latitude_change;
-            lng += longitude_change;
-
-            coordinates.add(new Coordinate((double)lat / factor,(double)lng / factor));
-        }
-
-        return coordinates;
-    }
 
 	
 	/*public static void main(String[] args) {

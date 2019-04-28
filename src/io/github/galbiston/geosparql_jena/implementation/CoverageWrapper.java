@@ -312,7 +312,7 @@ public class CoverageWrapper implements Serializable {
      *
      * @return Geometry after translation in X direction.
      */
-    public Geometry translateXYGeometry() {
+    public Coverage translateXYGeometry() {
 
         if (translateXYGeometry == null) {
 

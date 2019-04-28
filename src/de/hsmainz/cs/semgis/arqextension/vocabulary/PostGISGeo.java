@@ -22,7 +22,6 @@ public class PostGISGeo {
 
 
 
-
    protected static final Resource resource(String local) {
       return ResourceFactory.createResource(uri + local);
    }
@@ -96,6 +95,9 @@ public class PostGISGeo {
    public static final Property st_minimumBoundingRadius = property("ST_MinimumBoundingRadius");
    public static final Property st_minimumClearance = property("ST_MinimumClearance");
    public static final Property st_minimumClearanceLine = property("ST_MinimumClearanceLine");
+   public static final Property st_mPointFromText = property("ST_MPointFromText");
+   public static final Property st_mLineFromText = property("ST_MLineFromText");
+   public static final Property st_mPolyFromText = property("ST_MPolyFromText");
    public static final Property st_nearestValue = property("ST_NearestValue");
    public static final Property st_normalize = property("ST_Normalize");
    public static final Property st_nRings = property("ST_NRings");
@@ -173,6 +175,11 @@ public static final String GeoBuf = "GeoBuf";
 public static final String KML = "KML";
 public static final String WKBRaster = "WKBRaster";
 public static final String GEOTIFF = "GeoTIFF";
+public static final String EncodedPolyline = "EncodedPolyline";
+public static final String TWKB = "TWKB";
+public static final String HEXWKB = "HEXWKB";
+public static final String MVT = "MVT";
+public static final String X3D = "X3D";
 
 
 
@@ -219,6 +226,9 @@ public static final String GEOTIFF = "GeoTIFF";
       public static final Node st_makePoint = PostGISGeo.st_makePoint.asNode();
       public static final Node st_makePointM = PostGISGeo.st_makePointM.asNode();
       public static final Node st_makePolygon = PostGISGeo.st_makePolygon.asNode();
+      public static final Node st_mLineFromText = PostGISGeo.st_mLineFromText.asNode();
+      public static final Node st_mPointFromText = PostGISGeo.st_mPointFromText.asNode();
+      public static final Node st_mPolyFromText = PostGISGeo.st_mPolyFromText.asNode();
       public static final Node st_minimumBoundingCircle = PostGISGeo.st_minimumBoundingCircle.asNode();
       public static final Node st_nearestValue = PostGISGeo.st_nearestValue.asNode();
       public static final Node st_numBands = PostGISGeo.st_numBands.asNode();

@@ -33,7 +33,7 @@ import de.hsmainz.cs.semgis.arqextension.vocabulary.PostGISGeo;
 	 */
 	public class WKBDatatype extends GeometryDatatype {
 
-	    private static final Logger LOGGER = LoggerFactory.getLogger(WKTDatatype.class);
+	    private static final Logger LOGGER = LoggerFactory.getLogger(WKBDatatype.class);
 
 	    /**
 	     * The default WKT type URI.
@@ -81,7 +81,7 @@ import de.hsmainz.cs.semgis.arqextension.vocabulary.PostGISGeo;
 	        Geometry geometry;
 			try {
 				geometry = wkbReader.read(wkbTextSRS.getWkbText().getBytes());
-		        GeometryWrapper wrapper = GeometryWrapper.createGeometry(geometry, "<http://www.opengis.net/def/crs/EPSG/0/"+geometry.getSRID()+">", WKTDatatype.URI);	
+		        GeometryWrapper wrapper = GeometryWrapper.createGeometry(geometry, "<http://www.opengis.net/def/crs/EPSG/0/"+geometry.getSRID()+">", WKBDatatype.URI);	
 		        return wrapper;
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
