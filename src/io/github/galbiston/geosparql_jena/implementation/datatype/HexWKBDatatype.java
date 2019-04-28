@@ -31,24 +31,24 @@ import de.hsmainz.cs.semgis.arqextension.vocabulary.PostGISGeo;
  * be assumed as the spatial reference system for geo:wktLiterals that do not *
  * specify an explicit spatial reference system URI.
  */
-public class TWKBDatatype extends GeometryDatatype {
+public class HexWKBDatatype extends GeometryDatatype {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(TWKBDatatype.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(HexWKBDatatype.class);
 
     /**
      * The default WKT type URI.
      */
-    public static final String URI = PostGISGeo.TWKB;
+    public static final String URI = PostGISGeo.HEXWKB;
 
     /**
      * A static instance of WKTDatatype.
      */
-    public static final TWKBDatatype INSTANCE = new TWKBDatatype();
+    public static final HexWKBDatatype INSTANCE = new HexWKBDatatype();
 
     /**
      * private constructor - single global instance.
      */
-    private TWKBDatatype() {
+    private HexWKBDatatype() {
         super(URI);
     }
 
@@ -67,21 +67,21 @@ public class TWKBDatatype extends GeometryDatatype {
         if (geometry instanceof GeometryWrapper) {
             GeometryWrapper geometryWrapper = (GeometryWrapper) geometry;
             WKBWriter writer=new WKBWriter();
-            return writer.write(geometryWrapper.getXYGeometry()).toString();
+            return WKBWriter.toHex(writer.write(geometryWrapper.getXYGeometry())).toString();
         } else {
-            throw new AssertionError("Object passed to TWKBDatatype is not a GeometryWrapper: " + geometry);
+            throw new AssertionError("Object passed to HexWKBDatatype is not a GeometryWrapper: " + geometry);
         }
     }
 
     @Override
     public GeometryWrapper read(String geometryLiteral) {
-        WKBTextSRS wkbTextSRS = new WKBTextSRS(geometryLiteral);
+        HexWKBTextSRS wkbTextSRS = new HexWKBTextSRS(geometryLiteral);
 
         WKBReader wkbReader = new WKBReader();
         Geometry geometry;
 		try {
-			geometry = wkbReader.read(wkbTextSRS.getWkbText().getBytes());
-	        GeometryWrapper wrapper = GeometryWrapper.createGeometry(geometry, "<http://www.opengis.net/def/crs/EPSG/0/"+geometry.getSRID()+">", TWKBDatatype.URI);	
+			geometry = wkbReader.read(WKBReader.hexToBytes(wkbTextSRS.getWkbText().toString()));
+	        GeometryWrapper wrapper = GeometryWrapper.createGeometry(geometry, "<http://www.opengis.net/def/crs/EPSG/0/"+geometry.getSRID()+">", HexWKBDatatype.URI);	
 	        return wrapper;
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
@@ -92,12 +92,12 @@ public class TWKBDatatype extends GeometryDatatype {
 
     }
 
-    private class WKBTextSRS {
+    private class HexWKBTextSRS {
 
         private final String wkbText;
         private final String srsURI;
 
-        public WKBTextSRS(String wkbLiteral) {
+        public HexWKBTextSRS(String wkbLiteral) {
             int startSRS = wkbLiteral.indexOf("<");
             int endSRS = wkbLiteral.indexOf(">");
 
@@ -124,7 +124,7 @@ public class TWKBDatatype extends GeometryDatatype {
 
     @Override
     public String toString() {
-        return "TWKBDatatype{" + URI + '}';
+        return "HexWKBDatatype{" + URI + '}';
     }
 
 }

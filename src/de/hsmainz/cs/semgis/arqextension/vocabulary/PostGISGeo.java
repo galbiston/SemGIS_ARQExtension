@@ -74,6 +74,8 @@ public class PostGISGeo {
    public static final Property st_isCollection = property("ST_IsCollection");
    public static final Property st_isConvex = property("ST_IsConvex");
    public static final Property st_isEmpty = property("ST_IsEmpty");
+   public static final Property st_isPolygonCW = property("ST_IsPolygonCW");
+   public static final Property st_isPolygonCCW = property("ST_IsPolygonCCW");
    public static final Property st_isRing = property("ST_IsRing");
    public static final Property st_isSimple = property("ST_IsSimple");
    public static final Property st_isValid = property("ST_IsValid");
@@ -95,6 +97,7 @@ public class PostGISGeo {
    public static final Property st_minimumBoundingRadius = property("ST_MinimumBoundingRadius");
    public static final Property st_minimumClearance = property("ST_MinimumClearance");
    public static final Property st_minimumClearanceLine = property("ST_MinimumClearanceLine");
+   public static final Property st_multi = property("ST_Multi");
    public static final Property st_mPointFromText = property("ST_MPointFromText");
    public static final Property st_mLineFromText = property("ST_MLineFromText");
    public static final Property st_mPolyFromText = property("ST_MPolyFromText");
@@ -134,6 +137,7 @@ public class PostGISGeo {
    public static final Property st_rasterToWorldCoordX = property("ST_RasterToWorldCoordX");
    public static final Property st_rasterToWorldCoordY = property("ST_RasterToWorldCoordY");
    public static final Property st_removePoint = property("ST_RemovePoint");
+   public static final Property st_removeRepeatedPoints = property("ST_RemoveRepeatedPoints");
    public static final Property st_reverse = property("ST_Reverse");
    public static final Property st_rotate = property("ST_Rotate");
    public static final Property st_scale = property("ST_Scale");
@@ -180,6 +184,9 @@ public static final String TWKB = "TWKB";
 public static final String HEXWKB = "HEXWKB";
 public static final String MVT = "MVT";
 public static final String X3D = "X3D";
+
+
+
 
 
 
