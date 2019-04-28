@@ -9,8 +9,8 @@ import org.apache.jena.sparql.function.FunctionBase2;
 import org.locationtech.jts.geom.Coordinate;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
-import io.github.galbiston.geosparql_jena.implementation.datatype.EncodedPolylineDatatype;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
+import io.github.galbiston.geosparql_jena.implementation.datatype.vector.EncodedPolylineDatatype;
 
 public class LineFromEncodedPolyline extends FunctionBase2 {
 

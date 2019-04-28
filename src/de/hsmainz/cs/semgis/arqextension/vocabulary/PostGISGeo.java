@@ -22,6 +22,7 @@ public class PostGISGeo {
 
 
 
+
    protected static final Resource resource(String local) {
       return ResourceFactory.createResource(uri + local);
    }
@@ -61,12 +62,18 @@ public class PostGISGeo {
    public static final Property st_endPoint = property("ST_endPoint");
    public static final Property st_envelope = property("ST_Envelope");
    public static final Property st_flipCoordinates = property("ST_FlipCoordinates");
+   public static final Property st_force2d = property("ST_Force2D");
+   public static final Property st_force3d = property("ST_Force3D");
+   public static final Property st_force3dm = property("ST_Force3DM");
+   public static final Property st_force3dz = property("ST_Force3DZ");
+   public static final Property st_force4d = property("ST_Force4D");
    public static final Property st_geomFromGeoJSON = property("ST_GeomFromGeoJSON");
    public static final Property st_geomFromWKB = property("ST_GeomFromWKB");
    public static final Property st_geomFromText = property("ST_GeomFromText");
    public static final Property st_geometryN = property("ST_GeometryN");
    public static final Property st_geometryType = property("ST_GeometryType");
    public static final Property st_hasNoBand = property("ST_HasNoBand");
+   public static final Property st_hasRepeatedPoints = property("ST_HasRepeatedPoints");
    public static final Property st_hausdorffDistance = property("ST_HausdorffDistance");
    public static final Property st_height = property("ST_Height");
    public static final Property st_interiorRingN = property("ST_InteriorRingN");
@@ -121,6 +128,7 @@ public class PostGISGeo {
    public static final Property st_points = property("ST_Points");
    public static final Property st_pointFromGeoHash = property("ST_PointFromGeoHash");
    public static final Property st_pointFromText = property("ST_PointFromText");
+   public static final Property st_pointOnSurface = property("ST_PointOnSurface");
    public static final Property st_polygonFromText = property("ST_PolygonFromText");
    public static final Property st_polygonFromWKB = property("ST_PolygonFromWKB");
    public static final Property st_rast_isEmpty = property("ST_rast_isEmpty");
@@ -184,6 +192,9 @@ public static final String TWKB = "TWKB";
 public static final String HEXWKB = "HEXWKB";
 public static final String MVT = "MVT";
 public static final String X3D = "X3D";
+public static final String OSM= "OSM";
+
+
 
 
 

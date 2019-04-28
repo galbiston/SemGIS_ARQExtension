@@ -1,4 +1,4 @@
-package io.github.galbiston.geosparql_jena.implementation.datatype;
+package io.github.galbiston.geosparql_jena.implementation.datatype.raster;
 
 import java.io.IOException;
 import java.util.List;
@@ -34,8 +34,11 @@ public class WKBRastLiteral extends RasterDataType {
 			String rasterWKB;
 			try {
 				rasterWKB = writer.write(geometryWrapper.getXYGeometry()).toString();
-				return NodeValue.makeString(rasterWKB.toString());
-            return jsonstring;
+				return rasterWKB.toString();
+			} catch (IOException | FactoryException e) {
+				throw new AssertionError(e.getMessage());
+			}
+
         } else {
             throw new AssertionError("Object passed to GeoJSONDatatype is not a GeometryWrapper: " + geometry);
         }

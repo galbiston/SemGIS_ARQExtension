@@ -1,4 +1,4 @@
-package io.github.galbiston.geosparql_jena.implementation.datatype;
+package io.github.galbiston.geosparql_jena.implementation.datatype.raster;
 
 import java.io.IOException;
 

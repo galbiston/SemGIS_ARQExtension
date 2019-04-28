@@ -18,9 +18,9 @@
  */
 package io.github.galbiston.geosparql_jena.implementation;
 
-import io.github.galbiston.geosparql_jena.implementation.datatype.GMLDatatype;
-import io.github.galbiston.geosparql_jena.implementation.datatype.GeometryDatatype;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
+import io.github.galbiston.geosparql_jena.implementation.datatype.vector.GMLDatatype;
+import io.github.galbiston.geosparql_jena.implementation.datatype.vector.GeometryDatatype;
 import io.github.galbiston.geosparql_jena.implementation.great_circle.CoordinatePair;
 import io.github.galbiston.geosparql_jena.implementation.great_circle.GreatCircleDistance;
 import io.github.galbiston.geosparql_jena.implementation.index.GeometryLiteralIndex.GeometryIndex;
@@ -42,7 +42,7 @@ import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.ResourceFactory;
 import org.apache.jena.sparql.expr.NodeValue;
 import org.apache.sis.geometry.DirectPosition2D;
-import org.geotoolkit.coverage.Coverage;
+import org.geotoolkit.coverage.grid.GridCoverage2D;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Envelope;
 import org.locationtech.jts.geom.Geometry;
@@ -74,8 +74,8 @@ public class CoverageWrapper implements Serializable {
 
     private final DimensionInfo dimensionInfo;
     private final SRSInfo srsInfo;
-    private final Coverage xyGeometry;
-    private final Coverage parsingGeometry;
+    private final GridCoverage2D xyGeometry;
+    private final GridCoverage2D parsingGeometry;
     private PreparedGeometry preparedGeometry;
     private Envelope envelope;
     private Geometry translateXYGeometry;
@@ -92,7 +92,7 @@ public class CoverageWrapper implements Serializable {
      * @param geometryDatatypeURI
      * @param dimensionInfo
      */
-    public CoverageWrapper(Coverage geometry, String srsURI, String geometryDatatypeURI, DimensionInfo dimensionInfo) {
+    public CoverageWrapper(GridCoverage2D geometry, String srsURI, String geometryDatatypeURI, DimensionInfo dimensionInfo) {
         this(geometry, srsURI, geometryDatatypeURI, dimensionInfo, null);
     }
 
@@ -104,15 +104,15 @@ public class CoverageWrapper implements Serializable {
      * @param dimensionInfo
      * @param geometryLiteral
      */
-    public CoverageWrapper(Coverage geometry,String srsURI, String geometryDatatypeURI, DimensionInfo dimensionInfo, String geometryLiteral) {
+    public CoverageWrapper(GridCoverage2D geometry,String srsURI, String geometryDatatypeURI, DimensionInfo dimensionInfo, String geometryLiteral) {
         this(geometry, GeometryReverse.check(geometry, srsURI.isEmpty() ? SRS_URI.DEFAULT_WKT_CRS84 : srsURI), srsURI.isEmpty() ? SRS_URI.DEFAULT_WKT_CRS84 : srsURI, geometryDatatypeURI, dimensionInfo, geometryLiteral);
     }
 
-    private CoverageWrapper(Coverage parsingGeometry, Coverage xyGeometry, String srsURI, String geometryDatatypeURI, DimensionInfo dimensionInfo) {
+    private CoverageWrapper(GridCoverage2D parsingGeometry, GridCoverage2D xyGeometry, String srsURI, String geometryDatatypeURI, DimensionInfo dimensionInfo) {
         this(parsingGeometry, xyGeometry, srsURI, geometryDatatypeURI, dimensionInfo, null);
     }
 
-    private CoverageWrapper(Coverage parsingGeometry, Coverage xyGeometry, String srsURI, String geometryDatatypeURI, DimensionInfo dimensionInfo, String lexicalForm) {
+    private CoverageWrapper(GridCoverage2D parsingGeometry, GridCoverage2D xyGeometry, String srsURI, String geometryDatatypeURI, DimensionInfo dimensionInfo, String lexicalForm) {
 
         this.parsingGeometry = parsingGeometry;
         this.xyGeometry = xyGeometry;
@@ -138,7 +138,7 @@ public class CoverageWrapper implements Serializable {
      * @param geometry In X/Y or Y/X coordinate order of WGS84.
      * @param geometryDatatypeURI
      */
-    public CoverageWrapper(Coverage geometry, String geometryDatatypeURI) {
+    public CoverageWrapper(GridCoverage2D geometry, String geometryDatatypeURI) {
         this(geometry, "", geometryDatatypeURI, DimensionInfo.XY_POINT);
     }
 
@@ -149,7 +149,7 @@ public class CoverageWrapper implements Serializable {
      * @param srsURI
      * @param geometryDatatypeURI
      */
-    public CoverageWrapper(Coverage geometry, String srsURI, String geometryDatatypeURI) {
+    public CoverageWrapper(GridCoverage2D geometry, String srsURI, String geometryDatatypeURI) {
         this(geometry, srsURI, geometryDatatypeURI, DimensionInfo.XY_POINT);
     }
 
@@ -293,7 +293,7 @@ public class CoverageWrapper implements Serializable {
      *
      * @return Geometry with coordinates in x,y order, regardless of SRS_URI.
      */
-    public Coverage getXYGeometry() {
+    public GridCoverage2D getXYGeometry() {
         return xyGeometry;
     }
 
@@ -301,7 +301,7 @@ public class CoverageWrapper implements Serializable {
      *
      * @return Geometry with coordinates as originally provided.
      */
-    public Coverage getParsingGeometry() {
+    public GridCoverage2D getParsingGeometry() {
         return parsingGeometry;
     }
 
@@ -312,7 +312,7 @@ public class CoverageWrapper implements Serializable {
      *
      * @return Geometry after translation in X direction.
      */
-    public Coverage translateXYGeometry() {
+    public GridCoverage2D translateXYGeometry() {
 
         if (translateXYGeometry == null) {
 
@@ -723,9 +723,9 @@ public class CoverageWrapper implements Serializable {
      * @param geometryDatatypeURI
      * @return GeometryWrapper with SRS URI and GeometryDatatype URI.
      */
-    public static final CoverageWrapper createGeometry(Coverage geometry, String srsURI, String geometryDatatypeURI) {
-        Coverage xyGeometry = geometry;
-        Coverage parsingGeometry = GeometryReverse.check(xyGeometry, srsURI);
+    public static final CoverageWrapper createGeometry(GridCoverage2D geometry, String srsURI, String geometryDatatypeURI) {
+        GridCoverage2D xyGeometry = geometry;
+        GridCoverage2D parsingGeometry = GeometryReverse.check(xyGeometry, srsURI);
         DimensionInfo dimsInfo = DimensionInfo.find(geometry.getCoordinate(), xyGeometry);
 
         return new CoverageWrapper(parsingGeometry, xyGeometry, srsURI, geometryDatatypeURI, dimsInfo);
@@ -861,8 +861,8 @@ public class CoverageWrapper implements Serializable {
      * @param geometryDatatypeURI
      * @return GeometryWrapper with SRS URI and GeometryDatatype URI.
      */
-    public static final CoverageWrapper createCoverage(Coverage geometry, String geometryDatatypeURI) {
-        return createCoverage(geometry, SRS_URI.DEFAULT_WKT_CRS84, geometryDatatypeURI);
+    public static final CoverageWrapper createGridCoverage2D(GridCoverage2D geometry, String geometryDatatypeURI) {
+        return createGridCoverage2D(geometry, SRS_URI.DEFAULT_WKT_CRS84, geometryDatatypeURI);
     }
 
     @Override

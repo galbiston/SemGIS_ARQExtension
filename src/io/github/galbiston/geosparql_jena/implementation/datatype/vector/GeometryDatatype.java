@@ -1,22 +1,42 @@
-package io.github.galbiston.geosparql_jena.implementation.datatype;
+/*
+ * Copyright 2018 the original author or authors.
+ * See the notice.md file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package io.github.galbiston.geosparql_jena.implementation.datatype.vector;
 
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
+import io.github.galbiston.geosparql_jena.implementation.index.GeometryLiteralIndex;
+import io.github.galbiston.geosparql_jena.implementation.index.GeometryLiteralIndex.GeometryIndex;
 import org.apache.jena.datatypes.BaseDatatype;
 import org.apache.jena.datatypes.DatatypeFormatException;
 import org.apache.jena.datatypes.RDFDatatype;
 import org.apache.jena.datatypes.TypeMapper;
 
-import io.github.galbiston.geosparql_jena.implementation.CoverageWrapper;
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
-import io.github.galbiston.geosparql_jena.implementation.index.GeometryLiteralIndex;
-import io.github.galbiston.geosparql_jena.implementation.index.GeometryLiteralIndex.GeometryIndex;
+/**
+ *
+ *
+ */
+public abstract class GeometryDatatype extends BaseDatatype {
 
-public abstract class RasterDataType extends BaseDatatype {
-
-    public RasterDataType(String uri) {
+    public GeometryDatatype(String uri) {
         super(uri);
     }
 
-    public abstract CoverageWrapper read(String geometryLiteral);
+    public abstract GeometryWrapper read(String geometryLiteral);
 
     /**
      * This method Parses the Geometry Literal to the JTS Geometry
@@ -27,11 +47,11 @@ public abstract class RasterDataType extends BaseDatatype {
      * <br> null - if the Geometry Literal is invalid.
      */
     @Override
-    public final CoverageWrapper parse(String lexicalForm) throws DatatypeFormatException {
+    public final GeometryWrapper parse(String lexicalForm) throws DatatypeFormatException {
         return parse(lexicalForm, GeometryIndex.PRIMARY);
     }
 
-    public final CoverageWrapper parse(String lexicalForm, GeometryIndex targetIndex) throws DatatypeFormatException {
+    public final GeometryWrapper parse(String lexicalForm, GeometryIndex targetIndex) throws DatatypeFormatException {
         //Check the Geometry Literal Index to see if been previously read and cached.
         //DatatypeReader interface used to instruct index on how to obtain the GeometryWrapper.
         try {
@@ -54,19 +74,19 @@ public abstract class RasterDataType extends BaseDatatype {
         }
     }
 
-    public static final RasterDataType get(RDFDatatype rdfDatatype) {
+    public static final GeometryDatatype get(RDFDatatype rdfDatatype) {
         if (rdfDatatype instanceof GeometryDatatype) {
-            return (RasterDataType) rdfDatatype;
+            return (GeometryDatatype) rdfDatatype;
         } else {
             throw new DatatypeFormatException("Unrecognised Geometry Datatype: " + rdfDatatype.getURI() + " Ensure that Datatype is extending GeometryDatatype.");
         }
     }
 
-    public static final RasterDataType get(String datatypeURI) {
+    public static final GeometryDatatype get(String datatypeURI) {
         checkURI(datatypeURI);
         RDFDatatype rdfDatatype = TYPE_MAPPER.getTypeByName(datatypeURI);
 
-        return RasterDataType.get(rdfDatatype);
+        return GeometryDatatype.get(rdfDatatype);
     }
 
     public static final boolean checkURI(String datatypeURI) {
@@ -83,3 +103,5 @@ public abstract class RasterDataType extends BaseDatatype {
         //Ensure that the registered datatypes from the type mapper are used.
         return checkURI(rdfDatatype.getURI());
     }
+
+}

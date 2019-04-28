@@ -1,12 +1,16 @@
-package io.github.galbiston.geosparql_jena.implementation.datatype;
+package io.github.galbiston.geosparql_jena.implementation.datatype.vector;
 
 	import io.github.galbiston.geosparql_jena.implementation.DimensionInfo;
 	import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
-	import io.github.galbiston.geosparql_jena.implementation.parsers.wkt.WKTReader;
+import io.github.galbiston.geosparql_jena.implementation.parsers.wkt.WKTReader;
 	import io.github.galbiston.geosparql_jena.implementation.parsers.wkt.WKTWriter;
 	import io.github.galbiston.geosparql_jena.implementation.vocabulary.Geo;
 	import io.github.galbiston.geosparql_jena.implementation.vocabulary.SRS_URI;
-	import org.locationtech.jts.geom.Geometry;
+
+import org.geotoolkit.data.osm.OSMMemoryFeatureStore;
+import org.geotoolkit.data.osm.OSMMemoryFeatureStoreFactory;
+import org.geotoolkit.data.osm.xml.OSMXMLWriter;
+import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.io.ParseException;
 import org.locationtech.jts.io.WKBReader;
 import org.locationtech.jts.io.WKBWriter;
@@ -31,24 +35,24 @@ import de.hsmainz.cs.semgis.arqextension.vocabulary.PostGISGeo;
 	 * be assumed as the spatial reference system for geo:wktLiterals that do not *
 	 * specify an explicit spatial reference system URI.
 	 */
-	public class WKBDatatype extends GeometryDatatype {
+	public class OSMDatatype extends GeometryDatatype {
 
-	    private static final Logger LOGGER = LoggerFactory.getLogger(WKBDatatype.class);
+	    private static final Logger LOGGER = LoggerFactory.getLogger(OSMDatatype.class);
 
 	    /**
 	     * The default WKT type URI.
 	     */
-	    public static final String URI = PostGISGeo.WKB;
+	    public static final String URI = PostGISGeo.OSM;
 
 	    /**
 	     * A static instance of WKTDatatype.
 	     */
-	    public static final WKBDatatype INSTANCE = new WKBDatatype();
+	    public static final OSMDatatype INSTANCE = new OSMDatatype();
 
 	    /**
 	     * private constructor - single global instance.
 	     */
-	    private WKBDatatype() {
+	    private OSMDatatype() {
 	        super(URI);
 	    }
 
@@ -63,7 +67,12 @@ import de.hsmainz.cs.semgis.arqextension.vocabulary.PostGISGeo;
 	     */
 	    @Override
 	    public String unparse(Object geometry) {
-
+	    		OSMMemoryFeatureStoreFactory fac=new OSMMemoryFeatureStoreFactory();
+	    		OSMMemoryFeatureStore osmfeat=fac.createDataStore(new java.net.URI(""));
+	    		osmfeat.addFeatures(groupName, newFeatures)
+	    		OSM
+	    		OSMXMLWriter writer=new OSMXMLWriter();
+	    		writer.wr
 	        if (geometry instanceof GeometryWrapper) {
 	            GeometryWrapper geometryWrapper = (GeometryWrapper) geometry;
 	            WKBWriter writer=new WKBWriter();
@@ -127,4 +136,6 @@ import de.hsmainz.cs.semgis.arqextension.vocabulary.PostGISGeo;
 	        return "WKBDatatype{" + URI + '}';
 	    }
 	
+}
+
 }

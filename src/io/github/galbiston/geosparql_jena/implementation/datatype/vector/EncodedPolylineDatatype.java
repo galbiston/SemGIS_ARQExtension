@@ -1,4 +1,4 @@
-package io.github.galbiston.geosparql_jena.implementation.datatype;
+package io.github.galbiston.geosparql_jena.implementation.datatype.vector;
 
 import io.github.galbiston.geosparql_jena.implementation.DimensionInfo;
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
@@ -44,7 +44,7 @@ public class EncodedPolylineDatatype extends GeometryDatatype {
     /**
      * The default WKT type URI.
      */
-    public static final String URI = PostGISGeo.WKB;
+    public static final String URI = PostGISGeo.EncodedPolyline;
 
     /**
      * A static instance of WKTDatatype.
