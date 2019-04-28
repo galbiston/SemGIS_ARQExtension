@@ -88,11 +88,11 @@
     <type>pom</type>
 </dependency>
 
-<!-- <dependency>
+ <dependency>
     <groupId>com.wdtinc</groupId>
     <artifactId>mapbox-vector-tile</artifactId>
     <version>3.0.0</version>
-</dependency>-->
+</dependency>
         <dependency>
             <groupId>org.geotoolkit</groupId>
             <artifactId>geotk-client-wcs</artifactId>

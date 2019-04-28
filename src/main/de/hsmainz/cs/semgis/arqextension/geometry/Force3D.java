@@ -21,7 +21,7 @@ public class Force3D extends FunctionBase1 {
             Geometry geom = geometry.getXYGeometry();
             List<Coordinate> newcoords=new ArrayList<Coordinate>();
             for(Coordinate coord:geom.getCoordinates()) {
-            	newcoords.add(new Coordinate(coord.x,coord.y,coord.z));
+            	newcoords.add(new Coordinate(coord.x,coord.y,coord.getZ()));
             }         
              return Force2D.createGeometry(newcoords,geom.getGeometryType(),geometry).asNodeValue();           
             } catch (DatatypeFormatException ex) {

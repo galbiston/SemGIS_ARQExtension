@@ -31,9 +31,6 @@ public class LineMerge extends FunctionBase1 {
         try {
             GeometryWrapper geometry = GeometryWrapper.extract(arg0);
             Geometry geom = geometry.getXYGeometry();
-            
-    	    PolygonExtracter ex;
-    	    ex.
             if (geom instanceof MultiLineString) {
                 LineMerger merger = new LineMerger();
                 merger.add(geom);
