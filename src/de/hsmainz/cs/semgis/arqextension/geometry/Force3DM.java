@@ -22,7 +22,6 @@ public class Force3DM extends FunctionBase1 {
             GeometryWrapper geometry = GeometryWrapper.extract(v);
             Geometry geom = geometry.getXYGeometry();
             Point point=(Point) geom;
-            point.get
             List<Coordinate> newcoords=new ArrayList<Coordinate>();
             for(Coordinate coord:geom.getCoordinates()) {
             	newcoords.add(new Coordinate(coord.x,coord.y,0));

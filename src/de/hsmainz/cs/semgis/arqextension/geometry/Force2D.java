@@ -1,6 +1,7 @@
 package de.hsmainz.cs.semgis.arqextension.geometry;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.jena.datatypes.DatatypeFormatException;
@@ -9,6 +10,8 @@ import org.apache.jena.sparql.expr.NodeValue;
 import org.apache.jena.sparql.function.FunctionBase1;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.LineString;
+import org.locationtech.jts.geom.Polygon;
 import org.locationtech.jts.operation.BoundaryOp;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
@@ -41,9 +44,15 @@ public class Force2D extends FunctionBase1{
 		case "Polygon":
 			return GeometryWrapper.createPolygon(coordinates, geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
 		case "MultiLineString":
-			return GeometryWrapper.createMultiLineString(coordinates, geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
+			List<LineString> list=new LinkedList<LineString>();
+			list.add((LineString)GeometryWrapper.createLineString(coordinates, geometry.getSrsURI(), geometry.getGeometryDatatypeURI()).getXYGeometry());
+			return GeometryWrapper.createMultiLineString(list, geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
 		case "MultiPolygon":
-			return GeometryWrapper.createMultiPolygon(coordinates, geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
+			List<Polygon> plist=new LinkedList<Polygon>();
+			plist.add((Polygon)GeometryWrapper.createPolygon(coordinates, geometry.getSrsURI(), geometry.getGeometryDatatypeURI()).getXYGeometry());
+			return GeometryWrapper.createMultiPolygon(plist, geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
+		default:
+			return null;
 		}
 	}
 
