@@ -24,7 +24,6 @@ public class NumBands extends RasterSpatialFunction {
     @Override
     protected NodeValue exec(GridCoverage2D raster, GeometryWrapper geometryWrapper, Binding binding,
             List<NodeValue> evalArgs, String uri, FunctionEnv env) {
-    	raster.getRenderedImage().getData().get
         return NodeValue.makeInteger(raster.getRenderedImage().getData().getNumBands());
     }
 

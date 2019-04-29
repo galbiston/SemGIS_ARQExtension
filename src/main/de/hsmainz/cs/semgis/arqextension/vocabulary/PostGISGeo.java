@@ -197,6 +197,7 @@ public static final String HEXWKB = "HEXWKB";
 public static final String MVT = "MVT";
 public static final String X3D = "X3D";
 public static final String OSM= "OSM";
+public static final String HexWKBRaster = "HexWKBRaster";
 
 
 
