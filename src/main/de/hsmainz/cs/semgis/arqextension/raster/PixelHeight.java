@@ -13,12 +13,17 @@
 package de.hsmainz.cs.semgis.arqextension.raster;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+
 import java.util.List;
 import org.apache.jena.sparql.engine.binding.Binding;
 import org.apache.jena.sparql.expr.NodeValue;
 import org.apache.jena.sparql.function.FunctionEnv;
 import org.geotoolkit.coverage.grid.GridCoverage2D;
 
+/**
+ * Returns the pixel height in geometric units of the spatial reference system.
+ *
+ */
 public class PixelHeight extends Raster2DGeometrySpatialFunction {
 
     @Override

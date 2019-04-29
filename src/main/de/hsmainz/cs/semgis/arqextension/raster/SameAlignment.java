@@ -19,6 +19,10 @@ import org.apache.jena.sparql.expr.NodeValue;
 import org.apache.jena.sparql.function.FunctionEnv;
 import org.geotoolkit.coverage.grid.GridCoverage2D;
 
+/**
+ * Returns true if rasters have same skew, scale, spatial ref, and offset (pixels can be put on same grid without cutting into pixels) and false if they don't with notice detailing issue.
+ *
+ */
 public class SameAlignment extends DoubleRaster2DSpatialFunction {
 
     @Override

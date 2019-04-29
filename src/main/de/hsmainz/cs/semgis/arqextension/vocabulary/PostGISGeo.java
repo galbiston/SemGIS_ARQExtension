@@ -74,6 +74,7 @@ public class PostGISGeo {
    public static final Property st_geomFromGeoJSON = property("ST_GeomFromGeoJSON");
    public static final Property st_geomFromWKB = property("ST_GeomFromWKB");
    public static final Property st_geomFromText = property("ST_GeomFromText");
+   public static final Property st_geometricMedian = property("ST_GeometricMedian");
    public static final Property st_geometryN = property("ST_GeometryN");
    public static final Property st_geometryType = property("ST_GeometryType");
    public static final Property st_hasNoBand = property("ST_HasNoBand");
@@ -120,6 +121,7 @@ public class PostGISGeo {
    public static final Property st_numInteriorRings = property("ST_NumInteriorRings");
    public static final Property st_numPoints = property("ST_NumPoints");
    public static final Property st_nPoints = property("ST_NPoints");
+   public static final Property st_orientation = property("ST_Orientation");
    public static final Property st_offsetCurve = property("ST_OffsetCurve");
    public static final Property st_orderingEquals = property("ST_OrderingEquals");
    public static final Property st_pixelAsPoint = property("ST_PixelAsPoint");
