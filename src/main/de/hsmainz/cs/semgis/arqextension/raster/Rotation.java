@@ -9,6 +9,10 @@ import org.geotoolkit.coverage.grid.GridCoverage2D;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 
+/**
+ * Returns the rotation of the raster in radian.
+ *
+ */
 public class Rotation extends RasterSpatialFunction{
 
 	@Override

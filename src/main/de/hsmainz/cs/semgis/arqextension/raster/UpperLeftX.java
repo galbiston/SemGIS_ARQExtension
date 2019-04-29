@@ -23,6 +23,11 @@ import org.geotoolkit.coverage.grid.GridCoordinates2D;
 import org.geotoolkit.coverage.grid.GridCoverage2D;
 import org.opengis.referencing.operation.TransformException;
 
+
+/**
+ * Returns the upper left X coordinate of raster in projected spatial ref.
+ *
+ */
 public class UpperLeftX extends Raster2DGeometrySpatialFunction {
 
     @Override

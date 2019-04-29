@@ -23,6 +23,10 @@ import org.geotoolkit.coverage.grid.GridCoordinates2D;
 import org.geotoolkit.coverage.grid.GridCoverage2D;
 import org.opengis.referencing.operation.TransformException;
 
+/**
+ * Returns the geometric X coordinate upper left of a raster, column and row. Numbering of columns and rows starts at 1.
+ *
+ */
 public class RasterToWorldCoordX extends RasterSpatialFunction {
 
     @Override

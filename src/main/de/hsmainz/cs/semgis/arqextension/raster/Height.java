@@ -19,6 +19,10 @@ import org.apache.jena.sparql.expr.NodeValue;
 import org.apache.jena.sparql.function.FunctionEnv;
 import org.geotoolkit.coverage.grid.GridCoverage2D;
 
+/**
+ * Returns the height of the raster in pixels.
+ *
+ */
 public class Height extends RasterSpatialFunction {
 
     @Override

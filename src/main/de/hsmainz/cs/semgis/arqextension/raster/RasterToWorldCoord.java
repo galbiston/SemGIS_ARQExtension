@@ -26,6 +26,10 @@ import org.opengis.coverage.grid.GridCoverage;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.referencing.operation.TransformException;
 
+/**
+ * Returns the raster's upper left corner as geometric X and Y (longitude and latitude) given a column and row. Column and row starts at 1.
+ *
+ */
 public class RasterToWorldCoord extends RasterSpatialFunction {
 
     @Override

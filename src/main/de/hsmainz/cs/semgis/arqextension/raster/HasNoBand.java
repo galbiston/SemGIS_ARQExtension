@@ -20,6 +20,10 @@ import org.apache.jena.sparql.function.FunctionEnv;
 import org.apache.jena.vocabulary.XSD;
 import org.geotoolkit.coverage.grid.GridCoverage2D;
 
+/**
+ * Returns true if there is no band with given band number. If no band number is specified, then band number 1 is assumed.
+ *
+ */
 public class HasNoBand extends RasterSpatialFunction {
 
     @Override

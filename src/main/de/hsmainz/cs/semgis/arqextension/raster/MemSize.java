@@ -9,6 +9,10 @@ import org.geotoolkit.coverage.grid.GridCoverage2D;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 
+/**
+ * Returns the amount of space (in bytes) the raster takes.
+ *
+ */
 public class MemSize extends RasterSpatialFunction {
 
 	@Override

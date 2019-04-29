@@ -9,6 +9,10 @@ import org.geotoolkit.coverage.grid.GridCoverage2D;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 
+/**
+ * Returns the Y component of the pixel height in units of coordinate reference system.
+ *
+ */
 public class ScaleY extends RasterSpatialFunction {
 
 	@Override

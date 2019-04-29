@@ -24,6 +24,10 @@ import org.apache.sis.geometry.DirectPosition2D;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 
+/**
+ * Returns the row in the raster of the point geometry (pt) or a X and Y world coordinate (xw, yw) represented in world spatial reference system of raster.
+ *
+ */
 public class WorldToRasterCoordY extends Raster2DGeometrySpatialFunction {
 
     @Override

@@ -9,6 +9,10 @@ import org.geotoolkit.coverage.grid.GridCoverage2D;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 
+/**
+ * Returns the georeference Y skew (or rotation parameter).
+ *
+ */
 public class SkewY extends RasterSpatialFunction {
 
 	@Override

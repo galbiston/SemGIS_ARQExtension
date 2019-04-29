@@ -24,6 +24,11 @@ import org.opengis.coverage.grid.GridCoordinates;
 import org.opengis.coverage.grid.GridCoverage;
 import org.opengis.referencing.operation.TransformException;
 
+
+/**
+ * Returns the upper left corner as column and row given geometric X and Y (longitude and latitude) or a point geometry expressed in the spatial reference coordinate system of the raster.
+ *
+ */
 public class WorldToRasterCoord extends Raster2DGeometrySpatialFunction {
 
     @Override
