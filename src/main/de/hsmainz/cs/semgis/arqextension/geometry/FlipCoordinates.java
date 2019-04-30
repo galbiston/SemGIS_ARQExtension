@@ -20,6 +20,10 @@ import org.apache.jena.sparql.expr.NodeValue;
 import org.apache.jena.sparql.function.FunctionBase1;
 import org.locationtech.jts.geom.Geometry;
 
+/**
+ * Returns a version of the given geometry with X and Y axis flipped.
+ *
+ */
 public class FlipCoordinates
         extends FunctionBase1 {
 
