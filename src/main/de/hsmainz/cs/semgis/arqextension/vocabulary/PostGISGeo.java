@@ -38,16 +38,22 @@ public class PostGISGeo {
    public static final Property st_3ddwithin = property("ST_3DDWithin");
    public static final Property st_3dclosestpoint = property("ST_3DClosestPoint");
    public static final Property st_3dshortestline = property("ST_3DShortestLine");
+   public static final Property st_addband = property("ST_AddBand");
    public static final Property st_addpoint = property("ST_AddPoint");
    public static final Property st_area = property("ST_Area");
    public static final Property st_asbinary = property("ST_AsBinary");
    public static final Property st_asencodedpolyline = property("ST_AsEncodedPolyline");
    public static final Property st_askml = property("ST_AsKML");
    public static final Property st_asgml = property("ST_AsGML");
+   public static final Property st_asgeobuf = property("ST_AsGeoBuf");
    public static final Property st_asgeojson = property("ST_AsGeoJSON");
    public static final Property st_ashexewkb = property("ST_AsHexEWKB");
+   public static final Property st_asjpg = property("ST_AsJPG");
+   public static final Property st_asmvt = property("ST_AsMVT");
+   public static final Property st_aspng = property("ST_AsPNG");
    public static final Property st_assvg = property("ST_AsSVG");
    public static final Property st_astext = property("ST_AsText");
+   public static final Property st_astiff = property("ST_AsTIFF");
    public static final Property st_azimuth = property("ST_Azimuth");
    public static final Property st_band = property("ST_Band");
    public static final Property st_bandmetadata = property("ST_BandMetaData");
@@ -58,6 +64,7 @@ public class PostGISGeo {
    public static final Property st_centroid = property("ST_Centroid");
    public static final Property st_clip = property("ST_Clip");
    public static final Property st_closestPoint = property("ST_ClosestPoint");
+   public static final Property st_closestPoint3d = property("ST_3DClosestPoint");
    public static final Property st_concaveHull = property("ST_ConcaveHull");
    public static final Property st_delaunayTriangles = property("ST_DelaunayTriangles");
    public static final Property st_dimension = property("ST_Dimension");
@@ -71,12 +78,16 @@ public class PostGISGeo {
    public static final Property st_force3dm = property("ST_Force3DM");
    public static final Property st_force3dz = property("ST_Force3DZ");
    public static final Property st_force4d = property("ST_Force4D");
+   public static final Property st_forceCollection = property("ST_ForceCollection");
    public static final Property st_geomFromGeoJSON = property("ST_GeomFromGeoJSON");
+   public static final Property st_geomFromKML = property("ST_GeomFromKML");
+   public static final Property st_geomFromGML = property("ST_GeomFromGML");
    public static final Property st_geomFromWKB = property("ST_GeomFromWKB");
    public static final Property st_geomFromText = property("ST_GeomFromText");
    public static final Property st_geometricMedian = property("ST_GeometricMedian");
    public static final Property st_geometryN = property("ST_GeometryN");
    public static final Property st_geometryType = property("ST_GeometryType");
+   public static final Property st_gmlToSQL = property("ST_GMLToSQL");
    public static final Property st_hasNoBand = property("ST_HasNoBand");
    public static final Property st_hasRepeatedPoints = property("ST_HasRepeatedPoints");
    public static final Property st_hausdorffDistance = property("ST_HausdorffDistance");
@@ -175,6 +186,8 @@ public class PostGISGeo {
    public static final Property st_unaryUnion = property("ST_UnaryUnion");
    public static final Property st_value = property("ST_Value");
    public static final Property st_width = property("ST_Width");
+   public static final Property st_wkbToSQL = property("ST_WKBToSQL");
+   public static final Property st_wktToSQL = property("ST_WKTToSQL");
    public static final Property st_worldToRasterCoord = property("ST_WorldToRasterCoord");
    public static final Property st_worldToRasterCoordX = property("ST_WorldToRasterCoordX");
    public static final Property st_worldToRasterCoordY = property("ST_WorldToRasterCoordY");
@@ -200,6 +213,12 @@ public static final String MVT = "MVT";
 public static final String X3D = "X3D";
 public static final String OSM= "OSM";
 public static final String HexWKBRaster = "HexWKBRaster";
+
+
+
+
+
+
 
 
 
