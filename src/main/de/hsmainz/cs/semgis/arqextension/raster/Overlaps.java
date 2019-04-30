@@ -18,7 +18,6 @@ import org.apache.jena.sparql.engine.binding.Binding;
 import org.apache.jena.sparql.expr.NodeValue;
 import org.apache.jena.sparql.function.FunctionEnv;
 import org.geotoolkit.coverage.grid.GridCoverage2D;
-import org.opengis.coverage.grid.GridCoverage;
 
 public class Overlaps extends DoubleRaster2DSpatialFunction {
 

@@ -65,6 +65,8 @@ public class PostGISGeo {
    public static final Property st_clip = property("ST_Clip");
    public static final Property st_closestPoint = property("ST_ClosestPoint");
    public static final Property st_closestPoint3d = property("ST_3DClosestPoint");
+   public static final Property st_collectionExtract = property("ST_CollectionExtract");
+   public static final Property st_collectionHomogenize = property("ST_CollectionHomogenize");
    public static final Property st_concaveHull = property("ST_ConcaveHull");
    public static final Property st_delaunayTriangles = property("ST_DelaunayTriangles");
    public static final Property st_dimension = property("ST_Dimension");
@@ -213,6 +215,8 @@ public static final String MVT = "MVT";
 public static final String X3D = "X3D";
 public static final String OSM= "OSM";
 public static final String HexWKBRaster = "HexWKBRaster";
+
+
 
 
 

@@ -12,6 +12,10 @@ import org.locationtech.jts.geom.Geometry;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 
+/**
+ * Force the geometries into XYZ mode. This is an alias for ST_Force3DZ.
+ *
+ */
 public class Force3D extends FunctionBase1 {
 
 	@Override

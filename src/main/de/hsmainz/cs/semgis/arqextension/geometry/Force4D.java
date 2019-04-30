@@ -13,6 +13,10 @@ import org.locationtech.jts.geom.Geometry;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 
+/**
+ * Force the geometries into XYZM mode. 
+ *
+ */
 public class Force4D extends FunctionBase1 {
 
 	@Override

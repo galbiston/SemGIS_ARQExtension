@@ -15,6 +15,10 @@ import org.locationtech.jts.geom.Polygon;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 
+/**
+ * Force the geometries into a "2-dimensional mode".
+ *
+ */
 public class Force2D extends FunctionBase1{
 
 	@Override

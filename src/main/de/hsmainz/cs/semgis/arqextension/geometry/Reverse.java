@@ -19,6 +19,10 @@ import org.apache.jena.sparql.expr.NodeValue;
 import org.apache.jena.sparql.function.FunctionBase1;
 import org.locationtech.jts.geom.Geometry;
 
+/**
+ * Return the geometry with vertex order reversed.
+ *
+ */
 public class Reverse extends FunctionBase1 {
 
     @Override

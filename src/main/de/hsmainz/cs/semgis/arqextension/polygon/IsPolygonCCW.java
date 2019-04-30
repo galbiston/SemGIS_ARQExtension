@@ -10,6 +10,10 @@ import org.locationtech.jts.geom.Polygon;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 
+/**
+ * Returns true if all exterior rings are oriented counter-clockwise and all interior rings are oriented clockwise. 
+ *
+ */
 public class IsPolygonCCW extends FunctionBase1 {
 
 	@Override
