@@ -60,6 +60,7 @@ public class PostGISGeo {
    public static final Property st_bandnodatavalue = property("ST_BandNoDataValue");
    public static final Property st_bandpixeltype = property("ST_BandPixelType");
    public static final Property st_bboxintersect = property("ST_BBOXIntersect");
+   public static final Property st_boundary = property("ST_Boundary");
    public static final Property st_boundingdiagonal = property("ST_BoundingDiagonal");
    public static final Property st_centroid = property("ST_Centroid");
    public static final Property st_clip = property("ST_Clip");
@@ -68,6 +69,7 @@ public class PostGISGeo {
    public static final Property st_collectionExtract = property("ST_CollectionExtract");
    public static final Property st_collectionHomogenize = property("ST_CollectionHomogenize");
    public static final Property st_concaveHull = property("ST_ConcaveHull");
+   public static final Property st_count = property("ST_Count");
    public static final Property st_delaunayTriangles = property("ST_DelaunayTriangles");
    public static final Property st_dimension = property("ST_Dimension");
    public static final Property st_distance3d = property("ST_3DDistance");
@@ -81,6 +83,7 @@ public class PostGISGeo {
    public static final Property st_force3dz = property("ST_Force3DZ");
    public static final Property st_force4d = property("ST_Force4D");
    public static final Property st_forceCollection = property("ST_ForceCollection");
+   public static final Property st_geomCollFromText = property("ST_CollFromText");
    public static final Property st_geomFromGeoJSON = property("ST_GeomFromGeoJSON");
    public static final Property st_geomFromKML = property("ST_GeomFromKML");
    public static final Property st_geomFromGML = property("ST_GeomFromGML");
@@ -111,7 +114,10 @@ public class PostGISGeo {
    public static final Property st_lineFromMultiPoint=property("ST_LineFromMultiPoint");
    public static final Property st_lineFromWKB = property("ST_LineFromWKB");
    public static final Property st_lineFromText = property("ST_LineFromText");
+   public static final Property st_lineMerge = property("ST_LineMerge");
    public static final Property st_m = property("ST_M");
+   public static final Property st_makeEmptyCoverage = property("ST_MakeEmptyCoverage");
+   public static final Property st_makeEmptyRaster = property("ST_MakeEmptyRaster");
    public static final Property st_makeEnvelope = property("ST_MakeEnvelope");
    public static final Property st_makeLine = property("ST_MakeLine");
    public static final Property st_makePoint = property("ST_MakePoint");
@@ -122,6 +128,7 @@ public class PostGISGeo {
    public static final Property st_minimumBoundingRadius = property("ST_MinimumBoundingRadius");
    public static final Property st_minimumClearance = property("ST_MinimumClearance");
    public static final Property st_minimumClearanceLine = property("ST_MinimumClearanceLine");
+   public static final Property st_minConvexHull = property("ST_MinConvexHull");
    public static final Property st_multi = property("ST_Multi");
    public static final Property st_mPointFromText = property("ST_MPointFromText");
    public static final Property st_mLineFromText = property("ST_MLineFromText");
@@ -137,19 +144,23 @@ public class PostGISGeo {
    public static final Property st_orientation = property("ST_Orientation");
    public static final Property st_offsetCurve = property("ST_OffsetCurve");
    public static final Property st_orderingEquals = property("ST_OrderingEquals");
+   public static final Property st_patchN = property("ST_PatchN");
    public static final Property st_pixelAsPoint = property("ST_PixelAsPoint");
+   public static final Property st_pixelAsPolygon = property("ST_PixelAsPolygon");
    public static final Property st_pixelHeight = property("ST_PixelHeight");
    public static final Property st_perimeter = property("ST_Perimeter");
    public static final Property st_perimeter2D = property("ST_Perimeter2D");
+   public static final Property st_pointFromGeoHash = property("ST_PointFromGeoHash");
    public static final Property st_pointFromWKB = property("ST_PointFromWKB");
+   public static final Property st_pointFromText = property("ST_PointFromText");
    public static final Property st_pointInsideCircle = property("ST_PointInsideCircle");
    public static final Property st_pointN = property("ST_PointN");
    public static final Property st_points = property("ST_Points");
-   public static final Property st_pointFromGeoHash = property("ST_PointFromGeoHash");
-   public static final Property st_pointFromText = property("ST_PointFromText");
    public static final Property st_pointOnSurface = property("ST_PointOnSurface");
    public static final Property st_polygonFromText = property("ST_PolygonFromText");
    public static final Property st_polygonFromWKB = property("ST_PolygonFromWKB");
+   public static final Property st_rastFromHexWKB = property("ST_RastFromHexWKB");
+   public static final Property st_rastFromWKB = property("ST_RastFromWKB");
    public static final Property st_rast_isEmpty = property("ST_rast_isEmpty");
    public static final Property st_rast_Contains = property("ST_rast_Contains");
    public static final Property st_rast_Covers = property("ST_rast_Covers");
@@ -165,15 +176,27 @@ public class PostGISGeo {
    public static final Property st_rasterToWorldCoordY = property("ST_RasterToWorldCoordY");
    public static final Property st_removePoint = property("ST_RemovePoint");
    public static final Property st_removeRepeatedPoints = property("ST_RemoveRepeatedPoints");
+   public static final Property st_resize = property("ST_Resize");
+   public static final Property st_reskew = property("ST_Reskew");
    public static final Property st_reverse = property("ST_Reverse");
    public static final Property st_rotate = property("ST_Rotate");
+   public static final Property st_rotateZ = property("ST_RotateZ");
+   public static final Property st_rotation = property("ST_Rotation");
+   public static final Property st_sameAlignment = property("ST_SameAlignment");
    public static final Property st_scale = property("ST_Scale");
+   public static final Property st_scaleX = property("ST_ScaleX");
+   public static final Property st_scaleY = property("ST_ScaleY");
    public static final Property st_segmentize = property("ST_Segmentize");
    public static final Property st_setPoint = property("ST_SetPoint");
+   public static final Property st_shortestLine = property("ST_ShortestLine");
+   public static final Property st_shortestLine3D = property("ST_3DShortestLine");
    public static final Property st_simplify = property("ST_Simplify");
    public static final Property st_simplifyPreserveTopology = property("ST_SimplifyPreserveTopology");
    public static final Property st_simplifyVW = property("ST_SimplifyVW");
+   public static final Property st_skewX = property("ST_SkewX");
+   public static final Property st_skewY = property("ST_SkewY");
    public static final Property st_snap = property("ST_Snap");
+   public static final Property st_snapToGrid = property("ST_SnapToGrid");
    public static final Property st_split = property("ST_Split");
    public static final Property st_srid = property("ST_SRID");
    public static final Property st_startPoint = property("ST_StartPoint");
@@ -187,6 +210,8 @@ public class PostGISGeo {
    public static final Property st_upperLeftY = property("ST_UpperLeftY");
    public static final Property st_unaryUnion = property("ST_UnaryUnion");
    public static final Property st_value = property("ST_Value");
+   public static final Property st_vectorize = property("ST_Vectorize");
+   public static final Property st_voronoiPolygons = property("ST_VoronoiPolygons");
    public static final Property st_width = property("ST_Width");
    public static final Property st_wkbToSQL = property("ST_WKBToSQL");
    public static final Property st_wktToSQL = property("ST_WKTToSQL");
@@ -215,6 +240,12 @@ public static final String MVT = "MVT";
 public static final String X3D = "X3D";
 public static final String OSM= "OSM";
 public static final String HexWKBRaster = "HexWKBRaster";
+
+
+
+
+
+
 
 
 
