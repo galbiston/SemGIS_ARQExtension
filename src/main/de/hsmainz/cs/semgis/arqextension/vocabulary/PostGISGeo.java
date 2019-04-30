@@ -227,7 +227,8 @@ public class PostGISGeo {
    public static final Property st_z = property("ST_Z");
    public static final Property st_zMin = property("ST_ZMin");
    public static final Property st_zMax = property("ST_ZMax");
-public static final String WKB = "WKB";
+   public static final Property st_zmFlag = property("ST_ZmFlag");
+   public static final String WKB = "WKB";
 public static final String GeoJSON = "GeoJSON";
 public static final String GeoBuf = "GeoBuf";
 public static final String KML = "KML";
@@ -240,6 +241,7 @@ public static final String MVT = "MVT";
 public static final String X3D = "X3D";
 public static final String OSM= "OSM";
 public static final String HexWKBRaster = "HexWKBRaster";
+
 
 
 

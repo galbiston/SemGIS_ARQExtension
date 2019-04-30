@@ -19,6 +19,10 @@ import org.apache.jena.sparql.expr.NodeValue;
 import org.apache.jena.sparql.function.FunctionBase1;
 import org.locationtech.jts.geom.Envelope;
 
+/**
+ * Returns X maxima of a bounding box 2d or 3d or a geometry.
+ *
+ */
 public class XMax extends FunctionBase1 {
 
     @Override

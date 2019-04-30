@@ -44,7 +44,7 @@
     </build>
     <properties>
         <geotk.version>5.0-SNAPSHOT</geotk.version>
-        <sis.version>0.8-jdk7-M1</sis.version>
+        <sis.version>0.7</sis.version>
         <geoapi.version>4.0-M05</geoapi.version>
         <geotools.version>21.0</geotools.version>
         <!--<sis.version>1.0-SNAPSHOT</sis.version>-->
@@ -206,15 +206,15 @@
             <groupId>org.apache.sis.non-free</groupId>
             <artifactId>sis-epsg</artifactId>
             <version>0.7</version>
-            <scope>runtime</scope>
+
         </dependency>
-        <!--
+        
         <dependency>
             <groupId>org.apache.sis.core</groupId>
             <artifactId>sis-referencing</artifactId>
             <version>${sis.version}</version>
         </dependency>
-        -->
+        
         <dependency>
             <groupId>io.github.galbiston</groupId>
             <artifactId>geosparql-jena</artifactId>

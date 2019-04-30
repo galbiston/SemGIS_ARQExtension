@@ -7,6 +7,7 @@ import de.hsmainz.cs.semgis.arqextension.envelope.YMax;
 import de.hsmainz.cs.semgis.arqextension.envelope.YMin;
 import de.hsmainz.cs.semgis.arqextension.envelope.ZMax;
 import de.hsmainz.cs.semgis.arqextension.envelope.ZMin;
+import de.hsmainz.cs.semgis.arqextension.envelope.Zmflag;
 import de.hsmainz.cs.semgis.arqextension.geometry.Area;
 import de.hsmainz.cs.semgis.arqextension.geometry.AsBinary;
 import de.hsmainz.cs.semgis.arqextension.geometry.AsGML;
@@ -353,13 +354,17 @@ public class PostGISConfig {
             functionRegistry.put(PostGISGeo.st_z.getURI(), Z.class);
             functionRegistry.put(PostGISGeo.st_zMin.getURI(), ZMin.class);
             functionRegistry.put(PostGISGeo.st_zMax.getURI(), ZMax.class);
+            functionRegistry.put(PostGISGeo.st_zmFlag.getURI(), Zmflag.class);
             // extra utility functionRegistry
             functionRegistry.put(Constants.SPATIAL_FUNCTION_NS + "transform", Transform.class);
             //functionRegistry.put(Constants.SPATIAL_FUNCTION_NS + "makeWKTPoint", CreateWKTPoint.class);
             //functionRegistry.put(Constants.SPATIAL_FUNCTION_NS + "WKTToGeometryPoint", LiteralToGeometryType.class);
-
+            System.out.println(functionRegistry);
             GeoSPARQLConfig.setupMemoryIndex();
             IS_FUNCTIONS_REGISTERED = true;
         }
+    }
+    public static void main(String[] args) {
+    	setup();
     }
 }
