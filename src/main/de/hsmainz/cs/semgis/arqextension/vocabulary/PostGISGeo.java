@@ -76,6 +76,7 @@ public class PostGISGeo {
    public static final Property st_distancesphere = property("ST_DistanceSphere");
    public static final Property st_endPoint = property("ST_endPoint");
    public static final Property st_envelope = property("ST_Envelope");
+   public static final Property st_filterByM = property("ST_FilterByM");
    public static final Property st_flipCoordinates = property("ST_FlipCoordinates");
    public static final Property st_force2d = property("ST_Force2D");
    public static final Property st_force3d = property("ST_Force3D");
@@ -108,8 +109,10 @@ public class PostGISGeo {
    public static final Property st_isSimple = property("ST_IsSimple");
    public static final Property st_isValid = property("ST_IsValid");
    public static final Property st_isValidReason = property("ST_IsValidReason");
+   public static final Property st_isValidTrajectory = property("ST_IsValidTrajectory");
    public static final Property st_Length = property("ST_Length");
    public static final Property st_Length2D = property("ST_Length2D");
+   public static final Property st_lineCrossingDirection=property("ST_LineCrossingDirection");
    public static final Property st_lineFromEncodedPolyline=property("ST_LineFromEncodedPolyline");
    public static final Property st_lineFromMultiPoint=property("ST_LineFromMultiPoint");
    public static final Property st_lineFromWKB = property("ST_LineFromWKB");
@@ -180,6 +183,8 @@ public class PostGISGeo {
    public static final Property st_reskew = property("ST_Reskew");
    public static final Property st_reverse = property("ST_Reverse");
    public static final Property st_rotate = property("ST_Rotate");
+   public static final Property st_rotateX = property("ST_RotateX");
+   public static final Property st_rotateY = property("ST_RotateY");
    public static final Property st_rotateZ = property("ST_RotateZ");
    public static final Property st_rotation = property("ST_Rotation");
    public static final Property st_sameAlignment = property("ST_SameAlignment");
@@ -241,6 +246,8 @@ public static final String MVT = "MVT";
 public static final String X3D = "X3D";
 public static final String OSM= "OSM";
 public static final String HexWKBRaster = "HexWKBRaster";
+
+
 
 
 
