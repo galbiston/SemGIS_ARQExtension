@@ -65,6 +65,7 @@ public class PostGISGeo {
    public static final Property st_boundary = property("ST_Boundary");
    public static final Property st_boundingdiagonal = property("ST_BoundingDiagonal");
    public static final Property st_centroid = property("ST_Centroid");
+   public static final Property st_chaikinSmooting = property("ST_ChaikinSmoothing");
    public static final Property st_clip = property("ST_Clip");
    public static final Property st_closestPoint = property("ST_ClosestPoint");
    public static final Property st_closestPoint3d = property("ST_3DClosestPoint");
@@ -117,6 +118,9 @@ public class PostGISGeo {
    public static final Property st_isValidTrajectory = property("ST_IsValidTrajectory");
    public static final Property st_Length = property("ST_Length");
    public static final Property st_Length2D = property("ST_Length2D");
+   public static final Property st_locateAlong = property("ST_LocateAlong");
+   public static final Property st_locateBetween = property("ST_LocateBetween");
+   public static final Property st_locateBetweenElevations = property("ST_LocateBetweenElevations");
    public static final Property st_longestLine = property("ST_LongestLine");
    public static final Property st_lineCrossingDirection=property("ST_LineCrossingDirection");
    public static final Property st_lineFromEncodedPolyline=property("ST_LineFromEncodedPolyline");
@@ -256,6 +260,9 @@ public static final String MVT = "MVT";
 public static final String X3D = "X3D";
 public static final String OSM= "OSM";
 public static final String HexWKBRaster = "HexWKBRaster";
+
+
+
 
 
 
