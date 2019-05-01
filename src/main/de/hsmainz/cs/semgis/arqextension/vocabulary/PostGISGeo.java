@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2017 Timo Homburg, i3Mainz.
+- * Copyright (c) 2017 Timo Homburg, i3Mainz.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the BSD License
  * which accompanies this distribution, and is available at
@@ -37,6 +37,8 @@ public class PostGISGeo {
    // simple features topological relations
    public static final Property st_3ddwithin = property("ST_3DDWithin");
    public static final Property st_3dclosestpoint = property("ST_3DClosestPoint");
+   public static final Property st_3dlongestLine = property("ST_3dLongestLine");
+   public static final Property st_3dmaxDistance = property("ST_3DMaxDistance");
    public static final Property st_3dshortestline = property("ST_3DShortestLine");
    public static final Property st_addband = property("ST_AddBand");
    public static final Property st_addpoint = property("ST_AddPoint");
@@ -66,6 +68,9 @@ public class PostGISGeo {
    public static final Property st_clip = property("ST_Clip");
    public static final Property st_closestPoint = property("ST_ClosestPoint");
    public static final Property st_closestPoint3d = property("ST_3DClosestPoint");
+   public static final Property st_clusterIntersecting = property("ST_ClusterIntersecting");
+   public static final Property st_clusterKMeans = property("ST_ClusterKMeans");
+   public static final Property st_clusterWithin = property("ST_ClusterWithin");
    public static final Property st_collectionExtract = property("ST_CollectionExtract");
    public static final Property st_collectionHomogenize = property("ST_CollectionHomogenize");
    public static final Property st_concaveHull = property("ST_ConcaveHull");
@@ -112,6 +117,7 @@ public class PostGISGeo {
    public static final Property st_isValidTrajectory = property("ST_IsValidTrajectory");
    public static final Property st_Length = property("ST_Length");
    public static final Property st_Length2D = property("ST_Length2D");
+   public static final Property st_longestLine = property("ST_LongestLine");
    public static final Property st_lineCrossingDirection=property("ST_LineCrossingDirection");
    public static final Property st_lineFromEncodedPolyline=property("ST_LineFromEncodedPolyline");
    public static final Property st_lineFromMultiPoint=property("ST_LineFromMultiPoint");
@@ -127,6 +133,7 @@ public class PostGISGeo {
    public static final Property st_makePoint = property("ST_MakePoint");
    public static final Property st_makePointM = property("ST_MakePointM");
    public static final Property st_makePolygon = property("ST_MakePolygon");
+   public static final Property st_maxDistance = property("ST_MaxDistance");
    public static final Property st_memsize = property("ST_MemSize");
    public static final Property st_minimumBoundingCircle = property("ST_MinimumBoundingCircle");
    public static final Property st_minimumBoundingRadius = property("ST_MinimumBoundingRadius");
@@ -152,6 +159,7 @@ public class PostGISGeo {
    public static final Property st_pixelAsPoint = property("ST_PixelAsPoint");
    public static final Property st_pixelAsPolygon = property("ST_PixelAsPolygon");
    public static final Property st_pixelHeight = property("ST_PixelHeight");
+   public static final Property st_pixelWidth = property("ST_PixelWidth");
    public static final Property st_perimeter = property("ST_Perimeter");
    public static final Property st_perimeter2D = property("ST_Perimeter2D");
    public static final Property st_pointFromGeoHash = property("ST_PointFromGeoHash");
@@ -217,6 +225,7 @@ public class PostGISGeo {
    public static final Property st_unaryUnion = property("ST_UnaryUnion");
    public static final Property st_value = property("ST_Value");
    public static final Property st_vectorize = property("ST_Vectorize");
+   public static final Property st_voronoiLines = property("ST_VoronoiLines");
    public static final Property st_voronoiPolygons = property("ST_VoronoiPolygons");
    public static final Property st_width = property("ST_Width");
    public static final Property st_wkbToSQL = property("ST_WKBToSQL");
@@ -247,6 +256,15 @@ public static final String MVT = "MVT";
 public static final String X3D = "X3D";
 public static final String OSM= "OSM";
 public static final String HexWKBRaster = "HexWKBRaster";
+
+
+
+
+
+
+
+
+
 
 
 

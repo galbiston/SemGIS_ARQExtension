@@ -30,7 +30,7 @@ public class Band extends RasterSpatialFunction {
             bandNum = 1;
         }
         bandNum = evalArgs.get(0).getInteger().intValue();
-        return null;
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override

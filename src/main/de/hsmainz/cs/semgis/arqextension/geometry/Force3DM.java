@@ -26,7 +26,7 @@ public class Force3DM extends FunctionBase1 {
             Geometry geom = geometry.getXYGeometry();
             List<Coordinate> newcoords=new ArrayList<Coordinate>();
             for(Coordinate coord:geom.getCoordinates()) {
-            	newcoords.add(new CoordinateXYM(coord.x,coord.y,coord.getM()));
+            	newcoords.add(new CoordinateXYM(coord.x,coord.y,Double.isNaN(coord.getM())?0.:coord.getM()));
             }         
             return Force2D.createGeometry(newcoords,geom.getGeometryType(),geometry).asNodeValue();                 
         } catch (DatatypeFormatException ex) {
