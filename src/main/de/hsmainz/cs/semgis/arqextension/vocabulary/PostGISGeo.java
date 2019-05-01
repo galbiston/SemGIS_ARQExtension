@@ -67,6 +67,7 @@ public class PostGISGeo {
    public static final Property st_centroid = property("ST_Centroid");
    public static final Property st_chaikinSmooting = property("ST_ChaikinSmoothing");
    public static final Property st_clip = property("ST_Clip");
+   public static final Property st_clipByBox2D = property("ST_ClipByBox2D");
    public static final Property st_closestPoint = property("ST_ClosestPoint");
    public static final Property st_closestPoint3d = property("ST_3DClosestPoint");
    public static final Property st_clusterIntersecting = property("ST_ClusterIntersecting");
@@ -129,6 +130,7 @@ public class PostGISGeo {
    public static final Property st_lineFromText = property("ST_LineFromText");
    public static final Property st_lineMerge = property("ST_LineMerge");
    public static final Property st_lineSubstring = property("ST_LineSubstring");
+   public static final Property st_lineToCurve = property("ST_LineToCurve");
    public static final Property st_m = property("ST_M");
    public static final Property st_makeEmptyCoverage = property("ST_MakeEmptyCoverage");
    public static final Property st_makeEmptyRaster = property("ST_MakeEmptyRaster");
@@ -137,6 +139,7 @@ public class PostGISGeo {
    public static final Property st_makePoint = property("ST_MakePoint");
    public static final Property st_makePointM = property("ST_MakePointM");
    public static final Property st_makePolygon = property("ST_MakePolygon");
+   public static final Property st_makeValid = property("ST_MakeValid");
    public static final Property st_maxDistance = property("ST_MaxDistance");
    public static final Property st_memsize = property("ST_MemSize");
    public static final Property st_minimumBoundingCircle = property("ST_MinimumBoundingCircle");
@@ -149,6 +152,7 @@ public class PostGISGeo {
    public static final Property st_mLineFromText = property("ST_MLineFromText");
    public static final Property st_mPolyFromText = property("ST_MPolyFromText");
    public static final Property st_nearestValue = property("ST_NearestValue");
+   public static final Property st_node = property("ST_Node");
    public static final Property st_normalize = property("ST_Normalize");
    public static final Property st_nRings = property("ST_NRings");
    public static final Property st_numBands = property("ST_NumBands");
@@ -260,6 +264,10 @@ public static final String MVT = "MVT";
 public static final String X3D = "X3D";
 public static final String OSM= "OSM";
 public static final String HexWKBRaster = "HexWKBRaster";
+
+
+
+
 
 
 
