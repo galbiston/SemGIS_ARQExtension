@@ -118,6 +118,7 @@ public class PostGISGeo {
    public static final Property st_lineFromWKB = property("ST_LineFromWKB");
    public static final Property st_lineFromText = property("ST_LineFromText");
    public static final Property st_lineMerge = property("ST_LineMerge");
+   public static final Property st_lineSubstring = property("ST_LineSubstring");
    public static final Property st_m = property("ST_M");
    public static final Property st_makeEmptyCoverage = property("ST_MakeEmptyCoverage");
    public static final Property st_makeEmptyRaster = property("ST_MakeEmptyRaster");

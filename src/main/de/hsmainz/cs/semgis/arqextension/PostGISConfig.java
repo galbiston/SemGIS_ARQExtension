@@ -93,6 +93,7 @@ import de.hsmainz.cs.semgis.arqextension.linestring.LineFromMultiPoint;
 import de.hsmainz.cs.semgis.arqextension.linestring.LineFromText;
 import de.hsmainz.cs.semgis.arqextension.linestring.LineFromWKB;
 import de.hsmainz.cs.semgis.arqextension.linestring.LineMerge;
+import de.hsmainz.cs.semgis.arqextension.linestring.LineSubstring;
 import de.hsmainz.cs.semgis.arqextension.linestring.MLineFromText;
 import de.hsmainz.cs.semgis.arqextension.linestring.MakeLine;
 import de.hsmainz.cs.semgis.arqextension.linestring.OffsetCurve;
@@ -261,6 +262,7 @@ public class PostGISConfig {
             functionRegistry.put(PostGISGeo.st_lineFromWKB.getURI(), LineFromWKB.class);
             functionRegistry.put(PostGISGeo.st_lineFromText.getURI(), LineFromText.class);
             functionRegistry.put(PostGISGeo.st_lineMerge.getURI(), LineMerge.class);
+            functionRegistry.put(PostGISGeo.st_lineSubstring.getURI(), LineSubstring.class);
             functionRegistry.put(PostGISGeo.st_m.getURI(), M.class);
             functionRegistry.put(PostGISGeo.st_makeEmptyCoverage.getURI(), MakeEmptyCoverage.class);
             functionRegistry.put(PostGISGeo.st_makeEmptyRaster.getURI(), MakeEmptyRaster.class);
