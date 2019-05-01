@@ -91,6 +91,10 @@ public class PostGISGeo {
    public static final Property st_force3dz = property("ST_Force3DZ");
    public static final Property st_force4d = property("ST_Force4D");
    public static final Property st_forceCollection = property("ST_ForceCollection");
+   public static final Property st_forceLHR = property("ST_ForceLHR");
+   public static final Property st_forcePolygonCW = property("ST_ForcePolygonCW");
+   public static final Property st_forcePolygonCCW = property("ST_ForcePolygonCCW");
+   public static final Property st_forceSFS = property("ST_ForceSFS");
    public static final Property st_geomCollFromText = property("ST_CollFromText");
    public static final Property st_geomFromGeoJSON = property("ST_GeomFromGeoJSON");
    public static final Property st_geomFromKML = property("ST_GeomFromKML");
@@ -264,6 +268,8 @@ public static final String MVT = "MVT";
 public static final String X3D = "X3D";
 public static final String OSM= "OSM";
 public static final String HexWKBRaster = "HexWKBRaster";
+
+
 
 
 
