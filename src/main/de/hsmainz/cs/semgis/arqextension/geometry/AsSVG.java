@@ -8,6 +8,10 @@ import org.locationtech.jtstest.util.io.SVGWriter;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 
+/**
+ * Returns a Geometry in SVG path data given a geometry or geography object.
+ *
+ */
 public class AsSVG extends FunctionBase1 {
 
 	@Override

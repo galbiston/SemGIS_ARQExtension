@@ -8,6 +8,11 @@ import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.operation.BoundaryOp;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+
+/**
+ * Returns the closure of the combinatorial boundary of this Geometry.
+ *
+ */
 public class Boundary extends FunctionBase1 {
 
 	@Override

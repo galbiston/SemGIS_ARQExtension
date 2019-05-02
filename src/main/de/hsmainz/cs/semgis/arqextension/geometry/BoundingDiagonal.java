@@ -10,6 +10,10 @@ import org.locationtech.jts.geom.Geometry;
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
 
+/**
+ * Returns the diagonal of the supplied geometry's bounding box.
+ *
+ */
 public class BoundingDiagonal extends FunctionBase2{
 
 	@Override

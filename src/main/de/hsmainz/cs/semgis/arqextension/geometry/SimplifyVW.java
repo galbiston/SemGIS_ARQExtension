@@ -9,6 +9,10 @@ import org.locationtech.jts.simplify.VWSimplifier;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 
+/**
+ * Returns a "simplified" version of the given geometry using the Visvalingam-Whyatt algorithm
+ *
+ */
 public class SimplifyVW extends FunctionBase2 {
 
 	@Override

@@ -9,6 +9,10 @@ import org.wololo.jts2geojson.GeoJSONWriter;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 
+/**
+ * Return the geometry as a GeoJSON element.
+ *
+ */
 public class AsGeoJSON extends FunctionBase1 {
 	
 	@Override

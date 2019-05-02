@@ -21,6 +21,10 @@ import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.LineString;
 import org.locationtech.jts.geom.Point;
 
+/**
+ * Returns the last point of a LINESTRING or CIRCULARLINESTRING geometry as a POINT.
+ *
+ */
 public class EndPoint extends FunctionBase1 {
 
     @Override

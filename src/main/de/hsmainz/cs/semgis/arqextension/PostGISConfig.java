@@ -120,6 +120,7 @@ import de.hsmainz.cs.semgis.arqextension.linestring.MakeLine;
 import de.hsmainz.cs.semgis.arqextension.linestring.OffsetCurve;
 import de.hsmainz.cs.semgis.arqextension.linestring.RemovePoint;
 import de.hsmainz.cs.semgis.arqextension.linestring.Segmentize;
+import de.hsmainz.cs.semgis.arqextension.linestring.SharedPaths;
 import de.hsmainz.cs.semgis.arqextension.linestring.StartPoint;
 import de.hsmainz.cs.semgis.arqextension.point.Azimuth;
 import de.hsmainz.cs.semgis.arqextension.point.GeometricMedian;
@@ -382,6 +383,7 @@ public class PostGISConfig {
             functionRegistry.put(PostGISGeo.st_simplify.getURI(), Simplify.class);
             functionRegistry.put(PostGISGeo.st_simplifyPreserveTopology.getURI(), SimplifyPreserveTopology.class);
             functionRegistry.put(PostGISGeo.st_simplifyVW.getURI(), SimplifyVW.class);
+            functionRegistry.put(PostGISGeo.st_sharedPaths.getURI(), SharedPaths.class);
             functionRegistry.put(PostGISGeo.st_skewX.getURI(), SkewX.class);
             functionRegistry.put(PostGISGeo.st_skewY.getURI(), SkewY.class);
             functionRegistry.put(PostGISGeo.st_snap.getURI(), Snap.class);

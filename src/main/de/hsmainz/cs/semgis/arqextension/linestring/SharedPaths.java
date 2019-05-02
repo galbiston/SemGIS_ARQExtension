@@ -8,11 +8,15 @@ import org.opengis.util.FactoryException;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 
-public class LineCrossingDirection extends FunctionBase2{
+/**
+ * Returns a collection containing paths shared by the two input linestrings/multilinestrings.
+ *
+ */
+public class SharedPaths extends FunctionBase2 {
 
 	@Override
 	public NodeValue exec(NodeValue arg0, NodeValue arg1) {
-        GeometryWrapper geom1 = GeometryWrapper.extract(arg0);
+		GeometryWrapper geom1 = GeometryWrapper.extract(arg0);
         GeometryWrapper geom2 = GeometryWrapper.extract(arg1);
         try {
 			GeometryWrapper transGeom2 = geom2.transform(geom1.getSrsInfo());

@@ -20,6 +20,10 @@ import org.apache.jena.sparql.function.FunctionBase3;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.simplify.DouglasPeuckerSimplifier;
 
+/**
+ * Returns a "simplified" version of the given geometry using the Douglas-Peucker algorithm.
+ *
+ */
 public class Simplify extends FunctionBase3 {
 
     @Override

@@ -11,6 +11,10 @@ import org.locationtech.jts.io.WKBReader;
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
 
+/**
+ * Creates a geometry instance from a Well-Known Binary geometry representation (WKB) and optional SRID.
+ *
+ */
 public class GeomFromWKB extends FunctionBase1 {
 
 	@Override

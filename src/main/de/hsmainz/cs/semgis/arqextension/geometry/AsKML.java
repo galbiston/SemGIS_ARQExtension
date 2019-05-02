@@ -8,6 +8,10 @@ import org.locationtech.jts.io.kml.KMLWriter;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 
+/**
+ * Return the geometry as a KML element. Several variants. Default version=2, default maxdecimaldigits=15
+ *
+ */
 public class AsKML extends FunctionBase1 {
 	
 	@Override

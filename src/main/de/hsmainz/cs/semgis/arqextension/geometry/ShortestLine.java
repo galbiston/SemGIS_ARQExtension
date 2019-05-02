@@ -22,6 +22,10 @@ import org.locationtech.jts.operation.distance.DistanceOp;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.util.FactoryException;
 
+/**
+ * Returns the 2-dimensional shortest line between two geometries
+ *
+ */
 public class ShortestLine extends FunctionBase2 {
 
     @Override

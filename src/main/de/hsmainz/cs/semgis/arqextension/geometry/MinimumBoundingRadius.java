@@ -8,6 +8,10 @@ import org.locationtech.jts.geom.Geometry;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 
+/**
+ * Returns the center point and radius of the smallest circle that can fully contain a geometry.
+ *
+ */
 public class MinimumBoundingRadius extends FunctionBase1 {
 
     @Override

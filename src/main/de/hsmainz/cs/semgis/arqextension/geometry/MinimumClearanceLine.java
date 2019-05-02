@@ -8,6 +8,10 @@ import org.apache.jena.sparql.function.FunctionBase1;
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
 
+/**
+ * Returns the two-point LineString spanning a geometry's minimum clearance.
+ *
+ */
 public class MinimumClearanceLine extends FunctionBase1 {
 
 	@Override

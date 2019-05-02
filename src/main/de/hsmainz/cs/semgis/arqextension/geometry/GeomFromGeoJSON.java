@@ -8,6 +8,10 @@ import org.wololo.jts2geojson.GeoJSONReader;
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
 
+/**
+ * Takes as input a geojson representation of a geometry and outputs a PostGIS geometry object
+ *
+ */
 public class GeomFromGeoJSON extends FunctionBase1 {
 
 	@Override

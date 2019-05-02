@@ -16,6 +16,10 @@ import org.opengis.util.FactoryException;
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
 
+/**
+ * Add a point to a LineString.
+ *
+ */
 public class AddPoint extends FunctionBase2 {
 
 	@Override

@@ -8,6 +8,10 @@ import org.locationtech.jts.geom.Geometry;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 
+/**
+ * Return the Well-Known Text (WKT) representation of the geometry/geography without SRID metadata.
+ *
+ */
 public class AsText extends FunctionBase1 {
 
 	@Override

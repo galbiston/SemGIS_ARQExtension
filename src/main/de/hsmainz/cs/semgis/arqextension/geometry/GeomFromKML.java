@@ -13,6 +13,10 @@ import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
 import io.github.galbiston.geosparql_jena.implementation.parsers.wkt.WKTReader;
 
+/**
+ * Takes as input KML representation of geometry and outputs a PostGIS geometry object
+ *
+ */
 public class GeomFromKML  extends FunctionBase1{
 	
 	@Override

@@ -11,11 +11,13 @@ import org.locationtech.jts.geom.Geometry;
 
 import io.github.galbiston.geosparql_jena.implementation.DimensionInfo;
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
-import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
 import io.github.galbiston.geosparql_jena.implementation.parsers.gml.GMLReader;
-import io.github.galbiston.geosparql_jena.implementation.parsers.wkt.WKTReader;
 import io.github.galbiston.geosparql_jena.implementation.vocabulary.Geo;
 
+/**
+ * Takes as input GML representation of geometry and outputs a PostGIS geometry object
+ *
+ */
 public class GeomFromGML extends FunctionBase1{
 	
 	@Override

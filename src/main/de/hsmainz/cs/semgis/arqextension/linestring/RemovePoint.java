@@ -13,6 +13,10 @@ import org.locationtech.jts.geom.LineString;
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
 
+/**
+ * Remove point from a linestring.
+ *
+ */
 public class RemovePoint extends FunctionBase2 {
 
 	@Override

@@ -8,6 +8,10 @@ import org.apache.jena.sparql.function.FunctionBase1;
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 import io.github.galbiston.geosparql_jena.implementation.parsers.gml.GMLWriter;
 
+/**
+ * Return the geometry as a GML version 2 or 3 element.
+ *
+ */
 public class AsGML extends FunctionBase1 {
 	
 	@Override

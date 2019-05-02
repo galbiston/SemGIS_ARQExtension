@@ -7,6 +7,10 @@ import org.apache.jena.sparql.function.FunctionBase1;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 
+/**
+ * Returns the minimum clearance of a geometry, a measure of a geometry's robustness.
+ *
+ */
 public class MinimumClearance extends FunctionBase1 {
 
 	@Override

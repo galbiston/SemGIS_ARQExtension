@@ -11,6 +11,10 @@ import org.locationtech.jts.io.WKBWriter;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 
+/**
+ * Returns a Geometry in HEXEWKB format (as text) using either little-endian (NDR) or big-endian (XDR) encoding.
+ *
+ */
 public class AsHEXEWKB extends FunctionBase2 {
 
 	@Override

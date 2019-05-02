@@ -5,6 +5,10 @@ import org.apache.jena.sparql.function.FunctionBase1;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 
+/**
+ * Converts a LINESTRING/POLYGON to a CIRCULARSTRING, CURVEPOLYGON
+ *
+ */
 public class LineToCurve extends FunctionBase1 {
 
 	@Override

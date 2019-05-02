@@ -6,12 +6,10 @@ import java.util.List;
 import org.apache.jena.datatypes.DatatypeFormatException;
 import org.apache.jena.sparql.expr.ExprEvalException;
 import org.apache.jena.sparql.expr.NodeValue;
-import org.apache.jena.sparql.function.FunctionBase1;
 import org.apache.jena.sparql.function.FunctionBase4;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Geometry;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryReverse;
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 
 /**

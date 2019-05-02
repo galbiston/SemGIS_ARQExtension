@@ -9,6 +9,10 @@ import org.locationtech.jts.geom.LineString;
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 import io.github.galbiston.geosparql_jena.implementation.datatype.vector.EncodedPolylineDatatype;
 
+/**
+ * Returns an Encoded Polyline from a LineString geometry.
+ *
+ */
 public class AsEncodedPolyline extends FunctionBase1 {
 
 	@Override

@@ -1,7 +1,5 @@
 package de.hsmainz.cs.semgis.arqextension.geometry;
 
-import java.nio.file.Paths;
-
 import org.apache.jena.sparql.expr.NodeValue;
 import org.apache.jena.sparql.function.FunctionBase1;
 import org.locationtech.jts.geom.Envelope;
@@ -9,14 +7,15 @@ import org.locationtech.jts.geom.GeometryFactory;
 
 import com.wdtinc.mapbox_vector_tile.adapt.jts.IGeometryFilter;
 import com.wdtinc.mapbox_vector_tile.adapt.jts.JtsAdapter;
-import com.wdtinc.mapbox_vector_tile.adapt.jts.MvtReader;
-import com.wdtinc.mapbox_vector_tile.adapt.jts.TagKeyValueMapConverter;
 import com.wdtinc.mapbox_vector_tile.adapt.jts.TileGeomResult;
-import com.wdtinc.mapbox_vector_tile.adapt.jts.model.JtsMvt;
 import com.wdtinc.mapbox_vector_tile.build.MvtLayerParams;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 
+/**
+ * Return a Mapbox Vector Tile representation of a set of rows.
+ *
+ */
 public class AsMVT extends FunctionBase1 {
 
 	@Override

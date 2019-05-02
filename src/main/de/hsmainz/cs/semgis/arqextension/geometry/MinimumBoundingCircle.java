@@ -20,6 +20,10 @@ import org.apache.jena.datatypes.DatatypeFormatException;
 import org.apache.jena.sparql.expr.ExprEvalException;
 import org.apache.jena.sparql.function.FunctionBase1;
 
+/**
+ * Returns the smallest circle polygon that can fully contain a geometry. Default uses 48 segments per quarter circle.
+ *
+ */
 public class MinimumBoundingCircle extends FunctionBase1 {
 
     @Override

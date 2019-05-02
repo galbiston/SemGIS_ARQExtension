@@ -25,6 +25,10 @@ import org.opengis.geometry.MismatchedDimensionException;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.util.FactoryException;
 
+/**
+ * Returns the north-based azimuth as the angle in radians measured clockwise from the vertical on pointA to pointB.
+ *
+ */
 public class Azimuth extends FunctionBase2 {
 
     @Override

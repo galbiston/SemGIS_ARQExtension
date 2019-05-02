@@ -5,6 +5,10 @@ import org.apache.jena.sparql.function.FunctionBase2;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 
+/**
+ * Force the geometries to use SFS 1.1 geometry types only.
+ *
+ */
 public class ForceSFS extends FunctionBase2{
 
 	@Override

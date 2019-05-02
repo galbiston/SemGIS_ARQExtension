@@ -20,6 +20,10 @@ import org.apache.jena.sparql.function.FunctionBase1;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.LineString;
 
+/**
+ * Returns TRUE if this LINESTRING is both closed and simple.
+ *
+ */
 public class IsRing extends FunctionBase1 {
 
     @Override

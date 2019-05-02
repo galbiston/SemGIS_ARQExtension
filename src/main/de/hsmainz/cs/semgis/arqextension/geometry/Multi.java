@@ -14,6 +14,10 @@ import org.locationtech.jts.geom.Polygon;
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
 
+/**
+ * Return the geometry as a MULTI* geometry.
+ *
+ */
 public class Multi extends FunctionBase1 {
 
 	@Override

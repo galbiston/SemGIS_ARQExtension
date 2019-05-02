@@ -10,6 +10,10 @@ import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
 import io.github.galbiston.geosparql_jena.implementation.parsers.wkt.WKTReader;
 
+/**
+ * Return a specified ST_Geometry value from Well-Known Text representation (WKT).
+ *
+ */
 public class GeomFromText extends FunctionBase1{
 	
 	@Override

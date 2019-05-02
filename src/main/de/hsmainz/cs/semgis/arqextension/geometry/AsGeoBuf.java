@@ -12,6 +12,10 @@ import com.conveyal.data.geobuf.GeobufEncoder;
 import geobuf.Geobuf.Data.Geometry;
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 
+/**
+ * Return a Geobuf representation of a set of rows.
+ *
+ */
 public class AsGeoBuf extends FunctionBase1{
 
 	@Override

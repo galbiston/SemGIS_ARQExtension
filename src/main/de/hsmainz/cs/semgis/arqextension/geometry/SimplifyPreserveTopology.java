@@ -21,6 +21,10 @@ import org.apache.jena.datatypes.DatatypeFormatException;
 import org.apache.jena.sparql.expr.ExprEvalException;
 import org.apache.jena.sparql.function.FunctionBase1;
 
+/**
+ * Returns a "simplified" version of the given geometry using the Douglas-Peucker algorithm. Will avoid creating derived geometries (polygons in particular) that are invalid.
+ *
+ */
 public class SimplifyPreserveTopology extends FunctionBase1 {
 
     @Override

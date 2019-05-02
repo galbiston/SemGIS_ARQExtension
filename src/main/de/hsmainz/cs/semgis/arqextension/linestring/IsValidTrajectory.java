@@ -7,10 +7,13 @@ import org.apache.jena.sparql.function.FunctionBase1;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.LineString;
-import org.locationtech.jts.geom.Point;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 
+/**
+ * Returns true if the geometry is a valid trajectory
+ *
+ */
 public class IsValidTrajectory extends FunctionBase1 {
 
 	@Override

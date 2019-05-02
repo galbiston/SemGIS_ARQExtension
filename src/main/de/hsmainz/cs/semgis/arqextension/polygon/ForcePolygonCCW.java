@@ -5,6 +5,10 @@ import org.apache.jena.sparql.function.FunctionBase1;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 
+/**
+ * Orients all exterior rings counter-clockwise and all interior rings clockwise. 
+ *
+ */
 public class ForcePolygonCCW extends FunctionBase1 {
 
 	@Override

@@ -11,6 +11,10 @@ import org.locationtech.jts.io.WKBReader;
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
 
+/**
+ * Makes a LINESTRING from WKB with the given SRID
+ *
+ */
 public class LineFromWKB extends FunctionBase1 {
 
 	@Override

@@ -6,7 +6,6 @@ import java.util.List;
 import org.apache.jena.datatypes.DatatypeFormatException;
 import org.apache.jena.sparql.expr.ExprEvalException;
 import org.apache.jena.sparql.expr.NodeValue;
-import org.apache.jena.sparql.function.FunctionBase1;
 import org.apache.jena.sparql.function.FunctionBase2;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Geometry;
@@ -14,6 +13,10 @@ import org.locationtech.jts.geom.Geometry;
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
 
+/**
+ * Returns a version of the given geometry with duplicated points removed.
+ *
+ */
 public class RemoveRepeatedPoints extends FunctionBase2 {
 
 	@Override

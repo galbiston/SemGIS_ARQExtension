@@ -9,6 +9,10 @@ import org.opengis.util.FactoryException;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 
+/**
+ * Returns the portion of a geometry falling within a rectangle.
+ *
+ */
 public class ClipByBox2D extends FunctionBase2 {
 
 	@Override

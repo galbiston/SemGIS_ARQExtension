@@ -216,6 +216,7 @@ public class PostGISGeo {
    public static final Property st_scaleY = property("ST_ScaleY");
    public static final Property st_segmentize = property("ST_Segmentize");
    public static final Property st_setPoint = property("ST_SetPoint");
+   public static final Property st_sharedPaths = property("ST_SharedPaths");
    public static final Property st_shortestLine = property("ST_ShortestLine");
    public static final Property st_shortestLine3D = property("ST_3DShortestLine");
    public static final Property st_simplify = property("ST_Simplify");
@@ -270,6 +271,7 @@ public static final String MVT = "MVT";
 public static final String X3D = "X3D";
 public static final String OSM= "OSM";
 public static final String HexWKBRaster = "HexWKBRaster";
+
 
 
 

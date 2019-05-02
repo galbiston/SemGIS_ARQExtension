@@ -20,6 +20,10 @@ import org.apache.jena.sparql.function.FunctionBase1;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.LineString;
 
+/**
+ * Returns TRUE if the LINESTRING's start and end points are coincident. For Polyhedral surface is closed (volumetric). 
+ *
+ */
 public class IsClosed extends FunctionBase1 {
 
     @Override
