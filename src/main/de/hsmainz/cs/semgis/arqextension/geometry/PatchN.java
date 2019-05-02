@@ -9,7 +9,10 @@ import org.apache.jena.sparql.function.FunctionBase2;
 import org.locationtech.jts.geom.Geometry;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
-
+/**
+ * Return the 1-based Nth geometry (face) if the geometry is a POLYHEDRALSURFACE, POLYHEDRALSURFACEM. Otherwise, return NULL.
+ *
+ */
 public class PatchN extends FunctionBase2 {
 
     @Override

@@ -88,3 +88,4 @@ public abstract class RasterDataType extends BaseDatatype {
         //Ensure that the registered datatypes from the type mapper are used.
         return checkURI(rdfDatatype.getURI());
     }
+}

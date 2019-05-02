@@ -49,3 +49,4 @@ public class HexWKBRastLiteral extends RasterDataType {
     public String toString() {
         return "HexWKBRasterDatatype{" + URI + '}';
     }
+}

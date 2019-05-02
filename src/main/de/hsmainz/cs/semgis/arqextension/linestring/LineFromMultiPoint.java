@@ -8,7 +8,10 @@ import org.locationtech.jts.geom.MultiPoint;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
-
+/**
+ * Creates a LineString from a MultiPoint geometry.
+ *
+ */
 public class LineFromMultiPoint extends FunctionBase1 {
 
 	@Override

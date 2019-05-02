@@ -20,6 +20,10 @@ import org.apache.jena.sparql.function.FunctionBase3;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.CoordinateXYM;
 
+/**
+ * Creates a point geometry with an x y and m coordinate.
+ *
+ */
 public class MakePointM extends FunctionBase3 {
 
     @Override

@@ -68,15 +68,12 @@ import de.hsmainz.cs.semgis.arqextension.vocabulary.PostGISGeo;
 	    @Override
 	    public String unparse(Object geometry) {
 	    		OSMMemoryFeatureStoreFactory fac=new OSMMemoryFeatureStoreFactory();
-	    		OSMMemoryFeatureStore osmfeat=fac.createDataStore(new java.net.URI(""));
-	    		osmfeat.addFeatures(groupName, newFeatures)
-	    		OSM
+	    		OSMMemoryFeatureStore osmfeat=(OSMMemoryFeatureStore) fac.createDataStore(new java.net.URI(""));
 	    		OSMXMLWriter writer=new OSMXMLWriter();
-	    		writer.wr
 	        if (geometry instanceof GeometryWrapper) {
 	            GeometryWrapper geometryWrapper = (GeometryWrapper) geometry;
-	            WKBWriter writer=new WKBWriter();
-	            return writer.write(geometryWrapper.getXYGeometry()).toString();
+	            WKBWriter writerr=new WKBWriter();
+	            return writerr.write(geometryWrapper.getXYGeometry()).toString();
 	        } else {
 	            throw new AssertionError("Object passed to WKBDatatype is not a GeometryWrapper: " + geometry);
 	        }
@@ -138,4 +135,3 @@ import de.hsmainz.cs.semgis.arqextension.vocabulary.PostGISGeo;
 	
 }
 
-}

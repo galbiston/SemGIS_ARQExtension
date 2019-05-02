@@ -18,8 +18,7 @@ public class LineLength3D extends FunctionBase1 {
         	//Vector3D vec=new Vector3D()
         	
         }
-		return arg0; 
-
+        throw new UnsupportedOperationException("Not supported yet."); 
 	}
 
 }

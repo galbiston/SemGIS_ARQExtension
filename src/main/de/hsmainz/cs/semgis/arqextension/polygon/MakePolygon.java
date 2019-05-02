@@ -20,6 +20,10 @@ import org.apache.jena.sparql.function.FunctionBase1;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.LinearRing;
 
+/**
+ * Creates a Polygon formed by the given shell. Input geometries must be closed LINESTRINGS.
+ *
+ */
 public class MakePolygon extends FunctionBase1 {
 
     @Override

@@ -11,6 +11,10 @@ import org.locationtech.jts.util.GeometricShapeFactory;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 
+/**
+ * Is the point geometry inside the circle defined by center_x, center_y, radius
+ *
+ */
 public class PointInsideCircle extends FunctionBase4 {
 
 	@Override

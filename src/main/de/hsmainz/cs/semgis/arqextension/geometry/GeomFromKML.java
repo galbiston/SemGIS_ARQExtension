@@ -1,5 +1,7 @@
 package de.hsmainz.cs.semgis.arqextension.geometry;
 
+import java.io.StringReader;
+
 import org.apache.jena.datatypes.DatatypeFormatException;
 import org.apache.jena.sparql.expr.ExprEvalException;
 import org.apache.jena.sparql.expr.NodeValue;
@@ -18,7 +20,7 @@ public class GeomFromKML  extends FunctionBase1{
         try {
             String wktstring=arg0.getString();
             KmlReader kmlreader=new KmlReader();
-            kmlreader.read
+            kmlreader.addDataReader(new StringReader(s));
             kmlreader.read();
             WKTReader reader=new WKTReader();
             WKTReader wktreader=WKTReader.extract(wktstring);

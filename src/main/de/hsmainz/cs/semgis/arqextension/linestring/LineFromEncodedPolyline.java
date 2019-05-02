@@ -9,6 +9,10 @@ import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
 import io.github.galbiston.geosparql_jena.implementation.datatype.vector.EncodedPolylineDatatype;
 
+/**
+ * Creates a LineString from an Encoded Polyline.
+ *
+ */
 public class LineFromEncodedPolyline extends FunctionBase2 {
 
 	@Override

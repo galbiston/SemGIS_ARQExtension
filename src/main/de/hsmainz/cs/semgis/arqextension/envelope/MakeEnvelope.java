@@ -9,6 +9,10 @@ import org.apache.jena.sparql.expr.ExprEvalException;
 import org.apache.jena.sparql.expr.NodeValue;
 import org.locationtech.jts.geom.Envelope;
 
+/**
+ * Creates a rectangular Polygon formed from the given minimums and maximums. Input values must be in SRS specified by the SRID.
+ *
+ */
 public class MakeEnvelope extends FunctionBase5 {
 
     @Override

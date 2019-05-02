@@ -26,6 +26,10 @@ import org.locationtech.jts.operation.linemerge.LineMerger;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.util.FactoryException;
 
+/**
+ * Creates a Linestring from point, multipoint, or line geometries.
+ *
+ */
 public class MakeLine extends FunctionBase {
 
     @Override

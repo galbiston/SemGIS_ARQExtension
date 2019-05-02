@@ -38,7 +38,7 @@ public class RasterToWorldCoord extends RasterSpatialFunction {
         Integer row = evalArgs.get(1).getInteger().intValue();
 
         try {
-            Point2D position = raster.getGridGeometry()..getGridToCRS2D().transform(new org.geotoolkit.coverage.grid.GridCoordinates2D(column, row),null);
+            Point2D position = raster.getGridGeometry().getGridToCRS2D().transform(new org.geotoolkit.coverage.grid.GridCoordinates2D(column, row),null);
             CoordinateXY coord = new CoordinateXY(position.getX(), position.getY());
             GeometryWrapper pointWrapper = GeometryWrapper.createPoint(coord, geometryWrapper.getSrsURI(), geometryWrapper.getGeometryDatatypeURI());
             return pointWrapper.asNodeValue();

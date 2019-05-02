@@ -23,7 +23,7 @@ public class AsMVT extends FunctionBase1 {
 	public NodeValue exec(NodeValue v) {
         GeometryWrapper geometry = GeometryWrapper.extract(v);
 		GeometryFactory geomFactory = new GeometryFactory();
-		IGeometryFilter acceptAllGeomFilter = geometry.getXYGeometry() -> true;
+		IGeometryFilter acceptAllGeomFilter = (IGeometryFilter) geometry.getXYGeometry();
 		Envelope tileEnvelope = new Envelope(0d, 100d, 0d, 100d);
 		MvtLayerParams layerParams = new MvtLayerParams(); // Default extent
 

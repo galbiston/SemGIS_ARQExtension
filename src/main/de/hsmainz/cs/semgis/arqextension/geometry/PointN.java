@@ -22,6 +22,10 @@ import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.CoordinateXY;
 import org.locationtech.jts.geom.Geometry;
 
+/**
+ * Return the Nth point in the first LineString or circular LineString in the geometry. Negative values are counted backwards from the end of the LineString. Returns NULL if there is no linestring in the geometry.
+ *
+ */
 public class PointN extends FunctionBase2 {
 
     @Override

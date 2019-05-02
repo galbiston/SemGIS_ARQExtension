@@ -18,7 +18,7 @@ import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 
 public class Vectorize extends RasterSpatialFunction {
 
-    static private PolygonExtractionProcess extractor = new PolygonExtractionProcess();
+    //static private PolygonExtractionProcess extractor = new PolygonExtractionProcess();
 
     static private WKTWriter writer =  new WKTWriter();
 	

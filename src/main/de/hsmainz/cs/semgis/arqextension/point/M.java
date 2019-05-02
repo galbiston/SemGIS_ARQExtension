@@ -20,6 +20,10 @@ import org.apache.jena.sparql.function.FunctionBase1;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.Point;
 
+/**
+ * Return the M coordinate of the point, or NULL if not available. Input must be a point.
+ *
+ */
 public class M extends FunctionBase1 {
 
     @Override

@@ -25,6 +25,10 @@ import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.CoordinateXY;
 import org.locationtech.jts.geom.CoordinateXYZM;
 
+/**
+ * Creates a 2D, 3DZ or 4D point geometry.
+ *
+ */
 public class MakePoint extends FunctionBase {
 
     @Override

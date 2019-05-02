@@ -10,6 +10,10 @@ import org.apache.jena.sparql.expr.NodeValue;
 import org.apache.jena.sparql.function.FunctionBase1;
 import org.locationtech.jts.geom.Coordinate;
 
+/**
+ * Return a point from a GeoHash string.
+ *
+ */
 public class PointFromGeoHash extends FunctionBase1 {
 
     @Override

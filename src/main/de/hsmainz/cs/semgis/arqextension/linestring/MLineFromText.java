@@ -12,6 +12,10 @@ import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
 import io.github.galbiston.geosparql_jena.implementation.parsers.wkt.WKTReader;
 
+/**
+ * Return a specified ST_MultiLineString value from WKT representation.
+ *
+ */
 public class MLineFromText extends FunctionBase2{
 
 	@Override

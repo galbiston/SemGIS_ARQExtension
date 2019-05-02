@@ -13,6 +13,10 @@ import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
 import io.github.galbiston.geosparql_jena.implementation.parsers.wkt.WKTReader;
 
+/**
+ * Makes a Geometry from WKT with the given SRID. If SRID is not given, it defaults to 0.
+ *
+ */
 public class MPointFromText  extends FunctionBase2 {
 
 	@Override

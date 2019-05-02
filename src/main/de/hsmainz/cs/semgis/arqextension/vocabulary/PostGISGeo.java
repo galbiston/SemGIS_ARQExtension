@@ -158,10 +158,12 @@ public class PostGISGeo {
    public static final Property st_nearestValue = property("ST_NearestValue");
    public static final Property st_node = property("ST_Node");
    public static final Property st_normalize = property("ST_Normalize");
+   public static final Property st_nDims = property("ST_NDims");
    public static final Property st_nRings = property("ST_NRings");
    public static final Property st_numBands = property("ST_NumBands");
    public static final Property st_numGeometries = property("ST_NumGeometries");
    public static final Property st_numInteriorRings = property("ST_NumInteriorRings");
+   public static final Property st_numPatches = property("ST_NumPatches");
    public static final Property st_numPoints = property("ST_NumPoints");
    public static final Property st_nPoints = property("ST_NPoints");
    public static final Property st_orientation = property("ST_Orientation");
@@ -268,6 +270,7 @@ public static final String MVT = "MVT";
 public static final String X3D = "X3D";
 public static final String OSM= "OSM";
 public static final String HexWKBRaster = "HexWKBRaster";
+
 
 
 
