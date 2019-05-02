@@ -52,10 +52,12 @@ public class PostGISGeo {
    public static final Property st_ashexewkb = property("ST_AsHexEWKB");
    public static final Property st_asjpg = property("ST_AsJPG");
    public static final Property st_asmvt = property("ST_AsMVT");
+   public static final Property st_asmvtgeom = property("ST_AsMVTGeom");
    public static final Property st_aspng = property("ST_AsPNG");
    public static final Property st_assvg = property("ST_AsSVG");
    public static final Property st_astext = property("ST_AsText");
    public static final Property st_astiff = property("ST_AsTIFF");
+   public static final Property st_asx3d = property("ST_AsX3D");
    public static final Property st_azimuth = property("ST_Azimuth");
    public static final Property st_band = property("ST_Band");
    public static final Property st_bandmetadata = property("ST_BandMetaData");
@@ -272,6 +274,7 @@ public static final String MVT = "MVT";
 public static final String X3D = "X3D";
 public static final String OSM= "OSM";
 public static final String HexWKBRaster = "HexWKBRaster";
+
 
 
 

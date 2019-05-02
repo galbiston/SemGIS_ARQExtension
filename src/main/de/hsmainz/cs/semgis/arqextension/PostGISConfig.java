@@ -16,8 +16,10 @@ import de.hsmainz.cs.semgis.arqextension.geometry.AsGeoJSON;
 import de.hsmainz.cs.semgis.arqextension.geometry.AsHEXEWKB;
 import de.hsmainz.cs.semgis.arqextension.geometry.AsKML;
 import de.hsmainz.cs.semgis.arqextension.geometry.AsMVT;
+import de.hsmainz.cs.semgis.arqextension.geometry.AsMVTGeom;
 import de.hsmainz.cs.semgis.arqextension.geometry.AsSVG;
 import de.hsmainz.cs.semgis.arqextension.geometry.AsText;
+import de.hsmainz.cs.semgis.arqextension.geometry.AsX3D;
 import de.hsmainz.cs.semgis.arqextension.geometry.Boundary;
 import de.hsmainz.cs.semgis.arqextension.geometry.BoundingDiagonal;
 import de.hsmainz.cs.semgis.arqextension.geometry.Centroid;
@@ -193,7 +195,6 @@ import io.github.galbiston.geosparql_jena.geof.nontopological.filter_functions.G
 import io.github.galbiston.geosparql_jena.geof.topological.filter_functions.geometry_property.IsEmptyFF;
 import io.github.galbiston.geosparql_jena.geof.topological.filter_functions.geometry_property.IsSimpleFF;
 import io.github.galbiston.geosparql_jena.geof.topological.filter_functions.geometry_property.IsValidFF;
-import io.github.galbiston.geosparql_jena.implementation.datatype.GMLDatatype;
 
 import org.apache.jena.sparql.function.FunctionRegistry;
 
@@ -226,8 +227,10 @@ public class PostGISConfig {
             functionRegistry.put(PostGISGeo.st_asjpg.getURI(), AsJPG.class);
             functionRegistry.put(PostGISGeo.st_aspng.getURI(), AsPNG.class);
             functionRegistry.put(PostGISGeo.st_asmvt.getURI(), AsMVT.class);
+            functionRegistry.put(PostGISGeo.st_asmvtgeom.getURI(), AsMVTGeom.class);
             functionRegistry.put(PostGISGeo.st_assvg.getURI(), AsSVG.class);
             functionRegistry.put(PostGISGeo.st_astext.getURI(), AsText.class);
+            functionRegistry.put(PostGISGeo.st_asx3d.getURI(), AsX3D.class);
             functionRegistry.put(PostGISGeo.st_area.getURI(), Area.class);
             functionRegistry.put(PostGISGeo.st_azimuth.getURI(), Azimuth.class);
             functionRegistry.put(PostGISGeo.st_band.getURI(), Band.class);
