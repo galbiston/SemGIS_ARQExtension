@@ -8,6 +8,10 @@ import org.opengis.util.FactoryException;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 
+/**
+ * Given 2 linestrings, returns a number between -3 and 3 denoting what kind of crossing behavior. 0 is no crossing.
+ *
+ */
 public class LineCrossingDirection extends FunctionBase2{
 
 	@Override

@@ -19,6 +19,10 @@ import org.apache.jena.sparql.expr.NodeValue;
 import org.apache.jena.sparql.function.FunctionBase3;
 import org.locationtech.jts.geom.Geometry;
 
+/**
+ * The concave hull of a geometry represents a possibly concave geometry that encloses all geometries within the set. You can think of it as shrink wrapping.
+ *
+ */
 public class ConcaveHull extends FunctionBase3 {
 
     @Override

@@ -5,23 +5,22 @@ import org.apache.jena.sparql.expr.ExprEvalException;
 import org.apache.jena.sparql.expr.NodeValue;
 import org.apache.jena.sparql.function.FunctionBase1;
 import org.locationtech.jts.geom.Geometry;
-import org.locationtech.jts.operation.valid.RepeatedPointTester;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 
 /**
- * Checks if a geometry has repeated points (TRUE) or not (FALSE)
+ * Upcast a geometry into its curved type, if applicable.
  *
  */
-public class HasRepeatedPoints extends FunctionBase1{
+public class ForceCurve extends FunctionBase1 {
 
 	@Override
-	public NodeValue exec(NodeValue arg0) {
+	public NodeValue exec(NodeValue v) {
         try {
-            GeometryWrapper geometry = GeometryWrapper.extract(arg0);
-            Geometry geom = geometry.getXYGeometry();
-            RepeatedPointTester tester=new RepeatedPointTester();
-            return NodeValue.makeNodeBoolean(tester.hasRepeatedPoint(geom));
+            GeometryWrapper geom = GeometryWrapper.extract(v);
+            Geometry geometry = geom.getXYGeometry();
+
+            throw new UnsupportedOperationException("Not supported yet.");            
         } catch (DatatypeFormatException ex) {
             throw new ExprEvalException(ex.getMessage(), ex);
         }

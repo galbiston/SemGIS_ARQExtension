@@ -8,6 +8,10 @@ import org.locationtech.jts.geom.Geometry;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 
+/**
+ * Checks if the given geometry represents a GEOMETRYCOLLECTION.
+ *
+ */
 public class IsCollection extends FunctionBase1 {
 
 	@Override

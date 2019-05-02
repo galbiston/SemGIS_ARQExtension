@@ -1,27 +1,29 @@
 package de.hsmainz.cs.semgis.arqextension.geometry;
 
+import java.math.BigInteger;
+
 import org.apache.jena.datatypes.DatatypeFormatException;
 import org.apache.jena.sparql.expr.ExprEvalException;
 import org.apache.jena.sparql.expr.NodeValue;
-import org.apache.jena.sparql.function.FunctionBase1;
+import org.apache.jena.sparql.function.FunctionBase2;
 import org.locationtech.jts.geom.Geometry;
-import org.locationtech.jts.operation.valid.RepeatedPointTester;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 
 /**
- * Checks if a geometry has repeated points (TRUE) or not (FALSE)
+ * Set the SRID on a geometry to a particular integer value.
  *
  */
-public class HasRepeatedPoints extends FunctionBase1{
+public class SetSRID extends FunctionBase2 {
 
 	@Override
-	public NodeValue exec(NodeValue arg0) {
+	public NodeValue exec(NodeValue v1, NodeValue v2) {
         try {
-            GeometryWrapper geometry = GeometryWrapper.extract(arg0);
+            GeometryWrapper geometry = GeometryWrapper.extract(v1);
             Geometry geom = geometry.getXYGeometry();
-            RepeatedPointTester tester=new RepeatedPointTester();
-            return NodeValue.makeNodeBoolean(tester.hasRepeatedPoint(geom));
+            BigInteger srid=v2.getInteger();
+            geom.setSRID(srid.intValue());
+            return GeometryWrapper.createGeometry(geom, geometry.getGeometryDatatypeURI()).asNodeValue();
         } catch (DatatypeFormatException ex) {
             throw new ExprEvalException(ex.getMessage(), ex);
         }

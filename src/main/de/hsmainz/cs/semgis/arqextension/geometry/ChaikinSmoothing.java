@@ -7,6 +7,10 @@ import org.apache.jena.sparql.function.FunctionBase3;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 
+/**
+ * Returns a "smoothed" version of the given geometry using the Chaikin algorithm.
+ *
+ */
 public class ChaikinSmoothing extends FunctionBase3{
 
 	@Override

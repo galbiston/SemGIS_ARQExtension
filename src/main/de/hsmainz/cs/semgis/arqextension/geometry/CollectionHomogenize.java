@@ -16,6 +16,10 @@ import org.locationtech.jts.geom.Polygon;
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
 
+/**
+ * Given a geometry collection, return the "simplest" representation of the contents. 
+ *
+ */
 public class CollectionHomogenize extends FunctionBase2 {
 
 	@Override

@@ -7,6 +7,10 @@ import org.apache.jena.sparql.function.FunctionBase2;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 
+/**
+ * Windowing function that returns integer id for the cluster each input geometry is in.
+ *
+ */
 public class ClusterKMeans extends FunctionBase2 {
 
 	@Override

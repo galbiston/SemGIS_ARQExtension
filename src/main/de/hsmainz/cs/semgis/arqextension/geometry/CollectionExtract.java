@@ -16,6 +16,10 @@ import org.locationtech.jts.geom.Polygon;
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
 
+/**
+ * Given a (multi)geometry, return a (multi)geometry consisting only of elements of the specified type. 
+ *
+ */
 public class CollectionExtract extends FunctionBase2 {
 
 	@Override

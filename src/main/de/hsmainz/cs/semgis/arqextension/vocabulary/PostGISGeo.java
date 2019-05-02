@@ -51,6 +51,7 @@ public class PostGISGeo {
    public static final Property st_asgeojson = property("ST_AsGeoJSON");
    public static final Property st_ashexewkb = property("ST_AsHexEWKB");
    public static final Property st_asjpg = property("ST_AsJPG");
+   public static final Property st_aslatlontext = property("ST_AsLatLonText");
    public static final Property st_asmvt = property("ST_AsMVT");
    public static final Property st_asmvtgeom = property("ST_AsMVTGeom");
    public static final Property st_aspng = property("ST_AsPNG");
@@ -95,6 +96,7 @@ public class PostGISGeo {
    public static final Property st_force3dz = property("ST_Force3DZ");
    public static final Property st_force4d = property("ST_Force4D");
    public static final Property st_forceCollection = property("ST_ForceCollection");
+   public static final Property st_forceCurve = property("ST_ForceCurve");
    public static final Property st_forceLHR = property("ST_ForceLHR");
    public static final Property st_forcePolygonCW = property("ST_ForcePolygonCW");
    public static final Property st_forcePolygonCCW = property("ST_ForcePolygonCCW");
@@ -177,6 +179,7 @@ public class PostGISGeo {
    public static final Property st_pixelAsPoint = property("ST_PixelAsPoint");
    public static final Property st_pixelAsPolygon = property("ST_PixelAsPolygon");
    public static final Property st_pixelHeight = property("ST_PixelHeight");
+   public static final Property st_pixelOfValue = property("ST_PixelOfValue");
    public static final Property st_pixelWidth = property("ST_PixelWidth");
    public static final Property st_perimeter = property("ST_Perimeter");
    public static final Property st_perimeter2D = property("ST_Perimeter2D");
@@ -220,6 +223,7 @@ public class PostGISGeo {
    public static final Property st_scaleY = property("ST_ScaleY");
    public static final Property st_segmentize = property("ST_Segmentize");
    public static final Property st_setPoint = property("ST_SetPoint");
+   public static final Property st_setSRID = property("ST_SetSRID");
    public static final Property st_sharedPaths = property("ST_SharedPaths");
    public static final Property st_shortestLine = property("ST_ShortestLine");
    public static final Property st_shortestLine3D = property("ST_3DShortestLine");
@@ -236,6 +240,7 @@ public class PostGISGeo {
    public static final Property st_summary = property("ST_Summary");
    public static final Property st_summaryStats = property("ST_SummaryStats");
    public static final Property st_swapOrdinates = property("ST_SwapOrdinates");
+   public static final Property st_tesselate = property("ST_Tesselate");
    public static final Property st_transform = property("ST_Transform");
    public static final Property st_translate = property("ST_Translate");
    public static final Property st_transscale = property("ST_TransScale");
@@ -275,6 +280,9 @@ public static final String MVT = "MVT";
 public static final String X3D = "X3D";
 public static final String OSM= "OSM";
 public static final String HexWKBRaster = "HexWKBRaster";
+
+
+
 
 
 

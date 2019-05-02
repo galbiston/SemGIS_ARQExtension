@@ -21,6 +21,10 @@ import org.locationtech.jts.algorithm.distance.DiscreteHausdorffDistance;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.util.FactoryException;
 
+/**
+ * Implements algorithm for computing a distance metric which can be thought of as the "Discrete Hausdorff Distance".
+ *
+ */
 public class HausdorffDistance extends FunctionBase2 {
 
     @Override

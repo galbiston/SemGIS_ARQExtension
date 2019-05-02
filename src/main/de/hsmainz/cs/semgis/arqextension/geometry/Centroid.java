@@ -20,6 +20,10 @@ import org.apache.jena.sparql.function.FunctionBase1;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.Point;
 
+/**
+ * Computes the geometric center of a geometry, or equivalently, the center of mass of the geometry as a POINT. 
+ *
+ */
 public class Centroid extends FunctionBase1 {
 
     @Override
