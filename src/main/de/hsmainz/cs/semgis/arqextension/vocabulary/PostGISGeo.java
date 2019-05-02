@@ -57,6 +57,7 @@ public class PostGISGeo {
    public static final Property st_assvg = property("ST_AsSVG");
    public static final Property st_astext = property("ST_AsText");
    public static final Property st_astiff = property("ST_AsTIFF");
+   public static final Property st_astwkb = property("ST_AsTWKB");
    public static final Property st_asx3d = property("ST_AsX3D");
    public static final Property st_azimuth = property("ST_Azimuth");
    public static final Property st_band = property("ST_Band");

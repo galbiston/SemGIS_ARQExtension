@@ -18,6 +18,7 @@ import de.hsmainz.cs.semgis.arqextension.geometry.AsKML;
 import de.hsmainz.cs.semgis.arqextension.geometry.AsMVT;
 import de.hsmainz.cs.semgis.arqextension.geometry.AsMVTGeom;
 import de.hsmainz.cs.semgis.arqextension.geometry.AsSVG;
+import de.hsmainz.cs.semgis.arqextension.geometry.AsTWKB;
 import de.hsmainz.cs.semgis.arqextension.geometry.AsText;
 import de.hsmainz.cs.semgis.arqextension.geometry.AsX3D;
 import de.hsmainz.cs.semgis.arqextension.geometry.Boundary;
@@ -230,6 +231,7 @@ public class PostGISConfig {
             functionRegistry.put(PostGISGeo.st_asmvtgeom.getURI(), AsMVTGeom.class);
             functionRegistry.put(PostGISGeo.st_assvg.getURI(), AsSVG.class);
             functionRegistry.put(PostGISGeo.st_astext.getURI(), AsText.class);
+            functionRegistry.put(PostGISGeo.st_astwkb.getURI(), AsTWKB.class);
             functionRegistry.put(PostGISGeo.st_asx3d.getURI(), AsX3D.class);
             functionRegistry.put(PostGISGeo.st_area.getURI(), Area.class);
             functionRegistry.put(PostGISGeo.st_azimuth.getURI(), Azimuth.class);
