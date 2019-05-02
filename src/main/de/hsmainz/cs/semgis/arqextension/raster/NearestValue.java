@@ -20,6 +20,10 @@ import org.apache.jena.sparql.function.FunctionEnv;
 import org.apache.jena.vocabulary.XSD;
 import org.geotoolkit.coverage.grid.GridCoverage2D;
 
+/**
+ * Returns the nearest non-NODATA value of a given band's pixel specified by a columnx and rowy or a geometric point expressed in the same spatial reference coordinate system as the raster. 
+ *
+ */
 public class NearestValue extends RasterSpatialFunction {
 
     @Override
