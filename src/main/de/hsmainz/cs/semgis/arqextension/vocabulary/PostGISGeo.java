@@ -176,8 +176,12 @@ public class PostGISGeo {
    public static final Property st_offsetCurve = property("ST_OffsetCurve");
    public static final Property st_orderingEquals = property("ST_OrderingEquals");
    public static final Property st_patchN = property("ST_PatchN");
+   public static final Property st_pixelAsCentroid = property("ST_PixelAsCentroid");
+   public static final Property st_pixelAsCentroids = property("ST_PixelAsCentroids");
    public static final Property st_pixelAsPoint = property("ST_PixelAsPoint");
+   public static final Property st_pixelAsPoints = property("ST_PixelAsPoints");
    public static final Property st_pixelAsPolygon = property("ST_PixelAsPolygon");
+   public static final Property st_pixelAsPolygons = property("ST_PixelAsPolygons");
    public static final Property st_pixelHeight = property("ST_PixelHeight");
    public static final Property st_pixelOfValue = property("ST_PixelOfValue");
    public static final Property st_pixelWidth = property("ST_PixelWidth");
@@ -280,6 +284,7 @@ public static final String MVT = "MVT";
 public static final String X3D = "X3D";
 public static final String OSM= "OSM";
 public static final String HexWKBRaster = "HexWKBRaster";
+
 
 
 
