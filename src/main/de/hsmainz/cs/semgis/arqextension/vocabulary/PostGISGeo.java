@@ -70,6 +70,7 @@ public class PostGISGeo {
    public static final Property st_clipByBox2D = property("ST_ClipByBox2D");
    public static final Property st_closestPoint = property("ST_ClosestPoint");
    public static final Property st_closestPoint3d = property("ST_3DClosestPoint");
+   public static final Property st_closestPointOfApproach = property("ST_ClosestPointOfApproach");
    public static final Property st_clusterIntersecting = property("ST_ClusterIntersecting");
    public static final Property st_clusterKMeans = property("ST_ClusterKMeans");
    public static final Property st_clusterWithin = property("ST_ClusterWithin");
@@ -271,6 +272,7 @@ public static final String MVT = "MVT";
 public static final String X3D = "X3D";
 public static final String OSM= "OSM";
 public static final String HexWKBRaster = "HexWKBRaster";
+
 
 
 

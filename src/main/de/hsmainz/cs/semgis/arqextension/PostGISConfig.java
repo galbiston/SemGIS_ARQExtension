@@ -25,6 +25,7 @@ import de.hsmainz.cs.semgis.arqextension.geometry.ChaikinSmoothing;
 import de.hsmainz.cs.semgis.arqextension.geometry.ClipByBox2D;
 import de.hsmainz.cs.semgis.arqextension.geometry.ClosestPoint;
 import de.hsmainz.cs.semgis.arqextension.geometry.ClosestPoint3D;
+import de.hsmainz.cs.semgis.arqextension.geometry.ClosestPointOfApproach;
 import de.hsmainz.cs.semgis.arqextension.geometry.ClusterIntersecting;
 import de.hsmainz.cs.semgis.arqextension.geometry.ClusterKMeans;
 import de.hsmainz.cs.semgis.arqextension.geometry.ClusterWithin;
@@ -241,6 +242,7 @@ public class PostGISConfig {
             functionRegistry.put(PostGISGeo.st_clipByBox2D.getURI(), ClipByBox2D.class);
             functionRegistry.put(PostGISGeo.st_closestPoint.getURI(), ClosestPoint.class);
             functionRegistry.put(PostGISGeo.st_closestPoint3d.getURI(), ClosestPoint3D.class);
+            functionRegistry.put(PostGISGeo.st_closestPointOfApproach.getURI(), ClosestPointOfApproach.class);
             functionRegistry.put(PostGISGeo.st_clusterIntersecting.getURI(), ClusterIntersecting.class);
             functionRegistry.put(PostGISGeo.st_clusterKMeans.getURI(), ClusterKMeans.class);
             functionRegistry.put(PostGISGeo.st_clusterWithin.getURI(), ClusterWithin.class);
