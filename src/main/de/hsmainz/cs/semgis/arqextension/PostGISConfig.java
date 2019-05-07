@@ -138,7 +138,9 @@ public class PostGISConfig {
             functionRegistry.put(PostGISGeo.st_asgml.getURI(), AsGML.class);
             functionRegistry.put(PostGISGeo.st_asgeobuf.getURI(), AsGeoBuf.class);
             functionRegistry.put(PostGISGeo.st_asgeojson.getURI(), AsGeoJSON.class);
+            functionRegistry.put(PostGISGeo.st_asgeojsonld.getURI(), AsGeoJSONLD.class);
             functionRegistry.put(PostGISGeo.st_astiff.getURI(), AsTIFF.class);
+            functionRegistry.put(PostGISGeo.st_astopojson.getURI(), AsTopoJSON.class);
             functionRegistry.put(PostGISGeo.st_asjpg.getURI(), AsJPG.class);
             functionRegistry.put(PostGISGeo.st_aslatlontext.getURI(), AsLatLonText.class);            
             functionRegistry.put(PostGISGeo.st_aspng.getURI(), AsPNG.class);
