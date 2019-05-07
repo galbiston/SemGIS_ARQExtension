@@ -116,6 +116,7 @@ public class PostGISGeo {
    public static final Property st_hausdorffDistance = property("ST_HausdorffDistance");
    public static final Property st_height = property("ST_Height");
    public static final Property st_interiorRingN = property("ST_InteriorRingN");
+   public static final Property st_interpolatePoint = property("ST_InterpolatePoint");
    public static final Property st_isClosed = property("ST_IsClosed");
    public static final Property st_isCollection = property("ST_IsCollection");
    public static final Property st_isConvex = property("ST_IsConvex");
@@ -138,6 +139,8 @@ public class PostGISGeo {
    public static final Property st_lineFromMultiPoint=property("ST_LineFromMultiPoint");
    public static final Property st_lineFromWKB = property("ST_LineFromWKB");
    public static final Property st_lineFromText = property("ST_LineFromText");
+   public static final Property st_lineInterpolatePoint = property("ST_LineInterpolatePoint");
+   public static final Property st_lineInterpolatePoints = property("ST_LineInterpolatePoints");
    public static final Property st_lineMerge = property("ST_LineMerge");
    public static final Property st_lineSubstring = property("ST_LineSubstring");
    public static final Property st_lineToCurve = property("ST_LineToCurve");
@@ -241,6 +244,7 @@ public class PostGISGeo {
    public static final Property st_split = property("ST_Split");
    public static final Property st_srid = property("ST_SRID");
    public static final Property st_startPoint = property("ST_StartPoint");
+   public static final Property st_straightSkeleton = property("ST_StraightSkeleton");
    public static final Property st_summary = property("ST_Summary");
    public static final Property st_summaryStats = property("ST_SummaryStats");
    public static final Property st_swapOrdinates = property("ST_SwapOrdinates");
@@ -284,6 +288,9 @@ public static final String MVT = "MVT";
 public static final String X3D = "X3D";
 public static final String OSM= "OSM";
 public static final String HexWKBRaster = "HexWKBRaster";
+
+
+
 
 
 
