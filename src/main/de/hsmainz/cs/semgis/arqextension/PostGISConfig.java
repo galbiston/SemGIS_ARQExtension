@@ -190,6 +190,8 @@ public class PostGISConfig {
             functionRegistry.put(PostGISGeo.st_forcePolygonCW.getURI(), ForcePolygonCW.class);
             functionRegistry.put(PostGISGeo.st_forcePolygonCCW.getURI(), ForcePolygonCCW.class);
             functionRegistry.put(PostGISGeo.st_forceSFS.getURI(), ForceSFS.class);
+            functionRegistry.put(PostGISGeo.st_frechetDistance.getURI(), FrechetDistance.class);
+            functionRegistry.put(PostGISGeo.st_geohash.getURI(), GeoHash.class);
             functionRegistry.put(PostGISGeo.st_geomFromGeoJSON.getURI(), GeomFromGeoJSON.class);
             functionRegistry.put(PostGISGeo.st_geomFromGML.getURI(), GeomFromGML.class);
             functionRegistry.put(PostGISGeo.st_geomFromKML.getURI(), GeomFromKML.class);

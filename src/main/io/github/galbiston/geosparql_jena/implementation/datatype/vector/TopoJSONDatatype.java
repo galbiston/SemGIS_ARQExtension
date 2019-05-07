@@ -1,4 +1,3 @@
-
 /*
  * Copyright 2018 the original author or authors.
  * See the notice.md file distributed with this work for additional
@@ -43,25 +42,25 @@ import de.hsmainz.cs.semgis.arqextension.vocabulary.PostGISGeo;
  * be assumed as the spatial reference system for geo:wktLiterals that do not *
  * specify an explicit spatial reference system URI.
  */
-public class GeoJSONDatatype extends GeometryDatatype {
+public class TopoJSONDatatype extends GeometryDatatype {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(GeoJSONDatatype.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(TopoJSONDatatype.class);
 
     /**
      * The default WKT type URI.
      */
-    public static final String URI = PostGISGeo.GeoJSON;
+    public static final String URI = PostGISGeo.TopoJSON;
 
     /**
      * A static instance of WKTDatatype.
      */
-    public static final GeoJSONDatatype INSTANCE = new GeoJSONDatatype();
+    public static final TopoJSONDatatype INSTANCE = new TopoJSONDatatype();
     
 
     /**
      * private constructor - single global instance.
      */
-    private GeoJSONDatatype() {
+    private TopoJSONDatatype() {
         super(URI);
     }
 
@@ -84,7 +83,7 @@ public class GeoJSONDatatype extends GeometryDatatype {
             String jsonstring = json.toString();
             return jsonstring;
         } else {
-            throw new AssertionError("Object passed to GeoJSONDatatype is not a GeometryWrapper: " + geometry);
+            throw new AssertionError("Object passed to TopoJSONDatatype is not a GeometryWrapper: " + geometry);
         }
     }
 
@@ -99,7 +98,7 @@ public class GeoJSONDatatype extends GeometryDatatype {
 
     @Override
     public String toString() {
-        return "GeoJSONDatatype{" + URI + '}';
+        return "TopoJSONDatatype{" + URI + '}';
     }
 
 }

@@ -103,6 +103,8 @@ public class PostGISGeo {
    public static final Property st_forcePolygonCW = property("ST_ForcePolygonCW");
    public static final Property st_forcePolygonCCW = property("ST_ForcePolygonCCW");
    public static final Property st_forceSFS = property("ST_ForceSFS");
+   public static final Property st_frechetDistance = property("ST_FrechetDistance");
+   public static final Property st_geohash = property("ST_GeoHash");
    public static final Property st_geomCollFromText = property("ST_CollFromText");
    public static final Property st_geomFromGeoJSON = property("ST_GeomFromGeoJSON");
    public static final Property st_geomFromKML = property("ST_GeomFromKML");
@@ -279,6 +281,8 @@ public class PostGISGeo {
    public static final Property st_zmFlag = property("ST_ZmFlag");
    public static final String WKB = "WKB";
 public static final String GeoJSON = "GeoJSON";
+public static final String GeoJSONLD = "GeoJSONLD";
+public static final String GeoHash = "GeoHash";
 public static final String GeoBuf = "GeoBuf";
 public static final String KML = "KML";
 public static final String WKBRaster = "WKBRaster";
@@ -290,6 +294,10 @@ public static final String MVT = "MVT";
 public static final String X3D = "X3D";
 public static final String OSM= "OSM";
 public static final String HexWKBRaster = "HexWKBRaster";
+public static final String TopoJSON = "TopoJSON";
+
+
+
 
 
 
