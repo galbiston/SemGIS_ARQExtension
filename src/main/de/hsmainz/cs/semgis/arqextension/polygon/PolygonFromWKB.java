@@ -8,7 +8,7 @@ import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.io.ParseException;
 import org.locationtech.jts.io.WKBReader;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
 
 public class PolygonFromWKB extends FunctionBase1 {
@@ -20,7 +20,7 @@ public class PolygonFromWKB extends FunctionBase1 {
             WKBReader reader=new WKBReader();
             Geometry geom=reader.read(wkbstring.getBytes());
             if("POLYGON".equals(geom.getGeometryType().toUpperCase())){
-            	GeometryWrapper pointWrapper = GeometryWrapper.createGeometry(geom, "<http://www.opengis.net/def/crs/EPSG/0/"+geom.getSRID()+">", WKTDatatype.URI);	
+            	GeometryWrapper pointWrapper = GeometryWrapperFactory.createGeometry(geom, "<http://www.opengis.net/def/crs/EPSG/0/"+geom.getSRID()+">", WKTDatatype.URI);	
                 return pointWrapper.asNodeValue();
             }else {
             	throw new ExprEvalException("WKB does not represent a polygon", null);

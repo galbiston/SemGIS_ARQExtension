@@ -9,7 +9,7 @@ import org.locationtech.jts.operation.distance3d.Distance3DOp;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.util.FactoryException;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 
 public class ClosestPoint3D extends FunctionBase2{
 
@@ -25,7 +25,7 @@ public class ClosestPoint3D extends FunctionBase2{
             Coordinate[] coords = distop.nearestPoints();
             Coordinate coord = new Coordinate(coords[0].x, coords[0].y);
 
-            GeometryWrapper pointWrapper = GeometryWrapper.createPoint(coord, geom1.getSrsURI(), geom1.getGeometryDatatypeURI());
+            GeometryWrapper pointWrapper = GeometryWrapperFactory.createPoint(coord, geom1.getSrsURI(), geom1.getGeometryDatatypeURI());
 
             return pointWrapper.asNodeValue();
         } catch (DatatypeFormatException | FactoryException | TransformException ex) {

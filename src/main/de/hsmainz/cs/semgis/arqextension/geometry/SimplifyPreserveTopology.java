@@ -16,7 +16,7 @@ import org.apache.jena.sparql.expr.NodeValue;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.simplify.TopologyPreservingSimplifier;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import org.apache.jena.datatypes.DatatypeFormatException;
 import org.apache.jena.sparql.expr.ExprEvalException;
 import org.apache.jena.sparql.function.FunctionBase1;
@@ -38,7 +38,7 @@ public class SimplifyPreserveTopology extends FunctionBase1 {
             TopologyPreservingSimplifier simplifier = new TopologyPreservingSimplifier(geom);
 
             Geometry simpleGeom = simplifier.getResultGeometry();
-            GeometryWrapper simpleWrapper = GeometryWrapper.createGeometry(simpleGeom, geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
+            GeometryWrapper simpleWrapper = GeometryWrapperFactory.createGeometry(simpleGeom, geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
             return simpleWrapper.asNodeValue();
 
         } catch (DatatypeFormatException ex) {

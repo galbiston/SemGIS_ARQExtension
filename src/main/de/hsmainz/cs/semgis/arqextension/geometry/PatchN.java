@@ -8,7 +8,7 @@ import org.apache.jena.sparql.expr.NodeValue;
 import org.apache.jena.sparql.function.FunctionBase2;
 import org.locationtech.jts.geom.Geometry;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 /**
  * Return the 1-based Nth geometry (face) if the geometry is a POLYHEDRALSURFACE, POLYHEDRALSURFACEM. Otherwise, return NULL.
  *
@@ -26,7 +26,7 @@ public class PatchN extends FunctionBase2 {
             	return NodeValue.nvNothing;
             }else {
             	Geometry geo=geom.getGeometryN(n.intValue());
-                GeometryWrapper pointWrapper = GeometryWrapper.createGeometry(geo, geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
+                GeometryWrapper pointWrapper = GeometryWrapperFactory.createGeometry(geo, geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
                 return pointWrapper.asNodeValue();            	
             }
         } catch (DatatypeFormatException ex) {

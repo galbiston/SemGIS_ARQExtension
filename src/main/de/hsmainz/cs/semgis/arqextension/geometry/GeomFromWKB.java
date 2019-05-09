@@ -8,7 +8,7 @@ import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.io.ParseException;
 import org.locationtech.jts.io.WKBReader;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
 
 /**
@@ -23,7 +23,7 @@ public class GeomFromWKB extends FunctionBase1 {
             String wkbstring=arg0.getString();
             WKBReader reader=new WKBReader();
             Geometry geom=reader.read(wkbstring.getBytes());
-            GeometryWrapper pointWrapper = GeometryWrapper.createPoint(geom.getCoordinate(), "<http://www.opengis.net/def/crs/EPSG/0/"+geom.getSRID()+">", WKTDatatype.URI);	
+            GeometryWrapper pointWrapper = GeometryWrapperFactory.createPoint(geom.getCoordinate(), "<http://www.opengis.net/def/crs/EPSG/0/"+geom.getSRID()+">", WKTDatatype.URI);	
             return pointWrapper.asNodeValue();           
         } catch (DatatypeFormatException | ParseException ex) {
             throw new ExprEvalException(ex.getMessage(), ex);

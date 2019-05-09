@@ -12,7 +12,7 @@
  ****************************************************************************** */
 package de.hsmainz.cs.semgis.arqextension.raster;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import java.util.List;
 import org.apache.jena.sparql.engine.binding.Binding;
 import org.apache.jena.sparql.expr.NodeValue;
@@ -28,7 +28,7 @@ public class MinConvexHull extends RasterSpatialFunction {
     protected NodeValue exec(GridCoverage2D raster, GeometryWrapper geometryWrapper, Binding binding, List<NodeValue> evalArgs, String uri, FunctionEnv env) {
 
         Geometry convexHull = JTS.toGeometry(raster.getEnvelope2D().getBounds2D()).convexHull();
-        GeometryWrapper hullWrapper = GeometryWrapper.createGeometry(convexHull, geometryWrapper.getSrsURI(), geometryWrapper.getGeometryDatatypeURI());
+        GeometryWrapper hullWrapper = GeometryWrapperFactory.createGeometry(convexHull, geometryWrapper.getSrsURI(), geometryWrapper.getGeometryDatatypeURI());
         return hullWrapper.asNodeValue();
     }
 

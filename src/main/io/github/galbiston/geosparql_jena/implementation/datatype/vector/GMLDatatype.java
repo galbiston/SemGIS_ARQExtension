@@ -18,7 +18,7 @@
 package io.github.galbiston.geosparql_jena.implementation.datatype.vector;
 
 import io.github.galbiston.geosparql_jena.implementation.DimensionInfo;
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import io.github.galbiston.geosparql_jena.implementation.parsers.gml.GMLReader;
 import io.github.galbiston.geosparql_jena.implementation.parsers.gml.GMLWriter;
 import io.github.galbiston.geosparql_jena.implementation.vocabulary.Geo;

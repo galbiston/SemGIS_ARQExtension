@@ -12,7 +12,7 @@
  ****************************************************************************** */
 package de.hsmainz.cs.semgis.arqextension.geometry;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import org.apache.jena.datatypes.DatatypeFormatException;
 import org.apache.jena.sparql.expr.ExprEvalException;
 import org.apache.jena.sparql.expr.NodeValue;
@@ -33,7 +33,7 @@ public class Reverse extends FunctionBase1 {
             Geometry geom = geometry.getXYGeometry();
 
             Geometry reverseGeom = geom.reverse();
-            GeometryWrapper reverseGeomWrapper = GeometryWrapper.createGeometry(reverseGeom, geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
+            GeometryWrapper reverseGeomWrapper = GeometryWrapperFactory.createGeometry(reverseGeom, geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
 
             return reverseGeomWrapper.asNodeValue();
         } catch (DatatypeFormatException ex) {

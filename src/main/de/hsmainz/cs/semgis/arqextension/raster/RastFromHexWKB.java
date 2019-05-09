@@ -10,7 +10,7 @@ import org.locationtech.jts.io.ParseException;
 
 import com.vividsolutions.jts.io.WKBReader;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
 
 public class RastFromHexWKB extends FunctionBase1 {
@@ -23,7 +23,7 @@ public class RastFromHexWKB extends FunctionBase1 {
     		WKBRasterReader reader=new WKBRasterReader();
     		GridCoverage2D coverage=reader.readCoverage(WKBReader.hexToBytes(wkbstring));
             if("POLYGON".equals(geom.getGeometryType().toUpperCase())){
-            	GeometryWrapper pointWrapper = GeometryWrapper.createGeometry(geom, "<http://www.opengis.net/def/crs/EPSG/0/"+geom.getSRID()+">", WKTDatatype.URI);	
+            	GeometryWrapper pointWrapper = GeometryWrapperFactory.createGeometry(geom, "<http://www.opengis.net/def/crs/EPSG/0/"+geom.getSRID()+">", WKTDatatype.URI);	
                 return pointWrapper.asNodeValue();
             }else {
             	throw new ExprEvalException("WKB does not represent a polygon", null);

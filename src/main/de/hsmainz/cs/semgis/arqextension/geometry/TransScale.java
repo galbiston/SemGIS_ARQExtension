@@ -12,7 +12,7 @@
  ****************************************************************************** */
 package de.hsmainz.cs.semgis.arqextension.geometry;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import io.github.galbiston.geosparql_jena.spatial.filter_functions.FunctionBase5;
 import org.apache.jena.datatypes.DatatypeFormatException;
 import org.apache.jena.sparql.expr.ExprEvalException;
@@ -39,7 +39,7 @@ public class TransScale extends FunctionBase5 {
             transform.scale(xFactor, yFactor);
 
             Geometry transGeom = transform.transform(geom);
-            GeometryWrapper transWrapper = GeometryWrapper.createGeometry(transGeom, geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
+            GeometryWrapper transWrapper = GeometryWrapperFactory.createGeometry(transGeom, geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
             return transWrapper.asNodeValue();
         } catch (DatatypeFormatException ex) {
             throw new ExprEvalException(ex.getMessage(), ex);

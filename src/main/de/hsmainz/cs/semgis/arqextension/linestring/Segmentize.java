@@ -12,7 +12,7 @@
  ****************************************************************************** */
 package de.hsmainz.cs.semgis.arqextension.linestring;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import io.github.galbiston.geosparql_jena.implementation.SRSInfo;
 import io.github.galbiston.geosparql_jena.implementation.great_circle.GreatCircleDistance;
 import java.util.ArrayList;
@@ -42,7 +42,7 @@ public class Segmentize extends FunctionBase2 {
             List<Geometry> geometries = createSegments(geometry, segmentLength);
             List<String> results = new ArrayList<>(geometries.size());
             for (Geometry geom : geometries) {
-                GeometryWrapper geomWrapper = GeometryWrapper.createGeometry(geom, geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
+                GeometryWrapper geomWrapper = GeometryWrapperFactory.createGeometry(geom, geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
                 String result = geomWrapper.asLiteral().toString();
                 results.add(result);
             }

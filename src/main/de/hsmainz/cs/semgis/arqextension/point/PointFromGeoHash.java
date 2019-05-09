@@ -1,7 +1,7 @@
 package de.hsmainz.cs.semgis.arqextension.point;
 
 import com.github.davidmoten.geo.LatLong;
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
 import io.github.galbiston.geosparql_jena.implementation.vocabulary.SRS_URI;
 import org.apache.jena.datatypes.DatatypeFormatException;
@@ -23,7 +23,7 @@ public class PointFromGeoHash extends FunctionBase1 {
             String geohash = arg0.getString();
             LatLong latlng = com.github.davidmoten.geo.GeoHash.decodeHash(geohash);
             Coordinate coord = new Coordinate(latlng.getLon(), latlng.getLat()); //Lon is X, Lat is Y in CRS84.
-            GeometryWrapper pointWrapper = GeometryWrapper.createPoint(coord, SRS_URI.DEFAULT_WKT_CRS84, WKTDatatype.URI);
+            GeometryWrapper pointWrapper = GeometryWrapperFactory.createPoint(coord, SRS_URI.DEFAULT_WKT_CRS84, WKTDatatype.URI);
             return pointWrapper.asNodeValue();
         } catch (DatatypeFormatException ex) {
             throw new ExprEvalException(ex.getMessage(), ex);

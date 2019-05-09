@@ -16,7 +16,7 @@ import java.math.BigInteger;
 import org.apache.jena.sparql.expr.NodeValue;
 import org.locationtech.jts.geom.Geometry;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import org.apache.jena.datatypes.DatatypeFormatException;
 import org.apache.jena.sparql.expr.ExprEvalException;
 import org.apache.jena.sparql.function.FunctionBase2;
@@ -37,7 +37,7 @@ public class GeometryN extends FunctionBase2 {
             BigInteger n = arg1.getInteger();
 
             Geometry nthGeometry = geometry.getGeometryN(n.intValue());
-            GeometryWrapper nthGeom = GeometryWrapper.createGeometry(nthGeometry, geom.getSrsURI(), geom.getGeometryDatatypeURI());
+            GeometryWrapper nthGeom = GeometryWrapperFactory.createGeometry(nthGeometry, geom.getSrsURI(), geom.getGeometryDatatypeURI());
 
             return nthGeom.asNodeValue();
         } catch (DatatypeFormatException ex) {

@@ -1,6 +1,6 @@
 package de.hsmainz.cs.semgis.arqextension.envelope;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import io.github.galbiston.geosparql_jena.implementation.SRSInfo;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
 import io.github.galbiston.geosparql_jena.spatial.filter_functions.FunctionBase5;
@@ -22,7 +22,7 @@ public class MakeEnvelope extends FunctionBase5 {
             Envelope env = new Envelope();
             env.init(arg0.getDouble(), arg2.getDouble(), arg1.getDouble(), arg3.getDouble());
             String srsURI = SRSInfo.convertSRID(arg4.getInteger());
-            GeometryWrapper geometryWrapper = GeometryWrapper.createPolygon(env, srsURI, WKTDatatype.URI);
+            GeometryWrapper geometryWrapper = GeometryWrapperFactory.createPolygon(env, srsURI, WKTDatatype.URI);
 
             //return geometryWrapper.asNodeValue();
             throw new UnsupportedOperationException("Not supported yet.");

@@ -11,7 +11,7 @@ import org.apache.jena.sparql.function.FunctionBase1;
 import org.locationtech.jts.geom.LineString;
 import org.locationtech.jts.geom.Polygon;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
 
 /**
@@ -29,15 +29,15 @@ public class Multi extends FunctionBase1 {
             }
             switch(geometry.getGeometryType()) {
             case "Point": 
-            	return GeometryWrapper.createMultiPoint(Arrays.asList(geometry.getXYGeometry().getCoordinates()), geometry.getSrsURI(), WKTDatatype.URI).asNodeValue();
+            	return GeometryWrapperFactory.createMultiPoint(Arrays.asList(geometry.getXYGeometry().getCoordinates()), geometry.getSrsURI(), WKTDatatype.URI).asNodeValue();
             case "Polygon":
             	List<Polygon> polylist=new LinkedList<Polygon>();
             	polylist.add((Polygon)geometry.getXYGeometry());
-            	return GeometryWrapper.createMultiPolygon(polylist, geometry.getSrsURI(), WKTDatatype.URI).asNodeValue();	
+            	return GeometryWrapperFactory.createMultiPolygon(polylist, geometry.getSrsURI(), WKTDatatype.URI).asNodeValue();	
             case "LineString":
             	List<LineString> linelist=new LinkedList<LineString>();
             	linelist.add((LineString)geometry.getXYGeometry());
-            	return GeometryWrapper.createMultiLineString(linelist, geometry.getSrsURI(), WKTDatatype.URI).asNodeValue();
+            	return GeometryWrapperFactory.createMultiLineString(linelist, geometry.getSrsURI(), WKTDatatype.URI).asNodeValue();
             default:
             	throw new ExprEvalException("Geometry type does not have a Multi representation or is not supported", null);
             }

@@ -10,7 +10,7 @@ import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.LineString;
 import org.locationtech.jts.geom.Polygon;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
 
 public class InteriorRingN extends FunctionBase2 {
@@ -23,7 +23,7 @@ public class InteriorRingN extends FunctionBase2 {
             if (geom instanceof Polygon) {
             	BigInteger ringN = arg1.getInteger();
             	LineString result=((Polygon) geom).getInteriorRingN(ringN.intValue());
-            	GeometryWrapper lineStringWrapper = GeometryWrapper.createGeometry(result, "<http://www.opengis.net/def/crs/EPSG/0/"+geom.getSRID()+">", WKTDatatype.URI);
+            	GeometryWrapper lineStringWrapper = GeometryWrapperFactory.createGeometry(result, "<http://www.opengis.net/def/crs/EPSG/0/"+geom.getSRID()+">", WKTDatatype.URI);
             	return lineStringWrapper.asNodeValue();
             }
             return NodeValue.nvNothing;

@@ -8,7 +8,7 @@ import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.LineString;
 import org.locationtech.jts.geom.Polygon;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
 
 public class ExteriorRing extends FunctionBase1 {
@@ -21,7 +21,7 @@ public class ExteriorRing extends FunctionBase1 {
             if (geom instanceof Polygon) {
             	
             	LineString result=((Polygon) geom).getExteriorRing();
-            	GeometryWrapper lineStringWrapper = GeometryWrapper.createGeometry(result, "<http://www.opengis.net/def/crs/EPSG/0/"+geom.getSRID()+">", WKTDatatype.URI);
+            	GeometryWrapper lineStringWrapper = GeometryWrapperFactory.createGeometry(result, "<http://www.opengis.net/def/crs/EPSG/0/"+geom.getSRID()+">", WKTDatatype.URI);
             	return lineStringWrapper.asNodeValue();
             }
             return NodeValue.nvNothing;

@@ -12,7 +12,8 @@
  ****************************************************************************** */
 package de.hsmainz.cs.semgis.arqextension.linestring;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import io.github.galbiston.geosparql_jena.implementation.SRSInfo;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
 import java.util.List;
@@ -50,7 +51,7 @@ public class MakeLine extends FunctionBase {
 
             Geometry lineString = (Geometry) linemerge.getMergedLineStrings().iterator().next();
 
-            GeometryWrapper lineStringWrapper = GeometryWrapper.createGeometry(lineString, srsInfo.getSrsURI(), WKTDatatype.URI);
+            GeometryWrapper lineStringWrapper = GeometryWrapperFactory.createGeometry(lineString, srsInfo.getSrsURI(), WKTDatatype.URI);
 
             return lineStringWrapper.asNodeValue();
         } catch (DatatypeFormatException | FactoryException | TransformException ex) {

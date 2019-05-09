@@ -8,7 +8,7 @@ import org.apache.jena.sparql.expr.NodeValue;
 import org.apache.jena.sparql.function.FunctionBase2;
 import org.locationtech.jts.geom.Geometry;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 
 /**
  * Set the SRID on a geometry to a particular integer value.
@@ -23,7 +23,7 @@ public class SetSRID extends FunctionBase2 {
             Geometry geom = geometry.getXYGeometry();
             BigInteger srid=v2.getInteger();
             geom.setSRID(srid.intValue());
-            return GeometryWrapper.createGeometry(geom, geometry.getGeometryDatatypeURI()).asNodeValue();
+            return GeometryWrapperFactory.createGeometry(geom, geometry.getGeometryDatatypeURI()).asNodeValue();
         } catch (DatatypeFormatException ex) {
             throw new ExprEvalException(ex.getMessage(), ex);
         }

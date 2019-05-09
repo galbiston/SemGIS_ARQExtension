@@ -12,7 +12,7 @@
  ****************************************************************************** */
 package de.hsmainz.cs.semgis.arqextension.geometry;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import org.apache.jena.datatypes.DatatypeFormatException;
 import org.apache.jena.sparql.expr.ExprEvalException;
 import org.apache.jena.sparql.expr.NodeValue;
@@ -34,7 +34,7 @@ public class Centroid extends FunctionBase1 {
             Geometry geom = geometry.getXYGeometry();
 
             Point centroid = geom.getCentroid();
-            GeometryWrapper centroidWrapper = GeometryWrapper.createPoint(centroid.getCoordinate(), geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
+            GeometryWrapper centroidWrapper = GeometryWrapperFactory.createPoint(centroid.getCoordinate(), geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
 
             return centroidWrapper.asNodeValue();
         } catch (DatatypeFormatException ex) {

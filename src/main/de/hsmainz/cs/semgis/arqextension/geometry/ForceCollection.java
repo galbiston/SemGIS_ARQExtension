@@ -8,7 +8,7 @@ import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.io.ParseException;
 import org.locationtech.jts.io.WKTReader;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 
 /**
  * Convert the geometry into a GEOMETRYCOLLECTION.
@@ -23,7 +23,7 @@ public class ForceCollection extends FunctionBase1 {
             Geometry geometry = geom.getXYGeometry();
             WKTReader reader=new WKTReader();
             Geometry geomet=reader.read("GEOMETRYCOLLECTION("+geometry.toText()+")");
-            GeometryWrapper nthGeom = GeometryWrapper.createGeometry(geomet, geom.getSrsURI(), geom.getGeometryDatatypeURI());
+            GeometryWrapper nthGeom = GeometryWrapperFactory.createGeometry(geomet, geom.getSrsURI(), geom.getGeometryDatatypeURI());
 
             return nthGeom.asNodeValue();
         } catch (DatatypeFormatException ex) {

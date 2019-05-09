@@ -12,7 +12,7 @@ import org.locationtech.jts.geom.Point;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.util.FactoryException;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
 
 public class SetPoint extends FunctionBase3 {
@@ -28,7 +28,7 @@ public class SetPoint extends FunctionBase3 {
 		            Coordinate[] coords=geom1.getParsingGeometry().getCoordinates();
 		            Coordinate[] newcoords=coords;
 		            newcoords[zerobasedposition.intValue()]=geom2.getParsingGeometry().getCoordinate();
-		            GeometryWrapper lineStringWrapper = GeometryWrapper.createLineString(newcoords, "<http://www.opengis.net/def/crs/EPSG/0/"+geom1.getSRID()+">", WKTDatatype.URI);
+		            GeometryWrapper lineStringWrapper = GeometryWrapperFactory.createLineString(newcoords, "<http://www.opengis.net/def/crs/EPSG/0/"+geom1.getSRID()+">", WKTDatatype.URI);
 	                return lineStringWrapper.asNodeValue();
 	            }
 	            throw new ExprEvalException("First argument is not a LineString or third argument is not a point", null);

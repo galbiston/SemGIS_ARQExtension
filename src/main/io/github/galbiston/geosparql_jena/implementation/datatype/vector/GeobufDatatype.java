@@ -15,7 +15,7 @@ import com.conveyal.data.geobuf.GeobufDecoder;
 import com.conveyal.data.geobuf.GeobufEncoder;
 
 import de.hsmainz.cs.semgis.arqextension.vocabulary.PostGISGeo;
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 
 public class GeobufDatatype extends GeometryDatatype  {
 
@@ -67,7 +67,7 @@ public class GeobufDatatype extends GeometryDatatype  {
 			try {
 				decoder = new GeobufDecoder(stream);
 		    	Geometry geom=decoder.next().geometry;
-			    GeometryWrapper wrapper = GeometryWrapper.createGeometry(geom, "<http://www.opengis.net/def/crs/EPSG/0/"+geom.getSRID()+">", GeobufDatatype.URI);	
+			    GeometryWrapper wrapper = GeometryWrapperFactory.createGeometry(geom, "<http://www.opengis.net/def/crs/EPSG/0/"+geom.getSRID()+">", GeobufDatatype.URI);	
 			    return wrapper;
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

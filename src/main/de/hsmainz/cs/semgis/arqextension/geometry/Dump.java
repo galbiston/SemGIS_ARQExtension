@@ -12,7 +12,7 @@
  ****************************************************************************** */
 package de.hsmainz.cs.semgis.arqextension.geometry;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.jena.datatypes.DatatypeFormatException;
@@ -38,7 +38,7 @@ public class Dump extends FunctionBase1 {
             for (int i = 0; i < geom.getNumGeometries(); i++) {
 
                 Geometry res = geom.getGeometryN(i);
-                GeometryWrapper resWrapper = GeometryWrapper.createGeometry(res, srsURI, geometryDatatypeURI);
+                GeometryWrapper resWrapper = GeometryWrapperFactory.createGeometry(res, srsURI, geometryDatatypeURI);
                 Literal resLiteral = resWrapper.asLiteral();
                 String resString = resLiteral.toString();
                 results.add(resString);

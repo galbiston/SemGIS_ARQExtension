@@ -12,7 +12,7 @@
  ****************************************************************************** */
 package de.hsmainz.cs.semgis.arqextension.geometry;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import java.math.BigInteger;
 import org.apache.jena.datatypes.DatatypeFormatException;
 import org.apache.jena.sparql.expr.ExprEvalException;
@@ -36,7 +36,7 @@ public class DelaunayTriangles extends FunctionBase3 {
             builder.setTolerance(tolerance);
             Geometry triangles = builder.getTriangles(new GeometryFactory());
 
-            GeometryWrapper trianglesWrapper = GeometryWrapper.createGeometry(triangles, geom.getSrsURI(), geom.getGeometryDatatypeURI());
+            GeometryWrapper trianglesWrapper = GeometryWrapperFactory.createGeometry(triangles, geom.getSrsURI(), geom.getGeometryDatatypeURI());
             return trianglesWrapper.asNodeValue();
 
         } catch (DatatypeFormatException ex) {

@@ -13,7 +13,7 @@ import org.locationtech.jts.geom.GeometryCollection;
 import org.locationtech.jts.geom.LineString;
 import org.locationtech.jts.geom.Polygon;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
 
 /**
@@ -29,7 +29,7 @@ public class CollectionHomogenize extends FunctionBase2 {
             GeometryCollection collection=(GeometryCollection)geom1.getXYGeometry();
             if(collection.getNumGeometries()==1) {
             	Geometry singlegeom=collection.getGeometryN(0);
-            	return GeometryWrapper.createGeometry(singlegeom, "<http://www.opengis.net/def/crs/EPSG/0/"+collection.getSRID()+">", WKTDatatype.URI).asNodeValue();           	
+            	return GeometryWrapperFactory.createGeometry(singlegeom, "<http://www.opengis.net/def/crs/EPSG/0/"+collection.getSRID()+">", WKTDatatype.URI).asNodeValue();           	
             }else if(collection.getNumGeometries()==0) {
             	return geom1.asNodeValue();
             }else {
@@ -41,21 +41,21 @@ public class CollectionHomogenize extends FunctionBase2 {
                 			coords.add(coord2);
                 		}
                 	}
-                	GeometryWrapper pointWrapper = GeometryWrapper.createMultiPoint(coords, "<http://www.opengis.net/def/crs/EPSG/0/"+geom1.getSRID()+">", WKTDatatype.URI);	
+                	GeometryWrapper pointWrapper = GeometryWrapperFactory.createMultiPoint(coords, "<http://www.opengis.net/def/crs/EPSG/0/"+geom1.getSRID()+">", WKTDatatype.URI);	
                     return pointWrapper.asNodeValue();
                 case "LineString":
                 	List<LineString> lines=new ArrayList<LineString>();
                 	for(int i=0;i<collection.getNumGeometries();i++) {
                 			lines.add((LineString)collection.getGeometryN(i));
                 	}
-                	GeometryWrapper lineWrapper = GeometryWrapper.createMultiLineString(lines, "<http://www.opengis.net/def/crs/EPSG/0/"+geom1.getSRID()+">", WKTDatatype.URI);	
+                	GeometryWrapper lineWrapper = GeometryWrapperFactory.createMultiLineString(lines, "<http://www.opengis.net/def/crs/EPSG/0/"+geom1.getSRID()+">", WKTDatatype.URI);	
                 	return lineWrapper.asNodeValue();
                 case "Polygon": 
                 	List<Polygon> polys=new ArrayList<Polygon>();
                 	for(int i=0;i<collection.getNumGeometries();i++) {
                 			polys.add((Polygon)collection.getGeometryN(i));
                 	}
-                	GeometryWrapper polyWrapper = GeometryWrapper.createMultiPolygon(polys, "<http://www.opengis.net/def/crs/EPSG/0/"+geom1.getSRID()+">", WKTDatatype.URI);	
+                	GeometryWrapper polyWrapper = GeometryWrapperFactory.createMultiPolygon(polys, "<http://www.opengis.net/def/crs/EPSG/0/"+geom1.getSRID()+">", WKTDatatype.URI);	
                     return polyWrapper.asNodeValue();
             	}
             }

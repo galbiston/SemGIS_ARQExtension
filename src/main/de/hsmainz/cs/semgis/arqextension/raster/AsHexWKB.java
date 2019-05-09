@@ -11,7 +11,7 @@ import org.geotoolkit.coverage.wkb.WKBRasterWriter;
 import org.locationtech.jts.io.WKBWriter;
 import org.opengis.util.FactoryException;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 
 public class AsHexWKB extends RasterSpatialFunction{
 

@@ -7,7 +7,7 @@ import org.apache.jena.sparql.function.FunctionBase2;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.simplify.VWSimplifier;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 
 /**
  * Returns a "simplified" version of the given geometry using the Visvalingam-Whyatt algorithm
@@ -27,7 +27,7 @@ public class SimplifyVW extends FunctionBase2 {
             simplifier.setDistanceTolerance(tolerance);
 
             Geometry simpleGeom = simplifier.getResultGeometry();
-            GeometryWrapper simpleWrapper = GeometryWrapper.createGeometry(simpleGeom, geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
+            GeometryWrapper simpleWrapper = GeometryWrapperFactory.createGeometry(simpleGeom, geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
             return simpleWrapper.asNodeValue();
 
         } catch (DatatypeFormatException ex) {

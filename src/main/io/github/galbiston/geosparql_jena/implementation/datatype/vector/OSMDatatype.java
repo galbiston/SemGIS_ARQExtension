@@ -1,7 +1,7 @@
 package io.github.galbiston.geosparql_jena.implementation.datatype.vector;
 
 	import io.github.galbiston.geosparql_jena.implementation.DimensionInfo;
-	import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+	import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import io.github.galbiston.geosparql_jena.implementation.parsers.wkt.WKTReader;
 	import io.github.galbiston.geosparql_jena.implementation.parsers.wkt.WKTWriter;
 	import io.github.galbiston.geosparql_jena.implementation.vocabulary.Geo;
@@ -87,7 +87,7 @@ import de.hsmainz.cs.semgis.arqextension.vocabulary.PostGISGeo;
 	        Geometry geometry;
 			try {
 				geometry = wkbReader.read(wkbTextSRS.getWkbText().getBytes());
-		        GeometryWrapper wrapper = GeometryWrapper.createGeometry(geometry, "<http://www.opengis.net/def/crs/EPSG/0/"+geometry.getSRID()+">", WKBDatatype.URI);	
+		        GeometryWrapper wrapper = GeometryWrapperFactory.createGeometry(geometry, "<http://www.opengis.net/def/crs/EPSG/0/"+geometry.getSRID()+">", WKBDatatype.URI);	
 		        return wrapper;
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block

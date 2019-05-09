@@ -12,7 +12,7 @@
  ****************************************************************************** */
 package de.hsmainz.cs.semgis.arqextension.geometry;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import org.apache.jena.datatypes.DatatypeFormatException;
 import org.apache.jena.sparql.expr.ExprEvalException;
 import org.apache.jena.sparql.expr.NodeValue;
@@ -34,7 +34,7 @@ public class Rotate extends FunctionBase2 {
             trans = trans.rotate(rotRadians);
             Geometry transformGeom = trans.transform(geom);
 
-            GeometryWrapper transformGeomWrapper = GeometryWrapper.createGeometry(transformGeom, geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
+            GeometryWrapper transformGeomWrapper = GeometryWrapperFactory.createGeometry(transformGeom, geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
 
             return transformGeomWrapper.asNodeValue();
 

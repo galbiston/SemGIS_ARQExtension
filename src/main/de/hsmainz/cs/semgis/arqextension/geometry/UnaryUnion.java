@@ -16,7 +16,7 @@ import org.apache.jena.sparql.expr.NodeValue;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.operation.union.UnaryUnionOp;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import org.apache.jena.datatypes.DatatypeFormatException;
 import org.apache.jena.sparql.expr.ExprEvalException;
 import org.apache.jena.sparql.function.FunctionBase1;
@@ -34,7 +34,7 @@ public class UnaryUnion extends FunctionBase1 {
             UnaryUnionOp op = new UnaryUnionOp(geom);
             Geometry union = op.union();
 
-            GeometryWrapper unionWrapper = GeometryWrapper.createGeometry(union, geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
+            GeometryWrapper unionWrapper = GeometryWrapperFactory.createGeometry(union, geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
             return unionWrapper.asNodeValue();
         } catch (DatatypeFormatException ex) {
             throw new ExprEvalException(ex.getMessage(), ex);

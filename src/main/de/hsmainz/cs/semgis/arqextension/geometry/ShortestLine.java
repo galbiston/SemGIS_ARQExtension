@@ -12,7 +12,7 @@
  ****************************************************************************** */
 package de.hsmainz.cs.semgis.arqextension.geometry;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import org.apache.jena.datatypes.DatatypeFormatException;
 import org.apache.jena.sparql.expr.ExprEvalException;
 import org.apache.jena.sparql.expr.NodeValue;
@@ -39,7 +39,7 @@ public class ShortestLine extends FunctionBase2 {
 
             DistanceOp distop = new DistanceOp(geometry1.getXYGeometry(), transGeometry2.getXYGeometry());
             Coordinate[] coord = distop.nearestPoints();
-            GeometryWrapper lineStringWrapper = GeometryWrapper.createLineString(coord, geometry1.getSrsURI(), geometry1.getGeometryDatatypeURI());
+            GeometryWrapper lineStringWrapper = GeometryWrapperFactory.createLineString(coord, geometry1.getSrsURI(), geometry1.getGeometryDatatypeURI());
 
             return lineStringWrapper.asNodeValue();
         } catch (DatatypeFormatException | FactoryException | TransformException ex) {

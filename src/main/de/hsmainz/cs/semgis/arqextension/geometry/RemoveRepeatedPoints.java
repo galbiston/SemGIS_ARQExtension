@@ -10,7 +10,7 @@ import org.apache.jena.sparql.function.FunctionBase2;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Geometry;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
 
 /**
@@ -47,11 +47,11 @@ public class RemoveRepeatedPoints extends FunctionBase2 {
             }
             switch(geom.getGeometryType()) {
             case "MultiPoint": 
-            	return GeometryWrapper.createMultiPoint(result, geometry.getSrsURI(), WKTDatatype.URI).asNodeValue();
+            	return GeometryWrapperFactory.createMultiPoint(result, geometry.getSrsURI(), WKTDatatype.URI).asNodeValue();
             case "Polygon":
-            	return GeometryWrapper.createPolygon(result, geometry.getSrsURI(), WKTDatatype.URI).asNodeValue();	
+            	return GeometryWrapperFactory.createPolygon(result, geometry.getSrsURI(), WKTDatatype.URI).asNodeValue();	
             case "LineString":
-            	return GeometryWrapper.createLineString(result, geometry.getSrsURI(), WKTDatatype.URI).asNodeValue();
+            	return GeometryWrapperFactory.createLineString(result, geometry.getSrsURI(), WKTDatatype.URI).asNodeValue();
             }
             throw new UnsupportedOperationException("Unsupported geometry type"); //To change body of generated methods, choose Tools | Templates.
         } catch (DatatypeFormatException ex) {

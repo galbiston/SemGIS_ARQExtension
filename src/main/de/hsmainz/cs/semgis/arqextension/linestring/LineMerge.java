@@ -12,7 +12,7 @@
  ****************************************************************************** */
 package de.hsmainz.cs.semgis.arqextension.linestring;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import org.apache.jena.datatypes.DatatypeFormatException;
 import org.apache.jena.sparql.expr.ExprEvalException;
 import org.apache.jena.sparql.expr.NodeValue;
@@ -34,7 +34,7 @@ public class LineMerge extends FunctionBase1 {
             if (geom instanceof MultiLineString) {
                 LineMerger merger = new LineMerger();
                 merger.add(geom);
-                //GeometryWrapper mergerWrapper = GeometryWrapper.createGeometry(merger.getMergedLineStrings(), geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
+                //GeometryWrapper mergerWrapper = GeometryWrapperFactory.createGeometry(merger.getMergedLineStrings(), geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
                 //return mergerWrapper.asNodeValue();
                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 

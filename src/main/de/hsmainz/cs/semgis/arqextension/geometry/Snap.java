@@ -12,7 +12,7 @@
  ****************************************************************************** */
 package de.hsmainz.cs.semgis.arqextension.geometry;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import org.apache.jena.datatypes.DatatypeFormatException;
 import org.apache.jena.sparql.expr.ExprEvalException;
 import org.apache.jena.sparql.expr.NodeValue;
@@ -38,7 +38,7 @@ public class Snap extends FunctionBase3 {
             GeometrySnapper snapper = new GeometrySnapper(geom1.getXYGeometry());
             Geometry snapGeom = snapper.snapTo(transGeom2.getXYGeometry(), tolerance);
 
-            GeometryWrapper snapWrapper = GeometryWrapper.createGeometry(snapGeom, geom1.getSrsURI(), geom1.getGeometryDatatypeURI());
+            GeometryWrapper snapWrapper = GeometryWrapperFactory.createGeometry(snapGeom, geom1.getSrsURI(), geom1.getGeometryDatatypeURI());
             return snapWrapper.asNodeValue();
         } catch (DatatypeFormatException | FactoryException | MismatchedDimensionException | TransformException ex) {
             throw new ExprEvalException(ex.getMessage(), ex);

@@ -13,7 +13,7 @@
 package de.hsmainz.cs.semgis.arqextension.geometry;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryReverse;
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import org.apache.jena.datatypes.DatatypeFormatException;
 import org.apache.jena.sparql.expr.ExprEvalException;
 import org.apache.jena.sparql.expr.NodeValue;
@@ -35,7 +35,7 @@ public class FlipCoordinates
             Geometry geom = geometry.getParsingGeometry();
             Geometry reverseGeom = GeometryReverse.reverseGeometry(geom); //Don't modify the original due to caching of GeometryWrappers.
 
-            GeometryWrapper reverseGeomWrapper = GeometryWrapper.createGeometry(reverseGeom, geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
+            GeometryWrapper reverseGeomWrapper = GeometryWrapperFactory.createGeometry(reverseGeom, geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
 
             return reverseGeomWrapper.asNodeValue();
         } catch (DatatypeFormatException ex) {

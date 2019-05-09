@@ -44,10 +44,10 @@
     </build>
     <properties>
         <geotk.version>5.0-SNAPSHOT</geotk.version>
-        <sis.version>0.7</sis.version>
+        <sis.version>0.8</sis.version>
         <geoapi.version>4.0-M05</geoapi.version>
         <geotools.version>21.0</geotools.version>
-        <!--<sis.version>1.0-SNAPSHOT</sis.version>-->
+        <!-- <sis.version>1.0-SNAPSHOT</sis.version>-->
         <jena.version>3.10.0</jena.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -93,11 +93,7 @@
     <artifactId>mapbox-vector-tile</artifactId>
     <version>3.0.0</version>
 </dependency>
-        <dependency>
-            <groupId>org.geotoolkit</groupId>
-            <artifactId>geotk-client-wcs</artifactId>
-            <version>${geotk.version}</version>
-        </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.locationtech.jts/jts -->
 <dependency>
     <groupId>org.locationtech.jts</groupId>
@@ -105,7 +101,13 @@
     <version>1.16.1</version>
     <type>pom</type>
 </dependency>
-        
+       
+
+       <!--  <dependency>
+            <groupId>org.geotoolkit</groupId>
+            <artifactId>geotk-client-wcs</artifactId>
+            <version>${geotk.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.geotoolkit</groupId>
             <artifactId>geotk-client-csw</artifactId>
@@ -177,7 +179,7 @@
             <artifactId>geotk-logging-commons</artifactId>
             <version>${geotk.version}</version>
         </dependency>
-        <dependency>
+      <dependency>
             <groupId>org.opengis</groupId>
             <artifactId>geoapi</artifactId>
             <version>${geoapi.version}</version>
@@ -197,34 +199,39 @@
             <artifactId>sis-utility</artifactId>
             <version>${sis.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.sis.core</groupId>
-            <artifactId>sis-referencing</artifactId>
-            <version>${sis.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.sis.non-free</groupId>
-            <artifactId>sis-epsg</artifactId>
-            <version>0.7</version>
 
-        </dependency>
-        
+
+   <dependency>
+    <groupId>org.apache.sis.non-free</groupId>
+    <artifactId>sis-embedded-data</artifactId>
+    <version>${sis.version}</version>
+  </dependency>-->
+
+<!-- https://mvnrepository.com/artifact/org.apache.derby/derby -->
+<!-- https://mvnrepository.com/artifact/org.apache.derby/derby -->
         <dependency>
             <groupId>org.apache.sis.core</groupId>
             <artifactId>sis-referencing</artifactId>
             <version>${sis.version}</version>
         </dependency>
+<dependency>
+    <groupId>org.apache.derby</groupId>
+    <artifactId>derby</artifactId>
+    <version>10.13.1.1</version>
+</dependency>
+
+
         
         <dependency>
             <groupId>io.github.galbiston</groupId>
             <artifactId>geosparql-jena</artifactId>
-            <version>1.0.6</version>
+            <version>1.1.1</version>
         </dependency>
-        <dependency>
+    <!--     <dependency>
         <groupId>com.conveyal</groupId>
     <artifactId>geobuf-java</artifactId>
     <version>1.0-SNAPSHOT</version>
-        </dependency>
+        </dependency>-->
     </dependencies>
 
     <repositories>

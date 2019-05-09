@@ -9,7 +9,7 @@ import org.locationtech.jts.operation.distance3d.Distance3DOp;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.util.FactoryException;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 
 public class ShortestLine3D extends FunctionBase2 {
 
@@ -23,7 +23,7 @@ public class ShortestLine3D extends FunctionBase2 {
 
 	            Distance3DOp distop = new Distance3DOp(geometry1.getXYGeometry(), transGeometry2.getXYGeometry());
 	            Coordinate[] coord = distop.nearestPoints();
-	            GeometryWrapper lineStringWrapper = GeometryWrapper.createLineString(coord, geometry1.getSrsURI(), geometry1.getGeometryDatatypeURI());
+	            GeometryWrapper lineStringWrapper = GeometryWrapperFactory.createLineString(coord, geometry1.getSrsURI(), geometry1.getGeometryDatatypeURI());
 
 	            return lineStringWrapper.asNodeValue();
 	        } catch (DatatypeFormatException | FactoryException | TransformException ex) {

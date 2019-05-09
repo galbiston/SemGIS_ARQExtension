@@ -7,7 +7,7 @@ import org.apache.jena.sparql.function.FunctionBase2;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Geometry;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
 
 /**
@@ -24,7 +24,7 @@ public class BoundingDiagonal extends FunctionBase2{
             org.locationtech.jts.geom.Envelope env=geom.getEnvelopeInternal();
             Coordinate lowerCorner=new Coordinate(env.getMinX(),env.getMinY());
             Coordinate upperCorner=new Coordinate(env.getMaxX(),env.getMaxY());
-            GeometryWrapper lineStringWrapper = GeometryWrapper.createLineString(new Coordinate[] {lowerCorner,upperCorner}, WKTDatatype.URI);
+            GeometryWrapper lineStringWrapper = GeometryWrapperFactory.createLineString(new Coordinate[] {lowerCorner,upperCorner}, WKTDatatype.URI);
             return lineStringWrapper.asNodeValue();          
         } catch (DatatypeFormatException ex) {
             throw new ExprEvalException(ex.getMessage(), ex);

@@ -1,6 +1,6 @@
 package io.github.galbiston.geosparql_jena.implementation.datatype.vector;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,7 +74,7 @@ public class EncodedPolylineDatatype extends GeometryDatatype {
 
     @Override
     public GeometryWrapper read(String geometryLiteral) {
-	    GeometryWrapper wrapper = GeometryWrapper.createLineString(decodePolyline(geometryLiteral, 5), "<http://www.opengis.net/def/crs/EPSG/0/4326>", EncodedPolylineDatatype.URI);	
+	    GeometryWrapper wrapper = GeometryWrapperFactory.createLineString(decodePolyline(geometryLiteral, 5), "<http://www.opengis.net/def/crs/EPSG/0/4326>", EncodedPolylineDatatype.URI);	
 	    return wrapper;
 
 

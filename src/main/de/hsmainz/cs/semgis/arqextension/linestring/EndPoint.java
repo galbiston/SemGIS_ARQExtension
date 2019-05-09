@@ -12,7 +12,7 @@
  ****************************************************************************** */
 package de.hsmainz.cs.semgis.arqextension.linestring;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import org.apache.jena.datatypes.DatatypeFormatException;
 import org.apache.jena.sparql.expr.ExprEvalException;
 import org.apache.jena.sparql.expr.NodeValue;
@@ -37,7 +37,7 @@ public class EndPoint extends FunctionBase1 {
             if (geom instanceof LineString) {
 
                 Point point = ((LineString) geom).getEndPoint();
-                GeometryWrapper pointWrapper = GeometryWrapper.createGeometry(point, geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
+                GeometryWrapper pointWrapper = GeometryWrapperFactory.createGeometry(point, geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
                 return pointWrapper.asNodeValue();
             }
 

@@ -12,7 +12,7 @@ import org.locationtech.jts.triangulate.VoronoiDiagramBuilder;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.util.FactoryException;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 
 public class VoronoiPolygons extends FunctionBase3 {
 
@@ -27,7 +27,7 @@ public class VoronoiPolygons extends FunctionBase3 {
     		builder.setSites(geom1.getXYGeometry());
     		Geometry test = builder.getDiagram(new GeometryFactory());
             
-            GeometryWrapper pointWrapper = GeometryWrapper.createPoint(coord, geom1.getSrsURI(), geom1.getGeometryDatatypeURI());
+            GeometryWrapper pointWrapper = GeometryWrapperFactory.createPoint(coord, geom1.getSrsURI(), geom1.getGeometryDatatypeURI());
 
             return pointWrapper.asNodeValue();
         } catch (DatatypeFormatException | FactoryException | TransformException ex) {

@@ -5,7 +5,7 @@ import java.math.BigInteger;
 import org.apache.jena.sparql.expr.NodeValue;
 import org.apache.jena.sparql.function.FunctionBase2;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
 import io.github.galbiston.geosparql_jena.implementation.datatype.vector.EncodedPolylineDatatype;
 
@@ -19,7 +19,7 @@ public class LineFromEncodedPolyline extends FunctionBase2 {
 	public NodeValue exec(NodeValue v,NodeValue v2) {
 		 String polyline=v.asString();
 		 BigInteger precision=v2.getInteger();
-    	GeometryWrapper pointWrapper = GeometryWrapper.createLineString(EncodedPolylineDatatype.decodePolyline(polyline, precision.intValue()), "<http://www.opengis.net/def/crs/EPSG/0/4326>", WKTDatatype.URI);	
+    	GeometryWrapper pointWrapper = GeometryWrapperFactory.createLineString(EncodedPolylineDatatype.decodePolyline(polyline, precision.intValue()), "<http://www.opengis.net/def/crs/EPSG/0/4326>", WKTDatatype.URI);	
         return pointWrapper.asNodeValue();
 	}
 

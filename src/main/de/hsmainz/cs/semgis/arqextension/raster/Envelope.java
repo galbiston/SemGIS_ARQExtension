@@ -12,7 +12,7 @@
  ****************************************************************************** */
 package de.hsmainz.cs.semgis.arqextension.raster;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import java.util.List;
 import org.apache.jena.sparql.engine.binding.Binding;
 import org.apache.jena.sparql.expr.NodeValue;
@@ -27,7 +27,7 @@ public class Envelope extends RasterSpatialFunction {
     protected NodeValue exec(GridCoverage2D raster, GeometryWrapper geometryWrapper, Binding binding, List<NodeValue> evalArgs, String uri, FunctionEnv env) {
 
         Geometry envelope = JTS.toGeometry(raster.getEnvelope2D().getBounds2D());
-        GeometryWrapper envelopeWrapper = GeometryWrapper.createGeometry(envelope, geometryWrapper.getSrsURI(), geometryWrapper.getGeometryDatatypeURI());
+        GeometryWrapper envelopeWrapper = GeometryWrapperFactory.createGeometry(envelope, geometryWrapper.getSrsURI(), geometryWrapper.getGeometryDatatypeURI());
         return envelopeWrapper.asNodeValue();
     }
 

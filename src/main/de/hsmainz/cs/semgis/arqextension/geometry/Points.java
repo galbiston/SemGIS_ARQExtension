@@ -13,7 +13,7 @@ import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.MultiPoint;
 import org.locationtech.jts.geom.Point;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
 
 public class Points extends FunctionBase1 {
@@ -29,7 +29,7 @@ public class Points extends FunctionBase1 {
             	res.add(fac.createPoint(coord));
             }
             MultiPoint mpoint=new MultiPoint(res.toArray(new Point[res.size()]), fac);
-            GeometryWrapper mPointWrapper = GeometryWrapper.createGeometry(mpoint, geometry.getSrsURI(), WKTDatatype.URI);           
+            GeometryWrapper mPointWrapper = GeometryWrapperFactory.createGeometry(mpoint, geometry.getSrsURI(), WKTDatatype.URI);           
             return mPointWrapper.asNodeValue();
         } catch (DatatypeFormatException ex) {
             throw new ExprEvalException(ex.getMessage(), ex);

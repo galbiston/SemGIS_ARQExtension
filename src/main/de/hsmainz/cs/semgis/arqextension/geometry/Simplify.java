@@ -12,7 +12,7 @@
  ****************************************************************************** */
 package de.hsmainz.cs.semgis.arqextension.geometry;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import org.apache.jena.datatypes.DatatypeFormatException;
 import org.apache.jena.sparql.expr.ExprEvalException;
 import org.apache.jena.sparql.expr.NodeValue;
@@ -41,7 +41,7 @@ public class Simplify extends FunctionBase3 {
             simplifier.setEnsureValid(preserveCollapsed);
 
             Geometry simpleGeom = simplifier.getResultGeometry();
-            GeometryWrapper simpleWrapper = GeometryWrapper.createGeometry(simpleGeom, geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
+            GeometryWrapper simpleWrapper = GeometryWrapperFactory.createGeometry(simpleGeom, geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
             return simpleWrapper.asNodeValue();
 
         } catch (DatatypeFormatException ex) {

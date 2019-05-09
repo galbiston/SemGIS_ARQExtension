@@ -12,7 +12,7 @@
  ****************************************************************************** */
 package de.hsmainz.cs.semgis.arqextension.geometry;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import org.apache.jena.datatypes.DatatypeFormatException;
 import org.apache.jena.sparql.expr.ExprEvalException;
 import org.apache.jena.sparql.expr.NodeValue;
@@ -36,7 +36,7 @@ public class ConcaveHull extends FunctionBase3 {
             org.opensphere.geometry.algorithm.ConcaveHull hull = new org.opensphere.geometry.algorithm.ConcaveHull(geom.getXYGeometry(), targetPercent);
 
             Geometry concaveHull = hull.getConcaveHull();
-            GeometryWrapper concaveWrapper = GeometryWrapper.createGeometry(concaveHull, geom.getSrsURI(), geom.getGeometryDatatypeURI());
+            GeometryWrapper concaveWrapper = GeometryWrapperFactory.createGeometry(concaveHull, geom.getSrsURI(), geom.getGeometryDatatypeURI());
             return concaveWrapper.asNodeValue();
         } catch (DatatypeFormatException ex) {
             throw new ExprEvalException(ex.getMessage(), ex);

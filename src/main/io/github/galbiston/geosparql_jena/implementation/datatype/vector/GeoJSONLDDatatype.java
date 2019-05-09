@@ -17,7 +17,7 @@
  */
 package io.github.galbiston.geosparql_jena.implementation.datatype.vector;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import org.locationtech.jts.geom.Geometry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -91,7 +91,7 @@ public class GeoJSONLDDatatype extends GeometryDatatype {
     public GeometryWrapper read(String geometryLiteral) {
 		GeoJSONReader reader = new GeoJSONReader();
 		Geometry geom = reader.read(geometryLiteral);
-        GeometryWrapper wrapper = GeometryWrapper.createGeometry(geom, "<http://www.opengis.net/def/crs/EPSG/0/"+geom.getSRID()+">", GeoJSONDatatype.URI);	
+        GeometryWrapper wrapper = GeometryWrapperFactory.createGeometry(geom, "<http://www.opengis.net/def/crs/EPSG/0/"+geom.getSRID()+">", GeoJSONDatatype.URI);	
         return wrapper;
     }
 

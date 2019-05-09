@@ -15,7 +15,7 @@ package de.hsmainz.cs.semgis.arqextension.geometry;
 import org.apache.jena.sparql.expr.NodeValue;
 import org.locationtech.jts.geom.Geometry;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import org.apache.jena.datatypes.DatatypeFormatException;
 import org.apache.jena.sparql.expr.ExprEvalException;
 import org.apache.jena.sparql.function.FunctionBase1;
@@ -34,7 +34,7 @@ public class MinimumBoundingCircle extends FunctionBase1 {
             Geometry geom = geometry.getXYGeometry();
 
             org.locationtech.jts.algorithm.MinimumBoundingCircle minCircle = new org.locationtech.jts.algorithm.MinimumBoundingCircle(geom);
-            GeometryWrapper minCircleWrapper = GeometryWrapper.createGeometry(minCircle.getCircle(), geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
+            GeometryWrapper minCircleWrapper = GeometryWrapperFactory.createGeometry(minCircle.getCircle(), geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
             return minCircleWrapper.asNodeValue();
         } catch (DatatypeFormatException ex) {
             throw new ExprEvalException(ex.getMessage(), ex);

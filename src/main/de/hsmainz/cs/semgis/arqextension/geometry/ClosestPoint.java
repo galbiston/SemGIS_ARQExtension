@@ -12,7 +12,7 @@
  ****************************************************************************** */
 package de.hsmainz.cs.semgis.arqextension.geometry;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import org.apache.jena.datatypes.DatatypeFormatException;
 import org.apache.jena.sparql.expr.ExprEvalException;
 import org.apache.jena.sparql.expr.NodeValue;
@@ -37,7 +37,7 @@ public class ClosestPoint extends FunctionBase2 {
             Coordinate[] coords = distop.nearestPoints();
             Coordinate coord = new Coordinate(coords[0].x, coords[0].y);
 
-            GeometryWrapper pointWrapper = GeometryWrapper.createPoint(coord, geom1.getSrsURI(), geom1.getGeometryDatatypeURI());
+            GeometryWrapper pointWrapper = GeometryWrapperFactory.createPoint(coord, geom1.getSrsURI(), geom1.getGeometryDatatypeURI());
 
             return pointWrapper.asNodeValue();
         } catch (DatatypeFormatException | FactoryException | TransformException ex) {

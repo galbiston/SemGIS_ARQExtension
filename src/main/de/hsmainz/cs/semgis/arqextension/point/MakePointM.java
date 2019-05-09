@@ -12,7 +12,7 @@
  ****************************************************************************** */
 package de.hsmainz.cs.semgis.arqextension.point;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
 import io.github.galbiston.geosparql_jena.implementation.vocabulary.SRS_URI;
 import org.apache.jena.sparql.expr.NodeValue;
@@ -30,7 +30,7 @@ public class MakePointM extends FunctionBase3 {
     public NodeValue exec(NodeValue arg0, NodeValue arg1, NodeValue arg2) {
 
         Coordinate coord = new CoordinateXYM(arg0.getDouble(), arg1.getDouble(), arg2.getDouble());
-        GeometryWrapper pointWrapper = GeometryWrapper.createPoint(coord, SRS_URI.DEFAULT_WKT_CRS84, WKTDatatype.URI);
+        GeometryWrapper pointWrapper = GeometryWrapperFactory.createPoint(coord, SRS_URI.DEFAULT_WKT_CRS84, WKTDatatype.URI);
         return pointWrapper.asNodeValue();
     }
 

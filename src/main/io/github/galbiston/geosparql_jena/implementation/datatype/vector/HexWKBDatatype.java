@@ -1,6 +1,6 @@
 package io.github.galbiston.geosparql_jena.implementation.datatype.vector;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import io.github.galbiston.geosparql_jena.implementation.vocabulary.SRS_URI;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.io.ParseException;
@@ -76,7 +76,7 @@ public class HexWKBDatatype extends GeometryDatatype {
         Geometry geometry;
 		try {
 			geometry = wkbReader.read(WKBReader.hexToBytes(wkbTextSRS.getWkbText().toString()));
-	        GeometryWrapper wrapper = GeometryWrapper.createGeometry(geometry, "<http://www.opengis.net/def/crs/EPSG/0/"+geometry.getSRID()+">", HexWKBDatatype.URI);	
+	        GeometryWrapper wrapper = GeometryWrapperFactory.createGeometry(geometry, "<http://www.opengis.net/def/crs/EPSG/0/"+geometry.getSRID()+">", HexWKBDatatype.URI);	
 	        return wrapper;
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block

@@ -12,7 +12,7 @@
  ****************************************************************************** */
 package de.hsmainz.cs.semgis.arqextension.geometry;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import java.math.BigInteger;
 import org.apache.jena.datatypes.DatatypeFormatException;
 import org.apache.jena.sparql.expr.ExprEvalException;
@@ -41,7 +41,7 @@ public class PointN extends FunctionBase2 {
             }
             Coordinate[] coords = geom.getCoordinates();
             CoordinateXY coord = new CoordinateXY(coords[n.intValue()].x, coords[n.intValue()].y);
-            GeometryWrapper pointWrapper = GeometryWrapper.createPoint(coord, geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
+            GeometryWrapper pointWrapper = GeometryWrapperFactory.createPoint(coord, geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
 
             return pointWrapper.asNodeValue();
 
