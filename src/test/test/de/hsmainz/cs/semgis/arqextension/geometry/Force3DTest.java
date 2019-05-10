@@ -19,7 +19,7 @@ public class Force3DTest {
 	public static final String testPolygon="POLYGON((0 0,0 5,5 0,0 0))";
 	
 	@Test
-	public void testForce2D() {
+	public void testForce3D() {
         NodeValue geometryLiteral = NodeValue.makeNode(testPolygon, WKTDatatype.INSTANCE);
         Force3D instance=new Force3D();
         List<Coordinate> coords=new LinkedList<Coordinate>();
