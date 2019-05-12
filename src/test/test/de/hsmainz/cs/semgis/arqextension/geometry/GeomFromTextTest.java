@@ -15,7 +15,7 @@ import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import io.github.galbiston.geosparql_jena.implementation.datatype.GeoJSONDatatype;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
 
-public class GeomFromText {
+public class GeomFromTextTest {
 
 	public static final String geoJsonTestGeom="{\"type\":\"Point\",\"coordinates\":[-48.23456,20.12345]}";
 	

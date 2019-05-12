@@ -201,6 +201,7 @@ public class PostGISGeo {
    public static final Property st_pointN = property("ST_PointN");
    public static final Property st_points = property("ST_Points");
    public static final Property st_pointOnSurface = property("ST_PointOnSurface");
+   public static final Property st_polygon = property("ST_Polygon");
    public static final Property st_polygonFromText = property("ST_PolygonFromText");
    public static final Property st_polygonFromWKB = property("ST_PolygonFromWKB");
    public static final Property st_rastFromHexWKB = property("ST_RastFromHexWKB");
@@ -295,6 +296,7 @@ public static final String X3D = "X3D";
 public static final String OSM= "OSM";
 public static final String HexWKBRaster = "HexWKBRaster";
 public static final String TopoJSON = "TopoJSON";
+
 
 
 

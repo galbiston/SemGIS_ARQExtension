@@ -39,10 +39,10 @@ public class RemoveRepeatedPoints extends FunctionBase2 {
             			repeated=true;
             		}
             		j++;
-            		if(!repeated) {
-            			result.add(coord);
-            		}
             	}
+        		if(!repeated) {
+        			result.add(coord);
+        		}
             	i++;
             }
             switch(geom.getGeometryType()) {
