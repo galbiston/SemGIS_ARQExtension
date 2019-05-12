@@ -1,4 +1,4 @@
-package io.github.galbiston.geosparql_jena.implementation.datatype.vector;
+package io.github.galbiston.geosparql_jena.implementation.datatype;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

@@ -6,8 +6,8 @@ import org.apache.jena.sparql.expr.NodeValue;
 import org.apache.jena.sparql.function.FunctionBase2;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
+import io.github.galbiston.geosparql_jena.implementation.datatype.EncodedPolylineDatatype;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
-import io.github.galbiston.geosparql_jena.implementation.datatype.vector.EncodedPolylineDatatype;
 
 /**
  * Creates a LineString from an Encoded Polyline.

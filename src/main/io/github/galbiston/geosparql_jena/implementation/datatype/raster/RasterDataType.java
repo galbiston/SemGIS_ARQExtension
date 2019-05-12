@@ -7,11 +7,11 @@ import org.apache.jena.datatypes.TypeMapper;
 
 import io.github.galbiston.geosparql_jena.implementation.CoverageWrapper;
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
+import io.github.galbiston.geosparql_jena.implementation.datatype.GMLDatatype;
+import io.github.galbiston.geosparql_jena.implementation.datatype.GeoJSONDatatype;
+import io.github.galbiston.geosparql_jena.implementation.datatype.GeometryDatatype;
+import io.github.galbiston.geosparql_jena.implementation.datatype.KMLDatatype;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
-import io.github.galbiston.geosparql_jena.implementation.datatype.vector.GMLDatatype;
-import io.github.galbiston.geosparql_jena.implementation.datatype.vector.GeoJSONDatatype;
-import io.github.galbiston.geosparql_jena.implementation.datatype.vector.GeometryDatatype;
-import io.github.galbiston.geosparql_jena.implementation.datatype.vector.KMLDatatype;
 import io.github.galbiston.geosparql_jena.implementation.index.GeometryLiteralIndex;
 import io.github.galbiston.geosparql_jena.implementation.index.GeometryLiteralIndex.GeometryIndex;
 

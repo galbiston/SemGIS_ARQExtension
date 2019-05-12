@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.galbiston.geosparql_jena.implementation.datatype.vector;
+package io.github.galbiston.geosparql_jena.implementation.datatype;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
@@ -70,6 +70,13 @@ public abstract class GeometryDatatype extends BaseDatatype {
             TYPE_MAPPER.registerDatatype(GMLDatatype.INSTANCE);
             TYPE_MAPPER.registerDatatype(GeoJSONDatatype.INSTANCE);
             TYPE_MAPPER.registerDatatype(KMLDatatype.INSTANCE);
+            TYPE_MAPPER.registerDatatype(WKBDatatype.INSTANCE);
+            TYPE_MAPPER.registerDatatype(TWKBDatatype.INSTANCE);
+            TYPE_MAPPER.registerDatatype(TopoJSONDatatype.INSTANCE);
+            TYPE_MAPPER.registerDatatype(GeobufDatatype.INSTANCE);
+            TYPE_MAPPER.registerDatatype(GeoHashDatatype.INSTANCE);
+            TYPE_MAPPER.registerDatatype(EncodedPolylineDatatype.INSTANCE);
+            TYPE_MAPPER.registerDatatype(HexWKBDatatype.INSTANCE);
             isDatatypesRegistered = true;
         }
     }

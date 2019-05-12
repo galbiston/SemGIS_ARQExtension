@@ -18,9 +18,9 @@
  */
 package io.github.galbiston.geosparql_jena.implementation;
 
+import io.github.galbiston.geosparql_jena.implementation.datatype.GMLDatatype;
+import io.github.galbiston.geosparql_jena.implementation.datatype.GeometryDatatype;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
-import io.github.galbiston.geosparql_jena.implementation.datatype.vector.GMLDatatype;
-import io.github.galbiston.geosparql_jena.implementation.datatype.vector.GeometryDatatype;
 import io.github.galbiston.geosparql_jena.implementation.great_circle.CoordinatePair;
 import io.github.galbiston.geosparql_jena.implementation.great_circle.GreatCircleDistance;
 import io.github.galbiston.geosparql_jena.implementation.index.GeometryLiteralIndex.GeometryIndex;

@@ -7,7 +7,7 @@ import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.LineString;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
-import io.github.galbiston.geosparql_jena.implementation.datatype.vector.EncodedPolylineDatatype;
+import io.github.galbiston.geosparql_jena.implementation.datatype.EncodedPolylineDatatype;
 
 /**
  * Returns an Encoded Polyline from a LineString geometry.

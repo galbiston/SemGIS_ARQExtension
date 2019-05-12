@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.jena.datatypes.DatatypeFormatException;
 import org.apache.jena.sparql.expr.ExprEvalException;
 import org.apache.jena.sparql.expr.NodeValue;
-import org.apache.jena.sparql.function.FunctionBase2;
+import org.apache.jena.sparql.function.FunctionBase1;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.GeometryCollection;
@@ -20,10 +20,10 @@ import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
  * Given a geometry collection, return the "simplest" representation of the contents. 
  *
  */
-public class CollectionHomogenize extends FunctionBase2 {
+public class CollectionHomogenize extends FunctionBase1 {
 
 	@Override
-	public NodeValue exec(NodeValue arg0, NodeValue arg1) {
+	public NodeValue exec(NodeValue arg0) {
         try {
             GeometryWrapper geom1 = GeometryWrapper.extract(arg0);
             GeometryCollection collection=(GeometryCollection)geom1.getXYGeometry();

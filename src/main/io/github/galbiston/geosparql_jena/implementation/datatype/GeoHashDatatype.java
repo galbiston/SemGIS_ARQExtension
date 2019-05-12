@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.galbiston.geosparql_jena.implementation.datatype.vector;
+package io.github.galbiston.geosparql_jena.implementation.datatype;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import org.locationtech.jts.geom.Geometry;
@@ -42,25 +42,25 @@ import de.hsmainz.cs.semgis.arqextension.vocabulary.PostGISGeo;
  * be assumed as the spatial reference system for geo:wktLiterals that do not *
  * specify an explicit spatial reference system URI.
  */
-public class TopoJSONDatatype extends GeometryDatatype {
+public class GeoHashDatatype extends GeometryDatatype {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(TopoJSONDatatype.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(GeoHashDatatype.class);
 
     /**
      * The default WKT type URI.
      */
-    public static final String URI = PostGISGeo.TopoJSON;
+    public static final String URI = PostGISGeo.GeoHash;
 
     /**
      * A static instance of WKTDatatype.
      */
-    public static final TopoJSONDatatype INSTANCE = new TopoJSONDatatype();
+    public static final GeoHashDatatype INSTANCE = new GeoHashDatatype();
     
 
     /**
      * private constructor - single global instance.
      */
-    private TopoJSONDatatype() {
+    private GeoHashDatatype() {
         super(URI);
     }
 
@@ -83,7 +83,7 @@ public class TopoJSONDatatype extends GeometryDatatype {
             String jsonstring = json.toString();
             return jsonstring;
         } else {
-            throw new AssertionError("Object passed to TopoJSONDatatype is not a GeometryWrapper: " + geometry);
+            throw new AssertionError("Object passed to GeoHashDatatype is not a GeometryWrapper: " + geometry);
         }
     }
 
@@ -98,7 +98,7 @@ public class TopoJSONDatatype extends GeometryDatatype {
 
     @Override
     public String toString() {
-        return "TopoJSONDatatype{" + URI + '}';
+        return "GeoHashDatatype{" + URI + '}';
     }
 
 }

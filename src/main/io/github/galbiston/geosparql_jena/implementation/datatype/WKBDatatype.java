@@ -1,4 +1,4 @@
-package io.github.galbiston.geosparql_jena.implementation.datatype.vector;
+package io.github.galbiston.geosparql_jena.implementation.datatype;
 
 	import io.github.galbiston.geosparql_jena.implementation.DimensionInfo;
 	import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;

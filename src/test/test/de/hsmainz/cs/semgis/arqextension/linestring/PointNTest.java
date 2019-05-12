@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.locationtech.jts.geom.Coordinate;
 
 import de.hsmainz.cs.semgis.arqextension.geometry.PointN;
-import de.hsmainz.cs.semgis.arqextension.linestring.EndPoint;
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
 

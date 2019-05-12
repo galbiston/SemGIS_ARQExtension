@@ -1,3 +1,4 @@
+
 /*
  * Copyright 2018 the original author or authors.
  * See the notice.md file distributed with this work for additional
@@ -15,7 +16,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.galbiston.geosparql_jena.implementation.datatype.vector;
+package io.github.galbiston.geosparql_jena.implementation.datatype;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import org.locationtech.jts.geom.Geometry;
@@ -42,25 +43,25 @@ import de.hsmainz.cs.semgis.arqextension.vocabulary.PostGISGeo;
  * be assumed as the spatial reference system for geo:wktLiterals that do not *
  * specify an explicit spatial reference system URI.
  */
-public class GeoJSONLDDatatype extends GeometryDatatype {
+public class GeoJSONDatatype extends GeometryDatatype {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(GeoJSONLDDatatype.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(GeoJSONDatatype.class);
 
     /**
      * The default WKT type URI.
      */
-    public static final String URI = PostGISGeo.GeoJSONLD;
+    public static final String URI = PostGISGeo.GeoJSON;
 
     /**
      * A static instance of WKTDatatype.
      */
-    public static final GeoJSONLDDatatype INSTANCE = new GeoJSONLDDatatype();
+    public static final GeoJSONDatatype INSTANCE = new GeoJSONDatatype();
     
 
     /**
      * private constructor - single global instance.
      */
-    private GeoJSONLDDatatype() {
+    private GeoJSONDatatype() {
         super(URI);
     }
 
@@ -83,7 +84,7 @@ public class GeoJSONLDDatatype extends GeometryDatatype {
             String jsonstring = json.toString();
             return jsonstring;
         } else {
-            throw new AssertionError("Object passed to GeoJSONLDDatatype is not a GeometryWrapper: " + geometry);
+            throw new AssertionError("Object passed to GeoJSONDatatype is not a GeometryWrapper: " + geometry);
         }
     }
 
@@ -98,7 +99,7 @@ public class GeoJSONLDDatatype extends GeometryDatatype {
 
     @Override
     public String toString() {
-        return "GeoJSONLDDatatype{" + URI + '}';
+        return "GeoJSONDatatype{" + URI + '}';
     }
 
 }
