@@ -2,10 +2,12 @@ package de.hsmainz.cs.semgis.arqextension.example;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.List;
 
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.query.QueryExecution;
 import org.apache.jena.query.QueryExecutionFactory;
+import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
 import org.apache.jena.query.ResultSetFormatter;
 import org.apache.jena.rdf.model.ModelFactory;
@@ -35,17 +37,25 @@ public class TripleStoreConnection {
 		
 	}
 	
-	public static String executeQuery(String query) {
+	public static String[] executeQuery(String query) {
 		query=prefixCollection+query;
 		System.out.println(query);
 		try (QueryExecution qe = QueryExecutionFactory.create(query, INSTANCE.model)) {
 		    ResultSet rs = qe.execSelect();
-		    return ResultSetFormatter.asXMLString(rs);
+		    List<QuerySolution> test=ResultSetFormatter.toList(rs);
+		    System.out.println(test.size()+" Results ");
+		    return new String[] {test.toString(),test.size()+""};
 		}
 	}
 	
 	public static void main(String[] args) {
-		System.out.println(TripleStoreConnection.INSTANCE.executeQuery("SELECT ?geom ?wkt WHERE { ?geom geo:asWKT geo:ST_StartPoint(?wkt) }"));
+		String[] res=TripleStoreConnection.INSTANCE.executeQuery("SELECT ?geom ?wkt WHERE { ?geom geo:asWKT ?wkt . FILTER(!geo:ST_IsCollection(?wkt)) }");
+		//System.out.println(res[0]);
+		System.out.println(res[1]);
+		System.out.println("=====================================================================================================");
+		res=TripleStoreConnection.INSTANCE.executeQuery("SELECT ?geom ?wkt WHERE { ?geom geo:asWKT ?wkt . FILTER(geo:ST_MinimumBoundingRadius(?wkt)>9) }");
+		//System.out.println(res[0]);
+		System.out.println(res[1]);
 	}
 	
 }
