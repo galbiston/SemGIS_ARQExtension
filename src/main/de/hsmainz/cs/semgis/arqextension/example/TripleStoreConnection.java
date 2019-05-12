@@ -19,7 +19,7 @@ public class TripleStoreConnection {
 
 	public static final TripleStoreConnection INSTANCE=new TripleStoreConnection();
 	
-	public static final String prefixCollection="PREFIX geo: <http://www.opengis.net/ont/geosparql#>";
+	public static final String prefixCollection="PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>"+System.lineSeparator()+"PREFIX geo: <http://www.opengis.net/ont/geosparql#>";
 	
 	public OntModel model;
 	
@@ -53,7 +53,7 @@ public class TripleStoreConnection {
 		//System.out.println(res[0]);
 		System.out.println(res[1]);
 		System.out.println("=====================================================================================================");
-		res=TripleStoreConnection.INSTANCE.executeQuery("SELECT ?geom ?wkt WHERE { ?geom geo:asWKT ?wkt . FILTER(geo:ST_MinimumBoundingRadius(?wkt)>9) }");
+		res=TripleStoreConnection.INSTANCE.executeQuery("SELECT ?geom ?wkt WHERE { ?geom geo:asWKT ?wkt . FILTER(geo:ST_Area(geo:ST_SimplifyVW(?wkt))>10) }");
 		//System.out.println(res[0]);
 		System.out.println(res[1]);
 	}
