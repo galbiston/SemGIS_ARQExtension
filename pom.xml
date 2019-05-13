@@ -42,17 +42,16 @@
             </plugin>
         </plugins>
     </build>
-    <properties>
-        <geotk.version>5.0-SNAPSHOT</geotk.version>
-        <sis.version>0.8</sis.version>
-        <geoapi.version>4.0-M05</geoapi.version>
-        <geotools.version>21.0</geotools.version>
-        <!-- <sis.version>1.0-SNAPSHOT</sis.version>-->
-        <jena.version>3.10.0</jena.version>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+   <properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<geotools.version>15.1</geotools.version>
+		  <geotk.version>4.0.0</geotk.version>
+		  <sis.version>0.8-jdk7-M1</sis.version>
+		  <geoapi.version>4.0-M05</geoapi.version>
+		  <jena.version>3.10.0</jena.version>
+		  <maven.compiler.source>1.8</maven.compiler.source>
+   		  <maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
 
     <dependencies>
         <dependency>
@@ -75,6 +74,13 @@
             <artifactId>geo</artifactId>
             <version>0.7.1</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.core/jersey-server -->
+<dependency>
+    <groupId>org.glassfish.jersey.core</groupId>
+    <artifactId>jersey-server</artifactId>
+    <version>2.28</version>
+</dependency>
+        
       <dependency>
     <groupId>org.wololo</groupId>
     <artifactId>jts2geojson</artifactId>
@@ -94,16 +100,9 @@
     <version>3.0.0</version>
 </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.locationtech.jts/jts -->
-<dependency>
-    <groupId>org.locationtech.jts</groupId>
-    <artifactId>jts</artifactId>
-    <version>1.16.1</version>
-    <type>pom</type>
-</dependency>
        
 
-       <!--  <dependency>
+       <dependency>
             <groupId>org.geotoolkit</groupId>
             <artifactId>geotk-client-wcs</artifactId>
             <version>${geotk.version}</version>
@@ -201,7 +200,7 @@
         </dependency>
 
 
-   <dependency>
+<!--    <dependency>
     <groupId>org.apache.sis.non-free</groupId>
     <artifactId>sis-embedded-data</artifactId>
     <version>${sis.version}</version>
@@ -209,11 +208,11 @@
 
 <!-- https://mvnrepository.com/artifact/org.apache.derby/derby -->
 <!-- https://mvnrepository.com/artifact/org.apache.derby/derby -->
-        <dependency>
-            <groupId>org.apache.sis.core</groupId>
-            <artifactId>sis-referencing</artifactId>
-            <version>${sis.version}</version>
-        </dependency>
+<dependency>
+    <groupId>org.apache.sis.non-free</groupId>
+    <artifactId>sis-epsg</artifactId>
+    <version>0.7</version>
+  </dependency>
 <dependency>
     <groupId>org.apache.derby</groupId>
     <artifactId>derby</artifactId>
