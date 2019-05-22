@@ -50,6 +50,7 @@ public class PostGISGeo {
    public static final Property st_asgeobuf = property("ST_AsGeoBuf");
    public static final Property st_asgeojson = property("ST_AsGeoJSON");
    public static final Property st_asgeojsonld = property("ST_AsGeoJSONLD");
+   public static final Property st_asgeouri = property("ST_AsGeoURI");
    public static final Property st_ashexewkb = property("ST_AsHexEWKB");
    public static final Property st_asjpg = property("ST_AsJPG");
    public static final Property st_aslatlontext = property("ST_AsLatLonText");
@@ -142,6 +143,7 @@ public class PostGISGeo {
    public static final Property st_lineFromEncodedPolyline=property("ST_LineFromEncodedPolyline");
    public static final Property st_lineFromMultiPoint=property("ST_LineFromMultiPoint");
    public static final Property st_lineFromWKB = property("ST_LineFromWKB");
+   public static final Property st_lineFromWKT = property("ST_LineFromWKT");
    public static final Property st_lineFromText = property("ST_LineFromText");
    public static final Property st_lineInterpolatePoint = property("ST_LineInterpolatePoint");
    public static final Property st_lineInterpolatePoints = property("ST_LineInterpolatePoints");
@@ -237,6 +239,7 @@ public class PostGISGeo {
    public static final Property st_setPoint = property("ST_SetPoint");
    public static final Property st_setSRID = property("ST_SetSRID");
    public static final Property st_sharedPaths = property("ST_SharedPaths");
+   public static final Property st_shiftLongitude = property("ST_ShiftLongitude");
    public static final Property st_shortestLine = property("ST_ShortestLine");
    public static final Property st_shortestLine3D = property("ST_3DShortestLine");
    public static final Property st_simplify = property("ST_Simplify");
@@ -296,6 +299,9 @@ public static final String X3D = "X3D";
 public static final String OSM= "OSM";
 public static final String HexWKBRaster = "HexWKBRaster";
 public static final String TopoJSON = "TopoJSON";
+
+
+
 
 
 

@@ -1,0 +1,39 @@
+package test.de.hsmainz.cs.semgis.arqextension.geometry;
+
+import static org.junit.Assert.assertEquals;
+
+import java.util.LinkedList;
+import java.util.List;
+
+import org.apache.jena.sparql.expr.NodeValue;
+import org.junit.jupiter.api.Test;
+import org.locationtech.jts.geom.Coordinate;
+
+import de.hsmainz.cs.semgis.arqextension.geometry.ClosestPoint;
+import de.hsmainz.cs.semgis.arqextension.geometry.DelaunayTriangles;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
+import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
+
+public class DelaunayTrianglesTest {
+
+	public static final String testPoint="POINT(100 100)";
+	
+	public static final String testLineString="POLYGON((175 150, 20 40,	50 60, 125 100, 175 150))";
+	
+	@Test
+	public void testClosestPoint() {
+        DelaunayTriangles instance=new DelaunayTriangles();
+        NodeValue geom1 = GeometryWrapper.createNode(testLineString, WKTDatatype.INSTANCE).asNodeValue();
+        List<Coordinate> coords=new LinkedList<Coordinate>();
+        coords.add(new Coordinate(20.,80.));
+        coords.add(new Coordinate(98.,190.));
+        coords.add(new Coordinate(110.,180.));
+        coords.add(new Coordinate(50.,75.));
+        NodeValue geom2 = GeometryWrapperFactory.createLineString(coords, WKTDatatype.URI).asNodeValue();
+        NodeValue expResult = NodeValue.makeDouble(42.2736890060937);
+        NodeValue result = instance.exec(geom1,geom2);
+        assertEquals(geom1, result);
+	}
+	
+}

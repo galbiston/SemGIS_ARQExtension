@@ -18,7 +18,7 @@ import org.apache.jena.datatypes.DatatypeFormatException;
 import org.apache.jena.sparql.expr.ExprEvalException;
 import org.apache.jena.sparql.expr.NodeValue;
 import org.apache.jena.sparql.function.FunctionBase2;
-import org.geotools.referencing.GeodeticCalculator;
+import org.locationtech.jts.algorithm.Angle;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.Point;
 import org.opengis.geometry.MismatchedDimensionException;
@@ -41,19 +41,9 @@ public class Azimuth extends FunctionBase2 {
 
             Geometry geom1 = geometry1.getXYGeometry();
             Geometry geom2 = transGeometry2.getXYGeometry();
-
-            GeodeticCalculator calc = new GeodeticCalculator();
-
             if (geom1 instanceof Point && geom2 instanceof Point) {
-                Point2D point1 = new java.awt.Point();
-                point1.setLocation(geom1.getCoordinate().x, geom1.getCoordinate().y);
-                Point2D point2 = new java.awt.Point();
-                point2.setLocation(geom2.getCoordinate().x, geom2.getCoordinate().y);
-                calc.setStartingGeographicPoint(point1);
-                calc.setDestinationGeographicPoint(point2);
-                return NodeValue.makeDouble(calc.getAzimuth());
+                return NodeValue.makeDouble(Angle.toDegrees(io.github.galbiston.geosparql_jena.implementation.great_circle.Azimuth.find((Point)geom1, (Point)geom2)));
             }
-
             return NodeValue.nvNothing;
 
         } catch (DatatypeFormatException | FactoryException | MismatchedDimensionException | TransformException ex) {

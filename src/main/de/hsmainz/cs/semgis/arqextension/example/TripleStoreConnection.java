@@ -56,7 +56,7 @@ public class TripleStoreConnection {
 		res=TripleStoreConnection.INSTANCE.executeQuery("SELECT ?geom ?wkt WHERE { ?geom geo:asWKT ?wkt . FILTER(geo:ST_Area(?wkt)>10) }");
 		//System.out.println(res[0]);
 		System.out.println(res[1]);
-		res=TripleStoreConnection.INSTANCE.executeQuery("SELECT ?wkt2 WHERE { ?geom geo:asWKT ?wkt . BIND(geo:ST_AsGeoJSON(?wkt) AS ?wkt2). FILTER(geo:ST_Area(?wkt)>10) }");
+		res=TripleStoreConnection.INSTANCE.executeQuery("SELECT ?wkt2 WHERE { ?geom geo:asWKT ?wkt . BIND(geo:ST_YMax(?wkt) AS ?wkt2). FILTER(geo:ST_Area(?wkt)>10) }");
 		System.out.println(res[0]);
 		System.out.println(res[1]);
 	}

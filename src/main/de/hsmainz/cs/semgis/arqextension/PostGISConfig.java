@@ -138,6 +138,7 @@ public class PostGISConfig {
             functionRegistry.put(PostGISGeo.st_asencodedpolyline.getURI(), AsEncodedPolyline.class);
             functionRegistry.put(PostGISGeo.st_ashexewkb.getURI(), AsHEXEWKB.class);
             functionRegistry.put(PostGISGeo.st_askml.getURI(), AsKML.class);
+            functionRegistry.put(PostGISGeo.st_asgeouri.getURI(), AsGeoURI.class);
             functionRegistry.put(PostGISGeo.st_asgml.getURI(), AsGML.class);
             functionRegistry.put(PostGISGeo.st_asgeobuf.getURI(), AsGeoBuf.class);
             functionRegistry.put(PostGISGeo.st_asgeojson.getURI(), AsGeoJSON.class);
@@ -227,6 +228,7 @@ public class PostGISConfig {
             functionRegistry.put(PostGISGeo.st_lineFromEncodedPolyline.getURI(), LineFromEncodedPolyline.class);
             functionRegistry.put(PostGISGeo.st_lineFromMultiPoint.getURI(), LineFromMultiPoint.class);
             functionRegistry.put(PostGISGeo.st_lineFromWKB.getURI(), LineFromWKB.class);
+            functionRegistry.put(PostGISGeo.st_lineFromWKT.getURI(), LineFromText.class);
             functionRegistry.put(PostGISGeo.st_lineFromText.getURI(), LineFromText.class);
             functionRegistry.put(PostGISGeo.st_lineInterpolatePoint.getURI(), LineInterpolatePoint.class);
             functionRegistry.put(PostGISGeo.st_lineInterpolatePoints.getURI(), LineInterpolatePoints.class);
@@ -326,6 +328,7 @@ public class PostGISConfig {
             functionRegistry.put(PostGISGeo.st_simplifyPreserveTopology.getURI(), SimplifyPreserveTopology.class);
             functionRegistry.put(PostGISGeo.st_simplifyVW.getURI(), SimplifyVW.class);
             functionRegistry.put(PostGISGeo.st_sharedPaths.getURI(), SharedPaths.class);
+            functionRegistry.put(PostGISGeo.st_shiftLongitude.getURI(), ShiftLongitude.class);
             functionRegistry.put(PostGISGeo.st_skewX.getURI(), SkewX.class);
             functionRegistry.put(PostGISGeo.st_skewY.getURI(), SkewY.class);
             functionRegistry.put(PostGISGeo.st_snap.getURI(), Snap.class);
