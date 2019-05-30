@@ -4,6 +4,7 @@ import java.math.BigInteger;
 
 import org.apache.jena.sparql.expr.NodeValue;
 import org.apache.jena.sparql.function.FunctionBase1;
+import org.locationtech.jts.geom.Geometry;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 
@@ -16,6 +17,10 @@ public class Tesselate extends FunctionBase1 {
 	@Override
 	public NodeValue exec(NodeValue v) {
 		GeometryWrapper geom1 = GeometryWrapper.extract(v);
+		Geometry geom=geom1.getXYGeometry();
+		org.poly2tri.geometry.polygon.Polygon poly;
+		org.poly2tri.triangulation.delaunay.DelaunayTriangle tri;
+		tri.
         throw new UnsupportedOperationException("Not supported yet.");
 	}
 

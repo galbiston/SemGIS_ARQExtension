@@ -136,6 +136,7 @@ public class PostGISConfig {
             functionRegistry.put(PostGISGeo.st_addpoint.getURI(), AddPoint.class);
             functionRegistry.put(PostGISGeo.st_asbinary.getURI(), AsBinary.class);
             functionRegistry.put(PostGISGeo.st_asencodedpolyline.getURI(), AsEncodedPolyline.class);
+            functionRegistry.put(PostGISGeo.st_asgpx.getURI(), AsGPX.class);
             functionRegistry.put(PostGISGeo.st_ashexewkb.getURI(), AsHEXEWKB.class);
             functionRegistry.put(PostGISGeo.st_askml.getURI(), AsKML.class);
             functionRegistry.put(PostGISGeo.st_asgeouri.getURI(), AsGeoURI.class);

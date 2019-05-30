@@ -51,6 +51,7 @@ public class PostGISGeo {
    public static final Property st_asgeojson = property("ST_AsGeoJSON");
    public static final Property st_asgeojsonld = property("ST_AsGeoJSONLD");
    public static final Property st_asgeouri = property("ST_AsGeoURI");
+   public static final Property st_asgpx = property("ST_AsGPX");
    public static final Property st_ashexewkb = property("ST_AsHexEWKB");
    public static final Property st_asjpg = property("ST_AsJPG");
    public static final Property st_aslatlontext = property("ST_AsLatLonText");
@@ -299,6 +300,7 @@ public static final String X3D = "X3D";
 public static final String OSM= "OSM";
 public static final String HexWKBRaster = "HexWKBRaster";
 public static final String TopoJSON = "TopoJSON";
+
 
 
 
