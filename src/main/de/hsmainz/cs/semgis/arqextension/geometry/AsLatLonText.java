@@ -17,7 +17,33 @@ public class AsLatLonText extends FunctionBase2 {
 		GeometryWrapper geometry = GeometryWrapper.extract(v1);
         Geometry geom = geometry.getXYGeometry();
 		String format=v2.getString();
-		throw new UnsupportedOperationException("Not supported yet.");
+		if(geom.getGeometryType().equalsIgnoreCase("POINT")) {
+			return NodeValue.makeString(convertDecimalToLatLonText(geom.getCoordinate().x,false)+" "+convertDecimalToLatLonText(geom.getCoordinate().getY(),true));	
+		}else {
+			return NodeValue.makeString(convertDecimalToLatLonText(geom.getCentroid().getCoordinate().x,false)+" "+convertDecimalToLatLonText(geom.getCentroid().getCoordinate().getY(),true));
+
+		}
 	}
 
+	public String convertDecimalToLatLonText(Double D, Boolean lng){
+	    String dir;
+		if(D<0) {
+			if(lng) {
+				dir="W";
+			}else {
+				dir="S";
+			}
+		}else {
+			if(lng) {
+				dir="E";
+			}else {
+				dir="N";
+			}
+		}
+		Double deg=D<0?-D:D;
+		Double min=D%1*60;
+		Double sec=(D*60%1*6000)/100;
+		return deg+"°"+min+"'"+sec+"\""+dir;
+	}
+	
 }
