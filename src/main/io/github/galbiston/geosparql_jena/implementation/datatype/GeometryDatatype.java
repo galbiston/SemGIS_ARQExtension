@@ -77,6 +77,8 @@ public abstract class GeometryDatatype extends BaseDatatype {
             TYPE_MAPPER.registerDatatype(GeoHashDatatype.INSTANCE);
             TYPE_MAPPER.registerDatatype(EncodedPolylineDatatype.INSTANCE);
             TYPE_MAPPER.registerDatatype(HexWKBDatatype.INSTANCE);
+            TYPE_MAPPER.registerDatatype(GeoURIDatatype.INSTANCE);
+            TYPE_MAPPER.registerDatatype(GPXDatatype.INSTANCE);
             isDatatypesRegistered = true;
         }
     }

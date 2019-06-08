@@ -66,7 +66,7 @@ public class KMLDatatype extends GeometryDatatype {
 
     @Override
     public GeometryWrapper read(String geometryLiteral) {
-        try {
+        /*try {
             KmlReader kmlReader = KmlReader(geometryLiteral);
             kmlReader.
             kmlReader.rea.extract(geometryLiteral);
@@ -76,7 +76,8 @@ public class KMLDatatype extends GeometryDatatype {
             return new GeometryWrapper(geometry, kmlReader.getSrsName(), URI, dimensionInfo, geometryLiteral);
         } catch (JDOMException | IOException ex) {
             throw new DatatypeFormatException("Illegal KML literal:" + geometryLiteral + ". " + ex.getMessage());
-        }
+        }*/
+    	return null;
     }
 
     @Override

@@ -17,8 +17,18 @@
  */
 package io.github.galbiston.geosparql_jena.implementation.datatype;
 
+import io.github.galbiston.geosparql_jena.implementation.CoverageWrapper;
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
+
+import java.math.BigInteger;
+import java.text.ParseException;
+
+import org.apache.jena.sparql.expr.NodeValue;
+import org.apache.sis.index.GeoHashCoder;
+import org.locationtech.jts.algorithm.Angle;
+import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Geometry;
+import org.opengis.geometry.DirectPosition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.wololo.geojson.GeoJSON;
@@ -63,6 +73,8 @@ public class GeoHashDatatype extends GeometryDatatype {
     private GeoHashDatatype() {
         super(URI);
     }
+    
+    GeoHashCoder coder=new GeoHashCoder();
 
     /**
      * This method Un-parses the JTS Geometry to the WKT literal
@@ -75,24 +87,28 @@ public class GeoHashDatatype extends GeometryDatatype {
      */
     @Override
     public String unparse(Object geometry) {
-
-        if (geometry instanceof GeometryWrapper) {
-            GeometryWrapper geometryWrapper = (GeometryWrapper) geometry;
-            GeoJSONWriter writer = new GeoJSONWriter();
-            GeoJSON json = writer.write(geometryWrapper.getXYGeometry());
-            String jsonstring = json.toString();
-            return jsonstring;
-        } else {
+    	if (geometry instanceof GeometryWrapper) {
+            Geometry geom1 = ((GeometryWrapper)geometry).getXYGeometry();
+            if(geom1.getGeometryType().equalsIgnoreCase("Point")) {
+            	String geohash = coder.encode(Angle.toDegrees(geom1.getCoordinate().getX()), Angle.toDegrees(geom1.getCoordinate().getY()));
+            	return geohash;
+            } else {
+                throw new AssertionError("Object passed to GeoHashDatatype is not a Point: " + geometry);
+            }
+    	} else {
             throw new AssertionError("Object passed to GeoHashDatatype is not a GeometryWrapper: " + geometry);
-        }
+        }	
     }
 
     @Override
     public GeometryWrapper read(String geometryLiteral) {
-		GeoJSONReader reader = new GeoJSONReader();
-		Geometry geom = reader.read(geometryLiteral);
-        GeometryWrapper wrapper = GeometryWrapperFactory.createGeometry(geom, "<http://www.opengis.net/def/crs/EPSG/0/"+geom.getSRID()+">", GeoJSONDatatype.URI);	
-        return wrapper;
+    	try {
+			DirectPosition pos=coder.decode(geometryLiteral);
+			return GeometryWrapperFactory.createPoint(new Coordinate(pos.getCoordinate()[0],pos.getCoordinate()[1]), URI);
+		} catch (ParseException e) {
+			throw new AssertionError("Could not read GeoHash representation of: " + geometry);
+		}
+
     }
 
 

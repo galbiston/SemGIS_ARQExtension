@@ -1,23 +1,23 @@
 package de.hsmainz.cs.semgis.arqextension.raster;
 
 import java.io.IOException;
-import java.util.List;
 
-import org.apache.jena.sparql.engine.binding.Binding;
 import org.apache.jena.sparql.expr.NodeValue;
-import org.apache.jena.sparql.function.FunctionEnv;
+import org.apache.jena.sparql.function.FunctionBase1;
 import org.geotoolkit.coverage.grid.GridCoverage2D;
 import org.geotoolkit.coverage.wkb.WKBRasterWriter;
 import org.locationtech.jts.io.WKBWriter;
 import org.opengis.util.FactoryException;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
+import io.github.galbiston.geosparql_jena.implementation.CoverageWrapper;
 
-public class AsHexWKB extends RasterSpatialFunction{
+public class AsHexWKB extends FunctionBase1{
+	
 
 	@Override
-	protected NodeValue exec(GridCoverage2D raster, GeometryWrapper geometryWrapper, Binding binding,
-			List<NodeValue> evalArgs, String uri, FunctionEnv env) {
+	public NodeValue exec(NodeValue v) {
+		CoverageWrapper wrapper=CoverageWrapper.extract(v);
+		GridCoverage2D raster=wrapper.getXYGeometry();	
 		WKBRasterWriter writer=new WKBRasterWriter();
 		String rasterWKB;
 		try {
@@ -28,12 +28,6 @@ public class AsHexWKB extends RasterSpatialFunction{
 			e.printStackTrace();
 			throw new RuntimeException();
 		}
-
 	}
 
-	@Override
-	protected String[] getRestOfArgumentTypes() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

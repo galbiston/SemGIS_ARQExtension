@@ -7,8 +7,7 @@ import org.apache.jena.sparql.expr.NodeValue;
 import org.apache.jena.sparql.function.FunctionEnv;
 import org.geotoolkit.coverage.grid.GridCoverage2D;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
-
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 /**
  * Returns the X component of the pixel width in units of coordinate reference system.
  *

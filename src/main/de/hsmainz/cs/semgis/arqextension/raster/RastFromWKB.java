@@ -28,7 +28,7 @@ public class RastFromWKB extends FunctionBase1 {
         try {
             String wkbstring=arg0.getString();
     		WKBRasterReader reader=new WKBRasterReader();
-    		GridCoverage2D coverage=reader.readCoverage(wkbstring);
+    		GridCoverage2D coverage=reader.readCoverage(wkbstring.getBytes(),null);
             if("POLYGON".equals(geom.getGeometryType().toUpperCase())){
             	GeometryWrapper pointWrapper = GeometryWrapperFactory.createGeometry(geom, "<http://www.opengis.net/def/crs/EPSG/0/"+geom.getSRID()+">", WKTDatatype.URI);	
                 return pointWrapper.asNodeValue();

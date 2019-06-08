@@ -12,15 +12,14 @@
  ****************************************************************************** */
 package de.hsmainz.cs.semgis.arqextension.raster;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
+import io.github.galbiston.geosparql_jena.implementation.CoverageWrapper;
 
 import java.awt.geom.Point2D;
-import java.util.List;
-import org.apache.jena.sparql.engine.binding.Binding;
 import org.apache.jena.sparql.expr.NodeValue;
-import org.apache.jena.sparql.function.FunctionEnv;
+import org.apache.jena.sparql.function.FunctionBase1;
 import org.geotoolkit.coverage.grid.GridCoordinates2D;
 import org.geotoolkit.coverage.grid.GridCoverage2D;
+import org.geotoolkit.coverage.grid.InvalidGridGeometryException;
 import org.opengis.referencing.operation.TransformException;
 
 
@@ -28,21 +27,20 @@ import org.opengis.referencing.operation.TransformException;
  * Returns the upper left X coordinate of raster in projected spatial ref.
  *
  */
-public class UpperLeftX extends Raster2DGeometrySpatialFunction {
+public class UpperLeftX extends FunctionBase1 {
 
-    @Override
-    protected NodeValue exec(GridCoverage2D raster, GeometryWrapper geometryWrapper, Binding binding, List<NodeValue> evalArgs, String uri, FunctionEnv env) {
-        try {
-            Point2D position = raster.getGridGeometry().getGridToCRS2D().transform(new GridCoordinates2D(0, 0),null);
-            return NodeValue.makeDouble(position.getX());
-        } catch (TransformException e) {
-            return NodeValue.nvNothing;
-        }
-    }
-
-    @Override
-    protected String[] getRestOfArgumentTypes() {
-        return new String[]{};
-    }
+	@Override
+	public NodeValue exec(NodeValue v) {
+		CoverageWrapper wrapper=CoverageWrapper.extract(v);
+		GridCoverage2D raster=wrapper.getXYGeometry();	
+		Point2D position;
+		try {
+			position = raster.getGridGeometry().getGridToCRS2D().transform(new GridCoordinates2D(0, 0),null);
+			return NodeValue.makeDouble(position.getX());
+		} catch (InvalidGridGeometryException | TransformException e) {
+			throw new AssertionError("InvalidGeometryException");
+		}
+        
+	}
 
 }

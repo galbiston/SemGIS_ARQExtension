@@ -51,10 +51,11 @@ public abstract class RasterDataType extends BaseDatatype {
 
     public static final void registerDatatypes() {
         if (!isDatatypesRegistered) {
-            TYPE_MAPPER.registerDatatype(WKTDatatype.INSTANCE);
-            TYPE_MAPPER.registerDatatype(GMLDatatype.INSTANCE);
-            TYPE_MAPPER.registerDatatype(GeoJSONDatatype.INSTANCE);
-            TYPE_MAPPER.registerDatatype(KMLDatatype.INSTANCE);
+            TYPE_MAPPER.registerDatatype(CovJSONDatatype.INSTANCE);
+        	TYPE_MAPPER.registerDatatype(GeoTIFFDatatype.INSTANCE);
+            TYPE_MAPPER.registerDatatype(GMLCOVDatatype.INSTANCE);
+            TYPE_MAPPER.registerDatatype(HexWKBRastDatatype.INSTANCE);
+            TYPE_MAPPER.registerDatatype(WKBRastDatatype.INSTANCE);
             isDatatypesRegistered = true;
         }
     }

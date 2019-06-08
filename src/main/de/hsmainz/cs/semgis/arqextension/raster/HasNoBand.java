@@ -12,6 +12,7 @@
  ****************************************************************************** */
 package de.hsmainz.cs.semgis.arqextension.raster;
 
+import io.github.galbiston.geosparql_jena.implementation.CoverageWrapper;
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import java.util.List;
 import org.apache.jena.sparql.engine.binding.Binding;
@@ -26,6 +27,15 @@ import org.geotoolkit.coverage.grid.GridCoverage2D;
  */
 public class HasNoBand extends RasterSpatialFunction {
 
+	
+	@Override
+	public NodeValue exec(NodeValue v) {
+		CoverageWrapper wrapper=CoverageWrapper.extract(v);
+		GridCoverage2D raster=wrapper.getXYGeometry();
+		 return NodeValue.makeInteger(raster.getRenderedImage().getWidth());
+	}
+	
+	
     @Override
     protected NodeValue exec(GridCoverage2D raster, GeometryWrapper geometryWrapper, Binding binding,
             List<NodeValue> evalArgs, String uri, FunctionEnv env) {

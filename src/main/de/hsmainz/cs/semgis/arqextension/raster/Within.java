@@ -12,27 +12,28 @@
  ****************************************************************************** */
 package de.hsmainz.cs.semgis.arqextension.raster;
 
-import java.util.List;
+import java.awt.geom.Rectangle2D;
 import org.geotoolkit.coverage.grid.GridCoverage2D;
-import org.apache.jena.sparql.engine.binding.Binding;
+import org.geotoolkit.geometry.jts.JTS;
 import org.apache.jena.sparql.expr.NodeValue;
-import org.apache.jena.sparql.function.FunctionEnv;
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
+import org.apache.jena.sparql.function.FunctionBase2;
+
+import io.github.galbiston.geosparql_jena.implementation.CoverageWrapper;
 
 /**
  * Inverse of contains, so it is sufficient to change the arguments.*
  */
-public class Within extends DoubleRaster2DSpatialFunction {
+public class Within extends FunctionBase2{
 
-    @Override
-    protected NodeValue exec(GridCoverage2D raster, GridCoverage2D raster2, GeometryWrapper geometryWrapper, Binding binding, List<NodeValue> evalArgs, String uri, FunctionEnv env) {
-        return NodeValue.makeBoolean(raster2.getEnvelope2D().getBounds2D().contains(raster.getEnvelope2D().getBounds2D()));
-    }
-
-    @Override
-    protected String[] getRestOfArgumentTypes() {
-        // TODO Auto-generated method stub
-        return new String[]{};
-    }
+	@Override
+	public NodeValue exec(NodeValue v,NodeValue v1) {
+		CoverageWrapper wrapper=CoverageWrapper.extract(v);
+		CoverageWrapper wrapper2=CoverageWrapper.extract(v1);
+		GridCoverage2D raster=wrapper.getXYGeometry();
+		GridCoverage2D raster2=wrapper2.getXYGeometry();		
+        Rectangle2D bbox1 = raster.getEnvelope2D().getBounds2D();
+        Rectangle2D bbox2 = raster2.getEnvelope2D().getBounds2D();
+        return NodeValue.makeBoolean(JTS.toGeometry(bbox1.getBounds()).within(JTS.toGeometry(bbox2.getBounds())));
+	}
 
 }

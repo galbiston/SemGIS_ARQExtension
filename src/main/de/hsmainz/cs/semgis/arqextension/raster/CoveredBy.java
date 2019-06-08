@@ -12,28 +12,24 @@
  ****************************************************************************** */
 package de.hsmainz.cs.semgis.arqextension.raster;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
+import io.github.galbiston.geosparql_jena.implementation.CoverageWrapper;
 import java.awt.geom.Rectangle2D;
-import java.util.List;
-import org.apache.jena.sparql.engine.binding.Binding;
 import org.apache.jena.sparql.expr.NodeValue;
-import org.apache.jena.sparql.function.FunctionEnv;
+import org.apache.jena.sparql.function.FunctionBase2;
 import org.geotoolkit.coverage.grid.GridCoverage2D;
 import org.geotoolkit.geometry.jts.JTS;
 
-public class CoveredBy extends DoubleRaster2DSpatialFunction {
+public class CoveredBy extends FunctionBase2 {
 
-    @Override
-    protected NodeValue exec(GridCoverage2D raster, GridCoverage2D raster2, GeometryWrapper geometryWrapper, Binding binding,
-            List<NodeValue> evalArgs, String uri, FunctionEnv env) {
+	@Override
+	public NodeValue exec(NodeValue v,NodeValue v1) {
+		CoverageWrapper wrapper=CoverageWrapper.extract(v);
+		CoverageWrapper wrapper2=CoverageWrapper.extract(v1);
+		GridCoverage2D raster=wrapper.getXYGeometry();
+		GridCoverage2D raster2=wrapper2.getXYGeometry();		
         Rectangle2D bbox1 = raster.getEnvelope2D().getBounds2D();
         Rectangle2D bbox2 = raster2.getEnvelope2D().getBounds2D();
         return NodeValue.makeBoolean(JTS.toGeometry(bbox1.getBounds()).coveredBy(JTS.toGeometry(bbox2.getBounds())));
-    }
-
-    @Override
-    protected String[] getRestOfArgumentTypes() {
-        return new String[]{};
-    }
-
+	}
+	
 }

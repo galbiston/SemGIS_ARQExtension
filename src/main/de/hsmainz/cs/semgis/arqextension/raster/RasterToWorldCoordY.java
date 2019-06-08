@@ -12,13 +12,11 @@
  ****************************************************************************** */
 package de.hsmainz.cs.semgis.arqextension.raster;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
+import io.github.galbiston.geosparql_jena.implementation.CoverageWrapper;
 
 import java.awt.geom.Point2D;
-import java.util.List;
-import org.apache.jena.sparql.engine.binding.Binding;
 import org.apache.jena.sparql.expr.NodeValue;
-import org.apache.jena.sparql.function.FunctionEnv;
+import org.apache.jena.sparql.function.FunctionBase3;
 import org.geotoolkit.coverage.grid.GridCoordinates2D;
 import org.geotoolkit.coverage.grid.GridCoverage2D;
 import org.opengis.referencing.operation.TransformException;
@@ -27,26 +25,22 @@ import org.opengis.referencing.operation.TransformException;
  * Returns the geometric Y coordinate upper left corner of a raster, column and row. Numbering of columns and rows starts at 1.
  *
  */
-public class RasterToWorldCoordY extends RasterSpatialFunction {
+public class RasterToWorldCoordY extends FunctionBase3 {
 
-    @Override
-    protected NodeValue exec(GridCoverage2D raster, GeometryWrapper geometryWrapper, Binding binding,
-            List<NodeValue> evalArgs, String uri, FunctionEnv env) {
-        Integer column = evalArgs.get(0).getInteger().intValue();
-        Integer row = evalArgs.get(1).getInteger().intValue();
+	
+	@Override
+	public NodeValue exec(NodeValue v,NodeValue v1,NodeValue v2) {
+		CoverageWrapper wrapper=CoverageWrapper.extract(v);
+		GridCoverage2D raster=wrapper.getXYGeometry();	
+		Integer column = v1.getInteger().intValue();
+        Integer row = v2.getInteger().intValue();
         try {
-        	
+        	raster.getGridGeometry().getGridToCRS2D().transform(new GridCoordinates2D(0, 0),null);
             Point2D position = raster.getGridGeometry().getGridToCRS2D().transform(new GridCoordinates2D(column, row),null);
             return NodeValue.makeDouble(position.getY());
         } catch (TransformException e) {
             return NodeValue.nvNothing;
         }
-    }
-
-    @Override
-    protected String[] getRestOfArgumentTypes() {
-        // TODO Auto-generated method stub
-        return new String[]{};
-    }
-
+	}
+	
 }

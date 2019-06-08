@@ -12,28 +12,23 @@
  ****************************************************************************** */
 package de.hsmainz.cs.semgis.arqextension.raster;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
-import java.util.List;
-import org.apache.jena.sparql.engine.binding.Binding;
+import io.github.galbiston.geosparql_jena.implementation.CoverageWrapper;
 import org.apache.jena.sparql.expr.NodeValue;
-import org.apache.jena.sparql.function.FunctionEnv;
+import org.apache.jena.sparql.function.FunctionBase1;
 import org.geotoolkit.coverage.grid.GridCoverage2D;
 
 /**
  * Returns the width of the raster in pixels.
  *
  */
-public class Width extends RasterSpatialFunction {
+public class Width extends FunctionBase1 {
 
-    @Override
-    protected NodeValue exec(GridCoverage2D raster, GeometryWrapper geometryWrapper, Binding binding, List<NodeValue> evalArgs, String uri, FunctionEnv env) {
-        return NodeValue.makeInteger(raster.getRenderedImage().getWidth());
-    }
+	@Override
+	public NodeValue exec(NodeValue v) {
+		CoverageWrapper wrapper=CoverageWrapper.extract(v);
+		GridCoverage2D raster=wrapper.getXYGeometry();
+		 return NodeValue.makeInteger(raster.getRenderedImage().getWidth());
+	}
 
-    @Override
-    protected String[] getRestOfArgumentTypes() {
-        // TODO Auto-generated method stub
-        return new String[]{};
-    }
 
 }

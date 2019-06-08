@@ -12,44 +12,36 @@
  ****************************************************************************** */
 package de.hsmainz.cs.semgis.arqextension.raster;
 
+import io.github.galbiston.geosparql_jena.implementation.CoverageWrapper;
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 
 import java.awt.geom.Point2D;
-import java.util.List;
-import org.apache.jena.sparql.engine.binding.Binding;
 import org.apache.jena.sparql.expr.NodeValue;
-import org.apache.jena.sparql.function.FunctionEnv;
-import org.apache.jena.vocabulary.XSD;
+import org.apache.jena.sparql.function.FunctionBase3;
 import org.geotoolkit.coverage.grid.GridCoverage2D;
 import org.locationtech.jts.geom.CoordinateXY;
-import org.opengis.coverage.grid.GridCoverage;
-import org.opengis.geometry.DirectPosition;
 import org.opengis.referencing.operation.TransformException;
 
 /**
  * Returns the raster's upper left corner as geometric X and Y (longitude and latitude) given a column and row. Column and row starts at 1.
  *
  */
-public class RasterToWorldCoord extends RasterSpatialFunction {
+public class RasterToWorldCoord extends FunctionBase3 {
 
-    @Override
-    protected NodeValue exec(GridCoverage2D raster, GeometryWrapper geometryWrapper, Binding binding, List<NodeValue> evalArgs, String uri, FunctionEnv env) {
-        Integer column = evalArgs.get(0).getInteger().intValue();
-        Integer row = evalArgs.get(1).getInteger().intValue();
-
+	@Override
+	public NodeValue exec(NodeValue v,NodeValue v1,NodeValue v2) {
+		CoverageWrapper wrapper=CoverageWrapper.extract(v);
+		GridCoverage2D raster=wrapper.getXYGeometry();	
+		Integer column = v1.getInteger().intValue();
+        Integer row = v2.getInteger().intValue();
         try {
             Point2D position = raster.getGridGeometry().getGridToCRS2D().transform(new org.geotoolkit.coverage.grid.GridCoordinates2D(column, row),null);
             CoordinateXY coord = new CoordinateXY(position.getX(), position.getY());
-            GeometryWrapper pointWrapper = GeometryWrapperFactory.createPoint(coord, geometryWrapper.getSrsURI(), geometryWrapper.getGeometryDatatypeURI());
+            GeometryWrapper pointWrapper = GeometryWrapperFactory.createPoint(coord, wrapper.getSrsURI(), wrapper.getGeometryDatatypeURI());
             return pointWrapper.asNodeValue();
         } catch (TransformException e) {
             return NodeValue.nvNothing;
         }
-    }
-
-    @Override
-    protected String[] getRestOfArgumentTypes() {
-        return new String[]{XSD.xint.getURI(), XSD.xint.getURI()};
-    }
+	}
 
 }
