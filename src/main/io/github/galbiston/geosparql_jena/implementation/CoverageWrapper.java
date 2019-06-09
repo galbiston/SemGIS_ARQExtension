@@ -21,6 +21,7 @@ package io.github.galbiston.geosparql_jena.implementation;
 import io.github.galbiston.geosparql_jena.implementation.datatype.GMLDatatype;
 import io.github.galbiston.geosparql_jena.implementation.datatype.GeometryDatatype;
 import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
+import io.github.galbiston.geosparql_jena.implementation.datatype.raster.RasterDataType;
 import io.github.galbiston.geosparql_jena.implementation.great_circle.CoordinatePair;
 import io.github.galbiston.geosparql_jena.implementation.great_circle.GreatCircleDistance;
 import io.github.galbiston.geosparql_jena.implementation.index.GeometryLiteralIndex.GeometryIndex;
@@ -66,11 +67,13 @@ import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.util.FactoryException;
 
+import de.hsmainz.cs.semgis.arqextension.util.Wrapper;
+
 /**
  *
  *
  */
-public class CoverageWrapper implements Serializable {
+public class CoverageWrapper implements Serializable,Wrapper {
 
     private final DimensionInfo dimensionInfo;
     private final SRSInfo srsInfo;
@@ -80,7 +83,7 @@ public class CoverageWrapper implements Serializable {
     private Envelope envelope;
     private Geometry translateXYGeometry;
     private final String geometryDatatypeURI;
-    private GeometryDatatype geometryDatatype;
+    private RasterDataType geometryDatatype;
     private String lexicalForm;
     private String utmURI = null;
     private Double latitude = null;
@@ -367,7 +370,7 @@ public class CoverageWrapper implements Serializable {
      *
      * @return Datatype URI of the literal.
      */
-    public String getGeometryDatatypeURI() {
+    public String getRasterDatatypeURI() {
         return geometryDatatypeURI;
     }
 
@@ -376,10 +379,10 @@ public class CoverageWrapper implements Serializable {
      *
      * @return GeometryDatatype of the literal.
      */
-    public GeometryDatatype getGeometryDatatype() {
+    public RasterDataType getRasterDatatype() {
 
         if (geometryDatatype == null) {
-            geometryDatatype = GeometryDatatype.get(geometryDatatypeURI);
+            geometryDatatype = RasterDataType.get(geometryDatatypeURI);
         }
         return geometryDatatype;
     }
@@ -409,7 +412,7 @@ public class CoverageWrapper implements Serializable {
      */
     public Literal asLiteral() throws DatatypeFormatException {
 
-        GeometryDatatype datatype = getGeometryDatatype(); //Datatype is only retrieved when required.
+        RasterDataType datatype = getRasterDatatype(); //Datatype is only retrieved when required.
         if (lexicalForm != null) {
             return ResourceFactory.createTypedLiteral(lexicalForm, datatype);
         }
@@ -425,7 +428,7 @@ public class CoverageWrapper implements Serializable {
      * @return GeometryWrapper as Literal in datatype form.
      */
     public Literal asLiteral(String outputGeometryDatatypeURI) throws DatatypeFormatException {
-        GeometryDatatype datatype = GeometryDatatype.get(outputGeometryDatatypeURI);
+        RasterDataType datatype = RasterDataType.get(outputGeometryDatatypeURI);
         return asLiteral(datatype);
     }
 
@@ -434,7 +437,7 @@ public class CoverageWrapper implements Serializable {
      * @param datatype
      * @return GeometryWrapper as Literal
      */
-    public Literal asLiteral(GeometryDatatype datatype) {
+    public Literal asLiteral(RasterDataType datatype) {
         String tempLexicalForm = datatype.unparse(this);
         return ResourceFactory.createTypedLiteral(tempLexicalForm, datatype);
     }
@@ -510,7 +513,7 @@ public class CoverageWrapper implements Serializable {
      * @param targetIndex
      * @return Geometry Wrapper of the Geometry Literal.
      */
-    public static final GeometryWrapper extract(NodeValue geometryLiteral, GeometryIndex targetIndex) {
+    public static final CoverageWrapper extract(NodeValue geometryLiteral, GeometryIndex targetIndex) {
 
         Node node = geometryLiteral.asNode();
 
@@ -524,7 +527,7 @@ public class CoverageWrapper implements Serializable {
      * @param targetIndex
      * @return Geometry Wrapper of the Geometry Literal.
      */
-    public static final GeometryWrapper extract(Node geometryLiteral, GeometryIndex targetIndex) {
+    public static final CoverageWrapper extract(Node geometryLiteral, GeometryIndex targetIndex) {
 
         if (!geometryLiteral.isLiteral()) {
             throw new DatatypeFormatException("Not a Literal: " + geometryLiteral);
@@ -541,7 +544,7 @@ public class CoverageWrapper implements Serializable {
      * @param geometryLiteral
      * @return Geometry Wrapper of the Geometry Literal.
      */
-    public static final GeometryWrapper extract(NodeValue geometryLiteral) {
+    public static final CoverageWrapper extract(NodeValue geometryLiteral) {
         return extract(geometryLiteral, GeometryIndex.PRIMARY);
     }
 
@@ -551,7 +554,7 @@ public class CoverageWrapper implements Serializable {
      * @param geometryLiteral
      * @return Geometry Wrapper of the Geometry Literal.
      */
-    public static final GeometryWrapper extract(Node geometryLiteral) {
+    public static final CoverageWrapper extract(Node geometryLiteral) {
         return extract(geometryLiteral, GeometryIndex.PRIMARY);
     }
 
@@ -563,7 +566,7 @@ public class CoverageWrapper implements Serializable {
      * @param targetIndex
      * @return Geometry Wrapper of the Geometry Literal.
      */
-    public static final GeometryWrapper extract(Literal geometryLiteral, GeometryIndex targetIndex) {
+    public static final CoverageWrapper extract(Literal geometryLiteral, GeometryIndex targetIndex) {
         return extract(geometryLiteral.getLexicalForm(), geometryLiteral.getDatatypeURI(), targetIndex);
     }
 
@@ -573,7 +576,7 @@ public class CoverageWrapper implements Serializable {
      * @param geometryLiteral
      * @return Geometry Wrapper of the Geometry Literal.
      */
-    public static final GeometryWrapper extract(Literal geometryLiteral) {
+    public static final CoverageWrapper extract(Literal geometryLiteral) {
         return extract(geometryLiteral, GeometryIndex.PRIMARY);
     }
 
@@ -584,7 +587,7 @@ public class CoverageWrapper implements Serializable {
      * @param datatypeURI
      * @return Geometry Wrapper of the Geometry Literal.
      */
-    public static GeometryWrapper extract(String lexicalForm, String datatypeURI) {
+    public static CoverageWrapper extract(String lexicalForm, String datatypeURI) {
         return extract(lexicalForm, datatypeURI, GeometryIndex.PRIMARY);
     }
 
@@ -596,14 +599,14 @@ public class CoverageWrapper implements Serializable {
      * @param targetIndex
      * @return Geometry Wrapper of the Geometry Literal.
      */
-    public static GeometryWrapper extract(String lexicalForm, String datatypeURI, GeometryIndex targetIndex) {
+    public static CoverageWrapper extract(String lexicalForm, String datatypeURI, GeometryIndex targetIndex) {
 
         if (lexicalForm == null || datatypeURI == null) {
             throw new DatatypeFormatException("GeometryWrapper extraction: arguments cannot be null - " + lexicalForm + ", " + datatypeURI);
         }
 
-        GeometryDatatype datatype = GeometryDatatype.get(datatypeURI);
-        GeometryWrapper geometry = datatype.parse(lexicalForm, targetIndex);
+        RasterDataType datatype = RasterDataType.get(datatypeURI);
+        CoverageWrapper geometry = datatype.parse(lexicalForm, targetIndex);
         return geometry;
     }
 
@@ -614,9 +617,9 @@ public class CoverageWrapper implements Serializable {
      *
      * @return Geometry Wrapper of WKT Point.
      */
-    public static final GeometryWrapper fromPoint(double x, double y, String srsURI) {
+    public static final CoverageWrapper fromPoint(double x, double y, String srsURI) {
         CustomCoordinateSequence coordSequence = CustomCoordinateSequence.createPoint(x, y);
-        GeometryWrapper geometryWrapper = new GeometryWrapper(coordSequence, WKTDatatype.URI, srsURI);
+        CoverageWrapper geometryWrapper = new CoverageWrapper(coordSequence, WKTDatatype.URI, srsURI);
         return geometryWrapper;
     }
 
