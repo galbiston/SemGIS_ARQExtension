@@ -10,8 +10,7 @@ import org.geotoolkit.coverage.grid.GridCoverage2D;
 import org.geotoolkit.image.io.SpatialImageWriteParam;
 import org.geotoolkit.image.io.plugin.TiffImageWriter;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
-
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; 
 public class AsTIFF extends RasterSpatialFunction{
 
 	@Override

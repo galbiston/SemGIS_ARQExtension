@@ -13,15 +13,18 @@
 package de.hsmainz.cs.semgis.arqextension.linestring;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
+
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import org.apache.jena.datatypes.DatatypeFormatException;
 import org.apache.jena.sparql.expr.ExprEvalException;
 import org.apache.jena.sparql.expr.NodeValue;
 import org.apache.jena.sparql.function.FunctionBase1;
+import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.MultiLineString;
-import org.locationtech.jts.geom.util.PolygonExtracter;
-import org.locationtech.jts.operation.linemerge.LineMerger;
-import org.locationtech.jts.operation.polygonize.Polygonizer;
 
 public class LineMerge extends FunctionBase1 {
 
@@ -32,14 +35,12 @@ public class LineMerge extends FunctionBase1 {
             GeometryWrapper geometry = GeometryWrapper.extract(arg0);
             Geometry geom = geometry.getXYGeometry();
             if (geom instanceof MultiLineString) {
-                LineMerger merger = new LineMerger();
-                merger.add(geom);
-                //GeometryWrapper mergerWrapper = GeometryWrapperFactory.createGeometry(merger.getMergedLineStrings(), geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
-                //return mergerWrapper.asNodeValue();
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-
+            	List<Coordinate> resultcoords=new LinkedList<Coordinate>();
+            	for(int i=0;i<((MultiLineString) geom).getLength();i++) {
+            		resultcoords.addAll(Arrays.asList(((MultiLineString) geom).getGeometryN(i).getCoordinates()));
+            	}
+            	return GeometryWrapperFactory.createLineString(resultcoords.toArray(new Coordinate[0]), geometry.getGeometryDatatypeURI()).asNodeValue();
             }
-
             return NodeValue.nvNothing;
         } catch (DatatypeFormatException ex) {
             throw new ExprEvalException(ex.getMessage(), ex);

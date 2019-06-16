@@ -1,4 +1,3 @@
-
 /*
  *    GeoTools - The Open Source Java GIS Toolkit
  *    http://geotools.org
@@ -48,7 +47,37 @@ import org.apache.sis.geometry.DirectPosition2D;
 import org.apache.sis.internal.feature.Geometries;
 import org.geotoolkit.coverage.grid.GridCoordinates2D;
 import org.geotoolkit.coverage.grid.GridCoverage2D;
+import org.geotoolkit.coverage.grid.GridCoverageFactory;
+import org.geotoolkit.coverage.grid.GridEnvelope2D;
 import org.geotoolkit.coverage.grid.GridGeometry2D;
+import org.geotoolkit.cql.CQLException;
+import org.geotoolkit.data.FeatureCollection;
+import org.geotoolkit.data.FeatureIterator;
+import org.geotoolkit.feature.Feature;
+import org.geotoolkit.geometry.jts.JTS;
+import org.geotoolkit.referencing.CRS;
+import org.geotoolkit.referencing.GeodeticCalculator;
+/*
+import org.geotools.coverage.grid.GridCoordinates2D;
+import org.geotools.coverage.grid.GridCoverage2D;
+import org.geotools.coverage.grid.GridCoverageFactory;
+import org.geotools.coverage.grid.GridEnvelope2D;
+import org.geotools.coverage.grid.GridGeometry2D;
+import org.geotools.data.DataUtilities;
+import org.geotools.data.simple.SimpleFeatureCollection;
+import org.geotools.data.simple.SimpleFeatureIterator;
+import org.geotools.data.util.NullProgressListener;
+import org.geotools.filter.text.cql2.CQLException;
+import org.geotools.filter.text.ecql.ECQL;
+import org.geotools.geometry.DirectPosition2D;
+import org.geotools.geometry.jts.Geometries;
+import org.geotools.geometry.jts.JTS;
+import org.geotools.geometry.jts.ReferencedEnvelope;
+import org.geotools.process.factory.DescribeParameter;
+import org.geotools.process.factory.DescribeProcess;
+import org.geotools.process.factory.DescribeResult;
+import org.geotools.referencing.CRS;
+import org.geotools.util.SimpleInternationalString;*/
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.GeometryFactory;
@@ -61,6 +90,9 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.util.ProgressListener;
+
+import de.hsmainz.cs.semgis.arqextension.raster.Vectorize;
+import de.hsmainz.cs.semgis.arqextension.util.LiteralUtils;
 
 /**
  * A Process to rasterize vector features in an input FeatureCollection.
@@ -81,7 +113,7 @@ import org.opengis.util.ProgressListener;
     description =
             "Converts some or all of a feature collection to a raster grid, using an attribute to specify cell values."
 )
-public class VectorToRasterProcess implements VectorProcess {
+public class VectorToRaster implements VectorProcess {
 
     private static final int COORD_GRID_CHUNK_SIZE = 1000;
 
@@ -142,8 +174,7 @@ public class VectorToRasterProcess implements VectorProcess {
             String covName,
             ProgressListener monitor)
             throws VectorToRasterException {
-
-        VectorToRasterProcess process = new VectorToRasterProcess();
+        VectorToRaster process = new VectorToRaster();
         return process.convert(features, attribute, gridDim, bounds, covName, monitor);
     }
 
@@ -155,7 +186,7 @@ public class VectorToRasterProcess implements VectorProcess {
                         min = 1,
                         max = 1
                     )
-                    SimpleFeatureCollection features,
+                    FeatureCollection features,
             @DescribeParameter(
                         name = "rasterWidth",
                         description = "Width of the output grid in pixels",
@@ -217,9 +248,9 @@ public class VectorToRasterProcess implements VectorProcess {
      * @param feature the feature to be rasterized
      * @throws java.lang.Exception
      */
-    protected void processFeature(SimpleFeature feature, Object attribute) throws Exception {
+    protected void processFeature(Feature feature, Object attribute) throws Exception {
 
-        Geometry geometry = (Geometry) feature.getDefaultGeometry();
+        Geometry geometry = (Geometry) feature.getDefaultGeometryProperty().getValue();
 
         if (geometry.intersects(extentGeometry)) {
 
@@ -275,7 +306,7 @@ public class VectorToRasterProcess implements VectorProcess {
         }
     }
 
-    private Number getFeatureValue(SimpleFeature feature, Object attribute) {
+    private Number getFeatureValue(Feature feature, Object attribute) {
         Class<? extends Number> rtnType =
                 transferType == TransferType.FLOAT ? Float.class : Integer.class;
         if (valueSource == ValueSource.PROPERTY_NAME) {
@@ -286,7 +317,7 @@ public class VectorToRasterProcess implements VectorProcess {
     }
 
     private GridCoverage2D convert(
-            SimpleFeatureCollection features,
+            FeatureCollection features,
             Object attribute,
             Dimension gridDim,
             Envelope bounds,
@@ -305,7 +336,7 @@ public class VectorToRasterProcess implements VectorProcess {
         float scale = 100.0f / features.size();
         monitor.started();
 
-        SimpleFeatureIterator fi = features.features();
+        FeatureIterator fi = features.features();
         try {
             int counter = 0;
             while (fi.hasNext()) {
@@ -329,7 +360,7 @@ public class VectorToRasterProcess implements VectorProcess {
     }
 
     private void initialize(
-            SimpleFeatureCollection features, Envelope bounds, Object attribute, Dimension gridDim)
+            FeatureCollection features, Envelope bounds, Object attribute, Dimension gridDim)
             throws VectorToRasterException {
 
         // check the attribute argument
@@ -350,14 +381,14 @@ public class VectorToRasterProcess implements VectorProcess {
 
             } else if (Double.class.isAssignableFrom(attClass)) {
                 transferType = TransferType.FLOAT;
-                Logger.getLogger(VectorToRasterProcess.class.getName())
+                Logger.getLogger(VectorToRaster.class.getName())
                         .log(
                                 Level.WARNING,
                                 "coercing double feature values to float raster values");
 
             } else if (Long.class.isAssignableFrom(attClass)) {
                 transferType = TransferType.INTEGRAL;
-                Logger.getLogger(VectorToRasterProcess.class.getName())
+                Logger.getLogger(VectorToRaster.class.getName())
                         .log(Level.WARNING, "coercing long feature values to int raster values");
 
             } else {
@@ -369,7 +400,7 @@ public class VectorToRasterProcess implements VectorProcess {
         } else if (attribute instanceof Expression) {
             valueSource = ValueSource.EXPRESSION;
 
-            SimpleFeature feature = DataUtilities.first(features);
+            Feature feature = DataUtilities.first(features);
             Object value = ((Expression) attribute).evaluate(feature);
 
             // if the expression evaluates to a string check if the
@@ -402,13 +433,13 @@ public class VectorToRasterProcess implements VectorProcess {
                 transferType = TransferType.FLOAT;
             } else if (Double.class.isAssignableFrom(value.getClass())) {
                 transferType = TransferType.FLOAT;
-                Logger.getLogger(VectorToRasterProcess.class.getName())
+                Logger.getLogger(VectorToRaster.class.getName())
                         .log(
                                 Level.WARNING,
                                 "coercing double feature values to float raster values");
             } else if (Long.class.isAssignableFrom(value.getClass())) {
                 transferType = TransferType.INTEGRAL;
-                Logger.getLogger(VectorToRasterProcess.class.getName())
+                Logger.getLogger(VectorToRaster.class.getName())
                         .log(Level.WARNING, "coercing long feature values to int raster values");
             } else {
                 transferType = TransferType.INTEGRAL;
@@ -441,16 +472,16 @@ public class VectorToRasterProcess implements VectorProcess {
      * @param
      * @throws org.geotools.process.raster.VectorToRasterException
      */
-    private void setBounds(SimpleFeatureCollection features, Envelope bounds)
+    private void setBounds(FeatureCollection features, Envelope bounds)
             throws TransformException {
 
-        ReferencedEnvelope featureBounds = features.getBounds();
+        Envelope featureBounds = features.getBounds();
 
         if (bounds == null) {
             extent = featureBounds;
 
         } else {
-            extent = new ReferencedEnvelope(bounds);
+            extent = new Envelope(bounds);
         }
 
         extentGeometry = (new GeometryFactory()).toGeometry(extent);
@@ -622,7 +653,7 @@ public class VectorToRasterProcess implements VectorProcess {
     private void drawGeometry(Geometries geomType, Geometry geometry) throws TransformException {
         if (transformFeatures) {
             try {
-                JTS.transform(geometry, featureToRasterTransform);
+                LiteralUtils.transform(geometry, featureToRasterTransform);
             } catch (TransformException ex) {
                 throw ex;
             } catch (MismatchedDimensionException ex) {

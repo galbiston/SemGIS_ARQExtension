@@ -21,7 +21,7 @@ public class MPolyFromText extends FunctionBase2 {
             BigInteger srid=arg1.getInteger();
             WKTReader wktreader=WKTReader.extract(wktstring);
             Geometry geom=wktreader.getGeometry();     
-            if("MULTIPOLYGON".equals(geom.getGeometryType().toUpperCase())){
+            if("MULTIPOLYGON".equalsIgnoreCase(geom.getGeometryType().toUpperCase())){
             	GeometryWrapper pointWrapper = GeometryWrapperFactory.createGeometry(geom, "<http://www.opengis.net/def/crs/EPSG/0/"+srid!=null?srid.toString():geom.getSRID()+">", WKTDatatype.URI);	
                 return pointWrapper.asNodeValue();
             }else {

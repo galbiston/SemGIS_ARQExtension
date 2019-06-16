@@ -32,6 +32,7 @@ public class HasNoBand extends RasterSpatialFunction {
 	public NodeValue exec(NodeValue v) {
 		CoverageWrapper wrapper=CoverageWrapper.extract(v);
 		GridCoverage2D raster=wrapper.getXYGeometry();
+		
 		 return NodeValue.makeInteger(raster.getRenderedImage().getWidth());
 	}
 	

@@ -40,12 +40,20 @@
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
+             <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <warSourceDirectory>WebContent</warSourceDirectory>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
-   <properties>
+ <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<geotools.version>15.1</geotools.version>
-		  <geotk.version>4.0.0</geotk.version>
+		  <geotk.version>4.0.4</geotk.version>
 		  <sis.version>0.8-jdk7-M1</sis.version>
 		  <geoapi.version>4.0-M05</geoapi.version>
 		  <jena.version>3.10.0</jena.version>
@@ -74,11 +82,11 @@
             <artifactId>geo</artifactId>
             <version>0.7.1</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.core/jersey-server -->
+        <!-- https://mvnrepository.com/artifact/org.json/json -->
 <dependency>
-    <groupId>org.glassfish.jersey.core</groupId>
-    <artifactId>jersey-server</artifactId>
-    <version>2.28</version>
+    <groupId>org.json</groupId>
+    <artifactId>json</artifactId>
+    <version>20180813</version>
 </dependency>
         
       <dependency>
@@ -102,7 +110,7 @@
 
        
 
-       <dependency>
+ <dependency>
             <groupId>org.geotoolkit</groupId>
             <artifactId>geotk-client-wcs</artifactId>
             <version>${geotk.version}</version>
@@ -128,11 +136,11 @@
             <artifactId>geotk-client-wms</artifactId>
             <version>${geotk.version}</version>
         </dependency>
-        <dependency>
+       <!--  <dependency>
             <groupId>org.geotoolkit</groupId>
             <artifactId>geotk-client-osm</artifactId>
             <version>${geotk.version}</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>org.geotoolkit</groupId>
             <artifactId>geotk-coverage-geotiff</artifactId>
@@ -198,9 +206,7 @@
             <artifactId>sis-utility</artifactId>
             <version>${sis.version}</version>
         </dependency>
-
-
-<!--    <dependency>
+<!--   <dependency>
     <groupId>org.apache.sis.non-free</groupId>
     <artifactId>sis-embedded-data</artifactId>
     <version>${sis.version}</version>
@@ -213,11 +219,61 @@
     <artifactId>sis-epsg</artifactId>
     <version>0.7</version>
   </dependency>
+  <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-core</artifactId>
+    <version>2.9.9</version>
+</dependency>
+  <!-- https://mvnrepository.com/artifact/joda-time/joda-time -->
+<dependency>
+    <groupId>joda-time</groupId>
+    <artifactId>joda-time</artifactId>
+    <version>2.10.2</version>
+</dependency>
+  
+  <dependency>
+    <groupId>io.github.galbiston</groupId>
+    <artifactId>expiring-map</artifactId>
+    <version>1.0.1</version>
+</dependency>
+  <!-- https://mvnrepository.com/artifact/uk.ac.rdg.resc/edal-coveragejson -->
+<!-- <dependency>
+    <groupId>uk.ac.rdg.resc</groupId>
+    <artifactId>edal-coveragejson</artifactId>
+    <version>1.4.1</version>
+</dependency>-->
+  <!-- https://mvnrepository.com/artifact/uk.ac.rdg.resc/edal-impl -->
+<!-- <dependency>
+    <groupId>uk.ac.rdg.resc</groupId>
+    <artifactId>edal-impl</artifactId>
+    <version>0.8.0</version>
+</dependency>
+  -->
+  <!-- https://mvnrepository.com/artifact/org.jdom/jdom2 -->
+<dependency>
+    <groupId>org.jdom</groupId>
+    <artifactId>jdom2</artifactId>
+    <version>2.0.6</version>
+</dependency>
+  
 <dependency>
     <groupId>org.apache.derby</groupId>
     <artifactId>derby</artifactId>
     <version>10.13.1.1</version>
 </dependency>
+<dependency>
+    <groupId>com.sun.jersey</groupId>
+    <artifactId>jersey-bundle</artifactId>
+    <version>1.19</version>
+</dependency>
+
+<dependency>
+		<groupId>com.sun.jersey</groupId>
+		<artifactId>jersey-server</artifactId>
+		<version>1.19</version>
+	</dependency>
+
 
 
         

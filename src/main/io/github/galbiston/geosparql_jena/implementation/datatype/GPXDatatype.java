@@ -1,10 +1,12 @@
 package io.github.galbiston.geosparql_jena.implementation.datatype;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
 
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
@@ -12,6 +14,7 @@ import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Geometry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.xml.sax.SAXException;
 import org.xml.sax.ext.DefaultHandler2;
 
 import de.hsmainz.cs.semgis.arqextension.vocabulary.PostGISGeo;
@@ -47,18 +50,23 @@ public class GPXDatatype extends GeometryDatatype {
 
 	@Override
 	public GeometryWrapper read(String geometryLiteral) {
-		SAXParser parser=SAXParserFactory.newInstance().newSAXParser();
-		InputStream stream = new ByteArrayInputStream(geometryLiteral.getBytes(StandardCharsets.UTF_8));
-		de.hsmainz.cs.semgis.arqextension.util.GPXHandler handler=new de.hsmainz.cs.semgis.arqextension.util.GPXHandler();
-		parser.parse(stream, handler);
-		if(handler.coordinates.size()==1 && handler.coordinates.get(0).size()==1) {
-			return GeometryWrapperFactory.createPoint(handler.coordinates.get(0).get(0), URI);
-		}
-		if(handler.coordinates.size()==1 && handler.coordinates.get(0).size()>1) {
-			return GeometryWrapperFactory.createLineString(handler.coordinates.get(0), URI);
-		}
-		if(handler.coordinates.size()>1 && handler.coordinates.get(0).size()>1) {
+
+		try {
+			SAXParser parser=SAXParserFactory.newInstance().newSAXParser();
+			InputStream stream = new ByteArrayInputStream(geometryLiteral.getBytes(StandardCharsets.UTF_8));
+			de.hsmainz.cs.semgis.arqextension.util.GPXHandler handler=new de.hsmainz.cs.semgis.arqextension.util.GPXHandler();
+			parser.parse(stream, handler);
+			if(handler.coordinates.size()==1 && handler.coordinates.get(0).size()==1) {
+				return GeometryWrapperFactory.createPoint(handler.coordinates.get(0).get(0), URI);
+			}
+			if(handler.coordinates.size()==1 && handler.coordinates.get(0).size()>1) {
+				return GeometryWrapperFactory.createLineString(handler.coordinates.get(0), URI);
+			}
+			/*if(handler.coordinates.size()>1 && handler.coordinates.get(0).size()>1) {
 			return GeometryWrapperFactory.createMultiLineString(lineStrings, URI);
+			}*/
+		} catch (SAXException | IOException | ParserConfigurationException e) {
+			throw new AssertionError("There was an error parsing GPXLiteral: " + geometryLiteral);
 		}
 		throw new AssertionError("Error parsing GPXLiteral: " + geometryLiteral);
 	}

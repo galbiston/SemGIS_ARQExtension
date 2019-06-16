@@ -1,6 +1,10 @@
 package de.hsmainz.cs.semgis.arqextension;
 
+import de.hsmainz.cs.semgis.arqextension.envelope.MMax;
+import de.hsmainz.cs.semgis.arqextension.envelope.MMin;
 import de.hsmainz.cs.semgis.arqextension.envelope.MakeEnvelope;
+import de.hsmainz.cs.semgis.arqextension.envelope.TMax;
+import de.hsmainz.cs.semgis.arqextension.envelope.TMin;
 import de.hsmainz.cs.semgis.arqextension.envelope.XMax;
 import de.hsmainz.cs.semgis.arqextension.envelope.XMin;
 import de.hsmainz.cs.semgis.arqextension.envelope.YMax;
@@ -71,9 +75,12 @@ import de.hsmainz.cs.semgis.arqextension.raster.BandMetaData;
 import de.hsmainz.cs.semgis.arqextension.raster.BandNoDataValue;
 import de.hsmainz.cs.semgis.arqextension.raster.BandPixelType;
 import de.hsmainz.cs.semgis.arqextension.raster.Clip;
+import de.hsmainz.cs.semgis.arqextension.raster.Contains;
 import de.hsmainz.cs.semgis.arqextension.raster.Count;
+import de.hsmainz.cs.semgis.arqextension.raster.Covers;
 import de.hsmainz.cs.semgis.arqextension.raster.HasNoBand;
 import de.hsmainz.cs.semgis.arqextension.raster.Height;
+import de.hsmainz.cs.semgis.arqextension.raster.IsEmpty;
 import de.hsmainz.cs.semgis.arqextension.raster.MakeEmptyCoverage;
 import de.hsmainz.cs.semgis.arqextension.raster.MakeEmptyRaster;
 import de.hsmainz.cs.semgis.arqextension.raster.MemSize;
@@ -136,7 +143,6 @@ public class PostGISConfig {
             functionRegistry.put(PostGISGeo.st_addpoint.getURI(), AddPoint.class);
             functionRegistry.put(PostGISGeo.st_asbinary.getURI(), AsBinary.class);
             functionRegistry.put(PostGISGeo.st_asencodedpolyline.getURI(), AsEncodedPolyline.class);
-            functionRegistry.put(PostGISGeo.st_asgpx.getURI(), AsGPX.class);
             functionRegistry.put(PostGISGeo.st_ashexewkb.getURI(), AsHEXEWKB.class);
             functionRegistry.put(PostGISGeo.st_askml.getURI(), AsKML.class);
             functionRegistry.put(PostGISGeo.st_asgeouri.getURI(), AsGeoURI.class);
@@ -144,6 +150,8 @@ public class PostGISConfig {
             functionRegistry.put(PostGISGeo.st_asgeobuf.getURI(), AsGeoBuf.class);
             functionRegistry.put(PostGISGeo.st_asgeojson.getURI(), AsGeoJSON.class);
             functionRegistry.put(PostGISGeo.st_asgeojsonld.getURI(), AsGeoJSONLD.class);
+            functionRegistry.put(PostGISGeo.st_asgeorss.getURI(), AsGeoRSS.class);
+            functionRegistry.put(PostGISGeo.st_asgpx.getURI(), AsGPX.class);
             functionRegistry.put(PostGISGeo.st_astiff.getURI(), AsTIFF.class);
             functionRegistry.put(PostGISGeo.st_astopojson.getURI(), AsTopoJSON.class);
             functionRegistry.put(PostGISGeo.st_asjpg.getURI(), AsJPG.class);
@@ -182,6 +190,7 @@ public class PostGISConfig {
             functionRegistry.put(PostGISGeo.st_distance3d.getURI(), Distance3D.class);
             functionRegistry.put(PostGISGeo.st_distancesphere.getURI(), DistanceSphere.class);
             functionRegistry.put(PostGISGeo.st_endPoint.getURI(), EndPoint.class);
+            functionRegistry.put(PostGISGeo.st_equalSRS.getURI(), EqualSRS.class);
             functionRegistry.put(PostGISGeo.st_filterByM.getURI(), FilterByM.class);
             functionRegistry.put(PostGISGeo.st_flipCoordinates.getURI(), FlipCoordinates.class);
             functionRegistry.put(PostGISGeo.st_force2d.getURI(), Force2D.class);
@@ -212,10 +221,11 @@ public class PostGISConfig {
             functionRegistry.put(PostGISGeo.st_hausdorffDistance.getURI(), HausdorffDistance.class);
             functionRegistry.put(PostGISGeo.st_interiorRingN.getURI(), InteriorRingN.class);
             functionRegistry.put(PostGISGeo.st_interpolatePoint.getURI(), InterpolatePoint.class);
+            functionRegistry.put(PostGISGeo.st_is3D.getURI(), Is3D.class);
             functionRegistry.put(PostGISGeo.st_isCollection.getURI(), IsCollection.class);
             functionRegistry.put(PostGISGeo.st_isClosed.getURI(), IsClosed.class);
             functionRegistry.put(PostGISGeo.st_isConvex.getURI(), IsConvex.class);
-            functionRegistry.put(PostGISGeo.st_isEmpty.getURI(), IsEmptyFF.class);
+            functionRegistry.put(PostGISGeo.st_isEmpty.getURI(), IsEmpty.class);
             functionRegistry.put(PostGISGeo.st_isPolygonCW.getURI(), IsPolygonCW.class);
             functionRegistry.put(PostGISGeo.st_isPolygonCCW.getURI(), IsPolygonCCW.class);
             functionRegistry.put(PostGISGeo.st_isRing.getURI(), IsRing.class);
@@ -257,6 +267,8 @@ public class PostGISConfig {
             functionRegistry.put(PostGISGeo.st_minimumClearanceLine.getURI(), MinimumClearanceLine.class);
             functionRegistry.put(PostGISGeo.st_minConvexHull.getURI(), MinConvexHull.class);
             functionRegistry.put(PostGISGeo.st_mLineFromText.getURI(), MLineFromText.class);
+            functionRegistry.put(PostGISGeo.st_mMin.getURI(), MMin.class);
+            functionRegistry.put(PostGISGeo.st_mMax.getURI(), MMax.class);
             functionRegistry.put(PostGISGeo.st_mPointFromText.getURI(), MPointFromText.class);
             functionRegistry.put(PostGISGeo.st_mPolyFromText.getURI(), MPolyFromText.class);
             functionRegistry.put(PostGISGeo.st_multi.getURI(), Multi.class);
@@ -286,6 +298,7 @@ public class PostGISConfig {
             functionRegistry.put(PostGISGeo.st_pixelHeight.getURI(), PixelHeight.class);
             functionRegistry.put(PostGISGeo.st_pixelOfValue.getURI(), PixelOfValue.class);
             functionRegistry.put(PostGISGeo.st_pixelWidth.getURI(), PixelWidth.class);
+            functionRegistry.put(PostGISGeo.st_points.getURI(), Points.class);
             functionRegistry.put(PostGISGeo.st_pointN.getURI(), PointN.class);
             functionRegistry.put(PostGISGeo.st_pointFromGeoHash.getURI(), PointFromGeoHash.class);
             functionRegistry.put(PostGISGeo.st_pointFromWKB.getURI(), PointFromWKB.class);
@@ -301,8 +314,10 @@ public class PostGISConfig {
             functionRegistry.put(PostGISGeo.st_rast_Contains.getURI(), de.hsmainz.cs.semgis.arqextension.raster.Contains.class);
             functionRegistry.put(PostGISGeo.st_rast_Covers.getURI(), de.hsmainz.cs.semgis.arqextension.raster.Covers.class);
             functionRegistry.put(PostGISGeo.st_rast_CoveredBy.getURI(), de.hsmainz.cs.semgis.arqextension.raster.CoveredBy.class);
+            functionRegistry.put(PostGISGeo.st_rast_Crosses.getURI(), de.hsmainz.cs.semgis.arqextension.raster.Crosses.class);
             functionRegistry.put(PostGISGeo.st_rast_Disjoint.getURI(), de.hsmainz.cs.semgis.arqextension.raster.Disjoint.class);
             functionRegistry.put(PostGISGeo.st_rast_Intersects.getURI(), de.hsmainz.cs.semgis.arqextension.raster.Intersects.class);
+            functionRegistry.put(PostGISGeo.st_rast_Intersection.getURI(), de.hsmainz.cs.semgis.arqextension.raster.Intersection.class);
             functionRegistry.put(PostGISGeo.st_rast_Overlaps.getURI(), de.hsmainz.cs.semgis.arqextension.raster.Overlaps.class);
             functionRegistry.put(PostGISGeo.st_rast_srid.getURI(), de.hsmainz.cs.semgis.arqextension.raster.SRID.class);
             functionRegistry.put(PostGISGeo.st_rast_Touches.getURI(), de.hsmainz.cs.semgis.arqextension.raster.Touches.class);
@@ -340,6 +355,8 @@ public class PostGISConfig {
             functionRegistry.put(PostGISGeo.st_summary.getURI(), Summary.class);
             functionRegistry.put(PostGISGeo.st_swapOrdinates.getURI(), SwapOrdinates.class);
             functionRegistry.put(PostGISGeo.st_tesselate.getURI(), Tesselate.class);
+            functionRegistry.put(PostGISGeo.st_tMin.getURI(), TMin.class);
+            functionRegistry.put(PostGISGeo.st_tMax.getURI(), TMax.class);
             functionRegistry.put(PostGISGeo.st_transscale.getURI(), TransScale.class);
             functionRegistry.put(PostGISGeo.st_translate.getURI(), Translate.class);
             functionRegistry.put(PostGISGeo.st_transform.getURI(), Transform.class);

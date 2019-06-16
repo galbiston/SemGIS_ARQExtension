@@ -7,8 +7,7 @@ import org.apache.jena.sparql.function.FunctionBase1;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.operation.valid.RepeatedPointTester;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
-
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; 
 /**
  * Checks if a geometry has repeated points (TRUE) or not (FALSE)
  *

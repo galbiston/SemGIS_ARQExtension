@@ -22,7 +22,7 @@ public class LineFromText extends FunctionBase1 {
             String wktstring=arg0.getString();
             WKTReader wktreader=WKTReader.extract(wktstring);
             Geometry geom=wktreader.getGeometry();     
-            if("LINESTRING".equals(geom.getGeometryType().toUpperCase())){
+            if("LINESTRING".equalsIgnoreCase(geom.getGeometryType().toUpperCase())){
             	GeometryWrapper pointWrapper = GeometryWrapperFactory.createLineString(geom.getCoordinates(), "<http://www.opengis.net/def/crs/EPSG/0/"+geom.getSRID()+">", WKTDatatype.URI);	
                 return pointWrapper.asNodeValue();
             }else {

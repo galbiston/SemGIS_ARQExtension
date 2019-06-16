@@ -43,4 +43,3 @@ public class AsGPX extends FunctionBase1 {
 	}
 
 }
-

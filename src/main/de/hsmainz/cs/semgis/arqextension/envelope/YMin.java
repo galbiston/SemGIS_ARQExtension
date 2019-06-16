@@ -12,12 +12,11 @@
  ****************************************************************************** */
 package de.hsmainz.cs.semgis.arqextension.envelope;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
-import org.apache.jena.datatypes.DatatypeFormatException;
-import org.apache.jena.sparql.expr.ExprEvalException;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; 
 import org.apache.jena.sparql.expr.NodeValue;
 import org.apache.jena.sparql.function.FunctionBase1;
-import org.locationtech.jts.geom.Envelope;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.Geometry;
 
 /**
  * Returns Y minima of a bounding box 2d or 3d or a geometry.
@@ -27,14 +26,14 @@ public class YMin extends FunctionBase1 {
 
     @Override
     public NodeValue exec(NodeValue arg0) {
-
-        try {
-            GeometryWrapper geometry = GeometryWrapper.extract(arg0);
-            Envelope envelope = geometry.getEnvelope();
-
-            return NodeValue.makeDouble(envelope.getMinY());
-        } catch (DatatypeFormatException ex) {
-            throw new ExprEvalException(ex.getMessage(), ex);
+        GeometryWrapper geometry = GeometryWrapper.extract(arg0);
+        Geometry geo=geometry.getXYGeometry();
+        Double minY=0.;
+        for(Coordinate coord:geo.getCoordinates()) {
+        	if(minY<coord.getY()) {
+        		minY=coord.getY();
+        	}
         }
+        return NodeValue.makeDouble(minY);
     }
 }

@@ -1,5 +1,6 @@
 package de.hsmainz.cs.semgis.arqextension.geometry;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -28,8 +29,7 @@ public class Points extends FunctionBase1 {
             for(Coordinate coord:geom.getCoordinates()) {
             	res.add(fac.createPoint(coord));
             }
-            MultiPoint mpoint=new MultiPoint(res.toArray(new Point[res.size()]), fac);
-            GeometryWrapper mPointWrapper = GeometryWrapperFactory.createGeometry(mpoint, geometry.getSrsURI(), WKTDatatype.URI);           
+            GeometryWrapper mPointWrapper = GeometryWrapperFactory.createMultiPoint (Arrays.asList(geom.getCoordinates()),WKTDatatype.URI);           
             return mPointWrapper.asNodeValue();
         } catch (DatatypeFormatException ex) {
             throw new ExprEvalException(ex.getMessage(), ex);

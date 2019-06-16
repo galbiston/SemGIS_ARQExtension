@@ -29,7 +29,7 @@ public class Disjoint extends FunctionBase2 {
 	@Override
 	public NodeValue exec(NodeValue v,NodeValue v1) {
 		Wrapper wrapper1=LiteralUtils.rasterOrVector(v);
-		Wrapper wrapper2=LiteralUtils.rasterOrVector(v);
+		Wrapper wrapper2=LiteralUtils.rasterOrVector(v1);
 		if(wrapper1 instanceof GeometryWrapper && wrapper2 instanceof GeometryWrapper) {
 			return NodeValue.makeBoolean(((GeometryWrapper)wrapper1).getXYGeometry().covers(((GeometryWrapper)wrapper2).getXYGeometry()));
 		}else if(wrapper1 instanceof CoverageWrapper && wrapper2 instanceof CoverageWrapper) {

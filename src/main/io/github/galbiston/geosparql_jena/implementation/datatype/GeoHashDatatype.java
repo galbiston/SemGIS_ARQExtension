@@ -106,7 +106,7 @@ public class GeoHashDatatype extends GeometryDatatype {
 			DirectPosition pos=coder.decode(geometryLiteral);
 			return GeometryWrapperFactory.createPoint(new Coordinate(pos.getCoordinate()[0],pos.getCoordinate()[1]), URI);
 		} catch (ParseException e) {
-			throw new AssertionError("Could not read GeoHash representation of: " + geometry);
+			throw new AssertionError("Could not read GeoHash representation of: " + geometryLiteral);
 		}
 
     }

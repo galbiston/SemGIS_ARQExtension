@@ -27,80 +27,80 @@ import org.locationtech.jts.geom.CoordinateXYZM;
 
 public class SwapOrdinates extends FunctionBase2 {
 
-    	@Override
-        public NodeValue exec(NodeValue arg0, NodeValue arg1) {
+    @Override
+    public NodeValue exec(NodeValue arg0, NodeValue arg1) {
 
-            try {
-                GeometryWrapper geom = GeometryWrapper.extract(arg0);
-                String ords = arg1.getString();
-                List<Coordinate> newcoords=new ArrayList<Coordinate>();
-                if(ords.equalsIgnoreCase("xy")) {
-                	for(Coordinate coord:geom.getXYGeometry().getCoordinates()) {
-                		if(coord instanceof CoordinateXYM) {
-                    		newcoords.add(new CoordinateXYM(coord.getY(),coord.getX(),coord.getM()));
-                		}else if(coord instanceof CoordinateXYZM) {
-                			newcoords.add(new CoordinateXYZM(coord.getY(),coord.getX(),coord.getZ(),coord.getM()));
-                		}else {
-                    		newcoords.add(new Coordinate(coord.getY(),coord.getX()));            			
-                		}
-                	}
-                }else if(ords.equalsIgnoreCase("xz")) {
-                   	for(Coordinate coord:geom.getXYGeometry().getCoordinates()) {
-                		if(coord instanceof CoordinateXYM) {
-                    		throw new RuntimeException("Coordinates do not contain a Z value");
-                		}else if(coord instanceof CoordinateXYZM) {
-                			newcoords.add(new CoordinateXYZM(coord.getZ(),coord.getY(),coord.getX(),coord.getM()));
-                		}else {
-                			newcoords.add(new Coordinate(coord.getZ(),coord.getY(),coord.getX()));          			
-                		}
-                	}
-                }else if(ords.equalsIgnoreCase("yz")) {
-                   	for(Coordinate coord:geom.getXYGeometry().getCoordinates()) {
-                		if(coord instanceof CoordinateXYM) {
-                    		throw new RuntimeException("Coordinates do not contain a Z value");
-                		}else if(coord instanceof CoordinateXYZM) {
-                			newcoords.add(new CoordinateXYZM(coord.getX(),coord.getZ(),coord.getY(),coord.getM()));
-                		}else {
-                			newcoords.add(new Coordinate(coord.getX(),coord.getZ(),coord.getY()));         			
-                		}
-                	}
-                }else if(ords.equalsIgnoreCase("xm")) {
-                   	for(Coordinate coord:geom.getXYGeometry().getCoordinates()) {
-                		if(coord instanceof CoordinateXYM) {
-                			newcoords.add(new CoordinateXYM(coord.getM(),coord.getY(),coord.getX()));
-                		}else if(coord instanceof CoordinateXYZM) {
-                			newcoords.add(new CoordinateXYZM(coord.getM(),coord.getY(),coord.getZ(),coord.getX()));
-                		}else {
-                    		throw new RuntimeException("Coordinates do not contain a M value");          			
-                		}
-                	}
-                }else if(ords.equalsIgnoreCase("ym")) {
-                   	for(Coordinate coord:geom.getXYGeometry().getCoordinates()) {
-                		if(coord instanceof CoordinateXYM) {
-                			newcoords.add(new CoordinateXYM(coord.getX(),coord.getM(),coord.getY()));
-                		}else if(coord instanceof CoordinateXYZM) {
-                			newcoords.add(new CoordinateXYZM(coord.getX(),coord.getM(),coord.getZ(),coord.getY()));
-                		}else {
-                    		throw new RuntimeException("Coordinates do not contain a M value");          			
-                		}
-                	}
-                }else if(ords.equalsIgnoreCase("zm")) {
-                   	for(Coordinate coord:geom.getXYGeometry().getCoordinates()) {
-                		if(coord instanceof CoordinateXYM) {
-                			throw new RuntimeException("Coordinates do not contain a M and Z value");      
-                		}else if(coord instanceof CoordinateXYZM) {
-                			newcoords.add(new CoordinateXYZM(coord.getX(),coord.getY(),coord.getM(),coord.getZ()));
-                		}else {
-                    		throw new RuntimeException("Coordinates do not contain a M and Z value");          			
-                		}
-                	}
-                }else {
-                	throw new RuntimeException("Invalid second argument"); 
-                }
-                return Force2D.createGeometry(newcoords, geom.getGeometryType(), geom).asNodeValue();
-            } catch (DatatypeFormatException ex) {
-                throw new ExprEvalException(ex.getMessage(), ex);
+        try {
+            GeometryWrapper geom = GeometryWrapper.extract(arg0);
+            String ords = arg1.getString();
+            List<Coordinate> newcoords=new ArrayList<Coordinate>();
+            if(ords.equalsIgnoreCase("xy")) {
+            	for(Coordinate coord:geom.getXYGeometry().getCoordinates()) {
+            		if(coord instanceof CoordinateXYM) {
+                		newcoords.add(new CoordinateXYM(coord.getY(),coord.getX(),coord.getM()));
+            		}else if(coord instanceof CoordinateXYZM) {
+            			newcoords.add(new CoordinateXYZM(coord.getY(),coord.getX(),coord.getZ(),coord.getM()));
+            		}else {
+                		newcoords.add(new Coordinate(coord.getY(),coord.getX()));            			
+            		}
+            	}
+            }else if(ords.equalsIgnoreCase("xz")) {
+               	for(Coordinate coord:geom.getXYGeometry().getCoordinates()) {
+            		if(coord instanceof CoordinateXYM) {
+                		throw new RuntimeException("Coordinates do not contain a Z value");
+            		}else if(coord instanceof CoordinateXYZM) {
+            			newcoords.add(new CoordinateXYZM(coord.getZ(),coord.getY(),coord.getX(),coord.getM()));
+            		}else {
+            			newcoords.add(new Coordinate(coord.getZ(),coord.getY(),coord.getX()));          			
+            		}
+            	}
+            }else if(ords.equalsIgnoreCase("yz")) {
+               	for(Coordinate coord:geom.getXYGeometry().getCoordinates()) {
+            		if(coord instanceof CoordinateXYM) {
+                		throw new RuntimeException("Coordinates do not contain a Z value");
+            		}else if(coord instanceof CoordinateXYZM) {
+            			newcoords.add(new CoordinateXYZM(coord.getX(),coord.getZ(),coord.getY(),coord.getM()));
+            		}else {
+            			newcoords.add(new Coordinate(coord.getX(),coord.getZ(),coord.getY()));         			
+            		}
+            	}
+            }else if(ords.equalsIgnoreCase("xm")) {
+               	for(Coordinate coord:geom.getXYGeometry().getCoordinates()) {
+            		if(coord instanceof CoordinateXYM) {
+            			newcoords.add(new CoordinateXYM(coord.getM(),coord.getY(),coord.getX()));
+            		}else if(coord instanceof CoordinateXYZM) {
+            			newcoords.add(new CoordinateXYZM(coord.getM(),coord.getY(),coord.getZ(),coord.getX()));
+            		}else {
+                		throw new RuntimeException("Coordinates do not contain a M value");          			
+            		}
+            	}
+            }else if(ords.equalsIgnoreCase("ym")) {
+               	for(Coordinate coord:geom.getXYGeometry().getCoordinates()) {
+            		if(coord instanceof CoordinateXYM) {
+            			newcoords.add(new CoordinateXYM(coord.getX(),coord.getM(),coord.getY()));
+            		}else if(coord instanceof CoordinateXYZM) {
+            			newcoords.add(new CoordinateXYZM(coord.getX(),coord.getM(),coord.getZ(),coord.getY()));
+            		}else {
+                		throw new RuntimeException("Coordinates do not contain a M value");          			
+            		}
+            	}
+            }else if(ords.equalsIgnoreCase("zm")) {
+               	for(Coordinate coord:geom.getXYGeometry().getCoordinates()) {
+            		if(coord instanceof CoordinateXYM) {
+            			throw new RuntimeException("Coordinates do not contain a M and Z value");      
+            		}else if(coord instanceof CoordinateXYZM) {
+            			newcoords.add(new CoordinateXYZM(coord.getX(),coord.getY(),coord.getM(),coord.getZ()));
+            		}else {
+                		throw new RuntimeException("Coordinates do not contain a M and Z value");          			
+            		}
+            	}
+            }else {
+            	throw new RuntimeException("Invalid second argument"); 
             }
+            return Force2D.createGeometry(newcoords, geom.getGeometryType(), geom).asNodeValue();
+        } catch (DatatypeFormatException ex) {
+            throw new ExprEvalException(ex.getMessage(), ex);
+        }
     }
 
 }

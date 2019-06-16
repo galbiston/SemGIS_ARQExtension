@@ -42,8 +42,8 @@ public class AsX3D extends FunctionBase3 {
             	builder.append(coord.getX()+" "+coord.getY()+" "+coord.getZ()+" ");
             }
             builder.append("\"/>");
-            //BigInteger maximaldecimaldigits=v2.getInteger();
-            //BigInteger options=v3.getInteger();
+            BigInteger maximaldecimaldigits=v2.getInteger();
+            BigInteger options=v3.getInteger();
     		return NodeValue.makeString(header+builder.toString()+footer);
         } catch (DatatypeFormatException ex) {
             throw new ExprEvalException(ex.getMessage(), ex);
@@ -52,3 +52,4 @@ public class AsX3D extends FunctionBase3 {
 	}
 
 }
+

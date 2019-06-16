@@ -16,9 +16,14 @@ import org.apache.jena.graph.Node;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdf.model.ResourceFactory;
+import org.locationtech.jts.geom.CoordinateXY;
+import org.locationtech.jts.geom.Point;
 
 public class PostGISGeo {
    public static final String uri = "http://www.opengis.net/ont/geosparql#";
+
+
+
 
 
 
@@ -50,6 +55,7 @@ public class PostGISGeo {
    public static final Property st_asgeobuf = property("ST_AsGeoBuf");
    public static final Property st_asgeojson = property("ST_AsGeoJSON");
    public static final Property st_asgeojsonld = property("ST_AsGeoJSONLD");
+   public static final Property st_asgeorss = property("ST_AsGeoRSS");
    public static final Property st_asgeouri = property("ST_AsGeoURI");
    public static final Property st_asgpx = property("ST_AsGPX");
    public static final Property st_ashexewkb = property("ST_AsHexEWKB");
@@ -57,6 +63,7 @@ public class PostGISGeo {
    public static final Property st_aslatlontext = property("ST_AsLatLonText");
    public static final Property st_asmvt = property("ST_AsMVT");
    public static final Property st_asmvtgeom = property("ST_AsMVTGeom");
+   CoordinateXY xy;
    public static final Property st_aspng = property("ST_AsPNG");
    public static final Property st_assvg = property("ST_AsSVG");
    public static final Property st_astext = property("ST_AsText");
@@ -90,8 +97,9 @@ public class PostGISGeo {
    public static final Property st_dimension = property("ST_Dimension");
    public static final Property st_distance3d = property("ST_3DDistance");
    public static final Property st_distancesphere = property("ST_DistanceSphere");
-   public static final Property st_endPoint = property("ST_endPoint");
+   public static final Property st_endPoint = property("ST_EndPoint");
    public static final Property st_envelope = property("ST_Envelope");
+   public static final Property st_equalSRS = property("ST_EqualSRS");
    public static final Property st_filterByM = property("ST_FilterByM");
    public static final Property st_flipCoordinates = property("ST_FlipCoordinates");
    public static final Property st_force2d = property("ST_Force2D");
@@ -123,6 +131,7 @@ public class PostGISGeo {
    public static final Property st_height = property("ST_Height");
    public static final Property st_interiorRingN = property("ST_InteriorRingN");
    public static final Property st_interpolatePoint = property("ST_InterpolatePoint");
+   public static final Property st_is3D = property("ST_Is3D");
    public static final Property st_isClosed = property("ST_IsClosed");
    public static final Property st_isCollection = property("ST_IsCollection");
    public static final Property st_isConvex = property("ST_IsConvex");
@@ -167,6 +176,8 @@ public class PostGISGeo {
    public static final Property st_minimumClearance = property("ST_MinimumClearance");
    public static final Property st_minimumClearanceLine = property("ST_MinimumClearanceLine");
    public static final Property st_minConvexHull = property("ST_MinConvexHull");
+   public static final Property st_mMin = property("ST_MMin");
+   public static final Property st_mMax = property("ST_MMax");
    public static final Property st_multi = property("ST_Multi");
    public static final Property st_mPointFromText = property("ST_MPointFromText");
    public static final Property st_mLineFromText = property("ST_MLineFromText");
@@ -209,16 +220,18 @@ public class PostGISGeo {
    public static final Property st_polygonFromWKB = property("ST_PolygonFromWKB");
    public static final Property st_rastFromHexWKB = property("ST_RastFromHexWKB");
    public static final Property st_rastFromWKB = property("ST_RastFromWKB");
-   public static final Property st_rast_isEmpty = property("ST_rast_isEmpty");
-   public static final Property st_rast_Contains = property("ST_rast_Contains");
-   public static final Property st_rast_Covers = property("ST_rast_Covers");
-   public static final Property st_rast_CoveredBy = property("ST_rast_CoveredBy");
-   public static final Property st_rast_Disjoint = property("ST_rast_Disjoint");
-   public static final Property st_rast_Intersects = property("ST_rast_Intersects");
-   public static final Property st_rast_Overlaps = property("ST_rast_Overlaps");
-   public static final Property st_rast_Touches = property("ST_rast_Touches");
-   public static final Property st_rast_Within = property("ST_rast_Within");
-   public static final Property st_rast_srid = property("ST_rast_SRID");
+   public static final Property st_rast_isEmpty = property("ST_isEmpty");
+   public static final Property st_rast_Contains = property("ST_Contains");
+   public static final Property st_rast_Covers = property("ST_Covers");
+   public static final Property st_rast_CoveredBy = property("ST_CoveredBy");
+   public static final Property st_rast_Crosses = property("ST_Crosses");
+   public static final Property st_rast_Disjoint = property("ST_Disjoint");
+   public static final Property st_rast_Intersects = property("ST_Intersects");
+   public static final Property st_rast_Intersection=property("ST_Intersection");
+   public static final Property st_rast_Overlaps = property("ST_Overlaps");
+   public static final Property st_rast_Touches = property("ST_Touches");
+   public static final Property st_rast_Within = property("ST_Within");
+   public static final Property st_rast_srid = property("ST_SRID");
    public static final Property st_rasterToWorldCoord = property("ST_RasterToWorldCoord");
    public static final Property st_rasterToWorldCoordX = property("ST_RasterToWorldCoordX");
    public static final Property st_rasterToWorldCoordY = property("ST_RasterToWorldCoordY");
@@ -258,6 +271,8 @@ public class PostGISGeo {
    public static final Property st_summaryStats = property("ST_SummaryStats");
    public static final Property st_swapOrdinates = property("ST_SwapOrdinates");
    public static final Property st_tesselate = property("ST_Tesselate");
+   public static final Property st_tMax = property("ST_TMax");
+   public static final Property st_tMin = property("ST_TMin");
    public static final Property st_transform = property("ST_Transform");
    public static final Property st_translate = property("ST_Translate");
    public static final Property st_transscale = property("ST_TransScale");
@@ -289,6 +304,9 @@ public static final String GeoJSON = "GeoJSON";
 public static final String GeoJSONLD = "GeoJSONLD";
 public static final String GeoHash = "GeoHash";
 public static final String GeoBuf = "GeoBuf";
+public static final String GeoURI="GeoURI";
+public static final String GeoRSS="GeoRSS";
+public static final String GMLCOV="GMLCOV";
 public static final String KML = "KML";
 public static final String WKBRaster = "WKBRaster";
 public static final String GEOTIFF = "GeoTIFF";
@@ -300,6 +318,14 @@ public static final String X3D = "X3D";
 public static final String OSM= "OSM";
 public static final String HexWKBRaster = "HexWKBRaster";
 public static final String TopoJSON = "TopoJSON";
+public static final String TemporalRange="TemporalRange";
+public static final String CoverageJSON = "CoverageJSON";
+
+
+
+
+
+
 
 
 

@@ -14,6 +14,7 @@ import org.apache.sis.measure.Range;
 import org.geotoolkit.coverage.grid.GridCoverage2D;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.io.WKTWriter;
+import org.opengis.feature.Feature;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 
@@ -77,7 +78,7 @@ public class Vectorize extends RasterSpatialFunction {
         Boolean firstElement = true;
         String result = null;
         while (vectorizedFeatures.hasNext()) {
-            SimpleFeature vectorizedFeature = vectorizedFeatures.next();
+            Feature vectorizedFeature = vectorizedFeatures.next();
             result = writer.write((Geometry) vectorizedFeature.getDefaultGeometry());
             if (firstElement) {
                 firstElement = false;

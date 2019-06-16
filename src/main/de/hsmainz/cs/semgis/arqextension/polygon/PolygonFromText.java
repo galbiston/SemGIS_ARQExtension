@@ -18,7 +18,7 @@ public class PolygonFromText extends FunctionBase1 {
             String wktstring=arg0.getString();
             WKTReader wktreader=WKTReader.extract(wktstring);
             Geometry geom=wktreader.getGeometry();     
-            if("POLYGON".equals(geom.getGeometryType().toUpperCase())){
+            if("POLYGON".equalsIgnoreCase(geom.getGeometryType().toUpperCase())){
             	GeometryWrapper pointWrapper = GeometryWrapperFactory.createGeometry(geom, "<http://www.opengis.net/def/crs/EPSG/0/"+geom.getSRID()+">", WKTDatatype.URI);	
                 return pointWrapper.asNodeValue();
             }else {

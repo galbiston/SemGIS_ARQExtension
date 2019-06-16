@@ -27,7 +27,7 @@ public class Height extends FunctionBase1 {
 	public NodeValue exec(NodeValue v) {
 		CoverageWrapper wrapper=CoverageWrapper.extract(v);
 		GridCoverage2D raster=wrapper.getXYGeometry();
-		 return NodeValue.makeInteger(raster.getRenderedImage().getHeight());
+		return NodeValue.makeInteger(raster.getRenderedImage().getHeight());
 	}
 
 }

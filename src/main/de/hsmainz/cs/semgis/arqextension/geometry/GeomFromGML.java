@@ -27,7 +27,7 @@ public class GeomFromGML extends FunctionBase1{
             Geometry geometry = gmlReader.getGeometry();
             DimensionInfo dimensionInfo = gmlReader.getDimensionInfo();
 
-            return new GeometryWrapper(geometry, gmlReader.getSrsName(), Geo.GML).asNodeValue();           
+            return new GeometryWrapper(geometry, gmlReader.getSrsURI(), Geo.GML).asNodeValue();           
         } catch (DatatypeFormatException ex) {
             throw new ExprEvalException(ex.getMessage(), ex);
         } catch (JDOMException e) {

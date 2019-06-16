@@ -24,6 +24,7 @@ public class GeomFromKML  extends FunctionBase1{
         try {
             String wktstring=arg0.getString();
             KmlReader kmlreader=new KmlReader();
+            kmlreader.addDataReader(new Stax);
             kmlreader.addDataReader(new StringReader(s));
             kmlreader.read();
             WKTReader reader=new WKTReader();
