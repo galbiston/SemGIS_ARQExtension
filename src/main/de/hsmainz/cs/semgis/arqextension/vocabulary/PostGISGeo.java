@@ -16,8 +16,6 @@ import org.apache.jena.graph.Node;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdf.model.ResourceFactory;
-import org.locationtech.jts.geom.CoordinateXY;
-import org.locationtech.jts.geom.Point;
 
 public class PostGISGeo {
    public static final String uri = "http://www.opengis.net/ont/geosparql#";
@@ -63,7 +61,6 @@ public class PostGISGeo {
    public static final Property st_aslatlontext = property("ST_AsLatLonText");
    public static final Property st_asmvt = property("ST_AsMVT");
    public static final Property st_asmvtgeom = property("ST_AsMVTGeom");
-   CoordinateXY xy;
    public static final Property st_aspng = property("ST_AsPNG");
    public static final Property st_assvg = property("ST_AsSVG");
    public static final Property st_astext = property("ST_AsText");
@@ -92,6 +89,8 @@ public class PostGISGeo {
    public static final Property st_collectionExtract = property("ST_CollectionExtract");
    public static final Property st_collectionHomogenize = property("ST_CollectionHomogenize");
    public static final Property st_concaveHull = property("ST_ConcaveHull");
+   public static final Property st_contains = property("ST_Contains");
+   public static final Property st_containsProperly = property("ST_ContainsProperly");
    public static final Property st_count = property("ST_Count");
    public static final Property st_delaunayTriangles = property("ST_DelaunayTriangles");
    public static final Property st_dimension = property("ST_Dimension");
@@ -196,6 +195,8 @@ public class PostGISGeo {
    public static final Property st_orientation = property("ST_Orientation");
    public static final Property st_offsetCurve = property("ST_OffsetCurve");
    public static final Property st_orderingEquals = property("ST_OrderingEquals");
+   public static final Property st_partOfGeometryAfter = property("ST_PartOfGeometryAfter");
+   public static final Property st_partOfGeometryBefore = property("ST_PartOfGeometryBefore");
    public static final Property st_patchN = property("ST_PatchN");
    public static final Property st_pixelAsCentroid = property("ST_PixelAsCentroid");
    public static final Property st_pixelAsCentroids = property("ST_PixelAsCentroids");
@@ -278,6 +279,7 @@ public class PostGISGeo {
    public static final Property st_transscale = property("ST_TransScale");
    public static final Property st_upperLeftX = property("ST_UpperLeftX");
    public static final Property st_upperLeftY = property("ST_UpperLeftY");
+   public static final Property st_union = property("ST_Union");
    public static final Property st_unaryUnion = property("ST_UnaryUnion");
    public static final Property st_value = property("ST_Value");
    public static final Property st_vectorize = property("ST_Vectorize");
@@ -320,6 +322,9 @@ public static final String HexWKBRaster = "HexWKBRaster";
 public static final String TopoJSON = "TopoJSON";
 public static final String TemporalRange="TemporalRange";
 public static final String CoverageJSON = "CoverageJSON";
+
+
+
 
 
 

@@ -15,8 +15,6 @@ package de.hsmainz.cs.semgis.arqextension.raster;
 import io.github.galbiston.geosparql_jena.implementation.CoverageWrapper;
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 
-import java.awt.geom.Rectangle2D;
-
 import org.apache.jena.sparql.expr.NodeValue;
 import org.apache.jena.sparql.function.FunctionBase1;
 import org.geotoolkit.coverage.grid.GridCoverage2D;
@@ -33,7 +31,6 @@ public class IsEmpty extends FunctionBase1 {
 			return NodeValue.makeBoolean(((GeometryWrapper)wrapper1).getXYGeometry().isEmpty());
 		}else{
 			GridCoverage2D raster=((CoverageWrapper)wrapper1).getXYGeometry();
-	        Rectangle2D bbox1 = raster.getEnvelope2D().getBounds2D();
 	        return NodeValue.makeBoolean(raster.getRenderedImage().getWidth() == 0 && raster.getRenderedImage().getHeight() == 0);			
 		}
 	}

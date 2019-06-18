@@ -16,25 +16,24 @@ import java.util.List;
 import org.geotoolkit.coverage.grid.GridCoverage2D;
 import org.apache.jena.sparql.engine.binding.Binding;
 import org.apache.jena.sparql.expr.NodeValue;
+import org.apache.jena.sparql.function.FunctionBase4;
 import org.apache.jena.sparql.function.FunctionEnv;
 import org.apache.jena.vocabulary.XSD;
+
+import io.github.galbiston.geosparql_jena.implementation.CoverageWrapper;
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 
-public class Value extends Raster2DGeometrySpatialFunction {
+public class Value extends FunctionBase4 {
 
-    @Override
-    protected NodeValue exec(GridCoverage2D raster, GeometryWrapper geometryWrapper, Binding binding, List<NodeValue> evalArgs, String uri, FunctionEnv env) {
-        Integer bandnum = evalArgs.get(0).getInteger().intValue();
-        Integer column = evalArgs.get(1).getInteger().intValue();
-        Integer row = evalArgs.get(2).getInteger().intValue();
+	@Override
+	public NodeValue exec(NodeValue v1, NodeValue v2, NodeValue v3, NodeValue v4) {
+		CoverageWrapper wrapper=CoverageWrapper.extract(v1);
+		GridCoverage2D raster=wrapper.getXYGeometry();
+		Integer bandnum = v2.getInteger().intValue();
+        Integer column = v3.getInteger().intValue();
+        Integer row = v4.getInteger().intValue();
         Double d = ((double[]) raster.getRenderedImage().getData().getDataElements(column, row, new double[]{}))[0];
         return NodeValue.makeDouble(d);
-    }
-
-    @Override
-    protected String[] getRestOfArgumentTypes() {
-        // TODO Auto-generated method stub
-        return new String[]{XSD.xint.getURI(), XSD.xint.getURI(), XSD.xint.getURI()};
-    }
+	}
 
 }

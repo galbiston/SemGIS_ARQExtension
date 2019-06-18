@@ -16,35 +16,42 @@ import java.util.List;
 
 import org.geotoolkit.coverage.grid.GridCoordinates2D;
 import org.geotoolkit.coverage.grid.GridCoverage2D;
+import org.locationtech.jts.geom.CoordinateXY;
+import org.opengis.coverage.grid.GridCoordinates;
 import org.opengis.referencing.operation.TransformException;
 import org.apache.jena.sparql.engine.binding.Binding;
 import org.apache.jena.sparql.expr.NodeValue;
+import org.apache.jena.sparql.function.FunctionBase3;
 import org.apache.jena.sparql.function.FunctionEnv;
 import org.apache.sis.geometry.DirectPosition2D;
 
+import io.github.galbiston.geosparql_jena.implementation.CoverageWrapper;
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 
 /**
  * Returns the column in the raster of the point geometry (pt) or a X and Y world coordinate (xw, yw) represented in world spatial reference system of raster.
  *
  */
-public class WorldToRasterCoordX extends Raster2DGeometrySpatialFunction {
+public class WorldToRasterCoordX extends FunctionBase3{
 
-    @Override
-    protected NodeValue exec(GridCoverage2D raster, GeometryWrapper geometryWrapper, Binding binding, List<NodeValue> evalArgs, String uri, FunctionEnv env) {
-        Integer longitude = evalArgs.get(0).getInteger().intValue();
-        Integer latitude = evalArgs.get(1).getInteger().intValue();
+	@Override
+	public NodeValue exec(NodeValue v1, NodeValue v2, NodeValue v3) {
+        Integer longitude = v2.getInteger().intValue();
+        Integer latitude = v3.getInteger().intValue();
+
         try {
-            GridCoordinates2D position = raster.getGridGeometry().worldToGrid(new DirectPosition2D(longitude, latitude));
-            return NodeValue.makeDouble(position.getX());
+        	CoverageWrapper wrapper=CoverageWrapper.extract(v1);
+        	GridCoverage2D raster=wrapper.getXYGeometry();
+        	try {
+                GridCoordinates2D position = raster.getGridGeometry().worldToGrid(new DirectPosition2D(longitude, latitude));
+                return NodeValue.makeDouble(position.getX());
+            } catch (TransformException e) {
+                return NodeValue.nvNothing;
+            }
+
         } catch (TransformException e) {
             return NodeValue.nvNothing;
         }
-    }
-
-    @Override
-    protected String[] getRestOfArgumentTypes() {
-        return new String[]{};
-    }
+	}
 
 }

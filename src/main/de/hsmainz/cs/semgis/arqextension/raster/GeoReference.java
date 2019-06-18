@@ -16,23 +16,17 @@ import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import
 import java.util.List;
 import org.apache.jena.sparql.engine.binding.Binding;
 import org.apache.jena.sparql.expr.NodeValue;
+import org.apache.jena.sparql.function.FunctionBase3;
 import org.apache.jena.sparql.function.FunctionEnv;
 import org.apache.jena.vocabulary.XSD;
 import org.geotoolkit.coverage.grid.GridCoverage2D;
 
-public class GeoReference extends Raster2DGeometrySpatialFunction {
+public class GeoReference extends FunctionBase3 {
 
     @Override
     protected NodeValue exec(GridCoverage2D raster, GeometryWrapper geometryWrapper, Binding binding,
             List<NodeValue> evalArgs, String uri, FunctionEnv env) {
-        String format = evalArgs.get(0).getString();
-        Boolean gdal = false, esri = false;
-        if (format == null || format.equals("GDAL")) {
-            gdal = true;
-        } else if (format.equals("ESRI")) {
-            esri = true;
-        }
-        return null;
+
         //raster.getRenderedImage().getData().
     }
 
@@ -41,5 +35,17 @@ public class GeoReference extends Raster2DGeometrySpatialFunction {
         // TODO Auto-generated method stub
         return new String[]{XSD.xstring.getURI()};
     }
+
+	@Override
+	public NodeValue exec(NodeValue v1, NodeValue v2, NodeValue v3) {
+        String format = evalArgs.get(0).getString();
+        Boolean gdal = false, esri = false;
+        if (format == null || format.equals("GDAL")) {
+            gdal = true;
+        } else if (format.equals("ESRI")) {
+            esri = true;
+        }
+        return null;
+	}
 
 }

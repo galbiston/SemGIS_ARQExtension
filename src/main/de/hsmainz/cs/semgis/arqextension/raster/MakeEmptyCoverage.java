@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.jena.sparql.engine.binding.Binding;
 import org.apache.jena.sparql.expr.NodeValue;
+import org.apache.jena.sparql.function.FunctionBase0;
 import org.apache.jena.sparql.function.FunctionEnv;
 import org.apache.sis.geometry.Envelope2D;
 import org.apache.sis.referencing.CommonCRS;
@@ -15,12 +16,11 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 
-public class MakeEmptyCoverage extends RasterSpatialFunction {
+public class MakeEmptyCoverage extends FunctionBase0 {
 
 	@Override
-	protected NodeValue exec(GridCoverage2D rasterr, GeometryWrapper geometryWrapper, Binding binding,
-			List<NodeValue> evalArgs, String uri, FunctionEnv env) {
-        Integer width;
+	public NodeValue exec() {
+		Integer width;
         Integer height;
         Double upperleftx;
         Double upperlefty;
@@ -57,12 +57,7 @@ raster.setSample(x, y, 0, x+y);
         gcb.setRenderedImage(raster);
         gcb.setEnvelope(envelope);
         GridCoverage2D gc = gcb.getGridCoverage2D();
-	}
-
-	@Override
-	protected String[] getRestOfArgumentTypes() {
-		// TODO Auto-generated method stub
-		return null;
+        return null;
 	}
 
 }

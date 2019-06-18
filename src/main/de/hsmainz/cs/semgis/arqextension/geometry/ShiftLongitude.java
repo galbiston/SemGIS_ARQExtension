@@ -13,6 +13,7 @@ import org.locationtech.jts.operation.distance.DistanceOp;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.util.FactoryException;
 
+import de.hsmainz.cs.semgis.arqextension.util.LiteralUtils;
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 
@@ -31,7 +32,7 @@ public class ShiftLongitude extends FunctionBase1 {
                 	newcoords.add(coord);            		
             	}
             }
-            GeometryWrapper lineStringWrapper = Force2D.createGeometry(newcoords, geometry1.getGeometryType(), geometry1);
+            GeometryWrapper lineStringWrapper = LiteralUtils.createGeometry(newcoords, geometry1.getGeometryType(), geometry1);
 
             return lineStringWrapper.asNodeValue();
         } catch (DatatypeFormatException ex) {

@@ -12,33 +12,24 @@
  ****************************************************************************** */
 package de.hsmainz.cs.semgis.arqextension.raster;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
-import java.util.List;
-import org.apache.jena.sparql.engine.binding.Binding;
+import io.github.galbiston.geosparql_jena.implementation.CoverageWrapper;
+
+import java.math.BigInteger;
 import org.apache.jena.sparql.expr.NodeValue;
-import org.apache.jena.sparql.function.FunctionEnv;
-import org.apache.jena.vocabulary.XSD;
+import org.apache.jena.sparql.function.FunctionBase2;
 import org.geotoolkit.coverage.grid.GridCoverage2D;
 
-public class BandNoDataValue extends RasterSpatialFunction {
+public class BandNoDataValue extends FunctionBase2 {
 
-    @Override
-    protected NodeValue exec(GridCoverage2D raster, GeometryWrapper geometryWrapper, Binding binding,
-            List<NodeValue> evalArgs, String uri, FunctionEnv env) {
-        Integer bandNum;
-        if (evalArgs.isEmpty()) {
-            bandNum = 1;
-        }
-        bandNum = evalArgs.get(0).getInteger().intValue();
-        if (bandNum > raster.getNumSampleDimensions()) {
+	@Override
+	public NodeValue exec(NodeValue v1, NodeValue v2) {
+		CoverageWrapper wrapper=CoverageWrapper.extract(v1);
+		GridCoverage2D raster=wrapper.getXYGeometry();
+		BigInteger bandnum=v2.getInteger();
+        if (bandnum.intValue() > raster.getNumSampleDimensions()) {
             return NodeValue.nvNothing;
         }
-        return NodeValue.makeDouble(raster.getSampleDimension(bandNum).getNoDataValues()[0]);
-    }
-
-    @Override
-    protected String[] getRestOfArgumentTypes() {
-        return new String[]{XSD.xint.getURI()};
-    }
+        return NodeValue.makeDouble(raster.getSampleDimension(bandnum.intValue()).getNoDataValues()[0]);
+	}
 
 }

@@ -26,6 +26,7 @@ import org.apache.jena.sparql.function.FunctionBase2;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.LineString;
 import org.locationtech.jts.geom.PrecisionModel;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.opengis.util.FactoryException;
@@ -39,23 +40,14 @@ public class Segmentize extends FunctionBase2 {
             GeometryWrapper geometry = GeometryWrapper.extract(arg0);
             double segmentLength = arg1.getDouble();
 
-            List<Geometry> geometries = createSegments(geometry, segmentLength);
-            List<String> results = new ArrayList<>(geometries.size());
-            for (Geometry geom : geometries) {
-                GeometryWrapper geomWrapper = GeometryWrapperFactory.createGeometry(geom, geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
-                String result = geomWrapper.asLiteral().toString();
-                results.add(result);
-            }
-
-            //Returning the list of space delimited literals. This is the same as GROUP_CONCAT.
-            //Correct splitting of results for use in query would need a Property Function.
-            return NodeValue.makeNodeString(String.join(" ", results));
+            List<LineString> linestrings = createSegments(geometry, segmentLength);
+            return GeometryWrapperFactory.createMultiLineString(linestrings, geometry.getSrsURI(),geometry.getGeometryDatatypeURI()).asNodeValue();
         } catch (DatatypeFormatException | FactoryException ex) {
             throw new ExprEvalException(ex.getMessage(), ex);
         }
     }
 
-    public List<Geometry> createSegments(GeometryWrapper geometry, double segmentLength) throws NoSuchAuthorityCodeException, FactoryException {
+    public List<LineString> createSegments(GeometryWrapper geometry, double segmentLength) throws NoSuchAuthorityCodeException, FactoryException {
 
         GeometryFactory geometryFactory = new GeometryFactory(new PrecisionModel(PrecisionModel.FLOATING));
 
@@ -67,7 +59,7 @@ public class Segmentize extends FunctionBase2 {
 
         double accumulatedLength = 0;
         List<Coordinate> lastSegment = new ArrayList<>();
-        List<Geometry> segments = new ArrayList<>();
+        List<LineString> segments = new ArrayList<>();
         Iterator<Coordinate> itCoordinates = coordinates.iterator();
 
         for (int i = 0; itCoordinates.hasNext() && i < coordinates.size() - 1; i++) {

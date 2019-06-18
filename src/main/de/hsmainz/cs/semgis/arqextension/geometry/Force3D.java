@@ -10,6 +10,7 @@ import org.apache.jena.sparql.function.FunctionBase1;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Geometry;
 
+import de.hsmainz.cs.semgis.arqextension.util.LiteralUtils;
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 /**
  * Force the geometries into XYZ mode. This is an alias for ST_Force3DZ.
@@ -26,7 +27,7 @@ public class Force3D extends FunctionBase1 {
             for(Coordinate coord:geom.getCoordinates()) {
             	newcoords.add(new Coordinate(coord.x,coord.y,Double.isNaN(coord.getZ())?0.:coord.getZ()));
             }         
-             return Force2D.createGeometry(newcoords,geom.getGeometryType(),geometry).asNodeValue();           
+             return LiteralUtils.createGeometry(newcoords,geom.getGeometryType(),geometry).asNodeValue();           
             } catch (DatatypeFormatException ex) {
                 throw new ExprEvalException(ex.getMessage(), ex);
             }               

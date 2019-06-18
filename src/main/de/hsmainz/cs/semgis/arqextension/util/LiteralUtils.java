@@ -1,19 +1,22 @@
 package de.hsmainz.cs.semgis.arqextension.util;
 
 import java.awt.Rectangle;
+import java.util.LinkedList;
+import java.util.List;
 
 import org.apache.jena.sparql.expr.NodeValue;
 import org.apache.sis.geometry.Envelope2D;
-import org.geotoolkit.geometry.jts.JTS;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Envelope;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.LineString;
 import org.locationtech.jts.geom.Polygon;
 import org.opengis.geometry.BoundingBox;
 
 import io.github.galbiston.geosparql_jena.implementation.CoverageWrapper;
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import io.github.galbiston.geosparql_jena.implementation.datatype.GeometryDatatype;
 import io.github.galbiston.geosparql_jena.implementation.datatype.raster.RasterDataType;
 
@@ -89,4 +92,27 @@ public class LiteralUtils {
 	                }), null);
 	    }
 	
+	 
+		public static GeometryWrapper createGeometry(List<Coordinate> coordinates,String geomtype,GeometryWrapper geometry) {
+			switch(geomtype) {
+			case "Point":
+				return GeometryWrapperFactory.createPoint(coordinates.get(0), geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
+			case "MultiPoint":
+				return GeometryWrapperFactory.createMultiPoint(coordinates, geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
+			case "LineString":
+				return GeometryWrapperFactory.createLineString(coordinates, geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
+			case "Polygon":
+				return GeometryWrapperFactory.createPolygon(coordinates, geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
+			case "MultiLineString":
+				List<LineString> list=new LinkedList<LineString>();
+				list.add((LineString)GeometryWrapperFactory.createLineString(coordinates, geometry.getSrsURI(), geometry.getGeometryDatatypeURI()).getXYGeometry());
+				return GeometryWrapperFactory.createMultiLineString(list, geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
+			case "MultiPolygon":
+				List<Polygon> plist=new LinkedList<Polygon>();
+				plist.add((Polygon)GeometryWrapperFactory.createPolygon(coordinates, geometry.getSrsURI(), geometry.getGeometryDatatypeURI()).getXYGeometry());
+				return GeometryWrapperFactory.createMultiPolygon(plist, geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
+			default:
+				return null;
+			}
+		}
 }

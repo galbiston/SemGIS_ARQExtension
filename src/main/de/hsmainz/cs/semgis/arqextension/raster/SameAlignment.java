@@ -12,10 +12,12 @@
  ****************************************************************************** */
 package de.hsmainz.cs.semgis.arqextension.raster;
 
+import io.github.galbiston.geosparql_jena.implementation.CoverageWrapper;
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import java.util.List;
 import org.apache.jena.sparql.engine.binding.Binding;
 import org.apache.jena.sparql.expr.NodeValue;
+import org.apache.jena.sparql.function.FunctionBase2;
 import org.apache.jena.sparql.function.FunctionEnv;
 import org.geotoolkit.coverage.grid.GridCoverage2D;
 
@@ -23,19 +25,18 @@ import org.geotoolkit.coverage.grid.GridCoverage2D;
  * Returns true if rasters have same skew, scale, spatial ref, and offset (pixels can be put on same grid without cutting into pixels) and false if they don't with notice detailing issue.
  *
  */
-public class SameAlignment extends DoubleRaster2DSpatialFunction {
+public class SameAlignment extends FunctionBase2 {
 
-    @Override
-    protected NodeValue exec(GridCoverage2D raster, GridCoverage2D raster2, GeometryWrapper geometryWrapper, Binding binding, List<NodeValue> evalArgs, String uri, FunctionEnv env) {
+
+	@Override
+	public NodeValue exec(NodeValue v1, NodeValue v2) {
+        CoverageWrapper wrapper=CoverageWrapper.extract(v1);
+		GridCoverage2D raster=wrapper.getXYGeometry();
+        CoverageWrapper wrapper2=CoverageWrapper.extract(v2);
+		GridCoverage2D raster2=wrapper2.getXYGeometry();
         Integer raster1_offset = raster.getRenderedImage().getData().getDataBuffer().getOffset();
         Integer raster2_offset = raster.getRenderedImage().getData().getDataBuffer().getOffset();
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    protected String[] getRestOfArgumentTypes() {
-        // TODO Auto-generated method stub
-        return null;
-    }
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
 
 }

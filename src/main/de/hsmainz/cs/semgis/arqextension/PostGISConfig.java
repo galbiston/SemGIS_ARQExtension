@@ -76,8 +76,8 @@ import de.hsmainz.cs.semgis.arqextension.raster.BandNoDataValue;
 import de.hsmainz.cs.semgis.arqextension.raster.BandPixelType;
 import de.hsmainz.cs.semgis.arqextension.raster.Clip;
 import de.hsmainz.cs.semgis.arqextension.raster.Contains;
+import de.hsmainz.cs.semgis.arqextension.raster.ContainsProperly;
 import de.hsmainz.cs.semgis.arqextension.raster.Count;
-import de.hsmainz.cs.semgis.arqextension.raster.Covers;
 import de.hsmainz.cs.semgis.arqextension.raster.HasNoBand;
 import de.hsmainz.cs.semgis.arqextension.raster.Height;
 import de.hsmainz.cs.semgis.arqextension.raster.IsEmpty;
@@ -117,7 +117,6 @@ import de.hsmainz.cs.semgis.arqextension.raster.WorldToRasterCoordY;
 import de.hsmainz.cs.semgis.arqextension.vocabulary.PostGISGeo;
 import io.github.galbiston.geosparql_jena.configuration.GeoSPARQLConfig;
 import io.github.galbiston.geosparql_jena.geof.nontopological.filter_functions.GetSRIDFF;
-import io.github.galbiston.geosparql_jena.geof.topological.filter_functions.geometry_property.IsEmptyFF;
 import io.github.galbiston.geosparql_jena.geof.topological.filter_functions.geometry_property.IsSimpleFF;
 import io.github.galbiston.geosparql_jena.geof.topological.filter_functions.geometry_property.IsValidFF;
 
@@ -184,6 +183,8 @@ public class PostGISConfig {
             functionRegistry.put(PostGISGeo.st_collectionExtract.getURI(), CollectionExtract.class);
             functionRegistry.put(PostGISGeo.st_collectionHomogenize.getURI(), CollectionHomogenize.class);
             functionRegistry.put(PostGISGeo.st_concaveHull.getURI(), ConcaveHull.class);
+            functionRegistry.put(PostGISGeo.st_contains.getURI(), Contains.class);
+            functionRegistry.put(PostGISGeo.st_containsProperly.getURI(), ContainsProperly.class);
             functionRegistry.put(PostGISGeo.st_count.getURI(), Count.class);
             functionRegistry.put(PostGISGeo.st_delaunayTriangles.getURI(), DelaunayTriangles.class);
             functionRegistry.put(PostGISGeo.st_dimension.getURI(), Dimension.class);
@@ -287,6 +288,8 @@ public class PostGISConfig {
             functionRegistry.put(PostGISGeo.st_orientation.getURI(), Orientation.class);
             functionRegistry.put(PostGISGeo.st_orderingEquals.getURI(), OrderingEquals.class);
             functionRegistry.put(PostGISGeo.st_patchN.getURI(), PatchN.class);
+            functionRegistry.put(PostGISGeo.st_partOfGeometryAfter.getURI(), PartOfGeometryAfter.class);
+            functionRegistry.put(PostGISGeo.st_partOfGeometryBefore.getURI(), PartOfGeometryBefore.class);
             functionRegistry.put(PostGISGeo.st_perimeter.getURI(), Perimeter.class);
             functionRegistry.put(PostGISGeo.st_perimeter2D.getURI(), Perimeter.class);
             functionRegistry.put(PostGISGeo.st_pixelAsCentroid.getURI(), PixelAsCentroid.class);
@@ -360,9 +363,10 @@ public class PostGISConfig {
             functionRegistry.put(PostGISGeo.st_transscale.getURI(), TransScale.class);
             functionRegistry.put(PostGISGeo.st_translate.getURI(), Translate.class);
             functionRegistry.put(PostGISGeo.st_transform.getURI(), Transform.class);
+            functionRegistry.put(PostGISGeo.st_union.getURI(), Union.class);
+            functionRegistry.put(PostGISGeo.st_unaryUnion.getURI(), UnaryUnion.class);
             functionRegistry.put(PostGISGeo.st_upperLeftX.getURI(), UpperLeftX.class);
             functionRegistry.put(PostGISGeo.st_upperLeftY.getURI(), UpperLeftY.class);
-            functionRegistry.put(PostGISGeo.st_unaryUnion.getURI(), UnaryUnion.class);
             functionRegistry.put(PostGISGeo.st_voronoiLines.getURI(), VoronoiLines.class);
             functionRegistry.put(PostGISGeo.st_voronoiPolygons.getURI(), VoronoiPolygons.class);
             functionRegistry.put(PostGISGeo.st_width.getURI(), Width.class);

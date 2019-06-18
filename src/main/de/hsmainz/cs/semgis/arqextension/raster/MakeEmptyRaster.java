@@ -17,8 +17,12 @@ import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import
 import java.awt.image.DataBuffer;
 import java.awt.image.WritableRaster;
 import java.util.List;
+
+import javax.media.jai.RasterFactory;
+
 import org.apache.jena.sparql.engine.binding.Binding;
 import org.apache.jena.sparql.expr.NodeValue;
+import org.apache.jena.sparql.function.FunctionBase0;
 import org.apache.jena.sparql.function.FunctionEnv;
 import org.apache.jena.vocabulary.XSD;
 import org.apache.sis.geometry.Envelope2D;
@@ -27,11 +31,10 @@ import org.geotoolkit.coverage.grid.GridCoverage2D;
 import org.geotoolkit.coverage.grid.GridCoverageBuilder;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
-public class MakeEmptyRaster extends RasterSpatialFunction {
+public class MakeEmptyRaster extends FunctionBase0 {
 
-    @Override
-    protected NodeValue exec(GridCoverage2D rasterr, GeometryWrapper geometryWrapper, Binding binding,
-            List<NodeValue> evalArgs, String uri, FunctionEnv env) {
+	@Override
+	public NodeValue exec() {
 		Integer width;
 		Integer height;
 		Double upperleftx;
@@ -54,12 +57,6 @@ raster.setSample(x, y, 0, x+y);
         GridCoverage2D gc = gcb.getGridCoverage2D();
 
 		return null;
-    }
-
-    @Override
-    protected String[] getRestOfArgumentTypes() {
-        // TODO Auto-generated method stub
-        return new String[]{XSD.xint.getURI(), XSD.xint.getURI(), XSD.xdouble.getURI(), XSD.xdouble.getURI(), XSD.xdouble.getURI()};
-    }
+	}
 
 }

@@ -1,31 +1,25 @@
 package de.hsmainz.cs.semgis.arqextension.raster;
 
-import java.util.List;
-
-import org.apache.jena.sparql.engine.binding.Binding;
 import org.apache.jena.sparql.expr.NodeValue;
-import org.apache.jena.sparql.function.FunctionEnv;
-import org.apache.jena.vocabulary.XSD;
+import org.apache.jena.sparql.function.FunctionBase3;
 import org.geotoolkit.coverage.grid.GridCoverage2D;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
+import io.github.galbiston.geosparql_jena.implementation.CoverageWrapper;
 
 /**
  * Returns the centroid (point geometry) of the area represented by a pixel. 
  *
  */
-public class PixelAsCentroid extends RasterSpatialFunction {
+public class PixelAsCentroid extends FunctionBase3 {
 
-    @Override
-    protected NodeValue exec(GridCoverage2D raster, GeometryWrapper geometryWrapper, Binding binding,
-            List<NodeValue> evalArgs, String uri, FunctionEnv env) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+	@Override
+	public NodeValue exec(NodeValue v1, NodeValue v2, NodeValue v3) {
+		Integer longitude = v2.getInteger().intValue();
+        Integer latitude = v3.getInteger().intValue();
 
-    @Override
-    protected String[] getRestOfArgumentTypes() {
-        // TODO Auto-generated method stub
-        return new String[]{XSD.xint.getURI(), XSD.xint.getURI()};
-    }
+        CoverageWrapper wrapper=CoverageWrapper.extract(v1);
+		GridCoverage2D raster=wrapper.getXYGeometry();
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
 
 }

@@ -25,6 +25,8 @@ import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.CoordinateXYM;
 import org.locationtech.jts.geom.CoordinateXYZM;
 
+import de.hsmainz.cs.semgis.arqextension.util.LiteralUtils;
+
 public class SwapOrdinates extends FunctionBase2 {
 
     @Override
@@ -97,7 +99,7 @@ public class SwapOrdinates extends FunctionBase2 {
             }else {
             	throw new RuntimeException("Invalid second argument"); 
             }
-            return Force2D.createGeometry(newcoords, geom.getGeometryType(), geom).asNodeValue();
+            return LiteralUtils.createGeometry(newcoords, geom.getGeometryType(), geom).asNodeValue();
         } catch (DatatypeFormatException ex) {
             throw new ExprEvalException(ex.getMessage(), ex);
         }

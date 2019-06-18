@@ -10,6 +10,7 @@ import org.apache.jena.sparql.function.FunctionBase4;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Geometry;
 
+import de.hsmainz.cs.semgis.arqextension.util.LiteralUtils;
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 
 /**
@@ -37,7 +38,7 @@ public class FilterByM extends FunctionBase4 {
             			result.add(coord);
             	}
             }
-            return Force2D.createGeometry(result, geom.getGeometryType(), geometry).asNodeValue();
+            return LiteralUtils.createGeometry(result, geom.getGeometryType(), geometry).asNodeValue();
         } catch (DatatypeFormatException ex) {
             throw new ExprEvalException(ex.getMessage(), ex);
         }

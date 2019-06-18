@@ -16,6 +16,8 @@
 package de.hsmainz.cs.semgis.arqextension.raster;
 
 import static de.hsmainz.cs.semgis.arqextension.raster.RasterSpatialFunction.makeNodeValueRaster;
+
+import io.github.galbiston.geosparql_jena.implementation.CoverageWrapper;
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import java.awt.image.RenderedImage;
 import java.util.LinkedList;
@@ -48,12 +50,6 @@ import org.opengis.referencing.operation.TransformException;
  *
  */
 public class Clip extends FunctionBase2 {
-
-    @Override
-    protected NodeValue exec(GridCoverage2D raster, GeometryWrapper geometryWrapper, Binding binding, List<NodeValue> evalArgs, String uri, FunctionEnv env) {
-        Coverage coverage = clipImageToFeatureSource(raster, (ReferencedEnvelope) raster.getEnvelope(), geometryWrapper.getXYGeometry());
-        return makeNodeValueRaster(coverage, geometryWrapper.getGeometryDatatypeURI());
-    }
 
     private Coverage clipImageToFeatureSource(GridCoverage2D gridcoverage,
             Envelope2D bounds,
@@ -124,16 +120,12 @@ public class Clip extends FunctionBase2 {
         }
     }
 
-    @Override
-    protected String[] getRestOfArgumentTypes() {
-        // TODO Auto-generated method stub
-        return new String[]{XSD.xboolean.getURI()};
-    }
-
 	@Override
 	public NodeValue exec(NodeValue v1, NodeValue v2) {
-		// TODO Auto-generated method stub
-		return null;
+		CoverageWrapper wrapper=CoverageWrapper.extract(v1);
+		GridCoverage2D raster=wrapper.getXYGeometry();
+		Coverage coverage = clipImageToFeatureSource(raster, (ReferencedEnvelope) raster.getEnvelope(), wrapper.getXYGeometry());
+        return makeNodeValueRaster(coverage, wrapper.getRasterDatatypeURI());
 	}
 
 }

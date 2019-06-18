@@ -12,30 +12,24 @@
  ****************************************************************************** */
 package de.hsmainz.cs.semgis.arqextension.raster;
 
+import io.github.galbiston.geosparql_jena.implementation.CoverageWrapper;
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
-import java.util.List;
-import org.apache.jena.sparql.engine.binding.Binding;
 import org.apache.jena.sparql.expr.NodeValue;
-import org.apache.jena.sparql.function.FunctionEnv;
+import org.apache.jena.sparql.function.FunctionBase1;
 import org.geotoolkit.coverage.grid.GridCoverage2D;
-import org.geotoolkit.geometry.jts.JTS;
 import org.locationtech.jts.geom.Geometry;
-import org.opengis.coverage.grid.GridCoverage;
 
-public class MinConvexHull extends RasterSpatialFunction {
+import de.hsmainz.cs.semgis.arqextension.util.LiteralUtils;
 
-    @Override
-    protected NodeValue exec(GridCoverage2D raster, GeometryWrapper geometryWrapper, Binding binding, List<NodeValue> evalArgs, String uri, FunctionEnv env) {
+public class MinConvexHull extends FunctionBase1{
 
-        Geometry convexHull = JTS.toGeometry(raster.getEnvelope2D().getBounds2D()).convexHull();
-        GeometryWrapper hullWrapper = GeometryWrapperFactory.createGeometry(convexHull, geometryWrapper.getSrsURI(), geometryWrapper.getGeometryDatatypeURI());
+	@Override
+	public NodeValue exec(NodeValue v) {
+		CoverageWrapper wrapper=CoverageWrapper.extract(v);
+		GridCoverage2D raster=wrapper.getXYGeometry();	
+        Geometry convexHull = LiteralUtils.toGeometry(raster.getEnvelope2D()).convexHull();
+        GeometryWrapper hullWrapper = GeometryWrapperFactory.createGeometry(convexHull, wrapper.getSrsURI(), wrapper.getRasterDatatypeURI());
         return hullWrapper.asNodeValue();
-    }
-
-    @Override
-    protected String[] getRestOfArgumentTypes() {
-        // TODO Auto-generated method stub
-        return new String[]{};
-    }
+	}
 
 }

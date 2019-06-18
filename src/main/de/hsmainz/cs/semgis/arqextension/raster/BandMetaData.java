@@ -12,38 +12,29 @@
  ****************************************************************************** */
 package de.hsmainz.cs.semgis.arqextension.raster;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
-import java.util.List;
-import org.apache.jena.sparql.engine.binding.Binding;
+import io.github.galbiston.geosparql_jena.implementation.CoverageWrapper;
+
+import java.math.BigInteger;
 import org.apache.jena.sparql.expr.NodeValue;
-import org.apache.jena.sparql.function.FunctionEnv;
-import org.apache.jena.vocabulary.XSD;
+import org.apache.jena.sparql.function.FunctionBase2;
+
 import org.geotoolkit.coverage.grid.GridCoverage2D;
 
-public class BandMetaData extends RasterSpatialFunction {
+public class BandMetaData extends FunctionBase2 {
 
-    @Override
-    protected NodeValue exec(GridCoverage2D raster, GeometryWrapper geometryWrapper, Binding binding,
-            List<NodeValue> evalArgs, String uri, FunctionEnv env) {
-        Integer bandNum;
-        if (evalArgs.isEmpty()) {
-            bandNum = 1;
-        }
-        bandNum = evalArgs.get(0).getInteger().intValue();
-        if (bandNum > raster.getNumSampleDimensions()) {
+	@Override
+	public NodeValue exec(NodeValue v1, NodeValue v2) {
+		CoverageWrapper wrapper=CoverageWrapper.extract(v1);
+		GridCoverage2D raster=wrapper.getXYGeometry();
+		BigInteger bandNum=v2.getInteger();
+        if (bandNum.intValue() > raster.getNumSampleDimensions()) {
             return NodeValue.nvNothing;
         }
         StringBuilder builder = new StringBuilder();
         builder.append("rid \t pixeltype \t nodatavalue \t isoutdb \t path" + System.lineSeparator());
-        builder.append(bandNum + "\t" + raster.getSampleDimension(bandNum).getColorModel().getTransferType()
-                + "\t" + raster.getSampleDimension(bandNum).getNoDataValues() + "\t\t\t" + System.lineSeparator());
+        builder.append(bandNum + "\t" + raster.getSampleDimension(bandNum.intValue()).getColorModel().getTransferType()
+                + "\t" + raster.getSampleDimension(bandNum.intValue()).getNoDataValues() + "\t\t\t" + System.lineSeparator());
         return NodeValue.makeString(builder.toString());
-    }
-
-    @Override
-    protected String[] getRestOfArgumentTypes() {
-        // TODO Auto-generated method stub
-        return new String[]{XSD.xint.getURI()};
-    }
+	}
 
 }

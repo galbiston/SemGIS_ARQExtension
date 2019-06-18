@@ -9,33 +9,23 @@ import java.util.List;
 
 import org.apache.jena.sparql.engine.binding.Binding;
 import org.apache.jena.sparql.expr.NodeValue;
+import org.apache.jena.sparql.function.FunctionBase1;
 import org.apache.jena.sparql.function.FunctionEnv;
 import org.apache.sis.measure.Range;
 import org.geotoolkit.coverage.grid.GridCoverage2D;
+import org.geotoolkit.data.FeatureIterator;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.io.WKTWriter;
 import org.opengis.feature.Feature;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 
-public class Vectorize extends RasterSpatialFunction {
+public class Vectorize extends FunctionBase1 {
 
     //static private PolygonExtractionProcess extractor = new PolygonExtractionProcess();
 
     static private WKTWriter writer =  new WKTWriter();
-	
-	@Override
-	protected NodeValue exec(GridCoverage2D raster, GeometryWrapper geometryWrapper, Binding binding,
-			List<NodeValue> evalArgs, String uri, FunctionEnv env) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	protected String[] getRestOfArgumentTypes() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 
 
@@ -72,7 +62,7 @@ public class Vectorize extends RasterSpatialFunction {
         List<Range> classificationRanges = Arrays.asList(range);
 
         // TODO optimization: can we initialize an Array of fixed length?
-        SimpleFeatureIterator vectorizedFeatures = extractor.execute(input, 0, true, null,
+        FeatureIterator vectorizedFeatures = extractor.execute(input, 0, true, null,
                 null, classificationRanges, null).features();
 
         Boolean firstElement = true;
@@ -92,5 +82,11 @@ public class Vectorize extends RasterSpatialFunction {
         }
         return result;
     }
+
+	@Override
+	public NodeValue exec(NodeValue v) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

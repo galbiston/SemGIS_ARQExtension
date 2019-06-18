@@ -11,6 +11,7 @@ import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.CoordinateXYM;
 import org.locationtech.jts.geom.Geometry;
 
+import de.hsmainz.cs.semgis.arqextension.util.LiteralUtils;
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 
 /**
@@ -28,7 +29,7 @@ public class Force3DM extends FunctionBase1 {
             for(Coordinate coord:geom.getCoordinates()) {
             	newcoords.add(new CoordinateXYM(coord.x,coord.y,Double.isNaN(coord.getM())?0.:coord.getM()));
             }         
-            return Force2D.createGeometry(newcoords,geom.getGeometryType(),geometry).asNodeValue();                 
+            return LiteralUtils.createGeometry(newcoords,geom.getGeometryType(),geometry).asNodeValue();                 
         } catch (DatatypeFormatException ex) {
             throw new ExprEvalException(ex.getMessage(), ex);
         }

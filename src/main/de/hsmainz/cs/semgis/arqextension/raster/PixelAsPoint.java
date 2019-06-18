@@ -12,29 +12,28 @@
  ****************************************************************************** */
 package de.hsmainz.cs.semgis.arqextension.raster;
 
+import io.github.galbiston.geosparql_jena.implementation.CoverageWrapper;
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import java.util.List;
 import org.apache.jena.sparql.engine.binding.Binding;
 import org.apache.jena.sparql.expr.NodeValue;
+import org.apache.jena.sparql.function.FunctionBase3;
 import org.apache.jena.sparql.function.FunctionEnv;
 import org.apache.jena.vocabulary.XSD;
 import org.apache.sis.geometry.Envelope2D;
 import org.geotoolkit.coverage.grid.GridCoverage2D;
+import org.geotoolkit.coverage.grid.GridEnvelope2D;
 import org.locationtech.jts.geom.CoordinateXY;
 import org.opengis.referencing.operation.TransformException;
 
-public class PixelAsPoint extends RasterSpatialFunction {
+public class PixelAsPoint extends FunctionBase3{
 
-    @Override
-    protected String[] getRestOfArgumentTypes() {
-        // TODO Auto-generated method stub
-        return new String[]{XSD.xint.getURI(), XSD.xint.getURI()};
-    }
-
-    @Override
-    protected NodeValue exec(GridCoverage2D raster, GeometryWrapper geometryWrapper, Binding binding, List<NodeValue> evalArgs, String uri, FunctionEnv env) {
-        Integer x = evalArgs.get(0).getInteger().intValue();
-        Integer y = evalArgs.get(0).getInteger().intValue();
+	@Override
+	public NodeValue exec(NodeValue v1, NodeValue v2, NodeValue v3) {
+		CoverageWrapper wrapper=CoverageWrapper.extract(v1);
+		GridCoverage2D raster=wrapper.getXYGeometry();	
+        Integer x = v2.getInteger().intValue();
+        Integer y = v3.getInteger().intValue();
 
         Envelope2D pixelEnvelop;
         try {
@@ -46,6 +45,6 @@ public class PixelAsPoint extends RasterSpatialFunction {
         } catch (TransformException e) {
             return NodeValue.nvNothing;
         }
-    }
+	}
 
 }

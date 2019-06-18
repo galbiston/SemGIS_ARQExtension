@@ -95,7 +95,7 @@ public class Coordinate implements Comparable<Coordinate>, Cloneable, Serializab
    */
   public double z;
 
-  public Date t;
+  public Date t=null;
   
   /**
    *  Constructs a <code>Coordinate</code> at (x,y,z).
@@ -212,7 +212,7 @@ public class Coordinate implements Comparable<Coordinate>, Cloneable, Serializab
   }
   
   public void setT(Long t) {
-	    this.t = new Date(t).;
+	    this.t = new Date(t);
 }
   
   /**

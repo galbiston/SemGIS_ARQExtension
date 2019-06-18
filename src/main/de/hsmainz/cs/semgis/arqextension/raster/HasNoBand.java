@@ -13,47 +13,28 @@
 package de.hsmainz.cs.semgis.arqextension.raster;
 
 import io.github.galbiston.geosparql_jena.implementation.CoverageWrapper;
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
-import java.util.List;
-import org.apache.jena.sparql.engine.binding.Binding;
+
+import java.math.BigInteger;
 import org.apache.jena.sparql.expr.NodeValue;
-import org.apache.jena.sparql.function.FunctionEnv;
-import org.apache.jena.vocabulary.XSD;
+import org.apache.jena.sparql.function.FunctionBase2;
 import org.geotoolkit.coverage.grid.GridCoverage2D;
 
 /**
  * Returns true if there is no band with given band number. If no band number is specified, then band number 1 is assumed.
  *
  */
-public class HasNoBand extends RasterSpatialFunction {
+public class HasNoBand extends FunctionBase2 {
 
 	
 	@Override
-	public NodeValue exec(NodeValue v) {
+	public NodeValue exec(NodeValue v, NodeValue v1) {
 		CoverageWrapper wrapper=CoverageWrapper.extract(v);
 		GridCoverage2D raster=wrapper.getXYGeometry();
-		
-		 return NodeValue.makeInteger(raster.getRenderedImage().getWidth());
+		BigInteger noband=v1.getInteger();
+		if(noband.intValue()>raster.getRenderedImage().getData().getNumBands()) {
+			return NodeValue.FALSE;
+		}
+		return NodeValue.TRUE;
 	}
-	
-	
-    @Override
-    protected NodeValue exec(GridCoverage2D raster, GeometryWrapper geometryWrapper, Binding binding,
-            List<NodeValue> evalArgs, String uri, FunctionEnv env) {
-        Integer bandNumber;
-        if (evalArgs.isEmpty()) {
-            bandNumber = 1;
-        }
-        bandNumber = evalArgs.get(0).getInteger().intValue();
-        if (bandNumber > raster.getNumSampleDimensions()) {
-            return NodeValue.FALSE;
-        }
-        return NodeValue.TRUE;
-    }
-
-    @Override
-    protected String[] getRestOfArgumentTypes() {
-        return new String[]{XSD.xint.getURI()};
-    }
 
 }
