@@ -5,8 +5,7 @@ import java.math.BigInteger;
 import org.apache.jena.sparql.expr.NodeValue;
 import org.apache.jena.sparql.function.FunctionBase3;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
-
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; 
 /**
  * Returns a "smoothed" version of the given geometry using the Chaikin algorithm.
  *
