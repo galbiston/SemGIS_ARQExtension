@@ -23,19 +23,6 @@ import org.geotoolkit.coverage.grid.GridCoverage2D;
 
 public class GeoReference extends FunctionBase3 {
 
-    @Override
-    protected NodeValue exec(GridCoverage2D raster, GeometryWrapper geometryWrapper, Binding binding,
-            List<NodeValue> evalArgs, String uri, FunctionEnv env) {
-
-        //raster.getRenderedImage().getData().
-    }
-
-    @Override
-    protected String[] getRestOfArgumentTypes() {
-        // TODO Auto-generated method stub
-        return new String[]{XSD.xstring.getURI()};
-    }
-
 	@Override
 	public NodeValue exec(NodeValue v1, NodeValue v2, NodeValue v3) {
         String format = evalArgs.get(0).getString();

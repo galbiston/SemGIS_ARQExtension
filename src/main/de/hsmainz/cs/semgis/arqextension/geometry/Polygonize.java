@@ -14,10 +14,13 @@ package de.hsmainz.cs.semgis.arqextension.geometry;
 
 import org.apache.jena.sparql.expr.NodeValue;
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
+import io.github.galbiston.geosparql_jena.implementation.datatype.WKTDatatype;
 
 import org.apache.jena.datatypes.DatatypeFormatException;
 import org.apache.jena.sparql.expr.ExprEvalException;
 import org.apache.jena.sparql.function.FunctionBase1;
+import org.locationtech.jts.operation.polygonize.Polygonizer;
 
 public class Polygonize extends FunctionBase1 {
 
@@ -26,8 +29,10 @@ public class Polygonize extends FunctionBase1 {
 
         try {
             GeometryWrapper geometry = GeometryWrapper.extract(arg0);
-
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            Polygonizer polygonize=new Polygonizer();
+            polygonize.add(geometry.getXYGeometry());
+            GeometryWrapper lineStringWrapper = GeometryWrapperFactory.createGeometry(polygonize.getGeometry(), geometry.getSrsURI(), WKTDatatype.URI);
+        	return lineStringWrapper.asNodeValue();
         } catch (DatatypeFormatException ex) {
             throw new ExprEvalException(ex.getMessage(), ex);
         }

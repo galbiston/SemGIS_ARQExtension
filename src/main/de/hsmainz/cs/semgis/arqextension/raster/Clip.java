@@ -15,8 +15,6 @@
  */
 package de.hsmainz.cs.semgis.arqextension.raster;
 
-import static de.hsmainz.cs.semgis.arqextension.raster.RasterSpatialFunction.makeNodeValueRaster;
-
 import io.github.galbiston.geosparql_jena.implementation.CoverageWrapper;
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import java.awt.image.RenderedImage;

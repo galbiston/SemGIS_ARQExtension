@@ -1,5 +1,6 @@
 package de.hsmainz.cs.semgis.arqextension.envelope;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import org.apache.jena.datatypes.DatatypeFormatException;
@@ -20,11 +21,13 @@ public class TMin extends FunctionBase1 {
             Geometry geo=geometry.getXYGeometry();
             Date minT=new Date(System.currentTimeMillis());
             for(Coordinate coord:geo.getCoordinates()) {
-            	if(coord.getT().before(minT)) {
+            	if(coord.getT()!=null && coord.getT().before(minT)) {
             		minT=coord.getT();
             	}
             }
-            return NodeValue.makeDate(minT);
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(minT);
+            return NodeValue.makeDate(cal);
         } catch (DatatypeFormatException ex) {
             throw new ExprEvalException(ex.getMessage(), ex);
         }

@@ -6,8 +6,7 @@ import org.apache.jena.sparql.expr.NodeValue;
 import org.apache.jena.sparql.function.FunctionBase1;
 import org.locationtech.jtstest.util.io.SVGWriter;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
-
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; 
 /**
  * Returns a Geometry in SVG path data given a geometry or geography object.
  *

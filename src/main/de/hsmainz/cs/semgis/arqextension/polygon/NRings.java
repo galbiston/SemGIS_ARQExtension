@@ -19,7 +19,7 @@ public class NRings extends FunctionBase1 {
             if (geom instanceof Polygon) {
                 return NodeValue.makeInteger(((Polygon) geom).getNumInteriorRing());
             }
-            return NodeValue.nvNothing;
+            return NodeValue.makeInteger(0);
         } catch (DatatypeFormatException ex) {
             throw new ExprEvalException(ex.getMessage(), ex);
         }

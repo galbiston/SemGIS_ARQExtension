@@ -39,7 +39,7 @@ public class IsRing extends FunctionBase1 {
                 return NodeValue.makeNodeBoolean(isRing);
             }
 
-            throw new ExprEvalException("Given Geometry is not a LineString");
+            return NodeValue.FALSE;
         } catch (DatatypeFormatException ex) {
             throw new ExprEvalException(ex.getMessage(), ex);
         }

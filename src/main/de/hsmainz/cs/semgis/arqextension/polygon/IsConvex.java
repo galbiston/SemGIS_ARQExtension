@@ -44,7 +44,7 @@ public class IsConvex extends FunctionBase1 {
                 boolean isConvex = isConvex((Polygon)geom);
                 return NodeValue.makeNodeBoolean(isConvex);
             }
-            return NodeValue.nvNothing;
+            return NodeValue.FALSE;
         } catch (DatatypeFormatException ex) {
             throw new ExprEvalException(ex.getMessage(), ex);
         }

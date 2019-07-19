@@ -17,6 +17,10 @@ import org.apache.jena.datatypes.DatatypeFormatException;
 import org.apache.jena.sparql.expr.ExprEvalException;
 import org.apache.jena.sparql.expr.NodeValue;
 import org.apache.jena.sparql.function.FunctionBase3;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.operation.buffer.BufferParameters;
+import org.locationtech.jts.operation.buffer.OffsetCurveBuilder;
 
 public class OffsetCurve extends FunctionBase3 {
 
@@ -25,7 +29,16 @@ public class OffsetCurve extends FunctionBase3 {
 
         try {
             GeometryWrapper geometry = GeometryWrapper.extract(arg0);
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            Geometry geom=geometry.getXYGeometry();
+            Double distance=arg1.getDouble();
+            BufferParameters bufParams = new BufferParameters();
+            OffsetCurveBuilder ocb = new OffsetCurveBuilder(
+                geom.getFactory().getPrecisionModel(), bufParams
+                );
+            Coordinate[] pts = ocb.getOffsetCurve(geom.getCoordinates(), distance);
+            Geometry curve = geom.getFactory().createLineString(pts);
+            GeometryWrapper pointWrapper = GeometryWrapperFactory.createGeometry(curve, geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
+            return pointWrapper.asNodeValue();
         } catch (DatatypeFormatException ex) {
             throw new ExprEvalException(ex.getMessage(), ex);
         }

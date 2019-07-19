@@ -2,6 +2,7 @@ package de.hsmainz.cs.semgis.arqextension.geometry;
 
 import org.apache.jena.sparql.expr.NodeValue;
 import org.apache.jena.sparql.function.FunctionBase2;
+import org.geolatte.geom.Position;
 import org.opengis.geometry.MismatchedDimensionException;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.util.FactoryException;
@@ -20,6 +21,9 @@ public class LongestLine3D extends FunctionBase2 {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+        org.geolatte.geom.Geometry<Position> g;
+        org.geolatte.geom.LineString<Position> l;
+        
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
 

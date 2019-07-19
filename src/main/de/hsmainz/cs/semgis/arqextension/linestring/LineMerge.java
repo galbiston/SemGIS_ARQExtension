@@ -41,7 +41,7 @@ public class LineMerge extends FunctionBase1 {
             	}
             	return GeometryWrapperFactory.createLineString(resultcoords.toArray(new Coordinate[0]), geometry.getGeometryDatatypeURI()).asNodeValue();
             }
-            return NodeValue.nvNothing;
+            throw new ExprEvalException("Given geometry is not a MultiLineString");
         } catch (DatatypeFormatException ex) {
             throw new ExprEvalException(ex.getMessage(), ex);
         }

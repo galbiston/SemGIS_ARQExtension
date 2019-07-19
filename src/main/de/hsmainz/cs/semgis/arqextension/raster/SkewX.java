@@ -30,7 +30,7 @@ public class SkewX extends FunctionBase1 {
 	public NodeValue exec(NodeValue v) {
         CoverageWrapper wrapper=CoverageWrapper.extract(v);
 		GridCoverage2D raster=wrapper.getXYGeometry();
-		raster.getGridGeometry().
+		//raster.getGridGeometry().
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
 

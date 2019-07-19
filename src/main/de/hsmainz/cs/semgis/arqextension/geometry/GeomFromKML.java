@@ -24,10 +24,10 @@ public class GeomFromKML  extends FunctionBase1{
         try {
             String wktstring=arg0.getString();
             KmlReader kmlreader=new KmlReader();
-            kmlreader.addDataReader(new Stax);
+            /*kmlreader.addDataReader(new Stax);
             kmlreader.addDataReader(new StringReader(s));
             kmlreader.read();
-            WKTReader reader=new WKTReader();
+            WKTReader reader=new WKTReader();*/
             WKTReader wktreader=WKTReader.extract(wktstring);
             Geometry geom=wktreader.getGeometry();
             GeometryWrapper pointWrapper = GeometryWrapperFactory.createGeometry(geom, "<http://www.opengis.net/def/crs/EPSG/0/"+geom.getSRID()+">", WKTDatatype.URI);	

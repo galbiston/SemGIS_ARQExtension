@@ -7,6 +7,7 @@ import org.apache.jena.sparql.expr.ExprEvalException;
 import org.apache.jena.sparql.expr.NodeValue;
 import org.apache.jena.sparql.function.FunctionBase2;
 import org.locationtech.jts.geom.Geometry;
+import org.opengis.geometry.coordinate.PolyhedralSurface;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 /**
@@ -21,14 +22,8 @@ public class PatchN extends FunctionBase2 {
         try {
             GeometryWrapper geometry = GeometryWrapper.extract(arg0);
             Geometry geom = geometry.getXYGeometry();
-            BigInteger n = arg1.getInteger();            
-            if(!geom.getGeometryType().equalsIgnoreCase("PolyhedralSurface")) {
-            	return NodeValue.nvNothing;
-            }else {
-            	Geometry geo=geom.getGeometryN(n.intValue());
-                GeometryWrapper pointWrapper = GeometryWrapperFactory.createGeometry(geo, geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
-                return pointWrapper.asNodeValue();            	
-            }
+            BigInteger n=arg1.getInteger();
+            return GeometryWrapperFactory.createGeometry(((PolyhedralSurface)geom).getPatches().get(n.intValue()), geometry.getSrsURI(), geometry.getGeometryDatatypeURI()).asNodeValue();
         } catch (DatatypeFormatException ex) {
             throw new ExprEvalException(ex.getMessage(), ex);
         }

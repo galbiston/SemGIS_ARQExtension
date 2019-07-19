@@ -4,8 +4,10 @@ import java.math.BigInteger;
 
 import org.apache.jena.sparql.expr.NodeValue;
 import org.apache.jena.sparql.function.FunctionBase3;
+import org.jaitools.jts.LineSmoother;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; 
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
+
 /**
  * Returns a "smoothed" version of the given geometry using the Chaikin algorithm.
  *
@@ -17,6 +19,8 @@ public class ChaikinSmoothing extends FunctionBase3{
 		GeometryWrapper geom1 = GeometryWrapper.extract(v1);
 		BigInteger nIterations=v2.getInteger();
 		Boolean preserveEndpoints=v3.getBoolean();
+		LineSmoother smoother=new LineSmoother();
+		org.jaitools
         throw new UnsupportedOperationException("Not supported yet.");
 	}
 

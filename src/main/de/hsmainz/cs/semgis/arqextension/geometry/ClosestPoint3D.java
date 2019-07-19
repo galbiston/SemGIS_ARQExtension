@@ -20,8 +20,8 @@ public class ClosestPoint3D extends FunctionBase2{
             GeometryWrapper geom2 = GeometryWrapper.extract(arg1);
 
             GeometryWrapper transGeom2 = geom2.transform(geom1.getSrsInfo());
-
             Distance3DOp distop = new Distance3DOp(geom1.getXYGeometry(), transGeom2.getXYGeometry());
+
             Coordinate[] coords = distop.nearestPoints();
             Coordinate coord = new Coordinate(coords[0].x, coords[0].y);
 
@@ -32,5 +32,7 @@ public class ClosestPoint3D extends FunctionBase2{
             throw new ExprEvalException(ex.getMessage(), ex);
         }
 	}
+	
+	
 
 }

@@ -14,7 +14,7 @@ public class MakePointT extends FunctionBase3 {
 
     @Override
     public NodeValue exec(NodeValue arg0, NodeValue arg1, NodeValue arg2) {
-    	arg2.getD
+    	//arg2.getD
         Coordinate coord = new CoordinateXYM(arg0.getDouble(), arg1.getDouble(), arg2.getDouble());
         GeometryWrapper pointWrapper = GeometryWrapperFactory.createPoint(coord, SRS_URI.DEFAULT_WKT_CRS84, WKTDatatype.URI);
         return pointWrapper.asNodeValue();

@@ -12,12 +12,14 @@
  ****************************************************************************** */
 package de.hsmainz.cs.semgis.arqextension.polygon;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; 
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import org.apache.jena.datatypes.DatatypeFormatException;
 import org.apache.jena.sparql.expr.ExprEvalException;
 import org.apache.jena.sparql.expr.NodeValue;
 import org.apache.jena.sparql.function.FunctionBase1;
 import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.LineString;
 import org.locationtech.jts.geom.LinearRing;
 
 /**
@@ -34,6 +36,10 @@ public class MakePolygon extends FunctionBase1 {
             GeometryWrapper geometry = GeometryWrapper.extract(arg0);
             Geometry geom = geometry.getXYGeometry();
             if (geom instanceof LinearRing) {
+                GeometryWrapper polygonWrapper = GeometryWrapperFactory.createPolygon((LinearRing) geom, geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
+                return polygonWrapper.asNodeValue();
+            }
+            if (geom instanceof LineString) {
                 GeometryWrapper polygonWrapper = GeometryWrapperFactory.createPolygon((LinearRing) geom, geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
                 return polygonWrapper.asNodeValue();
             }

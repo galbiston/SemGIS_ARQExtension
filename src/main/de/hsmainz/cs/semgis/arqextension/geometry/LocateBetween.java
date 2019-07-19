@@ -3,8 +3,7 @@ package de.hsmainz.cs.semgis.arqextension.geometry;
 import org.apache.jena.sparql.expr.NodeValue;
 import org.apache.jena.sparql.function.FunctionBase4;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
-
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; 
 public class LocateBetween extends FunctionBase4 {
 
 	@Override

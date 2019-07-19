@@ -123,14 +123,14 @@ public class TripleStoreConnection {
 	}
 	
 	public static void main(String[] args) {
-		String res=TripleStoreConnection.INSTANCE.executeQuery("SELECT ?geom ?wkt WHERE { ?geom geo:asWKT ?wkt . FILTER(!geo:ST_IsCollection(?wkt)) }","testdata2.ttl");
+		String res=TripleStoreConnection.executeQuery("SELECT ?geom ?wkt WHERE { ?geom geo:asWKT ?wkt . FILTER(!geo:ST_IsCollection(?wkt)) }","testdata2.ttl");
 		//System.out.println(res[0]);
 		System.out.println(res);
 		System.out.println("=====================================================================================================");
-		res=TripleStoreConnection.INSTANCE.executeQuery("SELECT ?geom ?wkt WHERE { ?geom geo:asWKT ?wkt . FILTER(geo:ST_Area(?wkt)>10) }","testdata2.ttl");
+		res=TripleStoreConnection.executeQuery("SELECT ?geom ?wkt WHERE { ?geom geo:asWKT ?wkt . FILTER(geo:ST_Area(?wkt)>10) }","testdata2.ttl");
 		//System.out.println(res[0]);
 		System.out.println(res);
-		res=TripleStoreConnection.INSTANCE.executeQuery("SELECT ?wkt2 WHERE { ?geom geo:asWKT ?wkt . BIND(geo:ST_YMax(?wkt) AS ?wkt2). FILTER(geo:ST_Area(?wkt)>10) }","testdata2.ttl");
+		res=TripleStoreConnection.executeQuery("SELECT ?wkt2 WHERE { ?geom geo:asWKT ?wkt . BIND(geo:ST_YMax(?wkt) AS ?wkt2). FILTER(geo:ST_Area(?wkt)>10) }","testdata2.ttl");
 		System.out.println(res);
 		System.out.println(res);
 	}

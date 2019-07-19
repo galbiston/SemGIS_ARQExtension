@@ -11,7 +11,7 @@ import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Geometry;
 
 import de.hsmainz.cs.semgis.arqextension.util.LiteralUtils;
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 
 /**
  * Filters away vertex points based on their m-value. Returns a geometry with only vertex points that have a m-value larger or equal to the min value and smaller or equal to the max value. If max-value argument is left out only min value is considered. If fourth argument is left out the m-value will not be in the resulting geoemtry. If resulting geometry have too few vertex points left for its geometry type an empty geoemtry will be returned. In a geometry collection geometries without enough points will just be left out silently.

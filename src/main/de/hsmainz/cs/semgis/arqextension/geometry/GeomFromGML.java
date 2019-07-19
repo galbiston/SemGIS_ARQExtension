@@ -10,7 +10,7 @@ import org.jdom2.JDOMException;
 import org.locationtech.jts.geom.Geometry;
 
 import io.github.galbiston.geosparql_jena.implementation.DimensionInfo;
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 import io.github.galbiston.geosparql_jena.implementation.parsers.gml.GMLReader;
 import io.github.galbiston.geosparql_jena.implementation.vocabulary.Geo;
 

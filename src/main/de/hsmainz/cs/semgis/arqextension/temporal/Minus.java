@@ -21,7 +21,7 @@ public class Minus extends FunctionBase2 {
 		
 		start.set(2010, 7, 23);
 		end.set(2010, 8, 26);
-		range2.to. range2.from
+		//range2.to. range2.from
 		if(range1.from.equals(range2.from) && range1.to.equals(range2.to)) {
 			return NodeValue.makeNodeBoolean(true);
 		}

@@ -38,7 +38,7 @@ public class StartPoint extends FunctionBase1 {
                 return pointWrapper.asNodeValue();
             }
 
-            return NodeValue.nvNothing;
+            throw new ExprEvalException("Input geometry is not a LineString");
         } catch (DatatypeFormatException ex) {
             throw new ExprEvalException(ex.getMessage(), ex);
         }

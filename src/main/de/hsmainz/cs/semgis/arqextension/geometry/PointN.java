@@ -12,7 +12,8 @@
  ****************************************************************************** */
 package de.hsmainz.cs.semgis.arqextension.geometry;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; 
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 import java.math.BigInteger;
 import org.apache.jena.datatypes.DatatypeFormatException;
 import org.apache.jena.sparql.expr.ExprEvalException;
@@ -37,7 +38,7 @@ public class PointN extends FunctionBase2 {
 
             BigInteger n = arg1.getInteger();
             if (n.intValue() >= geom.getCoordinates().length) {
-                return NodeValue.nvNothing;
+            	 throw new ExprEvalException("No point "+n+" present in the input geometry");
             }
             Coordinate[] coords = geom.getCoordinates();
             CoordinateXY coord = new CoordinateXY(coords[n.intValue()].x, coords[n.intValue()].y);

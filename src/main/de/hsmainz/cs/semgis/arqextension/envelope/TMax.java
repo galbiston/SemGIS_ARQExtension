@@ -1,5 +1,6 @@
 package de.hsmainz.cs.semgis.arqextension.envelope;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import org.apache.jena.datatypes.DatatypeFormatException;
@@ -20,11 +21,13 @@ public class TMax extends FunctionBase1 {
             Geometry geo=geometry.getXYGeometry();
             Date maxT=new Date(0);
             for(Coordinate coord:geo.getCoordinates()) {
-            	if(coord.getT().after(maxT)) {
+            	if(coord.getT()!=null && coord.getT().after(maxT)) {
             		maxT=coord.getT();
             	}
             }
-            return NodeValue.makeDate(maxT);
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(maxT);
+            return NodeValue.makeDate(cal);
         } catch (DatatypeFormatException ex) {
             throw new ExprEvalException(ex.getMessage(), ex);
         }

@@ -9,8 +9,7 @@ import org.apache.jena.sparql.function.FunctionBase3;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Geometry;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
-
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; 
 /**
  * Returns a Geometry in X3D xml node element format: ISO-IEC-19776-1.2-X3DEncodings-XML
  *
