@@ -26,6 +26,7 @@ public class PostGISGeo {
 
 
 
+
    protected static final Resource resource(String local) {
       return ResourceFactory.createResource(uri + local);
    }
@@ -63,11 +64,16 @@ public class PostGISGeo {
    public static final Property st_asmvt = property("ST_AsMVT");
    public static final Property st_asmvtgeom = property("ST_AsMVTGeom");
    public static final Property st_aspng = property("ST_AsPNG");
+   public static final Property st_aspolyshape = property("ST_AsPolyshape");
    public static final Property st_assvg = property("ST_AsSVG");
    public static final Property st_astext = property("ST_AsText");
+   public static final Property st_astextraw = property("ST_AsTextRaw");
+   public static final Property st_astextround = property("ST_AsTextRound");
    public static final Property st_astiff = property("ST_AsTIFF");
    public static final Property st_astopojson = property("ST_AsTopoJSON");
    public static final Property st_astwkb = property("ST_AsTWKB");
+   public static final Property st_aswkb = property("ST_AsWKB");
+   public static final Property st_aswkt = property("ST_AsWKT");
    public static final Property st_asx3d = property("ST_AsX3D");
    public static final Property st_azimuth = property("ST_Azimuth");
    public static final Property st_band = property("ST_Band");
@@ -94,6 +100,7 @@ public class PostGISGeo {
    public static final Property st_contains = property("ST_Contains");
    public static final Property st_containsProperly = property("ST_ContainsProperly");
    public static final Property st_count = property("ST_Count");
+   public static final Property st_curveToLine = property("ST_CurveToLine");
    public static final Property st_densify = property("ST_Densify");
    public static final Property st_delaunayTriangles = property("ST_DelaunayTriangles");
    public static final Property st_dimension = property("ST_Dimension");
@@ -103,7 +110,11 @@ public class PostGISGeo {
    public static final Property st_dwithin3d = property("ST_DWithin3D");
    public static final Property st_endPoint = property("ST_EndPoint");
    public static final Property st_envelope = property("ST_Envelope");
+   public static final Property st_epsgToSRID = property("ST_EPSGToSRID");
+   public static final Property st_equals = property("ST_Equals");
    public static final Property st_equalSRS = property("ST_EqualSRS");
+   public static final Property st_equalsNorm = property("ST_EqualsNorm");
+   public static final Property st_equalsTopo = property("ST_EqualsTopo");
    public static final Property st_filterByM = property("ST_FilterByM");
    public static final Property st_filterByT = property("ST_FilterByT");
    public static final Property st_flipCoordinates = property("ST_FlipCoordinates");
@@ -145,6 +156,7 @@ public class PostGISGeo {
    public static final Property st_isConvex = property("ST_IsConvex");
    public static final Property st_isEmpty = property("ST_IsEmpty");
    public static final Property st_isMeasured = property("ST_IsMeasured");
+   public static final Property st_isMorePrecise = property("ST_IsMorePrecise");
    public static final Property st_isNodingValid = property("ST_IsNodingValid");
    public static final Property st_isPointOnLine = property("ST_IsPointOnLine");
    public static final Property st_isPointInRing = property("ST_IsPointInRing");
@@ -294,6 +306,7 @@ public class PostGISGeo {
    public static final Property st_snapToGrid = property("ST_SnapToGrid");
    public static final Property st_split = property("ST_Split");
    public static final Property st_srid = property("ST_SRID");
+   public static final Property st_sridToEPSG = property("ST_SRIDToEPSG");
    public static final Property st_startPoint = property("ST_StartPoint");
    public static final Property st_straightSkeleton = property("ST_StraightSkeleton");
    public static final Property st_summary = property("ST_Summary");
@@ -301,6 +314,7 @@ public class PostGISGeo {
    public static final Property st_swapOrdinates = property("ST_SwapOrdinates");
    public static final Property st_symDifference = property("ST_SymDifference");
    public static final Property st_tesselate = property("ST_Tesselate");
+   public static final Property st_t = property("ST_T");
    public static final Property st_tMax = property("ST_TMax");
    public static final Property st_tMin = property("ST_TMin");
    public static final Property st_transform = property("ST_Transform");
@@ -342,6 +356,7 @@ public static final String KML = "KML";
 public static final String WKBRaster = "WKBRaster";
 public static final String GEOTIFF = "GeoTIFF";
 public static final String EncodedPolyline = "EncodedPolyline";
+public static final String Polyshape= "Polyshape";
 public static final String TWKB = "TWKB";
 public static final String HEXWKB = "HEXWKB";
 public static final String MVT = "MVT";
@@ -351,6 +366,15 @@ public static final String HexWKBRaster = "HexWKBRaster";
 public static final String TopoJSON = "TopoJSON";
 public static final String TemporalRange="TemporalRange";
 public static final String CoverageJSON = "CoverageJSON";
+
+
+
+
+
+
+
+
+
 
 
 

@@ -16,20 +16,18 @@
  */
 
 
-package org.locationtech.spatial4j.io;
+package de.hsmainz.cs.semgis.arqextension.util;
 
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.Iterator;
 
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.GeometryCollection;
+import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.LineString;
 import org.locationtech.jts.geom.Point;
-import org.locationtech.spatial4j.context.SpatialContext;
-import org.locationtech.spatial4j.context.SpatialContextFactory;
-import org.locationtech.spatial4j.shape.Shape;
-import org.locationtech.spatial4j.shape.ShapeCollection;
-import org.locationtech.spatial4j.shape.impl.BufferedLine;
-import org.locationtech.spatial4j.shape.impl.BufferedLineString;
 import org.opengis.geometry.coordinate.Circle;
 
 
@@ -45,34 +43,30 @@ import org.opengis.geometry.coordinate.Circle;
  * @see <a href="https://developers.google.com/maps/documentation/utilities/polylinealgorithm">Google Maps API</a>
  * @see PolyshapeReader
  */
-public class PolyshapeWriter implements ShapeWriter {
+public class PolyshapeWriter {
 
-  public PolyshapeWriter(SpatialContext ctx, SpatialContextFactory factory) {
-
-  }
-
-  @Override
+  
   public String getFormatName() {
-    return ShapeIO.POLY;
+    return "PolyShape";
   }
 
 
-  @Override
-  public void write(Writer output, Shape shape) throws IOException {
+  
+  public void write(Writer output, Geometry shape) throws IOException {
     if (shape == null) {
       throw new NullPointerException("Shape can not be null");
     }
     write(new Encoder(output), shape);
   }
 
-  public void write(Encoder enc, Shape shape) throws IOException {
+  public void write(Encoder enc, Geometry shape) throws IOException {
     if (shape instanceof Point) {
       Point v = (Point) shape;
       enc.write(KEY_POINT);
       enc.write(v.getX(), v.getY());
       return;
     }
-    if (shape instanceof Rectangle) {
+    if (shape instanceof Rectangle2D) {
       Rectangle v = (Rectangle) shape;
       enc.write(KEY_BOX);
       enc.write(v.getMinX(), v.getMinY());
@@ -89,16 +83,16 @@ public class PolyshapeWriter implements ShapeWriter {
       enc.write(v.getB().getX(), v.getB().getY());
       return;
     }
-    if (shape instanceof BufferedLineString) {
-      BufferedLineString v = (BufferedLineString) shape;
+    if (shape instanceof LineString) {
+      LineString v = (LineString) shape;
       enc.write(KEY_LINE);
       if(v.getBuf()>0) {
         enc.writeArg(v.getBuf());
       }
-      BufferedLine last = null;
-      Iterator<BufferedLine> iter = v.getSegments().iterator();
+      LineString last = null;
+      Iterator<LineString> iter = v.getSegments().iterator();
       while (iter.hasNext()) {
-        BufferedLine seg = iter.next();
+        LineString seg = iter.next();
         enc.write(seg.getA().getX(), seg.getA().getY());
         last = seg;
       }
@@ -110,29 +104,29 @@ public class PolyshapeWriter implements ShapeWriter {
     if (shape instanceof Circle) {
       // See: https://github.com/geojson/geojson-spec/wiki/Proposal---Circles-and-Ellipses-Geoms
       Circle v = (Circle) shape;
-      Point center = v.getCenter();
+      Point center = GeometryFactory. createPointFromInternalCoord(v.getCenter().getCoordinate(), new GeometryFactory());
       double radius = v.getRadius();
       enc.write(KEY_CIRCLE);
       enc.writeArg(radius);
       enc.write(center.getX(), center.getY());
       return;
     }
-    if (shape instanceof ShapeCollection) {
-      ShapeCollection v = (ShapeCollection) shape;
-      Iterator<Shape> iter = v.iterator();
-      while(iter.hasNext()) {
-        write(enc, iter.next());
-        if(iter.hasNext()) {
+    if (shape instanceof GeometryCollection) {
+      GeometryCollection v = (GeometryCollection) shape;
+      
+      //Iterator<Geometry> iter = v.geomeiterator();
+      for(int i=0;i<v.getLength();i++) {
+        write(enc, v.getGeometryN(i));
+        if(i<v.getLength()) {
           enc.seperator();
         }
       }
       return;
     }
-    enc.writer.write("{unkwnwon " + LegacyShapeWriter.writeShape(shape) +"}");
+    return;
   }
 
-  @Override
-  public String toString(Shape shape) {
+  public String toString(Geometry shape) {
     try {
       StringWriter buffer = new StringWriter();
       write(buffer, shape);

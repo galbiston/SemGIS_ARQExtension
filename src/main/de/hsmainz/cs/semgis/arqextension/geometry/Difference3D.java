@@ -9,7 +9,7 @@ import org.opengis.geometry.MismatchedDimensionException;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.util.FactoryException;
 
-import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
 
 public class Difference3D extends FunctionBase2 {
 
@@ -19,7 +19,7 @@ public class Difference3D extends FunctionBase2 {
             GeometryWrapper geom1 = GeometryWrapper.extract(arg0);
             GeometryWrapper geom2 = GeometryWrapper.extract(arg1);
             GeometryWrapper transGeom2 = geom2.transform(geom1.getSrsInfo());
-            GeometryWrapper geom=geom1.intersection(geom2);
+            GeometryWrapper geom=geom1.intersection(transGeom2);
             
         	throw new UnsupportedOperationException("Not supported yet.");
         } catch (DatatypeFormatException | FactoryException | MismatchedDimensionException | TransformException ex) {

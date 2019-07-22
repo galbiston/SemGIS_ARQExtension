@@ -26,8 +26,9 @@ public class ShortestLine3D extends FunctionBase2 {
 	            GeometryWrapper lineStringWrapper = GeometryWrapperFactory.createLineString(coord, geometry1.getSrsURI(), geometry1.getGeometryDatatypeURI());
 
 	            return lineStringWrapper.asNodeValue();
-	        } catch (DatatypeFormatException | FactoryException | TransformException ex) {
-	            throw new ExprEvalException(ex.getMessage(), ex);
+	        } catch (Exception ex) {
+	        	return NodeValue.makeString(ex.getMessage());
+	            //throw new ExprEvalException(ex.getMessage(), ex);
 	        }
 	}
 

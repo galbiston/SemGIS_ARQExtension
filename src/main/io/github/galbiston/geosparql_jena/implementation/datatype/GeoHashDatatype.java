@@ -17,13 +17,10 @@
  */
 package io.github.galbiston.geosparql_jena.implementation.datatype;
 
-import io.github.galbiston.geosparql_jena.implementation.CoverageWrapper;
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 
-import java.math.BigInteger;
 import java.text.ParseException;
 
-import org.apache.jena.sparql.expr.NodeValue;
 import org.apache.sis.index.GeoHashCoder;
 import org.locationtech.jts.algorithm.Angle;
 import org.locationtech.jts.geom.Coordinate;
@@ -31,9 +28,6 @@ import org.locationtech.jts.geom.Geometry;
 import org.opengis.geometry.DirectPosition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.wololo.geojson.GeoJSON;
-import org.wololo.jts2geojson.GeoJSONReader;
-import org.wololo.jts2geojson.GeoJSONWriter;
 
 import de.hsmainz.cs.semgis.arqextension.vocabulary.PostGISGeo;
 

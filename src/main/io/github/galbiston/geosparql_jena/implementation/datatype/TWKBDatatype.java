@@ -1,18 +1,15 @@
 package io.github.galbiston.geosparql_jena.implementation.datatype;
 
-import io.github.galbiston.geosparql_jena.implementation.DimensionInfo;
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper; import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
-import io.github.galbiston.geosparql_jena.implementation.parsers.wkt.WKTReader;
-import io.github.galbiston.geosparql_jena.implementation.parsers.wkt.WKTWriter;
-import io.github.galbiston.geosparql_jena.implementation.vocabulary.Geo;
 import io.github.galbiston.geosparql_jena.implementation.vocabulary.SRS_URI;
+
+import org.locationtech.geowave.core.geotime.util.TWKBReader;
+import org.locationtech.geowave.core.geotime.util.TWKBWriter;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.io.ParseException;
-import org.locationtech.jts.io.WKBReader;
-import org.locationtech.jts.io.WKBWriter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.wololo.jts2geojson.GeoJSONReader;
+
 
 import de.hsmainz.cs.semgis.arqextension.vocabulary.PostGISGeo;
 
@@ -66,7 +63,7 @@ public class TWKBDatatype extends GeometryDatatype {
 
         if (geometry instanceof GeometryWrapper) {
             GeometryWrapper geometryWrapper = (GeometryWrapper) geometry;
-            WKBWriter writer=new WKBWriter();
+            TWKBWriter writer=new TWKBWriter();
             return writer.write(geometryWrapper.getXYGeometry()).toString();
         } else {
             throw new AssertionError("Object passed to TWKBDatatype is not a GeometryWrapper: " + geometry);
@@ -77,7 +74,7 @@ public class TWKBDatatype extends GeometryDatatype {
     public GeometryWrapper read(String geometryLiteral) {
         WKBTextSRS wkbTextSRS = new WKBTextSRS(geometryLiteral);
 
-        WKBReader wkbReader = new WKBReader();
+        TWKBReader wkbReader = new TWKBReader();
         Geometry geometry;
 		try {
 			geometry = wkbReader.read(wkbTextSRS.getWkbText().getBytes());
