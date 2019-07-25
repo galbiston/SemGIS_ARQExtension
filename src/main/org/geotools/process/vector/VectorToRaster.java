@@ -45,6 +45,7 @@ import javax.media.jai.TiledImage;
 
 import org.apache.sis.geometry.DirectPosition2D;
 import org.apache.sis.internal.feature.Geometries;
+import org.apache.sis.util.iso.SimpleInternationalString;
 import org.geotoolkit.coverage.grid.GridCoordinates2D;
 import org.geotoolkit.coverage.grid.GridCoverage2D;
 import org.geotoolkit.coverage.grid.GridCoverageFactory;

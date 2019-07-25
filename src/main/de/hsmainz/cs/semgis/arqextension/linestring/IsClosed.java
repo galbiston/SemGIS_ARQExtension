@@ -40,8 +40,8 @@ public class IsClosed extends FunctionBase1 {
             if(geom instanceof Point)
             	return NodeValue.TRUE;
             if(geom instanceof MultiPoint) {
-            	//LineString line=(LineString) GeometryWrapperFactory.createLineString(((MultiPoint)geom).getCoordinates(),  "<http://www.opengis.net/def/crs/EPSG/0/" + geom.getSRID() + ">", WKTDatatype.URI).getXYGeometry();
-                boolean isClosed = ((LineString) geom).isClosed();
+            	LineString line=(LineString) GeometryWrapperFactory.createLineString(((MultiPoint)geom).getCoordinates(),  "<http://www.opengis.net/def/crs/EPSG/0/" + geom.getSRID() + ">", WKTDatatype.URI).getXYGeometry();
+                boolean isClosed = line.isClosed();
                 return NodeValue.makeNodeBoolean(isClosed);            	
             }
             if (geom instanceof LineString) {
@@ -52,7 +52,7 @@ public class IsClosed extends FunctionBase1 {
                 return NodeValue.TRUE;
             }
 
-            return NodeValue.nvNothing;
+            return NodeValue.FALSE;
         } catch (DatatypeFormatException ex) {
             throw new ExprEvalException(ex.getMessage(), ex);
         }

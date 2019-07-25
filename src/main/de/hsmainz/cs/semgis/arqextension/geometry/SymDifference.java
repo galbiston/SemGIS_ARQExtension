@@ -27,7 +27,7 @@ public class SymDifference extends FunctionBase2 {
 			GeometryWrapper transGeom2;
 			try {
 				transGeom2 = ((GeometryWrapper)wrapper2).transform(((GeometryWrapper)wrapper1).getSrsInfo());
-				return GeometryWrapperFactory.createGeometry(((GeometryWrapper)wrapper1).difference(transGeom2).getParsingGeometry(), ((GeometryWrapper)wrapper1).getSrsURI(), ((GeometryWrapper)wrapper1).getGeometryDatatypeURI()).asNodeValue();
+				return GeometryWrapperFactory.createGeometry(((GeometryWrapper)wrapper1).symDifference(transGeom2).getParsingGeometry(), ((GeometryWrapper)wrapper1).getSrsURI(), ((GeometryWrapper)wrapper1).getGeometryDatatypeURI()).asNodeValue();
 
 			} catch (MismatchedDimensionException | TransformException | FactoryException e) {
 				// TODO Auto-generated catch block
@@ -60,7 +60,7 @@ public class SymDifference extends FunctionBase2 {
 		GeometryWrapper geom2 = GeometryWrapper.extract(v2);
 		try {
 			GeometryWrapper transGeom2 = geom2.transform(geom1.getSrsInfo());
-			return GeometryWrapperFactory.createGeometry(geom1.difference(geom2).getParsingGeometry(), geom1.getSrsURI(), geom1.getGeometryDatatypeURI()).asNodeValue();
+			return GeometryWrapperFactory.createGeometry(geom1.symDifference(geom2).getParsingGeometry(), geom1.getSrsURI(), geom1.getGeometryDatatypeURI()).asNodeValue();
 		} catch (MismatchedDimensionException | TransformException | FactoryException e) {
 			// TODO Auto-generated catch block
 			throw new ExprEvalException("A transformation exception occured");

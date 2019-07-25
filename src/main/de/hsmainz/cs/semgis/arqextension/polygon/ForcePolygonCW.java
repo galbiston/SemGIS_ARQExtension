@@ -25,8 +25,7 @@ public class ForcePolygonCW extends FunctionBase1{
             GeometryWrapper geometry = GeometryWrapper.extract(v);
             Geometry geom = geometry.getXYGeometry();
             if (geom instanceof Polygon) {
-            	Orientation orientation=new Orientation();
-            	if(!orientation.isCCW(geom.getCoordinates())) {
+            	if(!Orientation.isCCW(geom.getCoordinates())) {
             		return geometry.asNodeValue();
             	}else {
             		GeometryWrapperFactory.createPolygon(Arrays.asList(geom.reverse().getCoordinates()), WKTDatatype.URI);

@@ -18,8 +18,8 @@ public class FrechetDistance {
 
         static double delta = 0.01;
         public double[][] a, b, c, d;
-        Point2D[] pl1;
-        Point2D[] pl2;
+        Coordinate[] pl1;
+        Coordinate[] pl2;
         int pLength;
         int qLength;
         static GeometricShapeFactory gsf = new GeometricShapeFactory();
@@ -31,7 +31,7 @@ public class FrechetDistance {
          * @param P
          * @param Q
          */
-        public FrechetDistance(Point2D[] P, Point2D[] Q) {
+        public FrechetDistance(Coordinate[] P, Coordinate[] Q) {
                 pl1 = P;
                 pl2 = Q;
                 pLength = P.length;

@@ -27,6 +27,7 @@ public class PostGISGeo {
 
 
 
+
    protected static final Resource resource(String local) {
       return ResourceFactory.createResource(uri + local);
    }
@@ -81,9 +82,11 @@ public class PostGISGeo {
    public static final Property st_bandnodatavalue = property("ST_BandNoDataValue");
    public static final Property st_bandpixeltype = property("ST_BandPixelType");
    public static final Property st_bboxintersect = property("ST_BBOXIntersect");
+   public static final Property st_bezierSmoothing = property("ST_BezierSmoothing");
    public static final Property st_boundary = property("ST_Boundary");
    public static final Property st_boundingdiagonal = property("ST_BoundingDiagonal");
    public static final Property st_centroid = property("ST_Centroid");
+   public static final Property st_centroidDistance = property("ST_CentroidDistance");
    public static final Property st_chaikinSmooting = property("ST_ChaikinSmoothing");
    public static final Property st_clip = property("ST_Clip");
    public static final Property st_clipByBox2D = property("ST_ClipByBox2D");
@@ -107,6 +110,7 @@ public class PostGISGeo {
    public static final Property st_distance = property("ST_Distance");
    public static final Property st_distance3d = property("ST_3DDistance");
    public static final Property st_distancesphere = property("ST_DistanceSphere");
+   public static final Property st_dWithin = property("ST_DWithin");
    public static final Property st_dwithin3d = property("ST_DWithin3D");
    public static final Property st_endPoint = property("ST_EndPoint");
    public static final Property st_envelope = property("ST_Envelope");
@@ -150,6 +154,7 @@ public class PostGISGeo {
    public static final Property st_height = property("ST_Height");
    public static final Property st_interiorRingN = property("ST_InteriorRingN");
    public static final Property st_interpolatePoint = property("ST_InterpolatePoint");
+   public static final Property st_intersectionPercentage = property("ST_IntersectionPercentage");
    public static final Property st_is3D = property("ST_Is3D");
    public static final Property st_isClosed = property("ST_IsClosed");
    public static final Property st_isCollection = property("ST_IsCollection");
@@ -359,6 +364,7 @@ public static final String EncodedPolyline = "EncodedPolyline";
 public static final String Polyshape= "Polyshape";
 public static final String TWKB = "TWKB";
 public static final String HEXWKB = "HEXWKB";
+public static final String DXF="DXF";
 public static final String MVT = "MVT";
 public static final String X3D = "X3D";
 public static final String OSM= "OSM";
@@ -366,6 +372,10 @@ public static final String HexWKBRaster = "HexWKBRaster";
 public static final String TopoJSON = "TopoJSON";
 public static final String TemporalRange="TemporalRange";
 public static final String CoverageJSON = "CoverageJSON";
+
+
+
+
 
 
 

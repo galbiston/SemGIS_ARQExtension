@@ -34,7 +34,7 @@ public class PixelAsPoint extends FunctionBase3{
 		GridCoverage2D raster=wrapper.getXYGeometry();	
         Integer x = v2.getInteger().intValue();
         Integer y = v3.getInteger().intValue();
-
+        
         Envelope2D pixelEnvelop;
         try {
             pixelEnvelop = raster.getGridGeometry().getGridToCRS2D().transform(new GridEnvelope2D(x, y, 1, 1),null);

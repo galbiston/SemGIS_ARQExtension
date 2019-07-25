@@ -21,7 +21,8 @@ public class FrechetDistance extends FunctionBase3 {
         try {
 			GeometryWrapper transGeom2 = geom2.transform(geom1.getSRID());
 	        Double densifyFrac=arg2.getDouble();
-	        heigit.ors.util.FrechetDistance frechet=new heigit.ors.util.FrechetDistance(P, Q)
+	        heigit.ors.util.FrechetDistance frechet=new heigit.ors.util.FrechetDistance(geom1.getXYGeometry().getCoordinates(), transGeom2.getXYGeometry().getCoordinates());
+	        return NodeValue.makeDouble(frechet.computeFrechetDistance());
         } catch (MismatchedDimensionException | TransformException | FactoryException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

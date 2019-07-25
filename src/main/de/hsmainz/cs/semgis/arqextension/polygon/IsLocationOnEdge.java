@@ -25,13 +25,10 @@ public class IsLocationOnEdge extends FunctionBase2 {
 		try {
             GeometryWrapper geometry = GeometryWrapper.extract(v1);
             Geometry geom = geometry.getXYGeometry();
-            GeometryWrapper point = GeometryWrapper.extract(v2);
-            Geometry pointgeom = geometry.getXYGeometry();
             if (geom instanceof Polygon) {
-            	((Polygon)geom).
-            	BigInteger ringN = arg1.getInteger();
+            	BigInteger ringN = v2.getInteger();
             	LineString result=((Polygon) geom).getInteriorRingN(ringN.intValue());
-            	GeometryWrapper lineStringWrapper = GeometryWrapperFactory.createGeometry(result, "<http://www.opengis.net/def/crs/EPSG/0/"+geom.getSRID()+">", WKTDatatype.URI);
+            	GeometryWrapper lineStringWrapper = GeometryWrapperFactory.createGeometry(result, geometry.getSrsURI(), WKTDatatype.URI);
             	return lineStringWrapper.asNodeValue();
             }
             return NodeValue.nvNothing;

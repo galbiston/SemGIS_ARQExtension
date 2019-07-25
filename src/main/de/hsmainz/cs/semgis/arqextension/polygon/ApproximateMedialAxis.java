@@ -1,6 +1,7 @@
 package de.hsmainz.cs.semgis.arqextension.polygon;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.jena.sparql.expr.NodeValue;
 import org.apache.jena.sparql.function.FunctionBase1;
@@ -31,7 +32,7 @@ public class ApproximateMedialAxis extends FunctionBase1 {
 	      final Polygon xpoly = new Polygon(xpoints);
 	      final Skeleton skeleton = new Skeleton(xpoly);
 	      skeleton.execute();
-	      final SimpleList lines = skeleton.getLines(false);
+	      final List lines = skeleton.getLines(false);
 	      final Object[] array = lines.convertValuesToArray();
 
 	      for (int i = 0; i < array.length; i++) {

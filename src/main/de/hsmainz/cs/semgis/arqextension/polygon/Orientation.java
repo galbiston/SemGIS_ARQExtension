@@ -17,7 +17,6 @@ public class Orientation extends FunctionBase1 {
             GeometryWrapper geometry = GeometryWrapper.extract(v);
             Geometry geom = geometry.getXYGeometry();
             if (geom instanceof Polygon) {
-            	Orientation orientation=new Orientation();
             	if(org.locationtech.jts.algorithm.Orientation.isCCW(geom.getCoordinates())) {
             		return NodeValue.makeInteger(-1);
             	}

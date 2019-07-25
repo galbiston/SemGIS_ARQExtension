@@ -6,6 +6,7 @@ import org.jaitools.jts.LineSmoother;
 import org.locationtech.jts.geom.LineString;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 
 public class BezierSmoothing extends FunctionBase2 {
 
@@ -15,8 +16,7 @@ public class BezierSmoothing extends FunctionBase2 {
 		double alpha=v1.getDouble();
 		// TODO Auto-generated method stub
 		LineSmoother smoother=new LineSmoother();
-		smoother.smooth((LineString)geom.getXYGeometry(), alpha);
-		return null;
+		return GeometryWrapperFactory.createLineString(smoother.smooth(((LineString)geom.getXYGeometry()), alpha).getCoordinates(),geom.getSrsURI(), geom.getGeometryDatatypeURI()).asNodeValue();
 	}
 
 }
