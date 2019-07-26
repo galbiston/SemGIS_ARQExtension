@@ -1,6 +1,7 @@
 package de.hsmainz.cs.semgis.arqextension.util;
 
 import java.awt.Rectangle;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import org.locationtech.jts.geom.Envelope;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.LineString;
+import org.locationtech.jts.geom.OctagonalEnvelope;
 import org.locationtech.jts.geom.Polygon;
 import org.opengis.geometry.BoundingBox;
 
@@ -45,6 +47,18 @@ public class LiteralUtils {
 	}
 	
 	public static Geometry toGeometry(final Envelope2D envelope) {
+        GeometryFactory gf = new GeometryFactory();
+        return gf.createPolygon(gf.createLinearRing(
+                new Coordinate[]{
+                    new Coordinate(envelope.getMinX(), envelope.getMinY()),
+                    new Coordinate(envelope.getMaxX(), envelope.getMinY()),
+                    new Coordinate(envelope.getMaxX(), envelope.getMaxY()),
+                    new Coordinate(envelope.getMinX(), envelope.getMaxY()),
+                    new Coordinate(envelope.getMinX(), envelope.getMinY())
+                }), null);
+    }
+	
+	public static Geometry toGeometry(final OctagonalEnvelope envelope) {
         GeometryFactory gf = new GeometryFactory();
         return gf.createPolygon(gf.createLinearRing(
                 new Coordinate[]{
@@ -114,5 +128,9 @@ public class LiteralUtils {
 			default:
 				return null;
 			}
+		}
+		
+		public static GeometryWrapper createGeometry(Coordinate[] coordarray,String geomtype,GeometryWrapper geometry) {
+			return createGeometry(Arrays.asList(coordarray), geomtype, geometry);
 		}
 }

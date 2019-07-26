@@ -9,21 +9,19 @@ import org.locationtech.jts.geom.PrecisionModel;
 import org.locationtech.jts.precision.GeometryPrecisionReducer;
 
 import io.github.galbiston.geosparql_jena.implementation.GeometryWrapper;
+import io.github.galbiston.geosparql_jena.implementation.GeometryWrapperFactory;
 
-/**
- * Exports the geometry as well known text with a fixed number of digits after the comma.
- *
- */
-public class AsTextRound extends FunctionBase2 {
+public class PrecisionReducer extends FunctionBase2 {
 
 	@Override
 	public NodeValue exec(NodeValue v1, NodeValue v2) {
-        try {
+		try {
             GeometryWrapper geometry = GeometryWrapper.extract(v1);
             Geometry geom = geometry.getXYGeometry();
             PrecisionModel pm = new PrecisionModel(Math.pow(10.0, v2.getDouble()));
             Geometry geom_mod=GeometryPrecisionReducer.reduce(geom, pm);
-            return NodeValue.makeString(geom_mod.toText());
+            GeometryWrapper simpleWrapper = GeometryWrapperFactory.createGeometry(geom_mod, geometry.getSrsURI(), geometry.getGeometryDatatypeURI());
+            return simpleWrapper.asNodeValue();
         } catch (DatatypeFormatException ex) {
             throw new ExprEvalException(ex.getMessage(), ex);
         }

@@ -21,8 +21,6 @@ public class LongestLine3D extends FunctionBase2 {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        org.geolatte.geom.Geometry<Position> g;
-        org.geolatte.geom.LineString<Position> l;
         
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
